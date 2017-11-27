@@ -1,0 +1,3 @@
+[submodule "resources/daf-ontologie-vocabolari-controllati"]
+	path = resources/daf-ontologie-vocabolari-controllati
+	url = https://github.com/italia/daf-ontologie-vocabolari-controllati
