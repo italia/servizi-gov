@@ -1,0 +1,2720 @@
+@prefix : <http://dati.gov.it/onto/cpsv-itap/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://dati.gov.it/onto/cpsvapit> .
+
+<http://dati.gov.it/onto/cpsvapit> rdf:type owl:Ontology ;
+                                   
+                                   dc:issued "2015-11-21" ;
+                                   
+                                   dc:creator "Agency for Digital Italy - AgID"@en ;
+                                   
+                                   dc:title "Core Public Service Vocabulary - The Italian Application Profile (CPSV-AP_IT)"@en ;
+                                   
+                                   dc:description "This is the ontology of the Italian application profile for public services. With the term \"public service\" we mean any discretional or mandatory act carried out by a Public Administration (or on behalf of a Public Administration) for the advantage of citizens and enterprises."@en ;
+                                   
+                                   rdfs:comment "This is the ontology of the Italian application profile for public services. With the term \"public service\" we mean any discretional or mandatory act carried out by a Public Administration (or on behalf of a Public Administration) for the advantage of citizens and enterprises."@en ;
+                                   
+                                   owl:versionInfo "Version 0.4 - 8 February 2016"@en ;
+                                   
+                                   dc:creator "Agenzia per l'Italia Digitale - AgID"@it ;
+                                   
+                                   dc:title "Core Public Service Vocabulary - Il profilo applicativo italiano (CPSV-AP_IT)"@it ;
+                                   
+                                   dc:description "Ontologia del profilo italiano per la descrizione dei servizi pubblici. Per servizio pubblico si intende qualsiasi atto obbligatorio o discrezionale espletato da una pubblica amministrazione (o per conto di una pubblica amministrazione) nei confronti di cittadini, imprese/professionisti."@it ;
+                                   
+                                   rdfs:comment "Ontologia del profilo italiano per la descrizione dei servizi pubblici. Per servizio pubblico si intende qualsiasi atto obbligatorio o discrezionale espletato da una pubblica amministrazione (o per conto di una pubblica amministrazione) nei confronti di cittadini, imprese/professionisti."@it ;
+                                   
+                                   owl:versionInfo "Versione 0.4 - 8 febbraio 2016"@it ;
+                                   
+                                   rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                                   
+                                   owl:versionIRI <http://dati.gov.it/onto/cpsvapit/0.4> .
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+###  http://www.w3.org/2001/XMLSchema#date
+
+xsd:date rdf:type rdfs:Datatype .
+
+
+
+###  http://www.w3.org/2001/XMLSchema#time
+
+xsd:time rdf:type rdfs:Datatype .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://dati.gov.it/onto/cpsvapit#actsOnBehalfOf
+
+:actsOnBehalfOf rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "acts on behalf of"@en ,
+                           "agisce per conto di"@it ;
+                
+                rdfs:comment "This property represents an accountability relationship that exists between a person and a legal entity where the person works."@en ,
+                             "Questa proprietà rappresenta una relazione, che intercorre tra una persona e un'entità legale, di responsabilità, nello specifico della persona nei confronti dell'entità legale (organizzazione privata o pubblica) presso la quale la persona si colloca."@it ;
+                
+                rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                
+                rdfs:range :Agent ;
+                
+                rdfs:domain :Agent ;
+                
+                rdfs:subPropertyOf <http://www.w3.org/ns/org#reportsTo> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#currency
+
+:currency rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "currency"@en ,
+                     "valuta"@it ;
+          
+          rdfs:comment "This property is used to model the currency associated with the cost of the service. The currency must be chosen using the following controlled vocabulary: http://publications.europa.eu/resource/authority/currency"@en ,
+                       "Questa proprietà è utilizzata per specificare la valuta da associare al costo del servizio. La valuta deve essere scelta in base al seguente vocabolario controllato: http://publications.europa.eu/resource/authority/currency"@it ;
+          
+          rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+          
+          rdfs:domain :Cost ;
+          
+          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#follows
+
+:follows rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "follows"@en ,
+                    "rispetta"@it ;
+         
+         rdfs:comment "This property links a public service to the set of rules the service has to follow in order to be carried out."@en ,
+                      "Questa proprietà è utilizzata per poter collegare il servizio pubblico all'insieme di regole che esso deve rispettare per il suo espletamento."@it ;
+         
+         rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+         
+         rdfs:domain :PublicService ;
+         
+         rdfs:range :Rule ;
+         
+         owl:inverseOf :isFollowedBy .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasChannel
+
+:hasChannel rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "has channel"@en ,
+                       "ha canale"@it ;
+            
+            rdfs:comment "This property is used to link the public service with the channel through which it is provided to the end users. It is recommended specifying the channel through the service is provided."@en ,
+                         "Questa classe collega il servizio pubblico al canale attraverso cui erogare il servizio pubblico agli utenti finali. E' raccomandato specificare qual è il canale di erogazione per un servizio pubblico."@it ;
+            
+            rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+            
+            rdfs:range :Channel ;
+            
+            rdfs:domain :PublicService .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasContactPoint
+
+:hasContactPoint rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "has contact point"@en ,
+                            "ha punto di contatto"@it ;
+                 
+                 rdfs:comment "Questa proprietà è utilizzata per specificare un punto di contatto. Per esempio essa può collegare un servizio pubblico a uno o più punti di contatto."@en ,
+                              "This property is used to represent the point of contact. For instance it can be used to link the public service with its contant point. More than one contact point for a service can be specified."@it ;
+                 
+                 rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                 
+                 owl:inverseOf :isContactPointOf ;
+                 
+                 rdfs:range <http://dati.gov.it/onto/dcatapit#Organization> ;
+                 
+                 rdfs:domain owl:Thing .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasCost
+
+:hasCost rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "has cost"@en ,
+                    "ha costo"@it ;
+         
+         rdfs:comment "This property links a public service to the costs associated with it."@en ,
+                      "Questa proprietà consente di collegare un servizio pubblico ai costi associati ad esso."@it ;
+         
+         rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+         
+         rdfs:range :Cost ;
+         
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :BusinessEvent
+                                     :PublicService
+                                   )
+                     ] .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasDayWeek
+
+:hasDayWeek rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "has day of the week"@en ,
+                       "ha giorno della settimana"@it ;
+            
+            rdfs:comment "Property used to link a time interval with a day of the week."@en ,
+                         "Proprietà che collega un intervallo temporale al giorno della settimana."@it ;
+            
+            rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+            
+            rdfs:range :DayOfTheWeek ;
+            
+            rdfs:domain :TimeInterval .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasEmail
+
+:hasEmail rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "has email"@en ,
+                     "ha email"@it ;
+          
+          rdfs:comment "This property is a sub property of has channel and it is used to connect a public service with a specific type of channel; i.e., email."@en ,
+                       "Questa proprietà è una sotto proprietà di \"ha canale\" ed è utilizzata al fine di legare un servizio pubblico a uno specifico tipo di canale; i.e., email."@it ;
+          
+          rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+          
+          rdfs:range :Email ;
+          
+          rdfs:domain :PublicService ;
+          
+          rdfs:subPropertyOf :hasChannel ,
+                             <http://www.w3.org/2006/vcard/ns#hasEmail> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasInput
+
+:hasInput rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "has input"@en ,
+                     "ha input"@it ;
+          
+          rdfs:comment "This property is used to link a public service with an input required to carry out the service. A service can have more than one input. It is mandatory to specify an input for a public service."@en ,
+                       "Questa proprietà è utilizzata per collegare un servizio pubblico all'input richiesto per poter espletare il servizio stesso. Il servizio può avere più di un input. E' obbligatorio specificare un input per il servizio."@it ;
+          
+          rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+          
+          rdfs:range :Input ;
+          
+          rdfs:domain :PublicService .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasMeasurementUnit
+
+:hasMeasurementUnit rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "has measurement unit"@en ,
+                               "ha unità di misura"@it ;
+                    
+                    rdfs:comment "This property models the measurement unit to be assigned to a quantitative value. It connects the class Quantitative Value with the class Mearurement Unit."@en ,
+                                 "Questa proprietà consente di specificare un'unità di misura per un valore quantitativo. Essa connette la classe Quantitative Value alla classe Measurement Unit."@it ;
+                    
+                    rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                    
+                    rdfs:range :MeasurementUnit ;
+                    
+                    rdfs:domain :QuantitativeValue .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasOtherElectronicCh
+
+:hasOtherElectronicCh rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:label "has other electronic channel"@en ,
+                                 "ha altro canale elettronico"@it ;
+                      
+                      rdfs:comment "This property is subproperty of \"has channel\" and it is used to link a public service with another electronic channel."@en ,
+                                   "Questa proprietà è sotto proprietà di \"ha canale\" ed è utilizzata per collegare un servizio pubblico a un canale di tipo non elettronico."@it ;
+                      
+                      rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                      
+                      rdfs:range :OtherElectronicChannel ;
+                      
+                      rdfs:domain :PublicService ;
+                      
+                      rdfs:subPropertyOf :hasChannel .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasPhone
+
+:hasPhone rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "has telephone"@en ,
+                     "ha telefono"@it ;
+          
+          rdfs:comment "This property is a subproperty of \"has channel\" and it is used to link the public service with a specific channel type; i.e., telephone."@en ,
+                       "Questa proprietà è una sottoproprietà di \"ha canale\" ed è utilizzata per connettere un servizio pubblico a uno specifico tipo di canale; i.e., telefono."@it ;
+          
+          rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+          
+          rdfs:range :Phone ;
+          
+          rdfs:domain :PublicService ;
+          
+          rdfs:subPropertyOf :hasChannel ,
+                             <http://www.w3.org/2006/vcard/ns#hasTelephone> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasStatus
+
+:hasStatus rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "has status"@en ,
+                      "ha stato"@it ;
+           
+           rdfs:comment "Property used to link a public service with a status."@en ,
+                        "Proprietà utilizzata per collegare un servizio pubblico a uno stato."@it ,
+                        <http://dati.gov.it/onto/cpsvapit> ;
+           
+           rdfs:domain :PublicService ;
+           
+           rdfs:range :Status ;
+           
+           owl:inverseOf :isStatusFor .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#hasWebSite
+
+:hasWebSite rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "has web site"@en ,
+                       "ha sito web"@it ;
+            
+            rdfs:comment "This property is a subproperty of \"has channel\" and it is used to link the public service with a specific type of channel; i.e., web site."@en ,
+                         "Questa proprietà è sottoporprietà di \"ha canale\" ed è utilizzata per collegare un servizio pubblico a uno specifico tipo di canale; i.e., sito web."@it ;
+            
+            rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+            
+            rdfs:domain :PublicService ;
+            
+            rdfs:range :WebSite ;
+            
+            rdfs:subPropertyOf :hasChannel ,
+                               <http://xmlns.com/foaf/0.1/homepage> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#implements
+
+:implements rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "implements"@en ,
+                       "implementa"@it ;
+            
+            rdfs:comment "This property is used to represent rules that implement specific legislation or policy documents."@en ,
+                         "Questa proprietà è utilizzata per indicare regole che implementano spcifici riferimenti normativi."@it ;
+            
+            rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+            
+            rdfs:range :FormalFramework ;
+            
+            rdfs:domain :Rule ;
+            
+            owl:inverseOf :isImplementedBy .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#interactivityLevel
+
+:interactivityLevel rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "interactivity level"@en ,
+                               "livello interattivo"@it ;
+                    
+                    rdfs:comment "this property is used to represent the interactivity level of the service. The interactivity level must be chosen through the use of the following controlled vocabulary:  http://dati.gov.it/onto/controlledvocabulary/InteractivityLevel"@en ,
+                                 "Questa proprietà consente di rappresentare il livello di interattività del servizio. Il livello di interattività deve essere specificato mediante l'uso del vocabolario controllato:  http://dati.gov.it/onto/controlledvocabulary/InteractivityLevel"@it ;
+                    
+                    rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                    
+                    rdfs:domain :PublicService ;
+                    
+                    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isChannelOf
+
+:isChannelOf rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "is channel of"@en ,
+                        "è canale di"@it ;
+             
+             rdfs:comment "Inverse property of \"has channel\" used to link a channel with the public service."@en ,
+                          "Proprietà inversa di \"ha canale\" utilizzata per collegare un canale con un servizio pubblico."@it ;
+             
+             rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+             
+             rdfs:domain :Channel ;
+             
+             rdfs:range :PublicService ;
+             
+             owl:inverseOf :hasChannel .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isContactPointOf
+
+:isContactPointOf rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "is contact point of"@en ,
+                             "è punto di contatto per"@en ;
+                  
+                  rdfs:comment "This is the inverse property of \"has contact point\"."@en ,
+                               "Questa è la proprietà inversa di \"ha punto di contatto\"."@it ;
+                  
+                  rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                  
+                  rdfs:domain <http://dati.gov.it/onto/dcatapit#Organization> ;
+                  
+                  rdfs:range owl:Thing .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isFollowedBy
+
+:isFollowedBy rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "is followed by"@en ,
+                         "è rispettata da"@it ;
+              
+              rdfs:comment "This property is the inverse of \"follows\" and links the \"Rule\" with the \"Public Service\"."@en ,
+                           "Questa è la proprietà inversa di \"rispetta\" che connette una regola al servizio pubblico."@it ;
+              
+              rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+              
+              rdfs:range :PublicService ;
+              
+              rdfs:domain :Rule .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isImplementedBy
+
+:isImplementedBy rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "is implemented by"@en ,
+                            "è implementato da"@it ;
+                 
+                 rdfs:comment "This property is the inverse of \"implements\" used to link the \"Formal Framework\" with the \"Rule\"."@en ,
+                              "Questa è la proprietà inversa di \"implementa\" che connette il \"Framework Legale\" alla \"Regola\"."@it ;
+                 
+                 rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                 
+                 rdfs:domain :FormalFramework ;
+                 
+                 rdfs:range :Rule .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isPhysicalLocationOf
+
+:isPhysicalLocationOf rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:label "is the physical location of"@en ,
+                                 "è la localizzazione fisica di"@it ;
+                      
+                      rdfs:comment "Inverse property of \"is physically available at\" that links a physical location to the public service."@en ,
+                                   "Proprietà inversa di \"è disponibile fisicamente presso\" che lega una localizzazione fisica a il servizio pubblico."@it ;
+                      
+                      rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                      
+                      rdfs:domain :Location ;
+                      
+                      rdfs:range :PublicService ;
+                      
+                      owl:inverseOf :isPhysicallyAvailableAt .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isPhysicallyAvailableAt
+
+:isPhysicallyAvailableAt rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "is physically available at"@en ,
+                                    "è fisicamente disponibile presso"@it ;
+                         
+                         rdfs:comment "This property links the public service to its physical location in the case the service is provided offline at some public administration's desk/totem."@en ,
+                                      "Questa proprietà collega un servizio pubblico alla locazione fisica che lo eroga nel caso il servizio sia offerto agli utenti finali via sportelli fisici/totem."@it ,
+                                      <http://dati.gov.it/onto/cpsvapit> ;
+                         
+                         rdfs:range :Location ;
+                         
+                         rdfs:domain :PublicService ;
+                         
+                         rdfs:subPropertyOf :hasChannel .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isPlayedBy
+
+:isPlayedBy rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "is played by"@en ,
+                       "è esercitato da"@it ;
+            
+            rdfs:comment "Inverse property of \"plays a role in time\" used to link the situation \"role in time\" to the Agent."@en ,
+                         "Proprietà inversa di \"esercita un ruolo nel tempo\" utilizzata per collegare la situazione ruolo nel tempo con il Soggetto."@it ,
+                         <http://dati.gov.it/onto/cpsvapit> ;
+            
+            rdfs:range :Agent ;
+            
+            rdfs:domain :RoleInTime .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isRelatedToRiT
+
+:isRelatedToRiT rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "is related to role in time"@en ,
+                           "è relativo al ruolo nel tempo"@it ;
+                
+                rdfs:comment "Inverse property of \"role for\"."@en ,
+                             "Proprietà inversa di \"ruolo per\"."@it ;
+                
+                rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                
+                rdfs:domain :PublicService ;
+                
+                rdfs:range :RoleInTime .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isRoleIn
+
+:isRoleIn rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "is role in"@en ,
+                     "è ruolo in"@it ;
+          
+          rdfs:comment "Inverse property of \"withRole\","@en ,
+                       "Proprietà inversa di \"con ruolo\"."@it ,
+                       <http://dati.gov.it/onto/cpsvapit> ;
+          
+          rdfs:domain :Role ;
+          
+          rdfs:range :RoleInTime .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#isStatusFor
+
+:isStatusFor rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "is status for"@en ,
+                        "è stato per"@it ;
+             
+             rdfs:comment "Inverse property of \"has status\" used to link the service status with the public service."@en ,
+                          "Proprietà inversa di \"ha stato\" utilizzata per connettere uno stato del servizio al servizio pubblico."@it ;
+             
+             rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+             
+             rdfs:range :PublicService ;
+             
+             rdfs:domain :Status .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#playsARoleInTime
+
+:playsARoleInTime rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "plays a role in time"@en ,
+                             "esercita un ruolo nel tempo"@it ;
+                  
+                  rdfs:seeAlso "http://purl.org/spar/pro#holdsRoleInTime" ;
+                  
+                  rdfs:comment "This property is used to link an agent to the situation of the role of the agent that changes over time."@en ;
+                  
+                  rdfs:seeAlso "http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#hasTimeIndexedSetting" ;
+                  
+                  rdfs:comment "Questa proprietà è utilizzata per connettere un soggetto alla situazione del ruolo del soggetto che varia nel tempo."@it ;
+                  
+                  rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                  
+                  rdfs:domain :Agent ;
+                  
+                  rdfs:range :RoleInTime ;
+                  
+                  owl:inverseOf :isPlayedBy .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#processingTime
+
+:processingTime rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "processing time"@en ,
+                           "tempo di processamento"@it ;
+                
+                rdfs:comment "This property represents the processing time for a life event. It can be expressed in a quantitative time metric or in a punctual time interval. It connects life event with quantitative value or time interval."@en ,
+                             "Questa proprietà rappresenta il tempo di processamento che può essere espresso sia in termini quantitativi, sia in termini puntuali riferibili a un intervallo temporale. La proprietà connette la classe LifeEvent a sia Quantitative Value che Time Interval."@it ;
+                
+                rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                
+                rdfs:domain :LifeEvent ;
+                
+                rdfs:range [ rdf:type owl:Class ;
+                             owl:unionOf ( :QuantitativeValue
+                                           :TimeInterval
+                                         )
+                           ] .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#produces
+
+:produces rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "produces"@en ,
+                     "produce"@it ;
+          
+          rdfs:comment "This property is used to connect a public service with the output it produces."@en ,
+                       "Questa proprietà è utilizzata per collegare un servizio pubblico con l'output da esso prodotto."@it ;
+          
+          rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+          
+          rdfs:range :Output ;
+          
+          rdfs:domain :PublicService .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#roleAtTime
+
+:roleAtTime rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "role at time"@en ,
+                       "ruolo nell'intervallo di tempo"@it ;
+            
+            rdfs:comment "This property is used to link the situation of the role that changes over time with the time interval itself."@en ,
+                         "Questa proprietà è utilizzata per collegare la situazione del ruolo che varia nel tempo all'intervallo temporale stesso."@it ;
+            
+            rdfs:seeAlso "http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#atTime" ;
+            
+            rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+            
+            rdfs:domain :RoleInTime ;
+            
+            rdfs:range :TimeInterval .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#roleFor
+
+:roleFor rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "role for"@en ,
+                    "ruolo per"@it ;
+         
+         rdfs:comment "This property is used to link the situation of a role that changes over time to a specific entity. In CPSV-AP_IT the entity is the public service."@en ,
+                      "Questa proprietà consente di collegare la situazione di un ruolo che varia nel tempo su uno specifico oggetto. In CPSV-AP_IT l'oggetto è il servizio pubblico."@it ;
+         
+         rdfs:seeAlso "http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#forEntity" ,
+                      "http://purl.org/spar/pro/relatesToEntity" ;
+         
+         rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+         
+         rdfs:range :PublicService ;
+         
+         rdfs:domain :RoleInTime ;
+         
+         owl:inverseOf :isRelatedToRiT .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#serviceSubTheme
+
+:serviceSubTheme rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "service subtheme"@en ,
+                            "sottotema del servizio"@it ;
+                 
+                 rdfs:comment "This property is used to model the service subtheme. The service subtheme must be choosen using the following controlled vocabulary: TBD"@en ,
+                              "Questa proprietà è utilizzata per specificare il sotto tema del servizio. Il sotto tema del servizio deve essere scelto sulla base del seguente vocabolario controllato: TBD."@it ;
+                 
+                 rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                 
+                 rdfs:domain :PublicService ;
+                 
+                 rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#serviceTheme
+
+:serviceTheme rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "service theme"@en ,
+                         "tema del servizio"@it ;
+              
+              rdfs:comment "This property is used to model the service theme. The service theme must be specified using the following controlled vocabulary: http://publications.europa.eu/resource/authority/data-theme"@en ,
+                           "Questa proprietà consente di specificare il tema del servizio. Il tema del servizio deve essere specificato utilizzando il seguente vocabolario controllato: http://publications.europa.eu/resource/authority/data-theme"@it ;
+              
+              rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+              
+              rdfs:domain :PublicService ;
+              
+              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#specifies
+
+:specifies rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "specifies"@en ,
+                      "definisce"@it ;
+           
+           rdfs:comment "This property is used to represent that rules can specify requirements for a public service."@en ,
+                        "Questa proprietà è utilizzata per indicare che le regole definiscono determinati requisiti per il servizio pubblico."@it ;
+           
+           rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+           
+           rdfs:range :Requirement ;
+           
+           rdfs:domain :Rule .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#withRole
+
+:withRole rdf:type owl:FunctionalProperty ,
+                   owl:ObjectProperty ;
+          
+          rdfs:label "with role"@en ,
+                     "con ruolo"@it ;
+          
+          rdfs:seeAlso "http://purl.org/spar/pro/withRole" ,
+                       "http://www.ontologydesignpatterns.org/cp/owl/situation.owl#hasSetting" ;
+          
+          rdfs:comment "This property is used to link the situation that a role can change over time with the role itself. The role must be specified using the following controlled vocabulary: TBD"@en ,
+                       "Questa proprietà è utilizzata per collegare la situazione del ruolo che varia nel tempo con il ruolo stesso. Il ruolo deve essere specificato utilizzando il seguente vocabolario controllato: TBD"@it ;
+          
+          rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+          
+          rdfs:range :Role ;
+          
+          rdfs:domain :RoleInTime ;
+          
+          owl:inverseOf :isRoleIn .
+
+
+
+###  http://purl.org/dc/terms/hasPart
+
+<http://purl.org/dc/terms/hasPart> rdf:type owl:ObjectProperty ;
+                                   
+                                   rdfs:label "has part"@en ,
+                                              "ha componente"@it ;
+                                   
+                                   rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it is used to link a Business event with the public services that compose it."@en ,
+                                                "Questa proprietà è definita in http://purl.org/dc/terms/ ed è utilizzata per collegare un business event a tutti i servizi che lo compongono."@it ;
+                                   
+                                   rdfs:domain :LifeEvent ;
+                                   
+                                   rdfs:range :PublicService ;
+                                   
+                                   rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+                                   
+                                   owl:inverseOf <http://purl.org/dc/terms/isPartOf> .
+
+
+
+###  http://purl.org/dc/terms/isPartOf
+
+<http://purl.org/dc/terms/isPartOf> rdf:type owl:ObjectProperty ;
+                                    
+                                    rdfs:label "is part of"@en ,
+                                               "è parte di"@it ;
+                                    
+                                    rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it is used to represent public services that are grouped in a Business event."@en ,
+                                                 "Questa proprietà è definita in http://purl.org/dc/terms/ ed è utilizzata per rappresentare servizi pubblici che compongono un business event."@it ;
+                                    
+                                    rdfs:range :LifeEvent ;
+                                    
+                                    rdfs:domain :PublicService ;
+                                    
+                                    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+
+
+###  http://purl.org/dc/terms/language
+
+<http://purl.org/dc/terms/language> rdf:type owl:ObjectProperty ;
+                                    
+                                    rdfs:label "language"@en ,
+                                               "lingua"@it ;
+                                    
+                                    rdfs:comment "This property is defined in http://purl.org/dc/terms/  and it has been added in order to model the language through which the public service is provided."@en ,
+                                                 "Questa proprietà è definita in http://purl.org/dc/terms/ ed è stata aggiunta per connettere il servizio pubblico alla lingua con cui il servizio è erogato."@it ;
+                                    
+                                    rdfs:range <http://purl.org/dc/terms/LinguisticSystem> ;
+                                    
+                                    rdfs:isDefinedBy <http://purl.org/dc/terms/%20> ;
+                                    
+                                    rdfs:domain owl:Thing .
+
+
+
+###  http://purl.org/dc/terms/relation
+
+<http://purl.org/dc/terms/relation> rdf:type owl:ObjectProperty ;
+                                    
+                                    rdfs:label "relation"@en ,
+                                               "relativo a"@it ;
+                                    
+                                    rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it is used to represent all those cases in which a service relates to another service."@en ,
+                                                 "Questa proprietà è definita in http://purl.org/dc/terms/ ed è utilizzata per rappresentare tutti quei casi in cui un servizio pubblico è relativo a un altro servizio pubblico."@it ;
+                                    
+                                    rdfs:domain :PublicService ;
+                                    
+                                    rdfs:range :PublicService ;
+                                    
+                                    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+
+
+###  http://purl.org/dc/terms/requires
+
+<http://purl.org/dc/terms/requires> rdf:type owl:ObjectProperty ;
+                                    
+                                    rdfs:label "requires"@en ,
+                                               "richiede"@it ;
+                                    
+                                    rdfs:comment "This property defined in http://purl.org/dc/terms/ and it is used to represent all those cases in which a public service requires another public service in order to be carried out."@en ,
+                                                 "Questa proprietà è definita in http://purl.org/dc/terms/ ed è utilizzata per rappresentare tutti quei casi in cui un servizio richiede un altro servizio per poter essere espletato."@it ;
+                                    
+                                    rdfs:range :PublicService ;
+                                    
+                                    rdfs:domain :PublicService ;
+                                    
+                                    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+
+
+###  http://purl.org/dc/terms/spatial
+
+<http://purl.org/dc/terms/spatial> rdf:type owl:ObjectProperty ;
+                                   
+                                   rdfs:label "spatial coverage"@en ,
+                                              "copertura spaziale"@it ;
+                                   
+                                   rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it has been added in order to link a public service with its geographical coverage. The property has always a dct:Location as range."@en ,
+                                                "Questa proprietà è definita in http://purl.org/dc/terms/ ed è stata aggiunta in CPSV-AP_IT per poter collegare un servizio pubblico alla sua copertura geografica. La proprietà ha sempre come range una classe di tipo dct:Location."@it ;
+                                   
+                                   rdfs:range :Location ;
+                                   
+                                   rdfs:domain :PublicService ;
+                                   
+                                   rdfs:comment <http://purl.org/dc/terms/> .
+
+
+
+###  http://purl.org/dc/terms/temporal
+
+<http://purl.org/dc/terms/temporal> rdf:type owl:ObjectProperty ;
+                                    
+                                    rdfs:label "temporal coverage"@en ,
+                                               "copertura temporale"@it ;
+                                    
+                                    rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it is used to represent the temporal characteristics of a resourrce. The property has always dct:Location as range. In the context of CPSV-AP_IT is used to represent the temporal interval in which the public service is available and the validity interval of the role played by an agent on a public service."@en ,
+                                                 "Questa proprietà è definita in http://purl.org/dc/terms/ e consente di rappresentare le caratteristiche temporali di una risorsa. Il range della proprietà è sempre dct:PeriodOfTime. Nel contesto CPSV-AP_IT è utilizzata per rappresentare la copertura temporale di disponibilità di un servizio pubblico e l'intervallo di validità di un ruolo esercitato da un soggetto su un servizio pubblico."@it ;
+                                    
+                                    rdfs:domain :PublicService ;
+                                    
+                                    rdfs:range :TimeInterval ;
+                                    
+                                    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+
+
+###  http://purl.org/dc/terms/type
+
+<http://purl.org/dc/terms/type> rdf:type owl:ObjectProperty ;
+                                
+                                rdfs:label "type"@en ,
+                                           "tipo"@it ;
+                                
+                                rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it has been added in order to model the type of \"things\" defined in CPSV-AP_IT. The use of type is associated with the use of controlled vocabularies. In CPSV-AP_IT the property has range a skos:Concept."@en ,
+                                             "Questa proprietà è definita in http://purl.org/dc/terms/type ed è stata aggiunta per poter modellare i tipi di \"cose\" definite nell'ambito CPSV-AP_IT. L'uso di type è associato all'uso di vocabolari controllari. Nel CPSV-AP_IT, la proprietà è associata a uno skos:Concept."@it ;
+                                
+                                rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+                                
+                                rdfs:domain owl:Thing ;
+                                
+                                rdfs:range [ rdf:type owl:Class ;
+                                             owl:unionOf ( :LifeEventType
+                                                           <http://www.w3.org/2004/02/skos/core#Concept>
+                                                         )
+                                           ] .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#hasEmail
+
+<http://www.w3.org/2006/vcard/ns#hasEmail> rdf:type owl:ObjectProperty ;
+                                           
+                                           rdfs:label "has email"@en ;
+                                           
+                                           rdfs:comment "This property is defined in http://www.w3.org/2006/vcard/ns and it has been added in order to guarantee the full alignment etween CPSV-AP_IT and vCard."@en ,
+                                                        "Questa proprietà è definita in http://www.w3.org/2006/vcard/ns ed è stata aggiunta al fine di garantire il pieno allineamento tra CPSV-AP_IT e vCard."@it ,
+                                                        <http://www.w3.org/2006/vcard/ns> .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#hasTelephone
+
+<http://www.w3.org/2006/vcard/ns#hasTelephone> rdf:type owl:ObjectProperty ;
+                                               
+                                               rdfs:label "has telephone"@en ;
+                                               
+                                               rdfs:comment "This property is defined in http://www.w3.org/2006/vcard/ns and it has been added in order to guarantee the full alignment between CPSV-AP_IT and vCard."@en ,
+                                                            "Questa proprietà è definita in http://www.w3.org/2006/vcard/ns ed è stata aggiunta al fine di garantire il pieno allineamento tra CPSV-AP_IT e vCard."@it ;
+                                               
+                                               rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+
+###  http://www.w3.org/ns/locn#geographicName
+
+<http://www.w3.org/ns/locn#geographicName> rdf:type owl:ObjectProperty ;
+                                           
+                                           rdfs:label "geographical name"@en ,
+                                                      "nome geografico"@it ;
+                                           
+                                           rdfs:comment "This property is defined in http://www.w3.org/ns/locn and it is used to model a name associated with a spatial object. Examples include: \"Roma\" (n Italian), \"Rome\" (in English), etc."@en ,
+                                                        "Questa proprietà è definita in http://www.w3.org/ns/locn ed è utilizzata per modellare il nome geografico associato a un oggetto spaziale. Exempi includono \"Roma\" (in Italiano), \"Rome\" (in inglese), ecc."@it ;
+                                           
+                                           rdfs:domain <http://purl.org/dc/terms/Location> ;
+                                           
+                                           rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                           
+                                           rdfs:isDefinedBy <http://www.w3.org/ns/locn> .
+
+
+
+###  http://www.w3.org/ns/org#reportsTo
+
+<http://www.w3.org/ns/org#reportsTo> rdf:type owl:ObjectProperty ;
+                                     
+                                     rdfs:label "reports to"@en ;
+                                     
+                                     rdfs:comment "This property is defined in http://www.w3.org/ns/org and it is added in order to guarantee the alignment of the CPSV-AP_IT to the Org W3C recommendation."@en ,
+                                                  "Questa proprietà è definita in http://www.w3.org/ns/org ed è stata aggiunta al fine di garantire l'allineamento di CPSV-AP_IT con la raccomandazione W3C Org."@it ;
+                                     
+                                     rdfs:isDefinedBy <http://www.w3.org/ns/org> .
+
+
+
+###  http://xmlns.com/foaf/0.1/homepage
+
+<http://xmlns.com/foaf/0.1/homepage> rdf:type owl:ObjectProperty ;
+                                     
+                                     rdfs:label "home page"@en ;
+                                     
+                                     rdfs:comment "This property is defined in http://xmlns.com/foaf/0.1/ and it has been added in order to guarantee the full alignment between CPSV-AP_IT and FOAF, following the CPSV specifications."@en ,
+                                                  "Questa proprietà è definita in http://xmlns.com/foaf/0.1/ ed è stata aggiunta al fine di garantire il pieno allineamento tra CPSV-AP_IT e FOAF, in accordo con le specifiche CPSV."@it ;
+                                     
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> .
+
+
+
+###  https://www.w3.org/ns/locn#address
+
+<https://www.w3.org/ns/locn#address> rdf:type owl:ObjectProperty ;
+                                     
+                                     rdfs:label "address"@en ,
+                                                "indirizzo"@it ;
+                                     
+                                     rdfs:comment "Property defined in http://www.w3.org/ns/locn and used to represent an address of a resource."@en ,
+                                                  "Proprietà definita in http://www.w3.org/ns/locn e usata per rappreentare un indirizzo di una certa risorsa."@it ;
+                                     
+                                     rdfs:range :Address ;
+                                     
+                                     rdfs:domain owl:Thing ;
+                                     
+                                     rdfs:isDefinedBy <http://www.w3.org/ns/locn> .
+
+
+
+###  https://www.w3.org/ns/locn#geometry
+
+<https://www.w3.org/ns/locn#geometry> rdf:type owl:ObjectProperty ;
+                                      
+                                      rdfs:label "geometry"@en ,
+                                                 "geometria"@it ;
+                                      
+                                      rdfs:comment "Property defined in http://www.w3.org/ns/locn and used to represent a geometry of a resource."@en ,
+                                                   "Proprietà definita in http://www.w3.org/ns/locn e utilizzata per rappresentare una geometria di una risorsa."@it ;
+                                      
+                                      rdfs:domain owl:Thing ;
+                                      
+                                      rdfs:isDefinedBy <http://www.w3.org/ns/locn> ;
+                                      
+                                      rdfs:range <http://www.w3.org/ns/locn#Geometry> .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://dati.gov.it/onto/cpsvapit#accessReference
+
+:accessReference rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:label "access reference"@en ,
+                            "riferimento di accesso"@it ;
+                 
+                 rdfs:comment "This property is used to represent the access reference for an electronic channel different from web site and email. For instance, it can be the bank account number for a bank transfer channel, etc."@en ,
+                              "Questa proprietà consente di rappresentare un riferimento per l'accesso a un canale non elettronico diverso da sito web e email. Esempio, l'IBAN per un bonifico bancario, canale per la TV on demand, ecc."@it ;
+                 
+                 rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                 
+                 rdfs:domain :OtherElectronicChannel ;
+                 
+                 rdfs:range rdfs:Literal .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#alternativeName
+
+:alternativeName rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:label "alternative name"@en ,
+                            "nome alternativo"@it ;
+                 
+                 rdfs:comment "This property is used to represent an alternative name for a legal entity."@en ,
+                              "Questa proprietà è utilizzata per rappresentare un nome alternativo per una entità legale."@it ;
+                 
+                 rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                 
+                 rdfs:domain :LegalEntity ;
+                 
+                 rdfs:range rdfs:Literal ;
+                 
+                 rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/name> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#endInterval
+
+:endInterval rdf:type owl:DatatypeProperty ;
+             
+             rdfs:label "end interval"@en ,
+                        "fine intervallo"@it ;
+             
+             rdfs:comment "This property represents the end of a time interval and it can assume a value of type date, dateTime, time."@en ,
+                          "Questa proprietà rappresenta la fine di un intervallo temporale e può assumere un valore di tipo date, dateTime o time."@it ;
+             
+             rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+             
+             rdfs:domain :TimeInterval ;
+             
+             rdfs:range [ rdf:type rdfs:Datatype ;
+                          owl:unionOf ( xsd:date
+                                        xsd:dateTime
+                                        xsd:time
+                                      )
+                        ] .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#keyword
+
+:keyword rdf:type owl:DatatypeProperty ;
+         
+         rdfs:domain :PublicService ;
+         
+         rdfs:range rdfs:Literal .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#legalIdentifier
+
+:legalIdentifier rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 
+                 rdfs:label "legal identifier"@en ,
+                            "identificativo legale"@it ;
+                 
+                 rdfs:comment "This property is used to represent a legal identifier for the legal entity. In particular, if the legal entity is a private organization the legal identifier is the VAT number whereas if the legal entity is a public administration the legal identifier is represented by the tax code."@en ,
+                              "Questa proprietà consente di specificare un identificativo legale per l'entità legale. In particolare, se l'entità legale è un'organizzazione privata, l'identificativo legale è rappresentato dalla partita iva. Se l'entità legale è una pubblica amministrazione, l'identificativo legale è rappresentato dal codice fiscale."@it ;
+                 
+                 rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+                 
+                 rdfs:domain :LegalEntity ;
+                 
+                 rdfs:subPropertyOf <http://purl.org/dc/terms/identifier> ;
+                 
+                 rdfs:range rdfs:Literal .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#startInterval
+
+:startInterval rdf:type owl:DatatypeProperty ;
+               
+               rdfs:label "start interval"@en ,
+                          "inizio intervallo"@it ;
+               
+               rdfs:comment "This property represents the start of the time interval and it can assume values of type date, dateTime or time."@en ,
+                            "Questa proprietà rappresenta l'inizio dell'intervallo temporale. Esso può assumere valori di tipo date, dateTime o time."@it ;
+               
+               rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> ;
+               
+               rdfs:domain :TimeInterval ;
+               
+               rdfs:range [ rdf:type rdfs:Datatype ;
+                            owl:unionOf ( xsd:date
+                                          xsd:dateTime
+                                          xsd:time
+                                        )
+                          ] .
+
+
+
+###  http://dati.gov.it/onto/dcatapit#geographicalIdentifier
+
+<http://dati.gov.it/onto/dcatapit#geographicalIdentifier> rdf:type owl:DatatypeProperty ,
+                                                                   owl:FunctionalProperty ;
+                                                          
+                                                          rdfs:label "geographical identifier"@en ,
+                                                                     "identificativo geografico"@it ;
+                                                          
+                                                          rdfs:comment "This property is defined in http://dati.gov.it/onto/dcatapit and it is used to model a geographical identifier."@en ,
+                                                                       "Questa proprietà è definita in http://dati.gov.it/onto/dcatapit ed è utilizzata per rappresentare un identificativo geografico."@it ;
+                                                          
+                                                          rdfs:isDefinedBy <http://dati.gov.it/onto/dcatapit> ;
+                                                          
+                                                          rdfs:domain <http://purl.org/dc/terms/Location> ;
+                                                          
+                                                          rdfs:subPropertyOf <http://purl.org/dc/terms/identifier> ;
+                                                          
+                                                          rdfs:range rdfs:Literal .
+
+
+
+###  http://dati.gov.it/onto/dcatapit#referenceDoc
+
+<http://dati.gov.it/onto/dcatapit#referenceDoc> rdf:type owl:DatatypeProperty ;
+                                                
+                                                rdfs:label "reference documentation"@en ,
+                                                           "documentazione di riferimento"@it ;
+                                                
+                                                rdfs:comment "This property is defined in http://dati.gov.it/onto/dcatapit and it is used in CPSV-AP_IT in order to model the URL of the reference documentation for Rule, FormalFramework, Input and TechnicalStandard."@en ,
+                                                             "Questa proprietà è definita in http://dati.gov.it/onto/dcatapit ed è utilizzata in CPSV-AP_IT per indicare gli URL della documentazione di riferimenti per alcuni oggetti quali Regola, Framework Legale, Input e Standard Tecnico."@it ;
+                                                
+                                                rdfs:isDefinedBy <http://dati.gov.it/onto/dcatapit> .
+
+
+
+###  http://purl.org/dc/terms/description
+
+<http://purl.org/dc/terms/description> rdf:type owl:DatatypeProperty ;
+                                       
+                                       rdfs:label "description"@en ,
+                                                  "descrizione"@it ;
+                                       
+                                       rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it has been added in order to model the description of \"things\" of CPSV-AP_IT. There can be one description per language tag."@en ,
+                                                    "Questa proprietà è definita in http://purl.org/dc/terms/ ed è stata aggiunta al fine di modellare la descrizione delle \"cose\" di CPSV-AP_IT. Ci può esere una descrizione per ogni lingua."@it ;
+                                       
+                                       rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+                                       
+                                       rdfs:range rdfs:Literal ;
+                                       
+                                       rdfs:domain owl:Thing .
+
+
+
+###  http://purl.org/dc/terms/identifier
+
+<http://purl.org/dc/terms/identifier> rdf:type owl:DatatypeProperty ,
+                                               owl:FunctionalProperty ;
+                                      
+                                      rdfs:label "identifier"@en ,
+                                                 "identificativo"@it ;
+                                      
+                                      rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it has been added in order to assign identifiers to \"things\" specified in CPSV-AP_IT."@en ,
+                                                   "Questa proprietà è definita in http://purl.org/dc/terms/ ed è stata aggiunta al fine di modellare gli identificativi delle \"cose\" specificate in CPSV-AP_IT."@it ;
+                                      
+                                      rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+                                      
+                                      rdfs:range rdfs:Literal ;
+                                      
+                                      rdfs:domain owl:Thing .
+
+
+
+###  http://purl.org/dc/terms/modified
+
+<http://purl.org/dc/terms/modified> rdf:type owl:DatatypeProperty ;
+                                    
+                                    rdfs:label "release date"@en ,
+                                               "data di ultimo aggiornamento"@it ;
+                                    
+                                    rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it is used to represent the release date of the public service."@en ,
+                                                 "Questa proprietà è definita http://purl.org/dc/terms/ ed è utilizzare per rappresentare la data di ultima modifica del servizio."@it ;
+                                    
+                                    rdfs:domain :PublicService ;
+                                    
+                                    rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+                                    
+                                    rdfs:range [ rdf:type rdfs:Datatype ;
+                                                 owl:unionOf ( xsd:date
+                                                               xsd:dateTime
+                                                             )
+                                               ] .
+
+
+
+###  http://purl.org/dc/terms/title
+
+<http://purl.org/dc/terms/title> rdf:type owl:DatatypeProperty ;
+                                 
+                                 rdfs:label "title"@en ,
+                                            "titolo"@it ;
+                                 
+                                 rdfs:comment "This property is defined in http://purl.org/dc/terms/ and it is used in order to model the title for Rule and FormalFramework. There can be a title per language tag."@en ,
+                                              "Questa proprietà è definita in http://purl.org/dc/terms/ ed è utilizzata per modellare il titolo per le regole e il framework legale. Ci può essere un titolo per lingua."@it ;
+                                 
+                                 rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+                                 
+                                 rdfs:range rdfs:Literal ;
+                                 
+                                 rdfs:domain [ rdf:type owl:Class ;
+                                               owl:unionOf ( :FormalFramework
+                                                             :Rule
+                                                           )
+                                             ] .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#value
+
+<http://www.w3.org/2006/vcard/ns#value> rdf:type owl:DatatypeProperty ;
+                                        
+                                        rdfs:label "value"@en ,
+                                                   "valore"@it ;
+                                        
+                                        rdfs:comment "This property is defined in http://www.w3.org/2006/vcard/ns and it has been added in order to specify the literal value of a data property."@en ,
+                                                     "Questa proprietà è definita in http://www.w3.org/2006/vcard/ns ed è stata aggiunta per poter modellare il valore primitivo di una data property."@it ;
+                                        
+                                        rdfs:range rdfs:Literal ;
+                                        
+                                        rdfs:domain owl:Thing ;
+                                        
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+
+###  http://www.w3.org/ns/locn#addressID
+
+<http://www.w3.org/ns/locn#addressID> rdf:type owl:DatatypeProperty ,
+                                               owl:FunctionalProperty ;
+                                      
+                                      rdfs:label "address ID"@en ,
+                                                 "identificativo indirizzo"@it ;
+                                      
+                                      rdfs:comment "This property is defined in http://www.w3.org/ns/locn and it is used to model a globally unique identifier for each instance of an address, crucial part of the INSPIRE data specifications."@en ,
+                                                   "Questa proprietà è definita in http://www.w3.org/ns/locn ed è utilizzata per rappresentare un identificativo univoco globale per ogni istanza di un indirizzo, come indicato nelle specifiche INSPIRE."@it ;
+                                      
+                                      rdfs:domain :Address ;
+                                      
+                                      rdfs:range rdfs:Literal ;
+                                      
+                                      rdfs:isDefinedBy <http://www.w3.org/ns/locn> .
+
+
+
+###  http://www.w3.org/ns/locn#adminLevel2
+
+<http://www.w3.org/ns/locn#adminLevel2> rdf:type owl:DatatypeProperty ;
+                                        
+                                        rdfs:label "administrative level 2"@en ,
+                                                   "livello amministrativo 2"@it ;
+                                        
+                                        rdfs:comment "This property is defined in http://www.w3.org/ns/locn and it is used to represent the region of the address, usually a county, state or other such area that typically encompasses several localities."@en ,
+                                                     "Questa proprietà è definita in http://www.w3.org/ns/locn ed è utilizzata per rappresentare una regione dell'indirizzo, di solito una contea, uno stato o anche un'area che ricomprendere diverse località."@it ;
+                                        
+                                        rdfs:domain :Address ;
+                                        
+                                        rdfs:range rdfs:Literal ;
+                                        
+                                        rdfs:isDefinedBy <http://www.w3.org/ns/locn> .
+
+
+
+###  http://www.w3.org/ns/locn#fullAddress
+
+<http://www.w3.org/ns/locn#fullAddress> rdf:type owl:DatatypeProperty ;
+                                        
+                                        rdfs:label "full address"@en ,
+                                                   "indirizzo complessivo"@it ;
+                                        
+                                        rdfs:comment "This property is defined http://www.w3.org/ns/locn and it is used to represent the complete address as a string, with or without formatting."@en ,
+                                                     "Questa proprietà è definita in http://www.w3.org/ns/locn ed è utilizzata per rappresentare un indirizzo completo come una stringa."@it ;
+                                        
+                                        rdfs:domain :Address ;
+                                        
+                                        rdfs:range rdfs:Literal ;
+                                        
+                                        rdfs:isDefinedBy <http://www.w3.org/ns/locn> .
+
+
+
+###  http://www.w3.org/ns/locn#postCode
+
+<http://www.w3.org/ns/locn#postCode> rdf:type owl:DatatypeProperty ;
+                                     
+                                     rdfs:label "post code"@en ,
+                                                "cap"@it ;
+                                     
+                                     rdfs:comment "This property is defined in http://www.w3.org/ns/locn and it is used to represent the postal code or zip code or the address."@en ,
+                                                  "Questa proprietà è definita in http://www.w3.org/ns/locn ed è utilizzata per rappresentare il CAP dell'indirizzo."@it ;
+                                     
+                                     rdfs:domain :Address ;
+                                     
+                                     rdfs:range rdfs:Literal ;
+                                     
+                                     rdfs:isDefinedBy <http://www.w3.org/ns/locn> .
+
+
+
+###  http://xmlns.com/foaf/0.1/name
+
+<http://xmlns.com/foaf/0.1/name> rdf:type owl:DatatypeProperty ;
+                                 
+                                 rdfs:label "name"@en ,
+                                            "nome"@it ;
+                                 
+                                 rdfs:comment "This property is defined in http://xmlns.com/foaf/0.1/ and it has been added in order to model the nome of the \"things\" specified in CPSV-AP_IT. There can be a name per language tag. When the name is associated with an agent of type Group, it assumes the following values \"citizens, professionals and enterprises\". When the name is associated with an agent of type Person, name is intended to include the surname of the Person."@en ,
+                                              "Questa proprietà è definita in http://xmlns.com/foaf/0.1/ ed è stata aggiunta per poter gestire i nomi delle \"cose\" definite nell'ambito del CPSV-AP_IT. Ci può essere un nome per ogni lingua. In particolare, quando il nome è associato all'agente di tipo gruppo, il nome da specificare è uno delle seguenti possibilità: \"cittadini, imprese, professionisti\". Quando il nome è associato all'agente di tipo persona si intende il cognome della stessa."@it ;
+                                 
+                                 rdfs:range rdfs:Literal ;
+                                 
+                                 rdfs:domain owl:Thing ;
+                                 
+                                 rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://dati.gov.it/onto/cpsvapit#Address
+
+:Address rdf:type owl:Class ;
+         
+         rdfs:label "Address"@en ,
+                    "Indirizzo"@it ;
+         
+         rdfs:subClassOf <https://www.w3.org/ns/locn#Address> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/locn#addressID> ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/locn#adminLevel2> ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/locn#postCode> ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/locn#fullAddress> ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ;
+         
+         rdfs:comment "This class represents an address. It is used to represent  the address through which an offline service can be provided to end-users (citizens and enterprises). The class has been defined as subclass of locn:Address, this latter specified in the Core Location vocabulary. This subClass relationship allows us to align our CPSV-AP_IT to the external Core Location ontology."@en ,
+                      "Questa classe rappresenta un indirizzo. E' l'indirizzo fisico presso cui un servizio può essere erogato. La classe è definita come sottoclasse di locn:Address, quest'ultima specificata nel vocabolario \"Core Location\". Tale relazione \"subClassOf\" ci consente di allinerare il CPSV-AP_iT al vocabolario esterno Core Location."@it ;
+         
+         rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Agent
+
+:Agent rdf:type owl:Class ;
+       
+       rdfs:label "Agent"@en ,
+                  "Soggetto"@it ;
+       
+       owl:equivalentClass <http://dati.gov.it/onto/dcatapit#Agent> ;
+       
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :playsARoleInTime ;
+                         owl:someValuesFrom :RoleInTime
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :actsOnBehalfOf ;
+                         owl:allValuesFrom <http://dati.gov.it/onto/dcatapit#Agent>
+                       ] ;
+       
+       rdfs:comment "This class represents an Agent that plays a role on the public service. An agent can be a group, a single physical person, a legal entity (public or private organization). This class is subclass of  http://dati.gov.it/onto/dcatapit#Agent defined in DCAT-AP_IT in order to guarantee the alignment with the two ontologies."@en ,
+                    "Questa classe rappresenta un soggetto che ha un ruolo sul servizio pubblico. Un soggetto può essere un gruppo, una singola persona fisica, o un'entità legale (un'organizzazione pubblica o privata). La classe è sottoclasse di http://dati.gov.it/onto/dcatapit#Agent definita in  DCAT-AP_IT così da garantire l'allineamento tra le due ontologie."@it ;
+       
+       rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Authentication
+
+:Authentication rdf:type owl:Class ;
+                
+                rdfs:label "Authenticaton"@en ,
+                           "Autenticazione"@it ,
+                           <http://dati.gov.it/onto/cpsvapit> ;
+                
+                rdfs:subClassOf :Requirement ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty <http://purl.org/dc/terms/type> ;
+                                  owl:onClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                ] ;
+                
+                rdfs:comment "The class \"Authentication\" is used to represent authentication requirements required by a service. In particular, this class, together with the associated properties allows us to model the type of authentication  the service needs (e.g., authentication through the national e-ID system, none, authentication using other smart card based systems, ecc) and the levelo of security for the identification that is required (e.g., credentials, one-time passowrd, biometric mechanisms). A controlled vocabulary must be used in order to specify the type of required authentication. The vocabulary is the following: http://dati.gov.it/onto/controlledvocabulary/Authentication"@en ,
+                             "La classe \"Autenticazione\" è utilizzata per rappresentare requisiti di autenticazione richiesti da un servizio. In particolare, attraverso tale classe e le proprietà ad essa associate è possibile indicare che tipo di autenticazione un servizio richiede (e.g., autenticazione SPID, nessuna autenticazione, autenticazione via CNS o altro strumento, ecc), e il livello di sicurezza per l'autenticazione richiesto, applicabile nel caso di autenticazione SPID (e che può essere di tre livelli a seconda delle modalità richieste per l'accesso, con credenziali, one-time password, biometria). Il seguente vocabolario controllato deve essere utilizzato per specificare il tipo di autenticazione richiesta: http://dati.gov.it/onto/controlledvocabulary/Authentication"@it .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#BusinessEvent
+
+:BusinessEvent rdf:type owl:Class ;
+               
+               rdfs:label "Business Event"@en ,
+                          "Evento di business"@it ;
+               
+               rdfs:subClassOf :LifeEvent ;
+               
+               rdfs:comment "This class represent a Business Event. A Business Event is a specific situation or event in the lifecycle of a business. A Business Event requires a set of public services to be delivered in order for the associated business need(s) or obligation(s) to be fulfilled."@en ,
+                            "La classe rappresenta un evento di business dove un evento di business è una situazione o evento che si verifica nel ciclo di vita di un business. Un evento di business richiede che un insieme di servizi pubblici siano erogati per far sì che le necessità e obbligazioni dell'evento di business siano effettivamente soddisfatte. Esempio di evento di business può essere l'avvio di una pratica con la pubblica amministrazione, la chiusura di un'azienda, ecc."@it ;
+               
+               rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Channel
+
+:Channel rdf:type owl:Class ;
+         
+         rdfs:label "Channel"@en ,
+                    "Canale di erogazione"@it ;
+         
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://purl.org/dc/terms/type> ;
+                           owl:onClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :isChannelOf ;
+                           owl:allValuesFrom :PublicService
+                         ] ;
+         
+         rdfs:comment "This class represents a channel through which a service is provided to end-users. In the context of CPSV-AP_IT the following controlled vocabulary shall be used in order to define the type of channel: http://dati.gov.it/onto/controlledvocabulary/Channel"@en ,
+                      "Questa classe rappresenta un canale attraverso cui il servizio pubbico è erogato agli utenti finali. In CPSV-AP_IT deve essere utilizzato il seguente vocabolario per la definizione del tipo di canale: http://dati.gov.it/onto/controlledvocabulary/Channel"@it ;
+         
+         rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#CitizenEvent
+
+:CitizenEvent rdf:type owl:Class ;
+              
+              rdfs:label "Citizen Event"@en ,
+                         "Evento del Cittadino"@it ;
+              
+              rdfs:subClassOf :LifeEvent ;
+              
+              rdfs:comment "The class represents a Person Event that is an event that happens in the life cycle of a citizen or for group of citizens (professionals)."@en ,
+                           "Questa classe rappresenta un evento che può accadere nel ciclo di vita di un cittadino o di un gruppo di cittadini. Per esempio, avviare la pratica di cambio di residenza, aprire una partita iva per un professionista, pagare le tasse, ecc."@it ;
+              
+              rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Cost
+
+:Cost rdf:type owl:Class ;
+      
+      rdfs:label "Cost"@en ,
+                 "Costo"@it ;
+      
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :currency ;
+                        owl:onClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://purl.org/dc/terms/identifier> ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/2006/vcard/ns#value> ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://purl.org/dc/terms/description> ;
+                        owl:allValuesFrom rdfs:Literal
+                      ] ;
+      
+      rdfs:comment "The Cost class represents any cost related to the execution of a Public Service which the Agent consuming it, needs to pay."@en ,
+                   "La classe Costo rappresenta qualsiasi costo che l'esecuzione di un servizio pubblico, consumato da un agente, richiede di pagare."@it ;
+      
+      rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#DayOfTheWeek
+
+:DayOfTheWeek rdf:type owl:Class ;
+              
+              rdfs:label "Day of the Week"@en ,
+                         "Giorno della Settimana"@it ;
+              
+              rdfs:comment "This class is used to represent a day of the week for the time interval."@en ,
+                           "Questa classe è utilizzata per rappresentare un giorno della settimana per l'intervallo temporale."@it ;
+              
+              rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Email
+
+:Email rdf:type owl:Class ;
+       
+       rdfs:label "Email"@en ;
+       
+       rdfs:subClassOf :Channel ,
+                       <http://www.w3.org/2006/vcard/ns#Email> ;
+       
+       rdfs:comment "This class represents a Channel of type Email."@en ,
+                    "Questa classe rappresenta il tipo di canale email."@it ;
+       
+       rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#FormalFramework
+
+:FormalFramework rdf:type owl:Class ;
+                 
+                 rdfs:label "Formal Framework"@en ,
+                            "Framework Legale"@it ;
+                 
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://purl.org/dc/terms/title> ;
+                                   owl:someValuesFrom rdfs:Literal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://purl.org/dc/terms/identifier> ;
+                                   owl:cardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://dati.gov.it/onto/dcatapit#referenceDoc> ;
+                                   owl:allValuesFrom xsd:anyURI
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://purl.org/dc/terms/description> ;
+                                   owl:allValuesFrom rdfs:Literal
+                                 ] ;
+                 
+                 rdfs:comment "This class represents the legislation, policy or policies that lie behind the rules that govern the service."@en ,
+                              "Questa classe rappresenta li riferimenti normativi che sottendono le regole che governano il servizio pubblico."@it ;
+                 
+                 rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Group
+
+:Group rdf:type owl:Class ;
+       
+       rdfs:label "Group"@en ,
+                  "Gruppo"@it ;
+       
+       rdfs:subClassOf :Agent ,
+                       <http://xmlns.com/foaf/0.1/Group> ;
+       
+       owl:disjointWith :LegalEntity ;
+       
+       rdfs:comment "This class represent a group of persons. It can be a set of target persons for a service."@en ,
+                    "Questa classe rappresenta un gruppo di persone. Essa è usata per rappresentare un insieme specifico di utenti."@it ;
+       
+       rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Input
+
+:Input rdf:type owl:Class ;
+       
+       rdfs:label "Input"@en ,
+                  "Input"@it ;
+       
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://purl.org/dc/terms/identifier> ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://dati.gov.it/onto/dcatapit#referenceDoc> ;
+                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:anyURI
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
+                         owl:someValuesFrom rdfs:Literal
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://purl.org/dc/terms/type> ;
+                         owl:onClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                       ] ;
+       
+       rdfs:comment "This class represents the input required by the public service. Examples include: documents, forms, declarations, ecc. In order to specify the input for a service it is necessary to use the following controlled vocabulary: http://dati.gov.it/onto/controlledvocabulary/ServiceinputOutput The class is mandatory."@en ,
+                    "Questa classe rappresenta un input richieso dal servizio pubblico. Esempi possono essere documenti, moduli, dichiarazioni, ecc. Per poter specificare l'input è necessario utilizzare un vocabolario controllato definito in http://dati.gov.it/onto/controlledvocabulary/ServiceinputOutput. La classe è obbligatoria."@it ;
+       
+       rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#LegalEntity
+
+:LegalEntity rdf:type owl:Class ;
+             
+             rdfs:label "Legal Entity"@en ,
+                        "Entità Legale"@it ;
+             
+             rdfs:subClassOf :Agent ,
+                             <http://www.w3.org/ns/org#FormalOrganization> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://purl.org/dc/terms/type> ;
+                               owl:onClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :alternativeName ;
+                               owl:allValuesFrom rdfs:Literal
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :legalIdentifier ;
+                               owl:cardinality "1"^^xsd:nonNegativeInteger
+                             ] ;
+             
+             owl:disjointWith :Person ;
+             
+             rdfs:comment "This class represents a legal entity. It can be a public administration (registered in a public registry of PAs) or a private organizations (registered at a specific registry such as the company registry). This class is mandatory and must be specified when modeling the agent that plays a role on the public service. The type of the Legal Entity must be chosen from the S13 classification used in the Italian Public Administration index (IPA)."@en ,
+                          "Questa classe rappresenta un'entità legale. Essa può essere una pubblica amministrazione (registrata presso l'indice della pubblica amministrazione) o un'organizzazione privata (anch'essa registrata in un pubblico registro come il registro imprese). Questa classe è obbligatoria e deve essere specifica nella modellazione del soggetto che esercita il ruolo sul servizio pubblico. Il tipo di entità legale deve essere definito utilizzando la classificazione S13 fornita nell'Indice della Pubblica Amministrazione (IPA)."@it ;
+             
+             rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#License
+
+:License rdf:type owl:Class ;
+         
+         rdfs:label "License"@en ,
+                    "Licenza"@it ;
+         
+         owl:equivalentClass <http://dati.gov.it/onto/dcatapit#LicenseDocument> ;
+         
+         rdfs:subClassOf :Requirement ;
+         
+         rdfs:comment "This class is used to represent the license associated with a public service. This data can be useful in order to enable the reuse of the service in other public administration contexts."@en ,
+                      "Questa classe è utilizzata per rappresentare la licenza associata al servizio pubblico, se esistente. Tale specifica potrebbe essere utile nel caso di riuso del servizio in altri contesti di pubbliche amministrazioni."@it ;
+         
+         rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#LifeEvent
+
+:LifeEvent rdf:type owl:Class ;
+           
+           rdfs:label "Life Event"@en ,
+                      "Evento della Vita"@it ;
+           
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
+                             owl:someValuesFrom rdfs:Literal
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCost ;
+                             owl:allValuesFrom :Cost
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://purl.org/dc/terms/type> ;
+                             owl:onClass :LifeEventType ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://purl.org/dc/terms/identifier> ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://purl.org/dc/terms/description> ;
+                             owl:allValuesFrom rdfs:Literal
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://purl.org/dc/terms/hasPart> ;
+                             owl:someValuesFrom :PublicService
+                           ] ;
+           
+           rdfs:comment "This class represents an event that happens in the lifecycle of either a business or a person or a group of persons."@en ,
+                        "Questa classe rappresenta un'evento che accade nel ciclo di vita di un business o di una persona o di un gruppo di persone."@it ;
+           
+           rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#LifeEventType
+
+:LifeEventType rdf:type owl:Class ;
+               
+               rdfs:label "Life Event Type"@en ,
+                          "Tipo di Evento della Vita"@it ;
+               
+               rdfs:comment "This class represents the type of life event; it can assume the following predefined values: Starting, Starting Cross Border, Doing, Closing."@en ,
+                            "Questa classe rappresenta il tipo di evento della vita e assume i seguenti valori predefiniti: avvio, avvio transfrontaliero, in corso, chiusura."@it ;
+               
+               rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Location
+
+:Location rdf:type owl:Class ;
+          
+          rdfs:label "Location"@en ,
+                     "Localizzazione geografica"@it ;
+          
+          rdfs:subClassOf <http://purl.org/dc/terms/Location> ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://www.w3.org/ns/locn#geometry> ;
+                            owl:onClass <http://www.w3.org/ns/locn#Geometry> ;
+                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/ns/locn#geographicName> ;
+                            owl:onClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://dati.gov.it/onto/dcatapit#geographicalIdentifier> ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://www.w3.org/ns/locn#address> ;
+                            owl:onClass :Address ;
+                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                          ] ;
+          
+          rdfs:comment "A spatial region or named place. It can be represented using a controlled vocabulary or with geographic coordinates. In the latter case, the use of the Core Location Vocabulary is recommended, following the approach described in the GeoDCAT-AP specification. It is used to represent the location of the dataset."@en ,
+                       "Una regione spaziale o un luogo identificato da un nome. Può essere rappresentato utilizzando un vocabolario controllato o attraverso delle coordinate geografiche. Nel primo caso si raccomanda l'uso del vocabolario Core Location, seguendo l'approccio descritto nelle specifiche GeoDCAT-AP. Utilizzata per rappresentare la regione o il luogo di riferimento del dataset"@it ;
+          
+          rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#MeasurementUnit
+
+:MeasurementUnit rdf:type owl:Class ;
+                 
+                 rdfs:label "Measurement Unit"@en ,
+                            "Unità di Misura"@it ;
+                 
+                 rdfs:comment "This class is used to model a measurement unit. For the time being, in the contest of CPSV-AP_IT it assumes the following predefined values: day, hour, week, year."@en ,
+                              "La classe rappresenta un'unità di misura. Al momento, la classe assume i seguenti valori predefiniti: giorni, mesi, anni, ore."@it ;
+                 
+                 rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#OfflineChannel
+
+:OfflineChannel rdf:type owl:Class ;
+                
+                rdfs:label "Offline Channel"@en ,
+                           "Canale offline"@it ;
+                
+                rdfs:subClassOf :Channel ;
+                
+                rdfs:comment "This class represents Channels that are of type offline."@en ,
+                             "Questa classe rappresenta canali di tipo offline."@it ;
+                
+                rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#OtherElectronicChannel
+
+:OtherElectronicChannel rdf:type owl:Class ;
+                        
+                        rdfs:label "Other Electronic Channel"@en ,
+                                   "Altro Canale Telematico"@it ;
+                        
+                        rdfs:subClassOf :Channel ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :accessReference ;
+                                          owl:cardinality "1"^^xsd:nonNegativeInteger
+                                        ] ;
+                        
+                        rdfs:comment "This class represents an electronic channel different from web site and email."@en ,
+                                     "Questa classe rappresenta un canale telematico diverso da sito web ed email."@it ;
+                        
+                        rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Output
+
+:Output rdf:type owl:Class ;
+        
+        rdfs:label "Output"@en ,
+                   "Output"@it ,
+                   <http://dati.gov.it/onto/cpsvapit> ;
+        
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty <http://purl.org/dc/terms/type> ;
+                          owl:onClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty <http://purl.org/dc/terms/identifier> ;
+                          owl:cardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
+                          owl:someValuesFrom rdfs:Literal
+                        ] ;
+        
+        rdfs:comment "This class represents an output of the public service. Outputs can be a resource, a document, any thing produced by a Public Service. An output  can also authorize/permit/entitle Agents to do something. In order to represent possible output, CPSV-AP_IT requires the use of a controlled vocabulary defined in http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"@en ,
+                     "La classe rappresenta un output del servizio pubblico. Output possono essere: risorse, documenti e ogni altra cosa prodotta da un servizio pubblico. Tali output possono anche permettere a soggetti di fare successive azioni. Nell'ambito di CPS-AP_IT i valori per gli output sono data dal seguente vocabolario controllato: http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"@it .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Person
+
+:Person rdf:type owl:Class ;
+        
+        rdfs:label "Person"@en ,
+                   "Persona"@it ;
+        
+        rdfs:subClassOf :Agent ,
+                        <http://xmlns.com/foaf/0.1/Person> ;
+        
+        rdfs:comment "This class represents a Person who can have a specific role in the organization that plays a role in turn on the public service."@en ,
+                     "Questa classe rappresenta una singola persona fisica che può avere un ruolo nell'organizzazione di appartenenza che a sua volta esercita un ruolo sul servizio pubblico."@it ;
+        
+        rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Phone
+
+:Phone rdf:type owl:Class ;
+       
+       rdfs:label "Phone"@en ,
+                  "Telefono"@it ;
+       
+       rdfs:subClassOf :Channel ,
+                       <http://www.w3.org/2006/vcard/ns#TelephoneType> ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://www.w3.org/2006/vcard/ns#value> ;
+                         owl:cardinality "1"^^xsd:nonNegativeInteger
+                       ] ;
+       
+       rdfs:comment "This class represent a channel of type telephone."@en ,
+                    "Questa classe rappresenta un canale di tipo telefono."@it ;
+       
+       rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#PublicService
+
+:PublicService rdf:type owl:Class ;
+               
+               rdfs:label "Public Service"@en ,
+                          "Servizio Pubblico"@it ;
+               
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isPhysicallyAvailableAt ;
+                                 owl:allValuesFrom :Location
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasInput ;
+                                 owl:someValuesFrom :Input
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :keyword ;
+                                 owl:allValuesFrom rdfs:Literal
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasChannel ;
+                                 owl:allValuesFrom :Channel
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasPhone ;
+                                 owl:allValuesFrom :Phone
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasStatus ;
+                                 owl:onClass :Status ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/spatial> ;
+                                 owl:onClass :Location ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/temporal> ;
+                                 owl:allValuesFrom :TimeInterval
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasWebSite ;
+                                 owl:allValuesFrom :WebSite
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/identifier> ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/relation> ;
+                                 owl:allValuesFrom :PublicService
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/modified> ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                   owl:unionOf ( xsd:date
+                                                                 xsd:dateTime
+                                                               )
+                                                 ]
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasOtherElectronicCh ;
+                                 owl:allValuesFrom :OtherElectronicChannel
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasContactPoint ;
+                                 owl:allValuesFrom :ServiceCP
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasEmail ;
+                                 owl:allValuesFrom :Email
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :follows ;
+                                 owl:allValuesFrom :Rule
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/language> ;
+                                 owl:allValuesFrom <http://purl.org/dc/terms/LinguisticSystem>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/description> ;
+                                 owl:someValuesFrom rdfs:Literal
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :produces ;
+                                 owl:allValuesFrom :Output
+                               ] ,
+                               [ rdf:type owl:Class ;
+                                 owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :hasChannel ;
+                                                        owl:someValuesFrom :OfflineChannel
+                                                      ]
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :isPhysicallyAvailableAt ;
+                                                        owl:someValuesFrom :Location
+                                                      ]
+                                                    )
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
+                                 owl:someValuesFrom rdfs:Literal
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/isPartOf> ;
+                                 owl:allValuesFrom :LifeEvent
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isRelatedToRiT ;
+                                 owl:someValuesFrom :RoleInTime
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :serviceSubTheme ;
+                                 owl:someValuesFrom <http://www.w3.org/2004/02/skos/core#Concept>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :interactivityLevel ;
+                                 owl:onClass <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasCost ;
+                                 owl:allValuesFrom :Cost
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://purl.org/dc/terms/requires> ;
+                                 owl:allValuesFrom :PublicService
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :serviceTheme ;
+                                 owl:someValuesFrom <http://www.w3.org/2004/02/skos/core#Concept>
+                               ] ;
+               
+               rdfs:comment "This class represents a Public Service. With the term \"public service\" we mean any discretional or mandatory act carried out by a Public Administration (or on behalf of a Public Administration) for the advantage of citizens and enterprises."@en ,
+                            "Questa classe rappresenta un servizio pubblico. Per servizio pubblico si intende qualsiasi atto obbligatorio o discrezionale espletato da una pubblica amministrazione (o per conto di una pubblica amministrazione) nei confronti di cittadini, imprese/professionisti."@it ;
+               
+               rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#QuantitativeValue
+
+:QuantitativeValue rdf:type owl:Class ;
+                   
+                   rdfs:label "Quantitative Value"@en ,
+                              "Valore Quantitativo"@it ;
+                   
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/2006/vcard/ns#value> ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasMeasurementUnit ;
+                                     owl:onClass :MeasurementUnit ;
+                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                   ] ;
+                   
+                   rdfs:comment "This class is used to represent a quantitative value referred to time metrics. For instance, it can be used to model the average time, a time expressed in terms of days, weeks, years, etc. In the contest of CPSV-AP_IT the class models the processing time for the life event."@en ,
+                                "Questa classe è utilizzata per rappresentare un valore quantitativo riferito a metriche di tempo. Per esempio esso può essere utilizzata per rappresentare un tempo medio, un tempo espresso in gg, settimane, anni, ecc. Nel contesto del CPSV-AP_IT la classe è usata per modellare il tempo di processamento relativo all'evento della vita."@it ;
+                   
+                   rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Requirement
+
+:Requirement rdf:type owl:Class ;
+             
+             rdfs:label "Requirement"@en ,
+                        "Requisito"@it ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://xmlns.com/foaf/0.1/name> ;
+                               owl:someValuesFrom rdfs:Literal
+                             ] ;
+             
+             rdfs:comment "La classe requisito è utilizzata per rappresentare i requisiti richiesti per l'utilizzo del servizio pubblico. Tali requisiti sono inclusi all'interno delle regole che il servizio pubblico deve seguire e possono essere: requisiti relativi alla licenza, requisiti relativi agli standard adottati, requisiti di autenticazione, ecc."@it ;
+             
+             rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Role
+
+:Role rdf:type owl:Class ;
+      
+      rdfs:label "Role"@en ,
+                 "Ruolo"@it ;
+      
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :isRoleIn ;
+                        owl:allValuesFrom :RoleInTime
+                      ] ;
+      
+      rdfs:comment "The class role represents the role played by an Agent on the Public Service. A role can be played in a time interval. The roles must be defined using the following controlled vocabulary: TBD"@en ,
+                   "La classe \"Ruolo\" rappresenta il ruolo esercitato da un soggetto sul servizio pubblico. Il ruolo è riferibile anche a un certo lasso temporale. Il ruolo deve essere definito utilizzando il seguente vocabolario controllato: TBD"@it ;
+      
+      rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#RoleInTime
+
+:RoleInTime rdf:type owl:Class ;
+            
+            rdfs:label "Role in time"@en ,
+                       "Ruolo nel tempo"@it ;
+            
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :withRole ;
+                              owl:someValuesFrom :Role
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :roleFor ;
+                              owl:someValuesFrom :PublicService
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :roleAtTime ;
+                              owl:someValuesFrom <http://purl.org/dc/terms/PeriodOfTime>
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :isPlayedBy ;
+                              owl:onClass :Agent ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+                            ] ;
+            
+            rdfs:seeAlso "http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl#TimeIndexedSituation" ,
+                         "http://purl.org/spar/pro/RoleInTime" ;
+            
+            rdfs:comment "The class \"RoleInTime\" is used to represent a situation in which a role of an agent on a public service can vary on time. The class has been introduced in order to reuse the design pattern \"time indexed situation\" available at http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl"@en ,
+                         "La classe \"Ruolo nel tempo\" è utilizzata per rappresentare una situazione relativa a un ruolo di un soggetto su un servizio pubblico che può variare nel tempo. La classe è stata introdotta al fine di riutilizzare il design pattern time indexed situation disponibile in http://www.ontologydesignpatterns.org/cp/owl/timeindexedsituation.owl"@it ;
+            
+            rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Rule
+
+:Rule rdf:type owl:Class ;
+      
+      rdfs:label "Rule"@en ,
+                 "Regola"@it ;
+      
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://purl.org/dc/terms/title> ;
+                        owl:someValuesFrom rdfs:Literal
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://dati.gov.it/onto/dcatapit#referenceDoc> ;
+                        owl:allValuesFrom xsd:anyURI
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :implements ;
+                        owl:allValuesFrom :FormalFramework
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://purl.org/dc/terms/description> ;
+                        owl:someValuesFrom rdfs:Literal
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://purl.org/dc/terms/identifier> ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :specifies ;
+                        owl:allValuesFrom :Requirement
+                      ] ;
+      
+      rdfs:comment "The Rule class represents a document that sets out the specific rules, guidelines or procedures that the Public Service follows. It includes the terms of service or requirements that can be licence, standard, authentication requirements of the Public Service."@en ,
+                   "La classe \"Regola\" rappresenta un documento che definisce le regole tecniche, le linee guida e qualsiasi altra procedura che il servizio pubblico deve seguire. La regola include i termini di utilizzo o requisiti del servizio pubblico. I requisiti possono essere requisiti di licenza, di standard adottati, di autenticazione, ecc."@it ;
+      
+      rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#ServiceCP
+
+:ServiceCP rdf:type owl:Class ;
+           
+           rdfs:label "Service Contact Point"@en ,
+                      "Punto di Contatto del Servizio"@it ;
+           
+           owl:equivalentClass <http://dati.gov.it/onto/dcatapit#Organization> ;
+           
+           rdfs:comment "The class \"Service Contact Point\" represents a contact point used to get information and support when using a public service. This class is equivalent to http://dati.gov.it/onto/dcatapit#Organization (which is in turn a vCard:Kind class) and therefore it inherits the same properties, and restrictions on those properties, as defined in DCAT-AP_IT."@en ,
+                        "La classe \"Punto di contatto del servizio\" rappresenta un punto di contatto per  eventuali informazioni e supporto nell'utilizzo del servizio pubblico. Tale classe è equivalente alla classe http://dati.gov.it/onto/dcatapit#Organization (che a sua volta è di tipo vCard:Kind) pertanto eredita le stesse proprietà, e restrizioni su tali proprietà, così come definite in DCAT-AP_IT."@it ,
+                        <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#StandardTech
+
+:StandardTech rdf:type owl:Class ;
+              
+              rdfs:label "Technical Standard"@en ,
+                         "Standard Tecnico"@it ;
+              
+              rdfs:subClassOf :Requirement ,
+                              <http://dati.gov.it/onto/dcatapit#Standard> ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://purl.org/dc/terms/identifier> ;
+                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://purl.org/dc/terms/description> ;
+                                owl:allValuesFrom rdfs:Literal
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://dati.gov.it/onto/dcatapit#referenceDoc> ;
+                                owl:allValuesFrom xsd:anyURI
+                              ] ;
+              
+              rdfs:comment "This class represents a standard, a recommendation or any other technical specification the public service is (or should be) compliant with."@en ,
+                           "La classe \"Standard Tecnico\" rappresenta eventuali standard tecnici, raccomandazioni, specifiche tecniche alle quali il servizio pubblico è (o deve essere)  conforme."@it ;
+              
+              rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Status
+
+:Status rdf:type owl:Class ;
+        
+        rdfs:label "Service Status"@en ,
+                   "Stato del Servizio"@it ;
+        
+        rdfs:comment "Thi class represents the status of the service. It can assumed the following predefined values: Active, Non-Active, Under Development."@en ,
+                     "Questa classe rappresenta lo stato servizio e può assumere i seguenti valori predefiniti: Attivo, Non Attivo, In Fase di Sviluppo."@it ;
+        
+        rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#TimeInterval
+
+:TimeInterval rdf:type owl:Class ;
+              
+              rdfs:label "Time Interval"@en ,
+                         "Intervallo Temporale"@it ;
+              
+              rdfs:subClassOf <http://purl.org/dc/terms/PeriodOfTime> ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :endInterval ;
+                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                  owl:unionOf ( xsd:date
+                                                                xsd:dateTime
+                                                                xsd:time
+                                                              )
+                                                ]
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasDayWeek ;
+                                owl:allValuesFrom :DayOfTheWeek
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :startInterval ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                  owl:unionOf ( xsd:date
+                                                                xsd:dateTime
+                                                                xsd:time
+                                                              )
+                                                ]
+                              ] ;
+              
+              rdfs:comment "This class is used to represent a time interval."@en ,
+                           "Questa classe è utilizzata per rappresentare un intervallo temporale."@it ;
+              
+              rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#WebSite
+
+:WebSite rdf:type owl:Class ;
+         
+         rdfs:label "Web Site"@en ,
+                    "Sito Web"@it ;
+         
+         rdfs:subClassOf :Channel ,
+                         <http://xmlns.com/foaf/0.1/Document> ;
+         
+         rdfs:comment "This class represents a channel of type web site."@en ,
+                      "Questa classe rappresenta un canale di tipo sito web."@it ;
+         
+         rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/dcatapit#Agent
+
+<http://dati.gov.it/onto/dcatapit#Agent> rdf:type owl:Class ;
+                                         
+                                         rdfs:label "Agent"@en ,
+                                                    "Agente"@it ;
+                                         
+                                         rdfs:comment "This class has been defined in the DCAT-AP_IT Italian profile for metadata that describe data of PAs.This alignment guarantees the linking between CPSV-AP_IT and DCAT-AP_IT."@en ,
+                                                      "Questa classe è definita in DCAT-AP_IT ovvero il profilo italiano DCAT-AP per i metadati che descrivono i dati delle PA. Questo allineamento garntisce un collegamento tra le due ontologie CPSV-AP_IT e DCAT-AP_IT."@it ,
+                                                      <http://dati.gov.it/onto/dcatapit> .
+
+
+
+###  http://dati.gov.it/onto/dcatapit#LicenseDocument
+
+<http://dati.gov.it/onto/dcatapit#LicenseDocument> rdf:type owl:Class ;
+                                                   
+                                                   rdfs:label "License Document"@en ,
+                                                              "Licenza"@it ;
+                                                   
+                                                   rdfs:comment "This class is defined in DCAT-AP_IT and it has been added in order to guarantee the alingment between CPSV-AP_IT and DCAT-AP_IT."@en ,
+                                                                "Questa classe è definita in DCAT-AP_IT ed è stata aggiunta al fine di allineare CPSV-AP_IT a DCAT-AP_IT."@it ;
+                                                   
+                                                   rdfs:isDefinedBy <http://dati.gov.it/onto/dcatapit> .
+
+
+
+###  http://dati.gov.it/onto/dcatapit#Organization
+
+<http://dati.gov.it/onto/dcatapit#Organization> rdf:type owl:Class ;
+                                                
+                                                rdfs:label "Organization"@en ,
+                                                           "Organizzazione"@it ;
+                                                
+                                                rdfs:comment "This class has been added to this ontology and it is defined in the context of DCAT-AP_IT in order to represent the organization that is the contact point for the service."@en ,
+                                                             "Questa classe è stata aggiunta a questa ontologia ed è definita nel contesto DCAT-AP_IT per poter rappresentare il punto di contatto, intesa come l'organizzazione da contattare per ottenere informazioni e qualsiasi altro supporto per il servizio."@it ;
+                                                
+                                                rdfs:isDefinedBy <http://dati.gov.it/onto/dcatapit> .
+
+
+
+###  http://dati.gov.it/onto/dcatapit#Standard
+
+<http://dati.gov.it/onto/dcatapit#Standard> rdf:type owl:Class ;
+                                            
+                                            rdfs:label "Standard"@en ,
+                                                       "Standard"@it ;
+                                            
+                                            rdfs:comment "This class is defined in DCAT-AP_IT and it has been added in order to guarantee the alignment between CPSV-AP_IT and DCAT-AP_IT."@en ,
+                                                         "Questa classe è definita in DCAT-AP_IT ed è stata aggiunta al fine di consentire l'allineamento tra DCAT-AP_IT e CPSV-AP_IT."@it ,
+                                                         <http://dati.gov.it/onto/dcatapit> .
+
+
+
+###  http://purl.org/dc/terms/LinguisticSystem
+
+<http://purl.org/dc/terms/LinguisticSystem> rdf:type owl:Class ;
+                                            
+                                            rdfs:label "Linguistic System"@en ,
+                                                       "Sistema Linguistico"@it ;
+                                            
+                                            rdfs:comment "This class is defined in http://purl.org/dc/terms/ and it has been added in order to model the language of the public service."@en ,
+                                                         "Questa classe è definita in http://purl.org/dc/terms/ ed è stata aggiunta per poter rappresentare il linguaggio (lingua) di un servizio pubblico."@it ;
+                                            
+                                            rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+
+
+###  http://purl.org/dc/terms/Location
+
+<http://purl.org/dc/terms/Location> rdf:type owl:Class ;
+                                    
+                                    rdfs:label "Location"@en ;
+                                    
+                                    rdfs:comment "This class is defined in http://purl.org/dc/terms/ and it has been added in order to guarantee the alignment with CPSV-AP_IT and Dublic Core."@en ,
+                                                 "Questa classe è definita in http://purl.org/dc/terms/ ed è stata aggiunta al fine di assicurare il pieno allineamento tra CPSV-AP_IT e Dublin Core."@it ;
+                                    
+                                    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+
+
+###  http://purl.org/dc/terms/PeriodOfTime
+
+<http://purl.org/dc/terms/PeriodOfTime> rdf:type owl:Class ;
+                                        
+                                        rdfs:label "Period of Time"@en ,
+                                                   "Intervallo temporale"@it ;
+                                        
+                                        rdfs:comment "An interval of time that is named or defined by its start and end dates. This class is defined in http://purl.org/dc/terms and it has been added in order to guarantee the alignment between CPSV-AP_IT and Dublin Core."@en ,
+                                                     "Un intervallo temporale identificato o definito da proprie date di inizio e fine. Questa classe è definita in http://purl.org/dc/terms ed è stata aggiunta al fine di garantire un allineamento tra CPSV-AP_IT e Dublin Core."@it ;
+                                        
+                                        rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class ;
+                                              
+                                              rdfs:label "Concept"@en ;
+                                              
+                                              rdfs:comment "The class Concept is defined in http://www.w3.org/2004/02/skos/core# and it has been added in order to manage the controlled vocabularies of the CPSV-AP_IT."@en ,
+                                                           "La classe cConcept è definita in http://www.w3.org/2004/02/skos/core# ed è aggiunta a CPSV-AP_IT al fine di poter gestire tutti i vocabolari controllati del profilo dei metadati dei servizi."@it ;
+                                              
+                                              rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core#> .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#Email
+
+<http://www.w3.org/2006/vcard/ns#Email> rdf:type owl:Class ;
+                                        
+                                        rdfs:label "Email"@en ;
+                                        
+                                        rdfs:comment "This class is defined in http://www.w3.org/2006/vcard/ns and it has been added in order to guarantee the full alignment between CPSV-AP_IT and vCard."@en ,
+                                                     "Questa classe è definita in http://www.w3.org/2006/vcard/ns ed è stata aggiunta al fine di garantire l'allineamento tra CPSV-AP_IT e vCard."@it ;
+                                        
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#TelephoneType
+
+<http://www.w3.org/2006/vcard/ns#TelephoneType> rdf:type owl:Class ;
+                                                
+                                                rdfs:label "Phone"@en ;
+                                                
+                                                rdfs:comment "This class is defined in http://www.w3.org/2006/vcard/ns and it has been added in order to guarantee the alignment between CPSV-AP_IT and vCard."@en ,
+                                                             "Questa classe è definita in http://www.w3.org/2006/vcard/ns è ed stata aggiunta al fine di garantire l'allineamento tra CPSV-AP_IT e vCard."@it ;
+                                                
+                                                rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+
+###  http://www.w3.org/ns/locn#Geometry
+
+<http://www.w3.org/ns/locn#Geometry> rdf:type owl:Class ;
+                                     
+                                     rdfs:label "Geometry"@en ,
+                                                "Geometria"@it ;
+                                     
+                                     rdfs:comment "The locn:Geometry class provides the means to identify a location as a point, line, polygon, etc. expressed using coordinates in some coordinate reference system. The conceptual model of the Geometry class itself shows a number of properties that are not defined in the OWL since in practice  geometry encodings all include already these properties. GeoDCAT-AP specifies that at least one of the following encodings must be used: GML or WKT."@en ,
+                                                  "La classe consente di identificare una posizione rappresentata come punto, linea, poligono, ecc espressi utilizzando le coordinate in un certo sistema di riferimento. Il modello concettuale della classe geometria, così come evidenziato nel diagramma UML, mostra un numero di proprietà che devono essere specificate. Tali proprietà non sono tuttavia definite nell'OWL dal momento che, in pratica, meccanismi di codifica di geometrie includono già tutte queste proprietà. La specifica GeoDCAT-AP prevede che deve essere utilizzata almeno una delle seguenti codifiche: GML o WKT."@it ,
+                                                  <http://www.w3.org/ns/locn> .
+
+
+
+###  http://www.w3.org/ns/org#FormalOrganization
+
+<http://www.w3.org/ns/org#FormalOrganization> rdf:type owl:Class ;
+                                              
+                                              rdfs:label "Formal Organization"@en ;
+                                              
+                                              rdfs:comment "This class is defined in Org W3C Reccomandation (https://www.w3.org/TR/vocab-org/) and it has been added in order to guarantee the alignment between CPSV-AP_iT and such an external ontology."@en ,
+                                                           "Questa classe è definita in Org, raccomandazione del W3C (https://www.w3.org/TR/vocab-org/) ed è stata aggiunta al fine di garantire l'allineamento tra CPSV-AP_IT e tale ontologia esterna."@it ,
+                                                           <http://www.w3.org/ns/org#> .
+
+
+
+###  http://xmlns.com/foaf/0.1/Document
+
+<http://xmlns.com/foaf/0.1/Document> rdf:type owl:Class ;
+                                     
+                                     rdfs:label "Document"@en ;
+                                     
+                                     rdfs:comment "This class is defined in http://xmlns.com/foaf/0.1/ and it has been added in order to guarantee the alignment between CPSV-AP_IT and FOAF in the representation of the web site type of channel of a public service."@en ;
+                                     
+                                     rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> .
+
+
+
+###  http://xmlns.com/foaf/0.1/Group
+
+<http://xmlns.com/foaf/0.1/Group> rdf:type owl:Class ;
+                                  
+                                  rdfs:label "Group"@en ;
+                                  
+                                  rdfs:comment "This class is defined in foaf and it has been added in order to align the corresponding group class in CPSV-AP_IT with FOAF."@en ,
+                                               "Questa classe è definita in FOAF ed è stata aggiunta per garantire l'allineamento con la corrispondete classe in CPSV-AP_IT"@it ;
+                                  
+                                  rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> .
+
+
+
+###  http://xmlns.com/foaf/0.1/Person
+
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class ;
+                                   
+                                   rdfs:label "Person"@en ;
+                                   
+                                   rdfs:comment "This class is defined in foaf and it has been added in order to align the corresponding group class in CPSV-AP_IT with FOAF."@en ,
+                                                "Questa classe è definita in FOAF ed è stata aggiunta per garantire l'allineamento con la corrispondete classe in CPSV-AP_IT"@it ;
+                                   
+                                   rdfs:isDefinedBy <http://xmlns.com/foaf/0.1/> .
+
+
+
+###  https://www.w3.org/ns/locn#Address
+
+<https://www.w3.org/ns/locn#Address> rdf:type owl:Class ;
+                                     
+                                     rdfs:label "Address"@en ;
+                                     
+                                     rdfs:comment "This class is defined in the Core Location vocabulary http://www.w3.org/ns/locn and it has been added to the ontology with the aim to guarantee the full alignment between CPSV-AP_IT and such an external vocabulary."@en ,
+                                                  "Questa classe è definita nel core vocabulary \"Core Location\" http://www.w3.org/ns/locn ed è stata aggiunta all'ontologia al fine di garantire l'allineamento di CPSV-AP_IT con tale vocabolario esterno."@it ;
+                                     
+                                     rdfs:isDefinedBy <http://www.w3.org/ns/locn> .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://dati.gov.it/onto/cpsvapit#Active
+
+:Active rdf:type :Status ,
+                 owl:NamedIndividual ;
+        
+        rdfs:label "Active"@en ,
+                   "Attivo"@it ;
+        
+        rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Closing
+
+:Closing rdf:type :LifeEventType ,
+                  owl:NamedIndividual ;
+         
+         rdfs:label "Closing"@en ,
+                    "Chiusura"@it ;
+         
+         rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Day
+
+:Day rdf:type :MeasurementUnit ,
+              owl:NamedIndividual ;
+     
+     rdfs:label "Day"@en ,
+                "Giorno"@it ;
+     
+     rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Doing
+
+:Doing rdf:type :LifeEventType ,
+                owl:NamedIndividual ;
+       
+       rdfs:label "Doing"@en ,
+                  "In Corso"@it ;
+       
+       rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Fri
+
+:Fri rdf:type :DayOfTheWeek ,
+              owl:NamedIndividual ;
+     
+     rdfs:label "Friday"@en ,
+                "Venerdì"@it ;
+     
+     rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Hour
+
+:Hour rdf:type :MeasurementUnit ,
+               owl:NamedIndividual ;
+      
+      rdfs:label "Hour"@en ,
+                 "Ora"@it ;
+      
+      rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Mon
+
+:Mon rdf:type :DayOfTheWeek ,
+              owl:NamedIndividual ;
+     
+     rdfs:label "Monday"@en ,
+                "Lunedì"@it ;
+     
+     rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#NonActive
+
+:NonActive rdf:type :Status ,
+                    owl:NamedIndividual ;
+           
+           rdfs:label "Non-Active"@en ,
+                      "Non Attivo"@it ;
+           
+           rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Sat
+
+:Sat rdf:type :DayOfTheWeek ,
+              owl:NamedIndividual ;
+     
+     rdfs:label "Saturday"@en ,
+                "Sabato"@it ;
+     
+     rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Starting
+
+:Starting rdf:type :LifeEventType ,
+                   owl:NamedIndividual ;
+          
+          rdfs:label "Starting"@en ,
+                     "Avvio"@it ;
+          
+          rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#StartingCrossBorder
+
+:StartingCrossBorder rdf:type :LifeEventType ,
+                              owl:NamedIndividual ;
+                     
+                     rdfs:label "Starting Cross Border"@en ,
+                                "Avvio Transfrontaliero"@it ;
+                     
+                     rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Sun
+
+:Sun rdf:type :DayOfTheWeek ,
+              owl:NamedIndividual ;
+     
+     rdfs:label "Sunday"@en ,
+                "Domenica"@it ;
+     
+     rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Thu
+
+:Thu rdf:type :DayOfTheWeek ,
+              owl:NamedIndividual ;
+     
+     rdfs:label "Thursday"@en ,
+                "Giovedì"@it ;
+     
+     rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Tue
+
+:Tue rdf:type :DayOfTheWeek ,
+              owl:NamedIndividual ;
+     
+     rdfs:label "Tuesday"@en ,
+                "Martedì"@it ,
+                <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#UnderDev
+
+:UnderDev rdf:type :Status ,
+                   owl:NamedIndividual ;
+          
+          rdfs:label "Under Development"@en ,
+                     "In Fase di Sviluppo"@it ,
+                     <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Wed
+
+:Wed rdf:type :DayOfTheWeek ,
+              owl:NamedIndividual ;
+     
+     rdfs:label "Wednesday"@en ,
+                "Mercoledì"@it ;
+     
+     rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Week
+
+:Week rdf:type :MeasurementUnit ,
+               owl:NamedIndividual ;
+      
+      rdfs:label "Week"@en ,
+                 "Settimana"@it ;
+      
+      rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+###  http://dati.gov.it/onto/cpsvapit#Year
+
+:Year rdf:type :MeasurementUnit ,
+               owl:NamedIndividual ;
+      
+      rdfs:label "Year"@en ,
+                 "Anno"@it ;
+      
+      rdfs:isDefinedBy <http://dati.gov.it/onto/cpsvapit> .
+
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
+

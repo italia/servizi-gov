@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {},
+    "id": "https://schemas.agid.gov.it/publicServices/regulations",
+    "properties": {
+        "_id": {
+            "description": "regulation Id",
+            "examples": ["507f1f77bcf86cd799439011"],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/_id",
+            "title": "Id",
+            "type": "string"
+        },
+        "date": {
+            "description": "Regulation date",
+            "examples": ["2014-10-20"],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/date",
+            "title": "Data regola",
+            "type": "Date",
+            "format": "date"
+        },
+        "description": {
+            "description": "Description of regulation",
+            "examples": ["Definizione delle caratteristiche del sistema pubblico per la gestione dell'identità digitale di cittadini e imprese (SPID), nonchè dei tempi e delle modalità di adozione del sistema SPID da parte delle pubbliche amministrazioni e delle imprese. (14A09376) (GU Serie Generale n.285 del 09-12-2014)"],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/description",
+            "title": "Description",
+            "type": "string"
+        },
+        "editorialNumber": {
+            "description": "Editorial number of regulation",
+            "examples": ["14A09376"],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/organization",
+            "title": "Editorial number",
+            "type": "string"
+        },
+        "number": {
+            "description": "Number of regulation",
+            "examples": [0],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/number",
+            "title": "Number",
+            "type": "integer"
+        },
+        "organization": {
+            "description": "Organization of regulation",
+            "examples": ["Presidente del Consiglio dei Ministri"],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/organization",
+            "title": "Organization",
+            "type": "string"
+        },
+        "permanentLink": {
+            "description": "Gazzetta Ufficiale url of regulation",
+            "examples": ["http://www.gazzettaufficiale.it/eli/id/2014/12/09/14A09376/sg"],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/url",
+            "title": "Permanent Link",
+            "type": "string",
+            "format": "uri"
+        },
+        "title": {
+            "description": "Title of regulation",
+            "examples": ["DECRETO DEL PRESIDENTE DEL CONSIGLIO DEI MINISTRI 24 ottobre 2014 "],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/title",
+            "title": "Title",
+            "type": "string"
+        },
+        "type": {
+            "description": "Type of regulation",
+            "examples": ["Decreto del Presidente del Consiglio dei Ministri (D.P.C.M.)"],
+            "id": "https://schemas.agid.gov.it/publicServices/regulations/properties/type",
+            "title": "Type",
+            "type": "string"
+        },
+        "required": [
+            "_id",
+            "description",
+            "permanentLink",
+            "title"
+        ]
+    },
+    "type": "object"
+}

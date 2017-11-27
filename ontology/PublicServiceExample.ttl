@@ -1,0 +1,513 @@
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org> .
+@prefix cpsvapit: <http://dati.gov.it/onto/cpsvapit#"> .
+@prefix dcatapit: <http://dati.gov.it/onto/dcatapit#"> .
+@prefix locn:<http://www.w3.org/ns/locn#> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+@prefix org:<https://www.w3.org/TR/vocab-org/> .
+
+
+#Cambio residenza Comune di Firenze
+<http://servizi.gov.it/resource/PublicService/1-cd612>
+	a 							cpsvapit:PublicService ;
+	foaf:name					"Cambio di Residenza Cittadino Italiano"@it ;
+	dct:description 			"Trasferimento a Firenze da altro comune italiano o dall'estero di cittadino italiano"@it ;
+	dct:modified				"2016-02-15"^^xsd:date ;
+	cpsvapit:keyword			"Residenza" , "Anagrafe" , "Stato civile" , "Cittadinanza" ;
+	cpsvapit:theme				<http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
+	cpsvapit:subTheme  			<http://dati.gov.it/onto/controlledvocabulary/NACE/8411> , <http://dati.gov.it/onto/controlledvocabulary/NACE/84>; ;
+	cpsvapit:interactivityLevel <http://dati.gov.it/onto/controlledvocabulary/InteractivityLevel/LEVEL3> ;
+	dct:language				<http://publications.europa.eu/resource/authority/language/ITA> ;
+	cpsvapit:hasInput			<http://servizi.gov.it/resource/Input/1-cd612-input-1> , <http://servizi.gov.it/resource/Input/1-cd612-input-2> , <<http://servizi.gov.it/resource/Input/1-cd612-input-3> , 
+								<<http://servizi.gov.it/resource/Input/1-cd612-input-4> , <http://servizi.gov.it/resource/Input/1-cd612-input-5> , <http://servizi.gov.it/resource/Input/1-cd612-input-6> ,
+								<http://servizi.gov.it/resource/Input/1-cd612-input-7> , <http://servizi.gov.it/resource/Input/1-cd612-input-8> ;
+	cpsvapit:produces			<http://servizi.gov.it/resource/Output/1-cd612-output> ;
+	cpsvapit:isRelatedToRiT 	<http://servizi.gov.it/resource/RoleInTime/ComuneFI20150101> , <http://servizi.gov.it/resource/Group/citc_d612> ;
+	cpsvapit:hasStatus			cpsvapit:Active ;
+	cpsvapit:hasCost			<http://servizi.gov.it/resource/Cost/1-cd612-costo> ;
+	dct:isPartOf				<http://www.servizi.gov.it/resource/LE/9> ;
+	cpsvapit:hasContactPoint    <http://servizi.gov.it/resource/ServiceContactPoint/1-cd612-PuntoContatto> ;
+	dct:temporal				<http://servizi.gov.it/resource/TimeInterval/1-cd612-CoperturaTemporale-1> , <http://servizi.gov.it/resource/TimeInterval/1-cd612-CoperturaTemporale-2> ;
+	cpsvapit:follows			<http://servizi.gov.it/resource/Rule/1-cd612-RegolaUso> ;
+	dct:spatial 				<http://servizi.gov.it/resource/Location/1-cd612-LocalizzazioneCoperturaServizio> ;
+	cpsvapit:relation			<http://servizi.gov.it/resource/PublicService/2-cd612> ;
+	cpsvapit:hasChannel			<http:servizi.gov.it/resource/Channel/112-cd612> , <http:servizi.gov.it/resource/Channel/111-cd612> ;
+	cpsvapit:isPhysicallyAvailableAt <http://servizi.gov.it/resource/Location/1-cd612-localizzazione1> , <http://servizi.gov.it/resource/Location/1-cd612-localizzazione2> ,
+									 <http://servizi.gov.it/resource/Location/1-cd612-localizzazione3> , <http://servizi.gov.it/resource/Location/1-cd612-localizzazione4> ,
+									 <http://servizi.gov.it/resource/Location/1-cd612-localizzazione5> , <http://servizi.gov.it/resource/Location/1-cd612-localizzazione6> , 
+									 <http://servizi.gov.it/resource/Location/1-cd612-localizzazione7> ;
+	cpsvapit:hasEmail			<mailto:iscrizioni.anagrafe@pec.comune.fi.it> ;
+	cpsvapit:hasPhone			<http://servizi.gov.it/resource/Phone/1-cd612-channel-phone> ;
+	cpsvapit:hasWebSite			<http://servizi.comune.fi.it/servizi/scheda-servizio/residenza-cambio-di-residenza-cittadino-italiano> .
+	
+
+
+<http:servizi.gov.it/resource/Channel/112-cd612>
+	a							cpsvapit:Channel , cpsvapit:OfflineChannel ;
+	dct:type 					<http://dati.gov.it/onto/controlledvocabulary/Channel/0112> .
+	
+<http:servizi.gov.it/resource/Channel/111-cd612>
+	a							cpsvapit:Channel, cpsvapit:OfflineChannel ;
+	dct:type					<http://dati.gov.it/onto/controlledvocabulary/Channel/0111> .
+	
+<http://servizi.gov.it/resource/Phone/1-cd612-channel-phone>
+	a							cpsvapit:Phone , vcard:TelephoneType, cpsvapit:Channel ;
+	dct:type					<http://dati.gov.it/onto/controlledvocabulary/Channel/032> ;
+	vcard:value					"055055" .
+
+<mailto:iscrizioni.anagrafe@pec.comune.fi.it>
+	a							cpsvapit:Email , vcard:Email, cpsvapit:Channel ;
+	dct:type					<http://dati.gov.it/onto/controlledvocabulary/Channel/0431> .
+		
+<http://servizi.gov.it/resource/Location/1-cd612-LocalizzazioneCoperturaServizio>
+	a 							cpsvapit:Location, dct:Location ;
+	dcatapit:geographicalIdentifier <http://publications.europa.eu/resource/authority/place/ITA_FLR> ;
+	locn:geometry "<gml:Envelope srsName=\"http://www.opengis.net/def/EPSG/0/4326\"><gml:lowerCorner>11.1505803016388 43.7258633840855</gml:lowerCorner><gml:upperCorner>11.3391283282642 43.8352270676213</gml:upperCorner></gml:Envelope>"^^gsp:gmlLiteral .
+
+<http://servizi.gov.it/resource/Location/1-cd612-localizzazione-1>
+	a							cpsvapit:Location , dct:Location ;
+	locn:address				<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico1> .
+	
+<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico1>
+	a							cpsvapit:Address , locn:Address ;
+	locn:addressID				"FI-50129" ;
+	locn:fullAddress			"Piazza Libertà 12 (cubo 1)" ;
+	locn:adminLevel2			"FI" ;
+	locn:postCode				"50129" .
+	
+<http://servizi.gov.it/resource/Location/1-cd612-localizzazione2>
+	a							cpsvapit:Location, dct:Location ;
+	locn:address				<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico2> .
+	
+<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico2>
+	a							cpsvapit:Address , locn:Address ;
+	locn:addressID				"FI-50142" ;
+	locn:fullAddress			"Via delle Torri 23" ;
+	locn:adminLevel2			"FI" ;
+	locn:postCode				"50142" .
+	
+<http://servizi.gov.it/resource/Location/1-cd612-localizzazione3>
+	a							cpsvapit:Location, dct:Location ;
+	locn:address				<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico3> .
+	
+<http://servizi.gov.it/resource/Location/1-cd612-localizzazione4>
+	a							cpsvapit:Location, dct:Location ;
+	locn:address				<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico4> .
+	
+<http://servizi.gov.it/resource/Location/1-cd612-localizzazione5>
+	a							cpsvapit:Location, dct:Location ;
+	locn:address				<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico5> .
+	
+<http://servizi.gov.it/resource/Location/1-cd612-localizzazione6>
+	a							cpsvapit:Location, dct:Location ;
+	locn:address				<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico6> .
+	
+<http://servizi.gov.it/resource/Location/1-cd612-localizzazione7>
+	a							cpsvapit:Location, dct:Location ;
+	locn:address				<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico7> .
+	
+<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico3>
+	a							cpsvapit:Address , locn:Address ;
+	locn:addressID				"FI-50136" ;
+	locn:fullAddress			"Piazza Alberti 2/a" ;
+	locn:adminLevel2			"FI" ;
+	locn:postCode				"50136" .
+	
+<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico4>
+	a							cpsvapit:Address , locn:Address ;
+	locn:addressID				"FI-50134" ;
+	locn:fullAddress			"Via Bini 7" ;
+	locn:adminLevel2			"FI" ;
+	locn:postCode				"50134" .
+	
+<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico5>
+	a							cpsvapit:Address , locn:Address ;
+	locn:addressID				"FI-50127" ;
+	locn:fullAddress			"via Baracca 150/p (Villa Pallini)" ;
+	locn:adminLevel2			"FI" ;
+	locn:postCode				"50127" .
+
+<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico6>
+	a							cpsvapit:Address , locn:Address ;
+	locn:addressID				"FI-50122" ;
+	locn:fullAddress			"Piazza Santa Croce 1" ;
+	locn:adminLevel2			"FI" ;
+	locn:postCode				"50122" .
+	
+<http://servizi.gov.it/resource/Address/1-cd612-indirizzo-puntoanagrafico7>
+	a							cpsvapit:Address , locn:Address ;
+	locn:addressID				"FI-50126" ;
+	locn:fullAddress			"Via Tagliamento 4" ;
+	locn:adminLevel2			"FI" ;
+	locn:postCode				"50126" .
+	
+
+<http://www.servizi.gov.it/resource/LE/9>
+	a							cpsvapit:Event, cpsvapit:LifeEvent ;
+	dct:identifier				"9" ;
+	foaf:name					"Cambio di residenza/domicilio"@it ;
+	dct:type					cpsvapit:Doing ;	
+	dct:hasPart					<http://servizi.gov.it/resource/PublicService/1-cd612> ;
+	cpsvapit:processingTime		<http://servizi.gov.it/resource/QuantitativeValue/1-cd612-TempoProcessamento> .
+	
+<http://servizi.gov.it/resource/QuantitativeValue/1-cd612-TempoProcessamento> 
+	a							cpsvapit:QuantitativeValue ;
+	vcard:value					"2"^^xsd:positiveInteger ;
+	cpsvapit:hasMeasurementUnit	cpsvapit:Day .
+
+<http://servizi.gov.it/resource/Cost/1-cd612-costo> 
+	a							cpsvapit:Cost ;
+	vcard:value					"0"^^xsd:positiveInteger ;
+	cpsvapit:currency			<http://publications.europa.eu/resource/authority/currency/EUR> ;
+	dct:description				"Il servizio è gratuito" .
+	
+<http://spcdata.digitpa.gov.it/Amministrazione/c_d612>
+	a 							cpsvapit:LegalEntity, org:FormalOrganization ;
+	dct:identifier  			"c_d612" ;
+	foaf:name					"Comune di Firenze"@it ;
+	dct:type					<http://spcdata.digitpa.gov.it/CategoriaAmministrazione/L6> ;
+	cpsvapit:playsARoleInTime	<http://servizi.gov.it/resource/RoleInTime/ComuneFI20150101> .
+	
+	
+<http://servizi.gov.it/resource/RoleInTime/ComuneFI20150101>
+	a 							cpsvapit:RoleInTime ;
+	cpsvapit:withRole			cpsvapit:RightsHolder ;
+	cpsvapit:roleAtTime			<http://servizi.gov.it/resource/TimeInterval/IntTemp-ComuneFI20150101> ;
+	cpsvapit:isPlayedBy			<http://spcdata.digitpa.gov.it/Amministrazione/c_d612> ;
+	cpsvapit:roleFor			<http://servizi.gov.it/resource/PublicService/1-cd612> .
+	
+<http://servizi.gov.it/resource/Group/citc_d612>
+	a 							cpsvapit:Group, cpsvapit:Agent ;
+	dct:identifier  			"CIT" ;
+	foaf:name					"Cittadini"@it ;
+	cpsvapit:playsARoleInTime	<http://servizi.gov.it/resource/RoleInTime/CitComuneFI20150101> .
+	
+<http://servizi.gov.it/resource/TimeInterval/IntTemp-ComuneFI20150101> 
+	a							cpsvapit:TimeInterval ;
+	cpsvapit:startInterval		"2015-01-01" .
+
+<http://servizi.gov.it/resource/RoleInTime/CitComuneFI20150101>
+	a							cpsvapit:RoleInTime ;
+	cpsvapit:withRole			cpsvapit:User ;
+	cpsvapit:roleAtTime			<http://servizi.gov.it/resource/TimeInterval/IntTemp-ComuneFI20150101> ;
+	cpsvapit:isPlayedBy			<http://servizi.gov.it/resource/Gruppo/citc_d612> ;
+	cpsvapit:roleFor			<http://servizi.gov.it/resource/PublicService/1-cd612> .
+	
+
+<http://servizi.gov.it/resource/ServiceContactPoint/1-cd612-PuntoContatto>
+	a						dcatapit:Organization , vcard:Organization ;
+	vcard:fn  				"P.O. Anagrafe - Comune di Firenze" ;
+	vcard:hasEmail 			<mailto:iscrizioni.anagrafe@pec.comune.fi.it> ;
+	vcard:hasTelephone		<http://servizi.gov.it/resource/Phone/1-cd612-ContactPoint-Phone> .
+
+<http://servizi.gov.it/resource/Phone/1-cd612-ContactPoint-Phone>
+	a						vcard:TelephoneType ;
+	vcard:value				"055055" .
+
+
+<http://servizi.gov.it/resource/TimeInterval/1-cd612-CoperturaTemporale-1> 
+	a						cpsvapit:TimeInterval , dct:PeriodOfTime ;
+	cpsvapit:startInterval	"8:30"^^xsd:time ;
+	cpsvapit:endInterval	"13:00"^^xsd:time ;
+	cpsvapit:hasDayOfTheWeek cpsvapit:Mon , cpsvapit:Tue , cpsvapit:Wed , cpsvapit:Thu , cpsvapit:Fri .
+	
+	
+<http://servizi.gov.it/resource/TimeInterval/1-cd612-CoperturaTemporale-2>
+	a						cpsvapit:TimeInterval , dct:PeriodOfTime ;
+	cpsvapit:startInterval	"14:30"^^xsd:time ;
+	cpsvapit:endInterval	"17:00"^^xsd:time ;
+	cpsvapit:hasDayOfTheWeek cpsvapit:Thu , cpsvapit:Fri .
+	
+<http://servizi.gov.it/resource/Rule/1-cd612-RegolaUso> 
+	a						cpsvapit:Rule ;
+	dct:title				"Regola per l'iter della procudera"@it ;
+	dct:description			"Questa è la regola relativa all'iter della procedura prevista per il cambio di residenza"@it ;
+	cpsvapit:implements		<http://www.gazzettaufficiale.it/eli/id/2015/08/14/15G00140/sg> , <http://www.gazzettaufficiale.it/eli/id/2014/05/27/14A04075/sg> ;
+	cpsvapit:specifies		<http://servizi.gov.it/resource/Requirement/1-cd612-requisito1> .
+	
+<http://servizi.gov.it/resource/Requirement/1-cd612-requisito1>
+	a						cpsvapit:Requirement , cpsvapit:Authentication ;
+	foaf:name				"Requisito per l'autenticazione nel caso di presentazione del cambio eseguita per via telematica"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/Authentication/CNS> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/CIE> .
+	
+<http://www.gazzettaufficiale.it/eli/id/2015/08/14/15G00140/sg> 
+	a						cpsvapit:FormalFramework ;
+	dct:title				"DECRETO DEL PRESIDENTE DELLA REPUBBLICA 17 luglio 2015, n. 126"@it ;
+	dct:description			"Regolamento recante adeguamento del regolamento anagrafico della popolazione residente, approvato con decreto del Presidente della Repubblica 30 maggio 1989, n. 223, alla disciplina istitutiva dell'anagrafe nazionale della popolazione residente. (15G00140) (GU Serie Generale n.188 del 14-8-2015)"@it .
+	
+<http://www.gazzettaufficiale.it/eli/id/2014/05/27/14A04075/sg>
+	a						cpsvapit:FormalFramework ;
+	dct:title				"TESTO COORDINATO DEL DECRETO-LEGGE 28 marzo 2014, n. 47"@it ;
+	dct:description			"Testo del decreto-legge 28 marzo 2014, n. 47 (in Gazzetta Ufficiale - serie generale - n. 73 del 28 marzo 2014), coordinato con la legge di conversione 23 maggio 2014, n. 80 (in questa stessa Gazzetta Ufficiale - alla pag. 1 ), recante: Misure urgenti per l'emergenza abitativa, per il mercato delle costruzioni e per Expo 2015.. (14A04075) (GU Serie Generale n.121 del 27-5-2014)"@it .
+	
+<http://servizi.gov.it/resource/Input/1-cd612-input-1>
+	a						cpsvapit:Input ;
+	foaf:name				"Carta d'Identità o altro documento di riconoscimento in corso di validità (Passaporto, Patente di guida ecc...)"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/IDDEC> .
+	
+<http://servizi.gov.it/resource/Input/1-cd612-input-2>
+	a 						cpsvapit:Input ;
+	foaf:name				"Tessera sanitaria"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/IDDEC> .
+	
+<http://servizi.gov.it/resource/Input/1-cd612-input-3>
+	a 						cpsvapit:Input ;
+	foaf:name				"Dichiarazione di cambio di residenza/abitazione"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/REQ> ;
+	dcatapit:referenceDoc	"http://servizi.comune.fi.it/cmis/browser?id=bd540dd1-dc0d-4a67-a252-88c39f496be1%3B1.0"^^xsd:anyURI .
+	
+<http://servizi.gov.it/resource/Input/1-cd612-input-4>
+	a 						cpsvapit:Input ;
+	foaf:name				"RICHIESTA DI AGGIORNAMENTO DELL’INDIRIZZO SU PATENTE E LIBRETTI DI CIRCOLAZIONE DEI VEICOLI"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/REQ> ;
+	dcatapit:referenceDoc 	"http://servizi.comune.fi.it/cmis/browser?id=688c0303-77df-4ea5-b32f-ee0796b6d2cb%3B1.0"^^xsd:anyURI .
+
+<http://servizi.gov.it/resource/Input/1-cd612-input-5>
+	a 						cpsvapit:Input ;
+	foaf:name				"DICHIARAZIONE SOSTITUTIVA DI CERTIFICAZIONE (Art. 46 D.P.R. 28.12.2000 n.445)"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/CERT> ;
+	dcatapit:referenceDoc	 "http://servizi.comune.fi.it/cmis/browser?id=6caa7d40-ce8f-4246-8ae7-6a26c4297a85%3B1.0"^^xsd:anyURI .
+
+<http://servizi.gov.it/resource/Input/1-cd612-input-6>
+	a 						cpsvapit:Input ;
+	foaf:name				"DICHIARAZIONE OSPITANTE"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/OTHDOC> ;
+	dcatapit:referenceDoc	"http://servizi.comune.fi.it/cmis/browser?id=92ce1763-c683-4f33-b46a-58c56a4cdfb3%3B1.0"^^xsd:anyURI .
+
+<http://servizi.gov.it/resource/Input/1-cd612-input-7>
+	a 						cpsvapit:Input ;
+	foaf:name				"DICHIARAZIONE DEL PROPRIETARIO"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/OTHDOC> ;
+	dcatapit:referenceDoc 	"http://servizi.comune.fi.it/cmis/browser?id=d18c560f-7826-49a3-bebf-c92d1a80eacc%3B1.0"^^xsd:anyURI .
+	
+<http://servizi.gov.it/resource/Input/1-cd612-input-8>
+	a 						cpsvapit:Input ;
+	foaf:name				"DICHIARAZIONE TARI"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/REQ> ;
+	dcatapit:referenceDoc 	"http://servizi.comune.fi.it/cmis/browser?id=69686fd9-c2c0-4d47-916b-c5899e64a219%3B1.0"^^xsd:anyURI .
+	
+<http://servizi.gov.it/resource/Output/1-cd612-output> 
+	a						cpsvapit:Output ;
+	foaf:name				"Ricevuta di cambio di residenza"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/AUTHACT> .
+	
+
+<http://servizi.gov.it/resource/PublicService/2-cd612> 
+	a 		cpsvapit:PublicService ;
+	foaf:name					"Cambio abitazione"@it ;
+	dct:description 			"Cambio di abitazione da un appartamento ad un altro all'interno del territorio del Comune di Firenze"@it ;
+	cpsvapit:theme				<http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
+	cpsvapit:keyword			"Abitazione" , "Anagrafe" , "Residenza" ;
+	cpsvapit:subTheme  			<http://dati.gov.it/onto/controlledvocabulary/ServiceSubtheme/ANA> ;
+	cpsvapit:interactivityLevel <http://dati.gov.it/onto/controlledvocabulary/InteractivityLevel/LEVEL3> ;
+	cpsvapit:isRelatedToRiT  	<http://servizi.gov.it/resource/RoleInTime/ComuneFI20150101> , <http://servizi.gov.it/resource/Group/citc_d612> ;
+	cpsvapit:hasStatus			cpsvapit:Active ;
+	dct:spatial					<http://www.geonames.org/6542285/> ;
+	cpsvapit:relation			<http://servizi.gov.it/resource/PublicService/1-cd612> ;
+	dct:isPartOf				<http://servizi.gov.it/resource/LifeEvent/CambioRiferimentoAnagrafico> ;
+	cpsvapit:hasInput			<http://servizi.gov.it/resource/Input/2-cd612-input-1> , <http://servizi.gov.it/resource/Input/2-cd612-input-2> ;
+	cpsvapit:hasWebSite			<http://servizi.comune.fi.it/servizi/scheda-servizio/residenza-cambio-abitazione> .
+	
+<http://servizi.gov.it/resource/Input/2-cd612-input-1>
+	a						cpsvapit:Input ;
+	foaf:name				"Carta d'Identità o altro documento di riconoscimento in corso di validità (Passaporto, Patente di guida ecc...)"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/IDDEC> .
+	
+<http://servizi.gov.it/resource/Input/2-cd612-input-2>
+	a						cpsvapit:Input ;
+	foaf:name				"Permesso di Soggiorno in corso di validità" ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/AUTHACT> .
+	
+	
+	
+
+#Accesso anagrafe canina della Regione Friuli Venezia Giulia
+<http://servizi.gov.it/resource/PublicService/2-r_friuve>
+	a 							cpsvapit:PublicService ;
+	foaf:name					"Accesso anagrafe canina - cani di proprietà"@it ;
+	dct:description 			"Servizio offerto dalla Regione Autonoma Friuli Venezia Giulia di iscrizione del proprio animale di affezione (cane, gatto, furetto) all'anagrafe canina e identificazione mediante microchip. Il servizio è obbligatorio per i cani e facoltativo per le altre categorie."@it ;
+	cpsvapit:keyword			"Anagrafe", "Anagrafe canina", "Animali" "Cane", "Gatto", "Furetto" ;
+	cpsvapit:theme				<http://publications.europa.eu/resource/authority/data-theme/HEAL> ;
+	cpsvapit:subTheme  			<http://dati.gov.it/onto/controlledvocabulary/NACE/7500> , <http://dati.gov.it/onto/controlledvocabulary/NACE/86>;
+	cpsvapit:interactivityLevel <http://dati.gov.it/onto/controlledvocabulary/InteractivityLevel/LEVEL3> ;
+	dct:isPartOf				<http://www.servizi.gov.it/resource/LE/19> ;
+	cpsvapit:hasInput			<http://servizi.gov.it/resource/Input/2-r_friuve-input-1> ;
+	cpsvapit:isRelatedToRiT 	<http://servizi.gov.it/resource/RoleInTime/RegioneFVG20160301> ;
+	cpsvapit:hasStatus			cpsvapit:Active ;
+	cpsvapit:follows			<http://servizi.gov.it/resource/Rule/2-r_friuve-RegolaUso> ;
+	cpsvapit:hasWebSite			<https://loginfvg.regione.fvg.it/loginfvg/spid/index.jsp> .
+	
+<http://servizi.gov.it/resource/RoleInTime/RegioneFVG20160301>
+	a 							cpsvapit:RoleInTime ;
+	cpsvapit:withRole			cpsvapit:RightsHolder ;
+	cpsvapit:roleAtTime			<http://servizi.gov.it/resource/TimeInterval/IntTemp-RegioneFVG20160301> ;
+	cpsvapit:isPlayedBy			<http://spcdata.digitpa.gov.it/Amministrazione/r_friuve> ;
+	cpsvapit:roleFor			<http://servizi.gov.it/resource/PublicService/2-r_friuve> .
+	
+<http://servizi.gov.it/resource/TimeInterval/IntTemp-RegioneFVG20160301> 
+	a							cpsvapit:TimeInterval ;
+	cpsvapit:startInterval		"2016-03-01" .
+
+<http://servizi.gov.it/resource/Input/2-r_friuve-input-1>
+	a						cpsvapit:Input ;
+	foaf:name				"Codice microchip"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/CODE> .
+
+
+<http://servizi.gov.it/resource/Rule/2-r_friuve-RegolaUso>
+	a						cpsvapit:Rule ;
+	dct:title				"Regole per l'accesso al servizio"@it ;
+	dct:description			"Il servizio può essere acceduto previo login"@it ;
+	cpsvapit:specifies		<http://servizi.gov.it/resource/Authentication/2-r_friuve-Authentication> .
+
+<http://servizi.gov.it/resource/Authentication/2-r_friuve-Authentication>
+	a 						cpsvapit:Authentication , cpsvapit:Requirement ;
+	foaf:name				"Requisiti per l'autenticazione al servizio"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/Authentication/CREDSPIDL1> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/OTPSPIDL2> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/CNSSPIDL3> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/CRED> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/SMARTCARD> .
+	
+
+<https://loginfvg.regione.fvg.it/loginfvg/spid/index.jsp>
+	a 						cpsvapit:Channel ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/Channel/02> .
+	
+<http://www.servizi.gov.it/resource/LE/19>
+	a						cpsvapit:Event, cpsvapit:LifeEvent ;
+	dct:identifier			"19" ;
+	foaf:name				"Possesso, cura, smarrimento animale da compagnia"@it ;
+	dct:type				cpsvapit:Doing ;	
+	dct:hasPart				<http://servizi.gov.it/resource/PublicService/2-r_friuve> .
+	
+	
+	
+#Domanda di iscrizione scuola online
+<http://servizi.gov.it/resource/PublicService/3-m_pi>
+	a 							cpsvapit:PublicService ;
+	foaf:name					"Iscrizioni online 2016/17"@it ;
+	dct:description 			"Servizio offerto dal Ministero dell'Istruzione, dell'Università e della Ricerca per l'iscrizione alle scuole online."@it ;
+	cpsvapit:keyword			"Scuola", "Iscrizione", "Scuole statali" "Scuole paritarie" ;
+	cpsvapit:theme				<http://publications.europa.eu/resource/authority/data-theme/EDUC> ;
+	cpsvapit:subTheme  			<http://dati.gov.it/onto/controlledvocabulary/NACE/8520> , <http://dati.gov.it/onto/controlledvocabulary/NACE/8531> , <http://dati.gov.it/onto/controlledvocabulary/NACE/8532> ;
+	cpsvapit:interactivityLevel <http://dati.gov.it/onto/controlledvocabulary/InteractivityLevel/LEVEL3> ;
+	dct:isPartOf				<http://www.servizi.gov.it/resource/LE/1> ;
+	cpsvapit:hasInput			<http://servizi.gov.it/resource/Input/3-m_pi-input-1> ;
+	cpsvapit:isRelatedToRiT 	<http://servizi.gov.it/resource/RoleInTime/MIUR20150101> ;
+	cpsvapit:hasContactPoint    <http://servizi.gov.it/resource/ServiceContactPoint/3-m_pi-PuntoContatto> ;
+	dct:temporal				<http://servizi.gov.it/resource/TimeInterval/3-m_pi-CoperturaTemporale> ; 
+	dct:language				<http://publications.europa.eu/resource/authority/language/SLV> ;
+	cpsvapit:hasWebSite			<https://iscrizioni.pubblica.istruzione.it/iscrizionionlinefamiglia/> , <http://www.istruzione.it/iscrizionionline/index_new.shtml> .
+	
+<http://servizi.gov.it/resource/RoleInTime/MIUR20150101>
+	a 							cpsvapit:RoleInTime ;
+	cpsvapit:withRole			cpsvapit:RightsHolder ;
+	cpsvapit:roleAtTime			<http://servizi.gov.it/resource/TimeInterval/IntTemp-MIUR20150101> ;
+	cpsvapit:isPlayedBy			<http://spcdata.digitpa.gov.it/Amministrazione/m_pi> ;
+	cpsvapit:roleFor			<http://servizi.gov.it/resource/PublicService/3-m_pi> .
+	
+<http://servizi.gov.it/resource/TimeInterval/IntTemp-MIUR20150101> 
+	a							cpsvapit:TimeInterval ;
+	cpsvapit:startInterval		"2015-01-01"^^xsd:date .
+	
+<http://servizi.gov.it/resource/ServiceContactPoint/3-m_pi-PuntoContatto>
+	a						dcatapit:Organization , vcard:Organization ;
+	vcard:fn  				"Ministero dell’Istruzione, dell’Università e della Ricerca" ;
+	vcard:hasEmail 			<mailto:urp@istruzione.it> ;
+	vcard:hasTelephone		<http://servizi.gov.it/resource/Phone/3-m_pi-ContactPoint-Phone> .
+	
+<http://servizi.gov.it/resource/Phone/3-m_pi-ContactPoint-Phone>
+	a						vcard:TelephoneType ;
+	vcard:value				"06 5849 4025" .
+
+
+<http://servizi.gov.it/resource/Input/3-m_pi-input-1>
+	a						cpsvapit:Input ;
+	foaf:name				"Codice scuola"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/CODE> .
+
+<http://servizi.gov.it/resource/TimeInterval/3-m_pi-CoperturaTemporale>
+	a						cpsvapit:TimeInterval ;
+	cpsvapit:startInterval	"2016-01-22T8:00:00"^^xsd:dateTime ;
+	cpsvapit:endInterval	"2016-02-22T20:00:00"^^xsd:dateTime .
+	
+
+<https://iscrizioni.pubblica.istruzione.it/iscrizionionlinefamiglia/>
+	a 						cpsvapit:WebSite ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/Channel/02> .
+	
+<http://www.istruzione.it/iscrizionionline/index_new.shtml>
+	a 						cpsvapit:WebSite ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/Channel/021> .
+	
+<http://www.servizi.gov.it/resource/LE/1>
+	a						cpsvapit:Event, cpsvapit:LifeEvent ;
+	dct:identifier			"1" ;
+	foaf:name				"Iscrizione scuola/università e/o richiesta borsa di studio"@it ;
+	dct:type				cpsvapit:Starting ;	
+	dct:hasPart				<http://servizi.gov.it/resource/PublicService/3-m_pi> .
+	
+	
+	
+	
+#Bonus bebé INPS
+<http://servizi.gov.it/resource/PublicService/4-inps>
+	a 							cpsvapit:PublicService ;
+	foaf:name					"Assegno di natalità - Bonus Bebè"@it ;
+	dct:description 			"Servizio per l'invio delle domande per l'assegno di natalità di cui all’articolo 1, commi da 125 a 129 e seguenti della L. n. 190/2014 e D.P.C.M. 27/02/2015 (c.d. bonus bebè. Il servizio consente al cittadino avente diritto di compilare e inoltrare all’Inps la domanda e di visualizzarne online l’esito. Al termine dell’istruttoria, il richiedente riceve un sms che lo avverte che la domanda è stata definita. Da quel momento può visualizzare l’esito della domanda (accolta o respinta) accedendo nuovamente al servizio e selezionando nel menù interno la voce “consultazione domande”. Se, nel compilare la domanda online, l’utente inserisce anche il suo indirizzo di Posta Elettronica Certificata (PEC), può ricevere direttamente nella sua casella PEC il provvedimento di accoglimento o reiezione della domanda."@it ;
+	cpsvapit:keyword			"Neonato", "Assegno", "Natalità" , "Bonus" ;
+	cpsvapit:theme				<http://publications.europa.eu/resource/authority/data-theme/SOCI> ;
+	cpsvapit:subTheme  			<http://dati.gov.it/onto/controlledvocabulary/NACE/8411> , <http://dati.gov.it/onto/controlledvocabulary/NACE/8412> ;
+	cpsvapit:interactivityLevel <http://dati.gov.it/onto/controlledvocabulary/InteractivityLevel/LEVEL3> ;
+	dct:isPartOf				<http://www.servizi.gov.it/resource/LE/12> ;
+	cpsvapit:hasInput			<http://servizi.gov.it/resource/Input/4-inps-input-1> ;
+	cpsvapit:isRelatedToRiT 	<http://servizi.gov.it/resource/RoleInTime/INPS20130101> ;
+	cpsvapit:follows			<http://servizi.gov.it/resource/Rule/4-inps-RegolaUso> ;
+	cpsvapit:hasWebSite			<http://www.inps.it/portale/default.aspx?iMenu=2&iNodo=2&iiDServizio=526&sURL=http%3a%2f%2fserviziweb2.inps.it%2fBonusBebeWeb%2finformazioni> .
+	
+<http://servizi.gov.it/resource/RoleInTime/INPS20130101>
+	a 							cpsvapit:RoleInTime ;
+	cpsvapit:withRole			cpsvapit:RightsHolder ;
+	cpsvapit:roleAtTime			<http://servizi.gov.it/resource/TimeInterval/IntTemp-INPS20130101> ;
+	cpsvapit:isPlayedBy			<http://spcdata.digitpa.gov.it/Amministrazione/inps> ;
+	cpsvapit:roleFor			<http://servizi.gov.it/resource/PublicService/4-inps> .
+	
+<http://servizi.gov.it/resource/TimeInterval/IntTemp-INPS20130101> 
+	a							cpsvapit:TimeInterval ;
+	cpsvapit:startInterval		"2013-01-01"^^xsd:date .
+
+<http://servizi.gov.it/resource/Rule/4-inps-RegolaUso>
+	a						cpsvapit:Rule ;
+	dct:title				"Regole per l'accesso al servizio"@it ;
+	dct:description			"Il servizio può essere acceduto previo login con codice fiscale o SPID"@it ;
+	cpsvapit:specifies		<http://servizi.gov.it/resource/Authentication/4-inps-Authentication> .
+
+<http://servizi.gov.it/resource/Authentication/4-inps-Authentication>
+	a 						cpsvapit:Authentication , cpsvapit:Requirement ;
+	foaf:name				"Requisiti per l'autenticazione al servizio"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/Authentication/CRED> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/CNS> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/CREDSPIDL1> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/OTPSPIDL2> , <http://dati.gov.it/onto/controlledvocabulary/Authentication/CNSSPIDL3> .
+
+<http://servizi.gov.it/resource/Input/4-inps-input-1>
+	a						cpsvapit:Input ;
+	foaf:name				"Codice Fiscale"@it ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/CODE> .
+	
+
+<http://www.inps.it/portale/default.aspx?iMenu=2&iNodo=2&iiDServizio=526&sURL=http%3a%2f%2fserviziweb2.inps.it%2fBonusBebeWeb%2finformazioni>
+	a 						cpsvapit:WebSite ;
+	dct:type				<http://dati.gov.it/onto/controlledvocabulary/Channel/02> .
+	
+	
+<http://www.servizi.gov.it/resource/LE/12>
+	a						cpsvapit:Event, cpsvapit:LifeEvent ;
+	dct:identifier			"12" ;
+	foaf:name				"Nascita di un bambino, richiesta adozioni"@it ;
+	dct:type				cpsvapit:Starting ;	
+	dct:hasPart				<http://servizi.gov.it/resource/PublicService/4-inps> .
+	

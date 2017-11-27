@@ -1,0 +1,94 @@
+{
+    "regulations": [
+        {
+            "code": "COST",
+            "shortDescription": "Costituzione",
+            "extendedDescription": "Costituzione"
+        },
+        {
+            "code": "LEOR",
+            "shortDescription": "Legge",
+            "extendedDescription": "Legge ordinaria"
+        },
+        {
+            "code": "LECO",
+            "shortDescription": "Legge Costituzionale",
+            "extendedDescription": "Legge Costituzionale"
+        },
+        {
+            "code": "LEDE",
+            "shortDescription": "Legge Delega",
+            "extendedDescription": "Legge delega"
+        },
+        {
+            "code": "LDEU",
+            "shortDescription": "Legge di Delegazione Europea",
+            "extendedDescription": "Legge di Delegazione Europea"
+        },
+        {
+            "code": "LEPR",
+            "shortDescription": "Legge Provinciale",
+            "extendedDescription": "Legge Provinciale"
+        },
+        {
+            "code": "LEQU",
+            "shortDescription": "Legge Quadro",
+            "extendedDescription": "Legge Quadro"
+        },
+        {
+            "code": "LERE",
+            "shortDescription": "Legge Regionale",
+            "extendedDescription": "Legge Regionale"
+        },
+        {
+            "code": "DLGS",
+            "shortDescription": "D.Lgs.",
+            "extendedDescription": "Decreto Legislativo"
+        },
+        {
+            "code": "DELE",
+            "shortDescription": "D.L.",
+            "extendedDescription": "Decreto Legge"
+        },
+        {
+            "code": "DPRP",
+            "shortDescription": "D.P.R.",
+            "extendedDescription": "Decreto del Presidente della Repubblica"
+        },
+        {
+            "code": "DPCM",
+            "shortDescription": "D.P.C.M.",
+            "extendedDescription": "Decreto del Presidente del Consiglio dei Ministri"
+        },
+        {
+            "code": "DEMI",
+            "shortDescription": "D.M.",
+            "extendedDescription": "Decreto Ministeriale"
+        },
+        {
+            "code": "DEIM",
+            "shortDescription": "D.I.",
+            "extendedDescription": "Decreto Interministeriale"
+        },
+        {
+            "code": "ORMI",
+            "shortDescription": "O.M.",
+            "extendedDescription": "Ordinanza Ministeriale"
+        },
+        {
+            "code": "CIRC",
+            "shortDescription": "",
+            "extendedDescription": "Circolare"
+        },
+        {
+            "code": "REUE",
+            "shortDescription": "Regolamento UE",
+            "extendedDescription": "Regolamento dell’Unione Europea"
+        },
+        {
+            "code": "DIUE",
+            "shortDescription": "Direttiva UE",
+            "extendedDescription": "Direttiva dell’Unione Europea"
+        }
+    ]
+}

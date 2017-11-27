@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {},
+    "id": "https://schemas.agid.gov.it/publicServices/rules",
+    "properties": {
+        "_id": {
+            "description": "Rule / Guideline Id",
+            "examples": ["507f1f77bcf86cd799439011"],
+            "id": "https://schemas.agid.gov.it/publicServices/rules/properties/_id",
+            "title": "Id",
+            "type": "string"
+        },
+        "date": {
+            "description": "Rule / guideline date",
+            "examples": ["2014-10-24"],
+            "id": "https://schemas.agid.gov.it/publicServices/rules/properties/date",
+            "title": "Date",
+            "type": "string",
+            "format": "date"
+        },
+        "description": {
+            "description": "Description of rule / guideline",
+            "examples": ["SPID - REGOLAMENTO RECANTE LE REGOLE TECNICHE (articolo 4, comma 2, DPCM 24 ottobre 2014)"],
+            "id": "https://schemas.agid.gov.it/publicServices/rules/properties/description",
+            "title": "Description",
+            "type": "string"
+        },
+        "number": {
+            "description": "Number of rule / guideline",
+            "examples": ["1A"],
+            "id": "https://schemas.agid.gov.it/publicServices/rules/properties/number",
+            "title": "Number",
+            "type": "string"
+        },
+        "organization": {
+            "description": "Organization of rule / guideline (ipa code)",
+            "examples": ["agid"],
+            "id": "https://schemas.agid.gov.it/publicServices/rules/properties/organization",
+            "title": "Organization",
+            "type": "string"
+        },
+        "title": {
+            "description": "Title of rule / guideline",
+            "examples": ["SPID - Regole Tecniche"],
+            "id": "https://schemas.agid.gov.it/publicServices/rules/properties/title",
+            "title": "Title",
+            "type": "string"
+        },
+        "type": {
+            "description": "Type of rule / guideline",
+            "examples": ["Regole tecniche"],
+            "id": "https://schemas.agid.gov.it/publicServices/rules/properties/type",
+            "title": "Type",
+            "type": "string"
+        },
+        "url": {
+            "description": "Gazzetta Ufficiale url of rule / guideline",
+            "examples": ["http://www.agid.gov.it/sites/default/files/circolari/spid-regole_tecniche_v1.pdf"],
+            "id": "https://schemas.agid.gov.it/publicServices/rules/properties/url",
+            "title": "Url",
+            "type": "string",
+            "format": "uri"
+        },
+        "required": [
+            "_id",
+            "title",
+            "url"
+        ]
+    },
+    "type": "object"
+}
