@@ -28,9 +28,10 @@
         },
         "description": {"language": "", "description": ""},
         "status": "",
+        "informationPage": "",
         "keywords": [{"language": "", "description": ""}],
         "themes": [""],
-        "sector": [""],
+        "sectors": [""],
         "regulationsAndRules": [{
             "regulation": "",
             "rule": ""
@@ -43,7 +44,7 @@
             "rule": [""]
         }],
         "serviceType": "",
-        "languages": [""],
+        "serviceLanguages": [""],
         "requires": [""],
         "relations": [""],
         "organizations": [{
@@ -99,9 +100,7 @@
         "channels": {
             "offlineChannels": [{
                 "type": "",
-                "subType": "",
                 "locationName": {"language": "", "description": ""},
-                "streetType": "",
                 "streetName": "",
                 "number": "",
                 "city": "",
@@ -114,22 +113,18 @@
             }],
             "webApplications": [{
                 "type": "",
-                "subType": "",
                 "url": ""
             }],
             "phones": [{
                 "type": "",
-                "subType": "",
                 "phoneNumber": ""
             }],
             "emails": [{
                 "type": "",
-                "subType": "",
                 "email": ""
             }],
             "otherElectronicChannels": [{
                 "type": "",
-                "subType": "",
                 "accessReference": {"language": "", "description": ""}
             }]
         },
@@ -148,7 +143,7 @@
             "value": ""
         }],
         "spatialCoverage": [{
-            "type": "",
+            "locationName": {"language": "", "description": ""},
             "code": ""
         }],
         "interactivityLevel": "",
