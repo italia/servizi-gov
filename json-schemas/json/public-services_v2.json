@@ -1,0 +1,175 @@
+{
+    "_id": "",
+    "version": "",
+    "creation": {
+        "date": "",
+        "user": ""
+    },
+    "approval": {
+        "date": "",
+        "user": ""
+    },
+    "publicationStatus": {
+        "type": "",
+        "date": "",
+        "user": ""
+    },
+    "publicService": {
+        "id": "",
+        "template": {
+            "id": "",
+            "name": ""
+        },
+        "name": {"language": "", "description": ""},
+        "alternativeName": {"language": "", "description": ""},
+        "alternativeId": {
+            "id": "",
+            "description": ""
+        },
+        "description": {"language": "", "description": ""},
+        "status": "",
+        "informationPage": "",
+        "keywords": [{"language": "", "description": ""}],
+        "themes": [""],
+        "sectors": [""],
+        "regulationsAndRules": [{
+            "regulation": "",
+            "rule": ""
+        }],
+        "technicalStandards": [{
+            "title": {"language": "", "description": ""},
+            "type": "",
+            "description": {"language": "", "description": ""},
+            "url": {"language": "", "description": ""},
+            "rule": [""]
+        }],
+        "serviceType": "",
+        "serviceLanguages": [""],
+        "requires": [""],
+        "relations": [""],
+        "organizations": [{
+            "type": "",
+            "organizationCode": "",
+            "name": "",
+            "role": "",
+            "date": [{
+                "startDateTime": "",
+                "endDateTime": ""
+            }]
+        }],
+        "contacts": [{
+            "office": {"language": "", "description": ""},
+            "phoneNumber": "",
+            "email": "",
+            "web": ""
+        }],
+        "temporalCoverage": [{
+            "startInterval": "",
+            "endInterval": "",
+            "weekDays": [""]
+        }],
+        "events": {
+            "eventType": [""],
+            "businessEvent": [""],
+            "lifeEvent": [""]
+        },
+        "input": {
+            "referenceDocumentation": "",
+            "inputOr": [{
+                "groupName": {"language": "", "description": ""},
+                "required": "",
+                "names": [{"name": ""}]
+            }],
+            "inputAnd": [{
+                "name": "",
+                "required": ""
+            }]
+        },
+        "output": {
+            "referenceDocumentation": "",
+            "outputOr": [{
+                "groupName": {"language": "", "description": ""},
+                "required": "",
+                "names": [{"name": ""}]
+            }],
+            "outputAnd": [{
+                "name": "",
+                "required": ""
+            }]
+        },
+        "channels": {
+            "offlineChannels": [{
+                "type": "",
+                "locationName": {"language": "", "description": ""},
+                "streetName": "",
+                "number": "",
+                "city": "",
+                "postCode": "",
+                "geometry": {
+                    "type": "",
+                    "latitude": "",
+                    "longitude": ""
+                }
+            }],
+            "webApplications": [{
+                "type": "",
+                "url": ""
+            }],
+            "phones": [{
+                "type": "",
+                "phoneNumber": ""
+            }],
+            "emails": [{
+                "type": "",
+                "email": ""
+            }],
+            "otherElectronicChannels": [{
+                "type": "",
+                "accessReference": {"language": "", "description": ""}
+            }]
+        },
+        "authentications": [{
+            "type": "",
+            "url": ""
+        }],
+        "costs": {
+            "fixedcosts": [{
+              "description": {"language": "", "description": ""},
+              "currency": "",
+              "value": "",
+              "vatValue": ""
+            }],
+            "variablecosts": [{
+              "description": {"language": "", "description": ""}
+            }]
+        },
+        "processingTimes": [{
+            "unit": "",
+            "value": ""
+        }],
+        "spatialCoverage": [{
+            "locationName": {"language": "", "description": ""},
+            "code": ""
+        }],
+        "interactivityLevel": "",
+        "faq": [{
+            "question": {"language": "", "description": ""},
+            "answer": {"language": "", "description": ""},
+            "active": ""
+        }],
+        "notes": "",
+        "components": {
+        "spid": [{
+            "type": "",
+            "spidLevel": "",
+            "assertionConsumerServiceUrl": "",
+            "assertionConsumerServiceIndex": "",
+            "singleLogoutServiceUrl": "",
+            "attributeConsumingServiceIndex": "",
+            "attributes": [{
+                "attributeName": "",
+                "attributeUseReason": ""
+            }]
+        }]}
+    }
+}
