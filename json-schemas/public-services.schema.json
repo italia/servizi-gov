@@ -1,21 +1,19 @@
 {
     "$schema": "http://json-schema.org/draft-06/schema#",
-    "definitions": {
-        "languages": {
-            "default": "IT",
-            "description": "Languages that can be used for descriptions and free values",
-            "enum": [
-                "IT",
-                "EN",
-                "DE",
-                "FR",
-                "ES"
-            ],
-            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language",
-            "title": "Language that can be used for the descriptions of the services",
-            "type": "string"
-        }
-    },
+    "definitions": {"languages": {
+        "default": "IT",
+        "description": "Languages that can be used for descriptions and free values",
+        "enum": [
+            "IT",
+            "EN",
+            "DE",
+            "FR",
+            "ES"
+        ],
+        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language",
+        "title": "Language that can be used for the descriptions of the services",
+        "type": "string"
+    }},
     "id": "https://schemas.agid.gov.it/publicServices/publicService",
     "properties": {
         "_id": {
@@ -71,7 +69,7 @@
         "publicService": {
             "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService",
             "properties": {
-            	"alternativeId": {
+                "alternativeId": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/alternativeId",
                     "properties": {
                         "description": {
@@ -91,16 +89,21 @@
                 },
                 "alternativeName": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/alternativeName",
-                    "properties": {
-                        "description": {
-                            "description": "Alternative name of the service",
-                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/alternativeName/properties/description",
-                            "title": "Alternative name of the service",
-                            "type": "string"
+                    "items": {
+                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/alternativeName/items",
+                        "properties": {
+                            "description": {
+                                "description": "Alternative name of the service",
+                                "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/alternativeName/items/properties/description",
+                                "title": "Alternative name of the service",
+                                "type": "string"
+                            },
+                            "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                         },
-                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                        "type": "object"
                     },
-                    "type": "object"
+                    "type": "array",
+                    "uniqueItems": true
                 },
                 "authentications": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/authentications",
@@ -190,16 +193,21 @@
                                     },
                                     "locationName": {
                                         "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName",
-                                        "properties": {
-                                            "description": {
-                                                "description": "Location name",
-                                                "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName/properties/description",
-                                                "title": "Description",
-                                                "type": "string"
+                                        "items": {
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName/items",
+                                            "properties": {
+                                                "description": {
+                                                    "description": "Location name",
+                                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName/items/properties/description",
+                                                    "title": "Description",
+                                                    "type": "string"
+                                                },
+                                                "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                             },
-                                            "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                            "type": "object"
                                         },
-                                        "type": "object"
+                                        "type": "array",
+                                        "uniqueItems": true
                                     },
                                     "number": {
                                         "description": "Street number",
@@ -238,16 +246,21 @@
                                 "properties": {
                                     "accessReference": {
                                         "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/otherElectronicChannels/items/properties/accessReference",
-                                        "properties": {
-                                            "description": {
-                                                "description": "Access reference for other electronic channel",
-                                                "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/otherElectronicChannels/items/properties/accessReference/properties/description",
-                                                "title": "Access reference for other electronic channel",
-                                                "type": "string"
+                                        "items": {
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/otherElectronicChannels/items/properties/accessReference/items",
+                                            "properties": {
+                                                "description": {
+                                                    "description": "Access reference for other electronic channel",
+                                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/otherElectronicChannels/items/properties/accessReference/items/properties/description",
+                                                    "title": "Access reference for other electronic channel",
+                                                    "type": "string"
+                                                },
+                                                "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                             },
-                                            "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                            "type": "object"
                                         },
-                                        "type": "object"
+                                        "type": "array",
+                                        "uniqueItems": true
                                     },
                                     "type": {
                                         "description": "Type of other electronic channel",
@@ -439,16 +452,21 @@
                             },
                             "office": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/contacts/items/properties/office",
-                                "properties": {
-                                    "description": {
-                                        "description": "Office",
-                                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/contacts/items/properties/office/properties/description",
-                                        "title": "Office",
-                                        "type": "string"
+                                "items": {
+                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/contacts/items/properties/office/items",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Office",
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/contacts/items/properties/office/items/properties/description",
+                                            "title": "Office",
+                                            "type": "string"
+                                        },
+                                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                     },
-                                    "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                    "type": "object"
                                 },
-                                "type": "object"
+                                "type": "array",
+                                "uniqueItems": true
                             },
                             "phoneNumber": {
                                 "description": "Phone number",
@@ -469,8 +487,8 @@
                     "minItems": 1,
                     "type": "array",
                     "required": [
-                      "email",
-                      "office"
+                        "email",
+                        "office"
                     ],
                     "uniqueItems": true
                 },
@@ -487,16 +505,21 @@
                             },
                             "description": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/costs/items/properties/description",
-                                "properties": {
-                                    "description": {
-                                        "description": "Description of cost",
-                                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/costs/items/properties/description/properties/description",
-                                        "title": "Description of cost",
-                                        "type": "string"
+                                "items": {
+                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/costs/items/properties/description/items",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Description of cost",
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/costs/items/properties/description/items/properties/description",
+                                            "title": "Description of cost",
+                                            "type": "string"
+                                        },
+                                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                     },
-                                    "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                    "type": "object"
                                 },
-                                "type": "object"
+                                "type": "array",
+                                "uniqueItems": true
                             },
                             "value": {
                                 "description": "Value (included vat if present)",
@@ -524,16 +547,21 @@
                 },
                 "description": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/description",
-                    "properties": {
-                        "description": {
-                            "description": "Description of service",
-                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/description/properties/description",
-                            "title": "Description of service",
-                            "type": "string"
+                    "items": {
+                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/description/items",
+                        "properties": {
+                            "description": {
+                                "description": "Description of service",
+                                "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/description/items/properties/description",
+                                "title": "Description of service",
+                                "type": "string"
+                            },
+                            "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                         },
-                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                        "type": "object"
                     },
-                    "type": "object"
+                    "type": "array",
+                    "uniqueItems": true
                 },
                 "events": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/events",
@@ -581,29 +609,39 @@
                         "properties": {
                             "answer": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/faq/items/properties/answer",
-                                "properties": {
-                                    "description": {
-                                        "description": "Answer",
-                                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/faq/items/properties/description/properties/answer",
-                                        "title": "Answer",
-                                        "type": "string"
+                                "items": {
+                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/faq/items/properties/answer/items",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Answer",
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/faq/items/properties/description/items/properties/answer",
+                                            "title": "Answer",
+                                            "type": "string"
+                                        },
+                                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                     },
-                                    "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                    "type": "object"
                                 },
-                                "type": "object"
+                                "type": "array",
+                                "uniqueItems": true
                             },
                             "question": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/faq/items/properties/question",
-                                "properties": {
-                                    "description": {
-                                        "description": "Question",
-                                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/faq/items/properties/description/properties/question",
-                                        "title": "Question",
-                                        "type": "string"
+                                "items": {
+                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/faq/items/properties/question/items",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Question",
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/faq/items/properties/description/items/properties/question",
+                                            "title": "Question",
+                                            "type": "string"
+                                        },
+                                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                     },
-                                    "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                    "type": "object"
                                 },
-                                "type": "object"
+                                "type": "array",
+                                "uniqueItems": true
                             },
                             "active": {
                                 "description": "Faq active or not active",
@@ -656,16 +694,21 @@
                                 "properties": {
                                     "groupName": {
                                         "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/input/properties/inputOr/items/properties/groupName",
-                                        "properties": {
-                                            "description": {
-                                                "description": "Input group name",
-                                                "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/input/properties/inputOr/items/properties/groupName/properties/description",
-                                                "title": "Input group name",
-                                                "type": "string"
+                                        "items": {
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/input/properties/inputOr/items/properties/groupName/items",
+                                            "properties": {
+                                                "description": {
+                                                    "description": "Input group name",
+                                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/input/properties/inputOr/items/properties/groupName/items/properties/description",
+                                                    "title": "Input group name",
+                                                    "type": "string"
+                                                },
+                                                "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                             },
-                                            "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                            "type": "object"
                                         },
-                                        "type": "object"
+                                        "type": "array",
+                                        "uniqueItems": true
                                     },
                                     "names": {
                                         "additionalItems": false,
@@ -741,28 +784,38 @@
                 },
                 "name": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/name",
-                    "properties": {
-                        "description": {
-                            "description": "Name of the service",
-                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/name/properties/description",
-                            "title": "Name of the service",
-                            "type": "string"
+                    "items": {
+                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/name/items",
+                        "properties": {
+                            "description": {
+                                "description": "Name of the service",
+                                "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/name/items/properties/description",
+                                "title": "Name of the service",
+                                "type": "string"
+                            },
+                            "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                         },
-                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                        "type": "object"
                     },
-                    "type": "object"
+                    "type": "array",
+                    "uniqueItems": true
                 },
                 "notes": {
-                    "properties": {
-                        "description": {
-                            "description": "Additional Notes to be used in case of internal service type",
-                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/notes/properties/description",
-                            "title": "Additional Notes",
-                            "type": "string"
+                    "items": {
+                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/notes/items",
+                        "properties": {
+                            "description": {
+                                "description": "Additional Notes to be used in case of internal service type",
+                                "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/notes/items/properties/description",
+                                "title": "Additional Notes",
+                                "type": "string"
+                            },
+                            "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                         },
-                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                        "type": "object"
                     },
-                    "type": "object"
+                    "type": "array",
+                    "uniqueItems": true
                 },
                 "organizations": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/organizations",
@@ -831,12 +884,11 @@
                     "minItems": 1,
                     "type": "array",
                     "required": [
-                      "organizationCode",
-                      "name",
-                      "role"
+                        "organizationCode",
+                        "name",
+                        "role"
                     ],
                     "uniqueItems": true
-
                 },
                 "output": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/output",
@@ -870,16 +922,21 @@
                                 "properties": {
                                     "groupName": {
                                         "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/output/properties/outputOr/items/properties/groupName",
-                                        "properties": {
-                                            "description": {
-                                                "description": "Output group name",
-                                                "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/output/properties/outputOr/items/properties/groupName/properties/description",
-                                                "title": "Output group name",
-                                                "type": "string"
+                                        "items": {
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/output/properties/outputOr/items/properties/groupName/items",
+                                            "properties": {
+                                                "description": {
+                                                    "description": "Output group name",
+                                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/output/properties/outputOr/items/properties/groupName/items/properties/description",
+                                                    "title": "Output group name",
+                                                    "type": "string"
+                                                },
+                                                "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                             },
-                                            "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                            "type": "object"
                                         },
-                                        "type": "object"
+                                        "type": "array",
+                                        "uniqueItems": true
                                     },
                                     "names": {
                                         "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/output/properties/outputOr/items/properties/names",
@@ -926,11 +983,11 @@
                                 "title": "Processing unit",
                                 "type": "string",
                                 "enum": [
-                                  "Ora",
-                                  "Giorno",
-                                  "Settimana",
-                                  "Mese",
-                                  "Anno"
+                                    "Ora",
+                                    "Giorno",
+                                    "Settimana",
+                                    "Mese",
+                                    "Anno"
                                 ]
                             },
                             "value": {
@@ -1020,16 +1077,21 @@
                             },
                             "locationName": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName",
-                                "properties": {
-                                    "description": {
-                                        "description": "Location name",
-                                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName/properties/description",
-                                        "title": "Description",
-                                        "type": "string"
+                                "items": {
+                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName/items",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Location name",
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName/items/properties/description",
+                                            "title": "Description",
+                                            "type": "string"
+                                        },
+                                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                     },
-                                    "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                    "type": "object"
                                 },
-                                "type": "object"
+                                "type": "array",
+                                "uniqueItems": true
                             }
                         },
                         "type": "object"
@@ -1050,7 +1112,6 @@
                     "type": "string",
                     "format": "uri"
                 },
-            },
                 "technicalStandards": {
                     "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards",
                     "items": {
@@ -1058,16 +1119,21 @@
                         "properties": {
                             "description": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/description",
-                                "properties": {
-                                    "description": {
-                                        "description": "Technical standard",
-                                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/description/properties/description",
-                                        "title": "Technical standard",
-                                        "type": "string"
+                                "items": {
+                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/description/items",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Technical standard",
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/description/items/properties/description",
+                                            "title": "Technical standard",
+                                            "type": "string"
+                                        },
+                                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                     },
-                                    "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                    "type": "object"
                                 },
-                                "type": "object"
+                                "type": "array",
+                                "uniqueItems": true
                             },
                             "rule": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/rule",
@@ -1082,16 +1148,21 @@
                             },
                             "title": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/title",
-                                "properties": {
-                                    "description": {
-                                        "description": "Title of technical standard",
-                                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/title/properties/description",
-                                        "title": "Title of technical standard",
-                                        "type": "string"
+                                "items": {
+                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/title/items",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Title of technical standard",
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/title/items/properties/description",
+                                            "title": "Title of technical standard",
+                                            "type": "string"
+                                        },
+                                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                     },
-                                    "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                    "type": "object"
                                 },
-                                "type": "object"
+                                "type": "array",
+                                "uniqueItems": true
                             },
                             "type": {
                                 "description": "Type of technical standard",
@@ -1101,17 +1172,22 @@
                             },
                             "url": {
                                 "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/url",
-                                "properties": {
-                                    "description": {
-                                        "description": "Url of technical standard",
-                                        "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/url/properties/description",
-                                        "title": "Url of technical standard",
-                                        "type": "string",
-                                        "format": "uri"
+                                "items": {
+                                    "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/url/items",
+                                    "properties": {
+                                        "description": {
+                                            "description": "Url of technical standard",
+                                            "id": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/properties/technicalStandards/items/properties/url/items/properties/description",
+                                            "title": "Url of technical standard",
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
                                     },
-                                    "language": {"$ref": "https://schemas.agid.gov.it/publicServices/publicService/properties/publicService/definitions/language"}
+                                    "type": "object"
                                 },
-                                "type": "object"
+                                "type": "array",
+                                "uniqueItems": true
                             }
                         },
                         "type": "object"

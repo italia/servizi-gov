@@ -20,16 +20,28 @@
             "id": "",
             "name": ""
         },
-        "name": {"language": "", "description": ""},
-        "alternativeName": {"language": "", "description": ""},
+        "name": [{
+            "language": "",
+            "description": ""
+        }],
+        "alternativeName": [{
+            "language": "",
+            "description": ""
+        }],
         "alternativeId": {
             "id": "",
             "description": ""
         },
-        "description": {"language": "", "description": ""},
+        "description": [{
+            "language": "",
+            "description": ""
+        }],
         "status": "",
         "informationPage": "",
-        "keywords": [{"language": "", "description": ""}],
+        "keywords": [[{
+            "language": "",
+            "description": ""
+        }]],
         "themes": [""],
         "sectors": [""],
         "regulationsAndRules": [{
@@ -37,10 +49,19 @@
             "rule": ""
         }],
         "technicalStandards": [{
-            "title": {"language": "", "description": ""},
+            "title": [{
+                "language": "",
+                "description": ""
+            }],
             "type": "",
-            "description": {"language": "", "description": ""},
-            "url": {"language": "", "description": ""},
+            "description": [{
+                "language": "",
+                "description": ""
+            }],
+            "url": [{
+                "language": "",
+                "description": ""
+            }],
             "rule": [""]
         }],
         "serviceType": "",
@@ -58,7 +79,10 @@
             }]
         }],
         "contacts": [{
-            "office": {"language": "", "description": ""},
+            "office": [{
+                "language": "",
+                "description": ""
+            }],
             "phoneNumber": "",
             "email": "",
             "web": ""
@@ -76,7 +100,10 @@
         "input": {
             "referenceDocumentation": "",
             "inputOr": [{
-                "groupName": {"language": "", "description": ""},
+                "groupName": [{
+                    "language": "",
+                    "description": ""
+                }],
                 "required": "",
                 "names": [{"name": ""}]
             }],
@@ -88,7 +115,10 @@
         "output": {
             "referenceDocumentation": "",
             "outputOr": [{
-                "groupName": {"language": "", "description": ""},
+                "groupName": [{
+                    "language": "",
+                    "description": ""
+                }],
                 "required": "",
                 "names": [{"name": ""}]
             }],
@@ -100,7 +130,10 @@
         "channels": {
             "offlineChannels": [{
                 "type": "",
-                "locationName": {"language": "", "description": ""},
+                "locationName": [{
+                    "language": "",
+                    "description": ""
+                }],
                 "streetName": "",
                 "number": "",
                 "city": "",
@@ -125,7 +158,10 @@
             }],
             "otherElectronicChannels": [{
                 "type": "",
-                "accessReference": {"language": "", "description": ""}
+                "accessReference": [{
+                    "language": "",
+                    "description": ""
+                }]
             }]
         },
         "authentications": [{
@@ -133,7 +169,10 @@
             "url": ""
         }],
         "costs": [{
-            "description": {"language": "", "description": ""},
+            "description": [{
+                "language": "",
+                "description": ""
+            }],
             "currency": "",
             "value": "",
             "vatValue": ""
@@ -143,18 +182,26 @@
             "value": ""
         }],
         "spatialCoverage": [{
-            "locationName": {"language": "", "description": ""},
+            "locationName": [{
+                "language": "",
+                "description": ""
+            }],
             "code": ""
         }],
         "interactivityLevel": "",
         "faq": [{
-            "question": {"language": "", "description": ""},
-            "answer": {"language": "", "description": ""},
+            "question": [{
+                "language": "",
+                "description": ""
+            }],
+            "answer": [{
+                "language": "",
+                "description": ""
+            }],
             "active": ""
         }],
         "notes": "",
-        "components": {
-        "spid": [{
+        "components": {"spid": [{
             "type": "",
             "spidLevel": "",
             "assertionConsumerServiceUrl": "",
