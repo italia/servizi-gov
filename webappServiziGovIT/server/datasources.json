@@ -1,0 +1,39 @@
+{
+    "sessionDS": {
+      "host": "",
+      "port": ,
+      "url": "",
+      "database": "Sessioni",
+      "password": "",
+      "name": "sessionDS",
+      "user": "",
+      "connector": "mongodb",
+      "ssl": true,
+      "server": {
+        "auto_reconnect": true,
+        "reconnectTries": 100,
+        "reconnectInterval": 1000,
+        "sslValidate": false,
+        "checkServerIdentity": false
+      }
+    },
+    "abacDS": {
+      "host": "",
+      "port": ,
+      "url": "",
+      "database": "abac",
+      "password": "",
+      "name": "abacDS",
+      "user": "",
+      "connector": "mongodb",
+      "ssl": true,
+      "server": {
+        "auto_reconnect": true,
+        "reconnectTries": 100,
+        "reconnectInterval": 1000,
+        "sslValidate": false,
+        "checkServerIdentity": false
+      }
+    }
+  }
+  

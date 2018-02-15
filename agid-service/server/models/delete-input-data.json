@@ -1,0 +1,24 @@
+{
+  "name": "deleteInputData",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "idService": {
+      "type": "string",
+      "required": true
+    },
+    "userId": {
+      "type": "string"
+    },
+    "ipaCode": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

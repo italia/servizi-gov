@@ -1,0 +1,32 @@
+{
+  "name": "lv2channel",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "lv2id": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "lv1id": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "lv2description": {
+      "type": "string",
+      "required": true
+    },
+    "lv2rdfuri": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

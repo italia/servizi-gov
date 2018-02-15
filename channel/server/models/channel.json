@@ -1,0 +1,42 @@
+{
+  "name": "channel",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "lv0id": {
+      "type": "string",
+      "required": true
+    },
+    "lv0description": {
+      "type": "string",
+      "required": true
+    },
+    "language": {
+      "type": "string",
+      "required": true
+    },
+    "lv0rdfuri": {
+      "type": "string",
+      "required": true
+    },
+    "lv1child": {
+      "type": [
+        "lv1channel"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {
+    "lv1child": {
+      "type": "hasMany",
+      "model": "lv1channel",
+      "foreignKey": "lv0id",
+      "through": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,40 @@
+{
+  "name": "organization",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "organizationCode": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "comuneDesc": {
+      "type": "string"
+    },
+    "codiceComune": {
+      "type": "string"
+    },
+    "classificazione": {
+      "type": "string"
+    },
+    "pec": {
+      "type": "string"
+    },
+    "localizzazione": {
+      "type": "localizzazione"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

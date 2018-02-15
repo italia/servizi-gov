@@ -1,0 +1,562 @@
+<data-theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" original.entries.date="2015-10-07" current.entries.date="2016-03-02" table.structure.version="01-01.47-20160204" table.id="data-theme" ref.administration="cat.admin.xml" xsi:noNamespaceSchemaLocation="http://publications.europa.eu/mdr/resource/authority-schema/cat-01-01.47-20160204.xsd" version="20160921-0">
+<record deprecated="false" id="DTH0001" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>AGRI</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">
+Селско стопанство, рибарство, горско стопанство и храни
+</lg.version>
+<lg.version lg="ces">Zemědělství, rybolov, lesnictví a výživa</lg.version>
+<lg.version lg="dan">Landbrug, fiskeri, skovbrug og fødevarer</lg.version>
+<lg.version lg="deu">
+Landwirtschaft, Fischerei, Forstwirtschaft und Nahrungsmittel
+</lg.version>
+<lg.version lg="ell" script="Greek">Γεωργία, αλιεία, δασοκομία και τρόφιμα</lg.version>
+<lg.version lg="eng">Agriculture, fisheries, forestry and food</lg.version>
+<lg.version lg="est">Põllumajandus, kalandus, metsandus ja toiduained</lg.version>
+<lg.version lg="fin">Maatalous, kalastus, metsätalous ja elintarvikkeet</lg.version>
+<lg.version lg="fra">Agriculture, pêche, sylviculture et alimentation</lg.version>
+<lg.version lg="gle">Talmhaíocht, iascach, foraoiseacht agus bia</lg.version>
+<lg.version lg="hrv">Poljoprivreda, ribarstvo, šumarstvo i hrana</lg.version>
+<lg.version lg="hun">Mezőgazdaság, halászat, erdészet és élelmiszer</lg.version>
+<lg.version lg="ita">
+Agricoltura, pesca, silvicoltura e prodotti alimentari
+</lg.version>
+<lg.version lg="lav">
+Lauksaimniecība, zivsaimniecība, mežsaimniecība un pārtika
+</lg.version>
+<lg.version lg="lit">Žemės ūkis, žuvininkystė, miškininkystė ir maistas</lg.version>
+<lg.version lg="mlt">Agrikoltura, sajd, forestrija u ikel</lg.version>
+<lg.version lg="nld">Landbouw, visserij, bosbouw en voeding</lg.version>
+<lg.version lg="nor">Jordbruk, fiskeri, skogbruk og mat</lg.version>
+<lg.version lg="pol">Rolnictwo, rybołówstwo, leśnictwo i żywność</lg.version>
+<lg.version lg="por">Agricultura, pesca, silvicultura e alimentação</lg.version>
+<lg.version lg="ron">Agricultură, pescuit, silvicultură şi hrană</lg.version>
+<lg.version lg="slk">
+Poľnohospodárstvo, rybné hospodárstvo, lesníctvo a potravinárstvo
+</lg.version>
+<lg.version lg="slv">Kmetijstvo, ribištvo, gozdarstvo in prehrana</lg.version>
+<lg.version lg="spa">Agricultura, pesca, silvicultura y alimentación</lg.version>
+<lg.version lg="swe">Jordbruk, fiske, skogsbruk och livsmedel</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering such domains as agriculture, fisheries, forestry or food.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0002" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>EDUC</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Образование, култура и спорт</lg.version>
+<lg.version lg="ces">Vzdělávání, kultura a sport</lg.version>
+<lg.version lg="dan">Uddannelse, kultur og sport</lg.version>
+<lg.version lg="deu">Bildung, Kultur und Sport</lg.version>
+<lg.version lg="ell" script="Greek">Παιδεία, πολιτιστικά θέματα και αθλητισμός</lg.version>
+<lg.version lg="eng">Education, culture and sport</lg.version>
+<lg.version lg="est">Haridus, kultuur ja sport</lg.version>
+<lg.version lg="fin">Koulutus, kulttuuri ja urheilu</lg.version>
+<lg.version lg="fra">Éducation, culture et sport</lg.version>
+<lg.version lg="gle">Oideachas, cultúr agus spórt</lg.version>
+<lg.version lg="hrv">Obrazovanje, kultura i sport</lg.version>
+<lg.version lg="hun">Oktatás, kultúra és sport</lg.version>
+<lg.version lg="ita">Istruzione, cultura e sport</lg.version>
+<lg.version lg="lav">Izglītība, kultūra un sports</lg.version>
+<lg.version lg="lit">Švietimas, kultūra ir sportas</lg.version>
+<lg.version lg="mlt">Edukazzjoni, kultura u sport</lg.version>
+<lg.version lg="nld">Onderwijs, cultuur en sport</lg.version>
+<lg.version lg="nor">Utdanning, kultur og sport</lg.version>
+<lg.version lg="pol">Edukacja, kultura i sport</lg.version>
+<lg.version lg="por">Educação, cultura e desporto</lg.version>
+<lg.version lg="ron">Educaţie, cultură şi sport</lg.version>
+<lg.version lg="slk">Vzdelávanie, kultúra a šport</lg.version>
+<lg.version lg="slv">Izobraževanje, kultura in šport</lg.version>
+<lg.version lg="spa">Educación, cultura y deportes</lg.version>
+<lg.version lg="swe">Utbildning, kultur och sport</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering such domains as education, culture or sport.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0003" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>ENVI</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Околна среда</lg.version>
+<lg.version lg="ces">Životní prostředí</lg.version>
+<lg.version lg="dan">Miljø</lg.version>
+<lg.version lg="deu">Umwelt</lg.version>
+<lg.version lg="ell" script="Greek">Περιβάλλον</lg.version>
+<lg.version lg="eng">Environment</lg.version>
+<lg.version lg="est">Keskkond</lg.version>
+<lg.version lg="fin">Ympäristö</lg.version>
+<lg.version lg="fra">Environnement</lg.version>
+<lg.version lg="gle">Comhshaol</lg.version>
+<lg.version lg="hrv">Okoliš</lg.version>
+<lg.version lg="hun">Környezet</lg.version>
+<lg.version lg="ita">Ambiente</lg.version>
+<lg.version lg="lav">Vide</lg.version>
+<lg.version lg="lit">Aplinka</lg.version>
+<lg.version lg="mlt">Ambjent</lg.version>
+<lg.version lg="nld">Milieu</lg.version>
+<lg.version lg="nor">Miljø</lg.version>
+<lg.version lg="pol">Środowisko</lg.version>
+<lg.version lg="por">Ambiente</lg.version>
+<lg.version lg="ron">Mediu</lg.version>
+<lg.version lg="slk">Životné prostredie</lg.version>
+<lg.version lg="slv">Okolje</lg.version>
+<lg.version lg="spa">Medio ambiente</lg.version>
+<lg.version lg="swe">Miljö</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering the domain of environment.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0004" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>ENER</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Енергетика</lg.version>
+<lg.version lg="ces">Energie</lg.version>
+<lg.version lg="dan">Energi</lg.version>
+<lg.version lg="deu">Energie</lg.version>
+<lg.version lg="ell" script="Greek">Ενέργεια</lg.version>
+<lg.version lg="eng">Energy</lg.version>
+<lg.version lg="est">Energeetika</lg.version>
+<lg.version lg="fin">Energia</lg.version>
+<lg.version lg="fra">Énergie</lg.version>
+<lg.version lg="gle">Fuinneamh</lg.version>
+<lg.version lg="hrv">Energetika</lg.version>
+<lg.version lg="hun">Energia</lg.version>
+<lg.version lg="ita">Energia</lg.version>
+<lg.version lg="lav">Enerģētika</lg.version>
+<lg.version lg="lit">Energetika</lg.version>
+<lg.version lg="mlt">Enerġija</lg.version>
+<lg.version lg="nld">Energie</lg.version>
+<lg.version lg="nor">Energi</lg.version>
+<lg.version lg="pol">Energia</lg.version>
+<lg.version lg="por">Energia</lg.version>
+<lg.version lg="ron">Energie</lg.version>
+<lg.version lg="slk">Energetika</lg.version>
+<lg.version lg="slv">Energetika</lg.version>
+<lg.version lg="spa">Energía</lg.version>
+<lg.version lg="swe">Energi</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering the domain of energy.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0005" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>TRAN</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Транспорт</lg.version>
+<lg.version lg="ces">Doprava</lg.version>
+<lg.version lg="dan">Transport</lg.version>
+<lg.version lg="deu">Verkehr</lg.version>
+<lg.version lg="ell" script="Greek">Μεταφορές</lg.version>
+<lg.version lg="eng">Transport</lg.version>
+<lg.version lg="est">Transport</lg.version>
+<lg.version lg="fin">Liikenne</lg.version>
+<lg.version lg="fra">Transports</lg.version>
+<lg.version lg="gle">Iompar</lg.version>
+<lg.version lg="hrv">Promet</lg.version>
+<lg.version lg="hun">Közlekedés</lg.version>
+<lg.version lg="ita">Trasporti</lg.version>
+<lg.version lg="lav">Transports</lg.version>
+<lg.version lg="lit">Transportas</lg.version>
+<lg.version lg="mlt">Trasport</lg.version>
+<lg.version lg="nld">Vervoer</lg.version>
+<lg.version lg="nor">Transport</lg.version>
+<lg.version lg="pol">Transport</lg.version>
+<lg.version lg="por">Transportes</lg.version>
+<lg.version lg="ron">Transport</lg.version>
+<lg.version lg="slk">Doprava</lg.version>
+<lg.version lg="slv">Transport</lg.version>
+<lg.version lg="spa">Transporte</lg.version>
+<lg.version lg="swe">Transport</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering the domain of transport.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0006" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>TECH</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Наука и tехнологии</lg.version>
+<lg.version lg="ces">Věda a technika</lg.version>
+<lg.version lg="dan">Videnskab og teknologi</lg.version>
+<lg.version lg="deu">Wissenschaft und Technologie</lg.version>
+<lg.version lg="ell" script="Greek">Επιστήμη και τεχνολογία</lg.version>
+<lg.version lg="eng">Science and technology</lg.version>
+<lg.version lg="est">Teadus ja tehnoloogia</lg.version>
+<lg.version lg="fin">Tiede ja teknologia</lg.version>
+<lg.version lg="fra">Science et technologie</lg.version>
+<lg.version lg="gle">Eolaíocht agus teicneolaíocht</lg.version>
+<lg.version lg="hrv">Znanost i tehnologija</lg.version>
+<lg.version lg="hun">Tudomány és technológia</lg.version>
+<lg.version lg="ita">Scienza e tecnologia</lg.version>
+<lg.version lg="lav">Zinātne un tehnoloģija</lg.version>
+<lg.version lg="lit">Mokslas ir technologijos</lg.version>
+<lg.version lg="mlt">Xjenza u teknoloġija</lg.version>
+<lg.version lg="nld">Wetenschap en technologie</lg.version>
+<lg.version lg="nor">Vitenskap og teknologi</lg.version>
+<lg.version lg="pol">Nauka i technologia</lg.version>
+<lg.version lg="por">Ciência e tecnologia</lg.version>
+<lg.version lg="ron">Ştiinţă şi tehnologie</lg.version>
+<lg.version lg="slk">Veda a technika</lg.version>
+<lg.version lg="slv">Znanost in tehnologija</lg.version>
+<lg.version lg="spa">Ciencia y tecnología</lg.version>
+<lg.version lg="swe">Vetenskap och teknik</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering such domains as science or technology.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0007" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>ECON</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Икономика и финанси</lg.version>
+<lg.version lg="ces">Hospodářství a finance</lg.version>
+<lg.version lg="dan">Økonomi og finanser</lg.version>
+<lg.version lg="deu">Wirtschaft und Finanzen</lg.version>
+<lg.version lg="ell" script="Greek">Οικονομία και χρηματοοικονομικά θέματα</lg.version>
+<lg.version lg="eng">Economy and finance</lg.version>
+<lg.version lg="est">Majandus ja rahandus</lg.version>
+<lg.version lg="fin">Talous ja raha-asiat</lg.version>
+<lg.version lg="fra">Économie et finances</lg.version>
+<lg.version lg="gle">Geilleagar agus airgeadas</lg.version>
+<lg.version lg="hrv">Ekonomija i financije</lg.version>
+<lg.version lg="hun">Gazdaság és pénzügy</lg.version>
+<lg.version lg="ita">Economia e finanze</lg.version>
+<lg.version lg="lav">Ekonomika un finanses</lg.version>
+<lg.version lg="lit">Ekonomika ir finansai</lg.version>
+<lg.version lg="mlt">Ekonomija u finanzi</lg.version>
+<lg.version lg="nld">Economie en financiën</lg.version>
+<lg.version lg="nor">Økonomi og finans</lg.version>
+<lg.version lg="pol">Gospodarka i finanse</lg.version>
+<lg.version lg="por">Economia e finanças</lg.version>
+<lg.version lg="ron">Economie şi finanţe</lg.version>
+<lg.version lg="slk">Hospodárstvo a financie</lg.version>
+<lg.version lg="slv">Gospodarstvo in finance</lg.version>
+<lg.version lg="spa">Economía y finanzas</lg.version>
+<lg.version lg="swe">Ekonomi och finans</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering such domains as economy or finance.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0008" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>SOCI</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Население и общество</lg.version>
+<lg.version lg="ces">Populace a společnost</lg.version>
+<lg.version lg="dan">Befolkning og samfund</lg.version>
+<lg.version lg="deu">Bevölkerung und Gesellschaft</lg.version>
+<lg.version lg="ell" script="Greek">Πληθυσμός και κοινωνία</lg.version>
+<lg.version lg="eng">Population and society</lg.version>
+<lg.version lg="est">Elanikkond ja ühiskond</lg.version>
+<lg.version lg="fin">Väestö ja yhteiskunta</lg.version>
+<lg.version lg="fra">Population et société</lg.version>
+<lg.version lg="gle">Daonra agus sochaí</lg.version>
+<lg.version lg="hrv">Stanovništvo i društvo</lg.version>
+<lg.version lg="hun">Népesség és társadalom</lg.version>
+<lg.version lg="ita">Popolazione e società</lg.version>
+<lg.version lg="lav">Iedzīvotāji un sabiedrība</lg.version>
+<lg.version lg="lit">Gyventojų skaičius ir visuomenė</lg.version>
+<lg.version lg="mlt">Popolazzjoni u soċjetà</lg.version>
+<lg.version lg="nld">Bevolking en samenleving</lg.version>
+<lg.version lg="nor">Befolkning og samfunn</lg.version>
+<lg.version lg="pol">Ludność i społeczeństwo</lg.version>
+<lg.version lg="por">População e sociedade</lg.version>
+<lg.version lg="ron">Populaţie şi societate</lg.version>
+<lg.version lg="slk">Obyvateľstvo a spoločnosť</lg.version>
+<lg.version lg="slv">Prebivalstvo in družba</lg.version>
+<lg.version lg="spa">Población y sociedad</lg.version>
+<lg.version lg="swe">Befolkning och samhälle</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering such domains as population or society.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0009" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>HEAL</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Здраве</lg.version>
+<lg.version lg="ces">Zdraví</lg.version>
+<lg.version lg="dan">Sundhed</lg.version>
+<lg.version lg="deu">Gesundheit</lg.version>
+<lg.version lg="ell" script="Greek">Υγεία</lg.version>
+<lg.version lg="eng">Health</lg.version>
+<lg.version lg="est">Tervis</lg.version>
+<lg.version lg="fin">Terveys</lg.version>
+<lg.version lg="fra">Santé</lg.version>
+<lg.version lg="gle">Sláinte</lg.version>
+<lg.version lg="hrv">Zdravlje</lg.version>
+<lg.version lg="hun">Egészségügy</lg.version>
+<lg.version lg="ita">Salute</lg.version>
+<lg.version lg="lav">Veselība</lg.version>
+<lg.version lg="lit">Sveikata</lg.version>
+<lg.version lg="mlt">Saħħa</lg.version>
+<lg.version lg="nld">Gezondheid</lg.version>
+<lg.version lg="nor">Helse</lg.version>
+<lg.version lg="pol">Zdrowie</lg.version>
+<lg.version lg="por">Saúde</lg.version>
+<lg.version lg="ron">Sănătate</lg.version>
+<lg.version lg="slk">Zdravotníctvo</lg.version>
+<lg.version lg="slv">Zdravje</lg.version>
+<lg.version lg="spa">Salud</lg.version>
+<lg.version lg="swe">Hälsa</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering the domain of health.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0010" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>GOVE</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Правителство и публичен сектор</lg.version>
+<lg.version lg="ces">Vláda a veřejný sektor</lg.version>
+<lg.version lg="dan">Regeringen og den offentlige sektor</lg.version>
+<lg.version lg="deu">Regierung und öffentlicher Sektor</lg.version>
+<lg.version lg="ell" script="Greek">Κυβέρνηση και δημόσιος τομέας</lg.version>
+<lg.version lg="eng">Government and public sector</lg.version>
+<lg.version lg="est">Valitsus ja avalik sektor</lg.version>
+<lg.version lg="fin">Valtioneuvosto ja julkinen sektori</lg.version>
+<lg.version lg="fra">Gouvernement et secteur public</lg.version>
+<lg.version lg="gle">Rialtas agus earnáil phoiblí</lg.version>
+<lg.version lg="hrv">Vlada i javni sektor</lg.version>
+<lg.version lg="hun">Kormányzat és közszféra</lg.version>
+<lg.version lg="ita">Governo e settore pubblico</lg.version>
+<lg.version lg="lav">Valdība un sabiedriskais sektors</lg.version>
+<lg.version lg="lit">Vyriausybė ir viešasis sektorius</lg.version>
+<lg.version lg="mlt">Gvern u settur pubbliku</lg.version>
+<lg.version lg="nld">Overheid en publieke sector</lg.version>
+<lg.version lg="nor">Forvaltning og offentlig sektor</lg.version>
+<lg.version lg="pol">Rząd i sektor publiczny</lg.version>
+<lg.version lg="por">Governo e setor público</lg.version>
+<lg.version lg="ron">Guvern şi sector public</lg.version>
+<lg.version lg="slk">Vláda a verejný sektor</lg.version>
+<lg.version lg="slv">Vlada in javni sektor</lg.version>
+<lg.version lg="spa">Gobierno y sector público</lg.version>
+<lg.version lg="swe">Regeringen och den offentliga sektorn</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering such domains as government or public sector.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0011" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>REGI</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Региони и градове</lg.version>
+<lg.version lg="ces">Regiony a města</lg.version>
+<lg.version lg="dan">Regioner og byer</lg.version>
+<lg.version lg="deu">Regionen und Städte</lg.version>
+<lg.version lg="ell" script="Greek">Περιφέρειες και πόλεις</lg.version>
+<lg.version lg="eng">Regions and cities</lg.version>
+<lg.version lg="est">Piirkonnad ja linnad</lg.version>
+<lg.version lg="fin">Alueet ja kaupungit</lg.version>
+<lg.version lg="fra">Régions et villes</lg.version>
+<lg.version lg="gle">Réigiúin agus cathracha</lg.version>
+<lg.version lg="hrv">Regije i gradovi</lg.version>
+<lg.version lg="hun">Régiók és városok</lg.version>
+<lg.version lg="ita">Regioni e città</lg.version>
+<lg.version lg="lav">Reģioni un pilsētas</lg.version>
+<lg.version lg="lit">Regionai ir miestai</lg.version>
+<lg.version lg="mlt">Reġjuni u bliet</lg.version>
+<lg.version lg="nld">Regio's en steden</lg.version>
+<lg.version lg="nor">Regioner og byer</lg.version>
+<lg.version lg="pol">Regiony i miasta</lg.version>
+<lg.version lg="por">Regiões e cidades</lg.version>
+<lg.version lg="ron">Regiuni şi orașe</lg.version>
+<lg.version lg="slk">Regióny a mestá</lg.version>
+<lg.version lg="slv">Regije in mesta</lg.version>
+<lg.version lg="spa">Regiones y ciudades</lg.version>
+<lg.version lg="swe">Regioner och städer</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering such domains as regions or cities.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0012" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>JUST</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">
+Правосъдие, съдебна система и обществена безопасност
+</lg.version>
+<lg.version lg="ces">Spravedlnost, právní systém a veřejná bezpečnost</lg.version>
+<lg.version lg="dan">Retfærdighed, retssystem og offentlig sikkerhed</lg.version>
+<lg.version lg="deu">Justiz, Rechtssystem und öffentliche Sicherheit</lg.version>
+<lg.version lg="ell" script="Greek">Δικαιoσύνη, νομικό σύστημα και δημόσια ασφάλεια</lg.version>
+<lg.version lg="eng">Justice, legal system and public safety</lg.version>
+<lg.version lg="est">Õigusemõistmine, õigussüsteem ja avalik turvalisus</lg.version>
+<lg.version lg="fin">Oikeus, oikeusjärjestelmä ja yleinen turvallisuus</lg.version>
+<lg.version lg="fra">Justice, système juridique et sécurité publique</lg.version>
+<lg.version lg="gle">Ceartas, córas dlí agus sábháilteacht an phobail</lg.version>
+<lg.version lg="hrv">Pravosuđe, pravni sustav i javna sigurnost</lg.version>
+<lg.version lg="hun">Igazságügy, jogrendszer és közbiztonság</lg.version>
+<lg.version lg="ita">Giustizia, sistema giuridico e sicurezza pubblica</lg.version>
+<lg.version lg="lav">Tieslietas, tiesību sistēma un sabiedrības drošība</lg.version>
+<lg.version lg="lit">Teisingumas, teisės sistema ir visuomenės sauga</lg.version>
+<lg.version lg="mlt">Ġustizzja, sistema legali u sigurtà pubblika</lg.version>
+<lg.version lg="nld">Justitie, rechtsstelsel en openbare veiligheid</lg.version>
+<lg.version lg="nor">Justis, rettssystem og allmenn sikkerhet</lg.version>
+<lg.version lg="pol">
+Sprawiedliwość, ustrój sądów i bezpieczeństwo publiczne
+</lg.version>
+<lg.version lg="por">Justiça, sistema judiciário e segurança pública</lg.version>
+<lg.version lg="ron">Justiție, sistem juridic și siguranță publică</lg.version>
+<lg.version lg="slk">Spravodlivosť, právny systém a verejná bezpečnosť</lg.version>
+<lg.version lg="slv">Pravosodje, pravni sistem in javna varnost</lg.version>
+<lg.version lg="spa">Justicia, sistema judicial y seguridad pública</lg.version>
+<lg.version lg="swe">Rättvisa, rättsliga system och allmän säkerhet</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering such domains as justice, legal system or public safety.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+<record deprecated="false" id="DTH0013" IMMC.proposal.date="2015-10-09" IMMC.approval.date="2015-10-09" date.creation="2015-10-01" adm.status="current">
+<authority-code>INTR</authority-code>
+<label>
+<lg.version lg="bul" script="Cyrillic">Международни въпроси</lg.version>
+<lg.version lg="ces">Mezinárodní otázky</lg.version>
+<lg.version lg="dan">Internationale spørgsmål</lg.version>
+<lg.version lg="deu">Internationale Themen</lg.version>
+<lg.version lg="ell" script="Greek">Διεθνή θέματα</lg.version>
+<lg.version lg="eng">International issues</lg.version>
+<lg.version lg="est">Rahvusvahelised küsimused</lg.version>
+<lg.version lg="fin">Kansainväliset kysymykset</lg.version>
+<lg.version lg="fra">Questions internationales</lg.version>
+<lg.version lg="gle">Saincheisteanna idirnáisiúnta</lg.version>
+<lg.version lg="hrv">Međunarodni pitanja</lg.version>
+<lg.version lg="hun">Nemzetközi ügyek</lg.version>
+<lg.version lg="ita">Tematiche internazionali</lg.version>
+<lg.version lg="lav">Starptautiski jautājumi</lg.version>
+<lg.version lg="lit">Tarptautiniai klausimai</lg.version>
+<lg.version lg="mlt">Kwistjonijiet internazzjonali</lg.version>
+<lg.version lg="nld">Internationale vraagstukken</lg.version>
+<lg.version lg="nor">Internasjonale temaer</lg.version>
+<lg.version lg="pol">Kwestie międzynarodowe</lg.version>
+<lg.version lg="por">Questões internacionais</lg.version>
+<lg.version lg="ron">Chestiuni internaționale</lg.version>
+<lg.version lg="slk">Medzinárodné otázky</lg.version>
+<lg.version lg="slv">Mednarodna vprašanja</lg.version>
+<lg.version lg="spa">Asuntos internacionales</lg.version>
+<lg.version lg="swe">Internationella frågor</lg.version>
+</label>
+<use.context>DCAT_AP</use.context>
+<use.context>IMMC</use.context>
+<use.context>ODP</use.context>
+<start.use>2015-10-01</start.use>
+<sources>
+<source date="2015-10-01" lg="eng">
+<description>
+This concept identifies datasets covering the domain of international issues.
+</description>
+<provenance>OP</provenance>
+</source>
+</sources>
+</record>
+</data-theme>

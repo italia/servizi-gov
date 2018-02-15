@@ -1,0 +1,32 @@
+{
+  "name": "technicalStandard",
+  "base": "Model",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "langvalue",
+      "required": true
+    },
+    "type": {
+      "type": "string"
+    },
+    "description": {
+      "type": "langvalue"
+    },
+    "url": {
+      "type": "langvalue"
+    },
+    "rule": {
+      "type": [
+        "rule"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

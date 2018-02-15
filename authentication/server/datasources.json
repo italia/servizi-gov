@@ -1,0 +1,12 @@
+{
+  "authenticationDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "authentication",
+    "password": "",
+    "name": "authenticationDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "region",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "codiceRegione": {
+      "type": "string"
+    },
+    "codiceRipartizioneGeografica": {
+      "type": "string"
+    },
+    "ripartizioneGeografica": {
+      "type": "string"
+    },
+    "denominazioneRegione": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "provinces":{
+      "type": "hasMany",
+      "model": "province",
+      "foreignKey": "codiceRegione"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

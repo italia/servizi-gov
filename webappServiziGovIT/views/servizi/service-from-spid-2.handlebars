@@ -1,0 +1,400 @@
+    <div class="app-body">
+
+        <!-- Main content -->
+        <main class="main">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+				<li class="breadcrumb-item"><a href="/servizi/service-from-spid-1">Scelta del modello</a></li>
+				<li class="breadcrumb-item">Creazione veloce</li>
+            </ol>
+
+            <div class="container-fluid">
+            	<div class="animated fadeIn">
+                   
+                   	<div class="row">
+                   		<div class="col-md-2">
+							<figure class="figure">
+								 <img src="/img/componenti/spid.png" class="figure-img img-fluid rounded" alt="Spid">
+								 <figcaption class="figure-caption">Servizio caricato da SPID</figcaption>
+							</figure>
+						</div>
+                  		
+                  		<div class="col-md-10">
+                  		
+                  		<div class="card">
+						<div class="card-header">
+							<h1>Inserimento metadati</h1>
+						</div>
+						<div class="card-block">
+							
+							
+							
+							<div class="col-md-12">
+                            <ul class="nav nav-tabs wizard" role="tablist">
+                               
+                                <li class="nav-item">
+									<a class="nav-link active" data-toggle="tab" href="#spid" role="tab" aria-controls="home" aria-expanded="true"><i class="icon-direction"></i> <span>1</span> SPID</a>
+                                </li>
+                                <li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#info" role="tab" aria-controls="home" aria-expanded="true"><i class="icon-direction"></i> <span>2</span> Informazioni</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tema" role="tab" aria-controls="profile" aria-expanded="false"><i class="icon-direction"></i> <span>3</span> Classificazioni</a>
+                                </li>
+                                <li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#ruolo" role="tab" aria-controls="messages" aria-expanded="false"><i class="icon-direction"></i> <span>4</span> Organizzazioni</a>
+                                </li>
+                                <li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#contatto" role="tab" aria-controls="messages" aria-expanded="false"><i class="icon-direction"></i> <span>5</span> Contatti</a>
+                                </li>
+                                <li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#accesso" role="tab" aria-controls="messages" aria-expanded="false"><i class="icon-direction"></i> <span>6</span> Accesso</a>
+                                </li>
+                                <li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#fine" role="tab" aria-controls="messages" aria-expanded="false"><i class="icon-direction"></i> <span>7</span> Fine</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                               
+                               <div class="tab-pane active" id="spid" role="tabpanel" aria-expanded="true">
+                               		<h2 class="stepform mb-4"><i class="fa fa-circle "></i> Informazioni per SPID</h2>
+                               			<div class="form-group row">
+											<label class="col-md-3 control-label" for="nomedelservizio">Assertion Consumer Service Url</label>
+											<div class="col-md-9">
+											<input type="text" id="nomedelservizio" class="form-control" aria-describedby="s-nome">
+											<p id="s-nome" class="help-block">testo guida</p>
+											</div>
+										</div>
+                              			<div class="form-group row">
+											<label class="col-md-3 control-label" for="nomedelservizio">Assertion Consumer Service Index</label>
+											<div class="col-md-9">
+											<input type="text" id="nomedelservizio" class="form-control" aria-describedby="s-nome">
+											<p id="s-nome" class="help-block">testo guida</p>
+											</div>
+										</div>
+                              			<div class="form-group row">
+											<label class="col-md-3 control-label" for="nomedelservizio">Single Logout Service Url</label>
+											<div class="col-md-9">
+											<input type="text" id="nomedelservizio" class="form-control" aria-describedby="s-nome">
+											<p id="s-nome" class="help-block">testo guida</p>
+											</div>
+										</div>
+                               
+								</div>
+                                
+                                <div class="tab-pane" id="info" role="tabpanel" aria-expanded="true">
+									<h2 class="stepform mb-4"><i class="fa fa-circle "></i> Informazioni di base</h2>
+                               		
+                                        
+                                        <div class="form-group row">
+											<label class="col-md-3 control-label" for="nomedelservizio">Nome del servizio</label>
+											<div class="col-md-9">
+											<input type="text" id="nomedelservizio" class="form-control" aria-describedby="s-nome">
+											<p id="s-nome" class="help-block">Indicare il nome del servizio evitando acronimi, riferimenti normativi o codici non esaustivi, es. "Dichiarazione precompilata"</p>
+											</div>
+										</div>
+                              		
+                              			<div class="form-group row">
+											<label class="col-md-3 control-label" for="descrizione-servizio">Descrizione</label>
+											<div class="col-md-9">
+											<textarea class="form-control" id="descrizione-servizio" rows="5" aria-describedby="s-descrizione"></textarea>
+											<p id="s-descrizione" class="help-block">Indicare la descrizione del servizio utilizzando un linguaggio semplice che possa aiutare qualsiasi utente a identificare il servizio. Non utilizzare un linguaggio ricco di riferimenti normativi. Non sono consentiti tag HTML. Gli indirizzi web e le e-mail vengono trasformati in link automaticamente.</p>
+											</div>
+                                		</div>
+                                		
+                                		<div class="form-group row">
+											<label class="col-md-3 control-label" for="urlservizio">Pagina informativa</label>
+											<div class="col-md-9">
+											<input type="text" id="urlservizio" class="form-control" aria-describedby="s-url">
+											<p id="s-url" class="help-block">Indicare l'URL del servizio o della pagina informativa relativa al servizio <em>es: http://dominio.est</em>. <br> Non è consentito inserire URL di documenti/circolari/regole tecniche disponibili online. </p>
+											</div>
+										</div>
+                               		
+                               
+                                </div>
+                                
+                                
+                                <div class="tab-pane" id="tema" role="tabpanel" aria-expanded="false">
+									<h2 class="stepform mb-4"><i class="fa fa-circle "></i> Tema</h2>
+                              		<p class="help-block">Selezionare uno o più temi a cui il servizio può essere riferito.</p>
+                              		<div class="row">
+                                        	<div class="col-md-6">
+												
+												<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-1" value="0"> Agricoltura, pesca, silvicoltura e prodotti alimentari<span></span></label> 
+												</div>
+                                      			
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-2" value="0"> Economia e finanze<span></span></label> 
+												</div>
+                                     			
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-3" value="0"> Giustizia, sistema giuridico e sicurezza pubblica<span></span></label> 
+												</div>
+                                      		
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-4" value="0"> Istruzione, cultura e sport<span></span></label> 
+												</div>
+                                      		
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-5" value="0"> Regioni e città<span></span></label> 
+												</div>
+                                      		
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-6" value="0"> Scienza e tecnologia<span></span></label> 
+												</div>
+                                      		
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-7" value="0"> Trasporti<span></span></label> 
+												</div>
+                                   
+                                        	</div>
+                                        	
+                                        	<div class="col-md-6">
+                                        	
+												<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-8" value="0"> Ambiente<span></span></label> 
+												</div>
+                                      			
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-9" value="0"> Energia<span></span></label> 
+												</div>
+                                     			
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-10" value="0"> Governo e settore pubblico<span></span></label> 
+												</div>
+                                      		
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-11" value="0"> Popolazione e società<span></span></label> 
+												</div>
+                                      		
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-12" value="0"> Salute<span></span></label> 
+												</div>
+                                      		
+                                      			<div class="app-checkbox"> 
+												<label><input type="checkbox" name="app-checkbox-13" value="0"> Tematiche internazionali<span></span></label> 
+												</div>
+											
+                                       		</div>
+                                        
+                                        	
+                                        </div>
+                              		
+                               
+									<h2 class="stepform mb-4 mt-4"><i class="fa fa-circle "></i> Settore</h2>
+                              		<p class="help-block" id="s-settore">Selezionare uno o più settori (o sotto temi) di riferimento. Digitando anche solo una lettera nel campo il sistema help-block alla scelta suggerendo le voci. La classificazione è NACE (classificazione delle attività economiche della Comunità Europea). La classificazione completa è navigabile online.</p>
+                               		<div class="form-group row">
+												<label class="col-md-2 control-label" for="settoreservizio">Settore</label>
+												<div class="col-md-10">
+												<input type="text" class="form-control" id="settoreservizio" placeholder="campo auto-completamento" aria-describedby="s-settore">
+												</div>
+											</div>
+                               
+                                </div>
+                                <div class="tab-pane" id="ruolo" role="tabpanel" aria-expanded="false">
+									<h2 class="stepform mb-4"><i class="fa fa-circle "></i> Organizzazioni e Ruoli</h2>
+                               		<p class="help-block">Specificare il nome dell'organizzazione, come indicato nell'Indice della Pubblica Amministrazione (IPA), che esercita uno specifico ruolo sul servizio. Di default l'organizzazione corrisponde a quella di appartenenza dell'utente che inserisce i dati.</p>
+                                	<div class="table-responsive">
+												<table class="table table-striped table-bordered">
+													<thead>
+														<tr>
+															<th>Organizzazione</th>
+															<th>Ruolo</th>
+															<th>dal</th>
+															<th>al</th>
+															<th>azioni</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Agid</td>
+															<td>
+															<select name="">
+																<option>Titolare</option>
+																<option>Concessionario</option>
+																<option>Fornitore</option>
+																<option>Creatore</option>
+																<option>Manutentore</option>
+																<option>Utente</option>
+																
+															</select>
+															
+															</td>
+															<td>n.d.</td>
+															<td>n.d.</td>
+															<td>
+																<button class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button>
+                                                				<button class="btn btn-default btn-icon"><span class="fa fa-times"></span></button>
+															</td>
+														</tr>
+														<tr>
+															<td colspan="5">
+																<a href="#" class="btn btn-primary"> <i class="icon-plus icons font-2xl"></i> Aggiungi un'organizzazione</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+                                
+                                
+                                </div>
+                                
+                                <div class="tab-pane" id="contatto" role="tabpanel" aria-expanded="false">
+                                	<h2 class="stepform mb-4"><i class="fa fa-circle "></i> Punti di contatto</h2>
+                                	<div class="table-responsive">
+												<table class="table table-striped table-bordered">
+													<thead>
+														<tr>
+															<th>Nome ufficio</th>
+															<th>email</th>
+															<th>telefono</th>
+															<th>URL</th>
+															<th><span class="sr-only">Azioni</span></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Agid</td>
+															<td>info@agid.gov.it</td>
+															<td>+39 06 0000000</td>
+															<td>http://www.agid.gov.it</td>
+															<td>
+																<button class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button>
+                                                				<button class="btn btn-default btn-icon"><span class="fa fa-times"></span></button>
+															</td>
+														</tr>
+														<tr>
+															<td colspan="5">
+																<a href="#" class="btn btn-primary"> <i class="icon-plus icons font-2xl"></i> Aggiungi un contatto</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+                                	
+								</div>
+                                
+                                <div class="tab-pane" id="accesso" role="tabpanel" aria-expanded="false">
+                                	<h2 class="stepform mb-4"><i class="fa fa-circle "></i> Modalità di accesso</h2>
+                                	
+                                	<div class="form-group row">
+										<label class="col-md-3 control-label" for="modalitaautenticazione">Modalità autenticazione</label>
+										<div class="col-md-9">
+										<select class="form-control">
+											<option value="">- Scegliere -</option>
+											<optgroup label="Autenticazione a due fattori">
+												<option value="3278">SPID Livello 2</option>
+												<option value="3279">User ID e One Time Password</option>
+											</optgroup>
+												<optgroup label="Autenticazione a due fattori hardware">
+													<option value="3282">Carta d'identità elettronica (CIE)</option>
+													<option value="3283">Carta nazionale dei servizi (CNS)</option>
+													<option value="3281">SPID Livello 3</option>
+												</optgroup>
+													<optgroup label="Autenticazione multi-fattore">
+														<option value="3285">User ID, One Time Password e Biometria</option>
+													</optgroup>
+													<optgroup label="Autenticazione Singolo Fattore">
+														<option value="3274">Credenziale SPID Livello 1</option>
+														<option value="3275">User ID e password</option>
+													</optgroup>
+											<option value="3276" class="sg-option-depth-0">Nessuna - accesso libero</option>
+											</select>
+										</div>
+									</div>
+                               		
+                               		<div class="form-group row">
+										<label class="col-md-3 control-label" for="modalitaautenticazione">Livello interazione</label>
+										<div class="col-md-9">
+
+										<div class="app-radio primary"> 
+										<label><input type="radio" name="app-radio-1" value="0"> Informazione <span></span><span></span></label> 
+										</div>
+
+										<div class="app-radio primary"> 
+										<label><input type="radio" name="app-radio-1" value="0"> Interazione a due vie <span></span><span></span></label> 
+										</div>
+
+										<div class="app-radio primary"> 
+										<label><input type="radio" name="app-radio-1" value="0"> Transazione <span></span><span></span></label> 
+										</div>
+
+										<div class="app-radio primary"> 
+										<label><input type="radio" name="app-radio-1" value="0"> Personalizzazione <span></span><span></span></label> 
+										</div>
+
+										<div class="app-radio primary"> 
+										<label><input type="radio" name="app-radio-1" value="0"> Non online <span></span><span></span></label> 
+										</div>
+
+										</div>
+									</div>
+                                
+                                </div>
+                                <div class="tab-pane" id="fine" role="tabpanel" aria-expanded="false">
+									<h2 class="stepform mb-4"><i class="fa fa-circle "></i> Fine inserimento metadati</h2>
+                                	<p class="help-block">La procedura guidata della creazione del servizio è terminata.<br>
+										Potrai già trovare il servizio in bozza nella <a href="/index">dashboard</a>.</p>
+									<p><em>Inserre qui altre opzioni e/o suggerimenti</em></p>
+                                </div>
+                            </div>
+                        </div>
+							
+							
+						</div>
+					</div> 
+                  		
+						</div>
+					</div>                   
+                   
+					  
+                    
+                    
+                    
+                </div>
+                <!--/animated fadeIn -->
+            </div>
+            <!-- /.conainer-fluid -->
+        </main>
+
+       
+        <!-- il menù aside forse non serve vedremo -->
+        <aside class="aside-menu">
+            
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="timeline" role="tabpanel">
+                    <div class="callout m-0 py-2 text-center bg-faded text-uppercase">
+                        <small><b>Storico azioni</b>
+                        </small>
+                    </div>
+                    <hr class="transparent mx-3 my-0">
+                    <div class="callout callout-warning m-0 py-3">
+                        <div><strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
+                        </div>
+						<div><small class="text-guida mr-3"><i class="icon-calendar"></i>&nbsp; 16/07/2017</small></div>
+						<div><small class="text-guida"><i class="icon-user"></i>&nbsp; Umberto Rosini</small></div>
+                    </div>
+                    <hr class="mx-3 my-0">
+                    <div class="callout callout-info m-0 py-3">
+                        
+                        <div><strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
+                        </div>
+						<div><small class="text-guida mr-3"><i class="icon-calendar"></i>&nbsp; 16/07/2017</small></div>
+						<div><small class="text-guida"><i class="icon-user"></i>&nbsp; Umberto Rosini</small></div>
+                    
+                    </div>
+                    <hr class="transparent mx-3 my-0">
+                    
+                </div>
+                
+            </div>
+        </aside>
+
+
+    </div>

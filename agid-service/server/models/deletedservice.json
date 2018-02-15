@@ -1,0 +1,38 @@
+{
+  "name": "deletedservice",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "creation": {
+      "type": "dateuser"
+    },
+    "removal": {
+      "type": "dateuser"
+    },
+    "approval": {
+      "type": "dateuser"
+    },
+    "publicationStatus": {
+      "type": "publicationstatus"
+    },
+    "codiceIpa": {
+      "type": "string"
+    },
+    "metadataPercentage": {
+      "type": "string"
+    },
+    "publicService": {
+      "type": "publicservice"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

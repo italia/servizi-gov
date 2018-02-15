@@ -1,0 +1,46 @@
+{
+  "name": "province",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "codiceCittaMetropolitana": {
+      "type": "string"
+    },
+    "codiceProvincia": {
+      "type": "string"
+    },
+    "denomProvCitMetropol": {
+      "type": "string"
+    },
+    "siglaAutomobilistica": {
+      "type": "string"
+    },
+    "codiceRegione": {
+      "type": "string"
+    },
+    "codiceRipartizioneGeografica": {
+      "type": "string"
+    },
+    "denominazioneRegione": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "towns":{
+      "type": "hasMany",
+      "model": "town",
+      "foreignKey": "codiceProvincia"
+    },
+    "region": {
+      "type": "belongsTo",
+      "model": "region",
+      "foreignKey": "codiceRegione"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,12 @@
+{
+  "roleTypeDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "role",
+    "password": "",
+    "name": "roleTypeDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

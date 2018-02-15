@@ -1,0 +1,39 @@
+[
+    {
+        "identifier": "Active",
+        "rdfuri": "",
+        "language": "it",
+        "value": "Attivo"
+    },
+    {
+        "identifier": "Non-Active",
+        "rdfuri": "",
+        "language": "it",
+        "value": "Non Attivo"
+    },
+    {
+        "identifier": "UnderDev",
+        "rdfuri": "",
+        "language": "it",
+        "value": "In fase di sviluppo"
+    },
+    {
+        "identifier": "Active",
+        "rdfuri": "",
+        "language": "en",
+        "value": "Active"
+    },
+    {
+        "identifier": "Non-Active",
+        "rdfuri": "",
+        "language": "en",
+        "value": "Non-Active"
+    },
+    {
+        "identifier": "UnderDev",
+        "rdfuri": "",
+        "language": "en",
+        "value": "Under Development"
+    }
+]
+

@@ -1,0 +1,146 @@
+{
+	"serviceId": "",
+	"userId": "userregionelazio",
+	"codiceIpa": "r_lazio",
+	"templateRef": "5a100a65a122b400162a2105",
+	"nomedelservizioAlternativo": "",
+	"descrizioneServizio": "L’Agenzia delle Entrate esegue valutazioni ai fini dell’accertamento in materia fiscale sugli immobili; svolge inoltre attività di valutazione immobiliare e tecnico-estimative per le Amministrazioni pubbliche indicate dall'articolo 1, comma 2, del decreto legislativo 30 marzo 2001, n. 165, e per gli enti ad esse strumentali.",
+	"urlservizio": "www.paginainformativa.it",
+	"altroIdentificativo": "",
+	"inputRichiesti": true,
+	"input": [
+		{
+			"docRifInputRichiesti": " documentazione di riferimento",
+			"nomeInputRichiesti": "codice",
+			"tipoInputRichiesti": {
+				"identifier": "",
+				"rdfUri": "",
+				"label": "Codice",
+				"language": "it"
+			}
+		}, 
+		{
+			"docRifInputRichiesti": " identità",
+			"nomeInputRichiesti": "identità",
+			"tipoInputRichiesti": {
+				"identifier": "",
+				"rdfUri": "",
+				"label": "Attestazione di Identità",
+				"language": "it"
+			}
+		}
+	],
+	"outputProdotti": true,
+	"output": [
+		{
+			"nomeOutputProdotti": "certificazione",
+			"tipoOutputProdotti": {
+				"identifier": "",
+				"rdfUri": "",
+				"label": "Certificazione",
+				"language": "it"
+			}
+		}
+	],
+	"coperturaTemporale": true,
+	"temporalCoverage": {
+		"dataDaTemp": "2017-11-01-08:00",
+		"dataATemp": "2017-11-23-20:00",
+		"giornoCheck": ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì"]
+	},
+	"coperturaGeografica": true,
+	"inputCoperturaGeog": {
+		"regione": ["12", "12"],
+		"provincia": ["058", "-"],
+		"comune": ["H501", "-"]
+	},
+	"linguaCheck": ["it"],
+	"temaCheck": ["ECON"],
+	"settoreservizio_1": ["K", "K"],
+	"settoreservizio_2": ["64", "66"],
+	"settoreservizio_3": ["64.1", "-"],
+	"settoreservizio_4": ["64.19", "-"],
+	"paroleChiaveClass": ["parola", "chiave"],
+	"organizations": [
+		{
+			"type": "",
+			"organizz": "Regione Lazio",
+			"name": "",
+			"ruolo": "titolare",
+			"date": [{
+					"dal": "",
+					"al": ""
+				}
+			]
+		}
+	],
+	"contacts": [
+		{
+			"office": {
+				"language": "it",
+				"nomeContatto": ""
+			},
+			"telefonoContatto": "",
+			"emailContatto": "",
+			"urlContatto": ""
+		}, 
+		{
+			"office": {
+				"language": "it",
+				"nomeContatto": "ufficio"
+			},
+			"telefonoContatto": "061234567",
+			"emailContatto": "ufficio@ufficio.it",
+			"urlContatto": "www.sitoweb.it"
+		}
+	],
+	"canaliErogazione": true,
+	"channels": {
+		"offlineChannels": [
+			{
+				"type": "Non telematico con intermediario",
+				"subType": "Altro intermediario",
+				"locationName": {
+					"language": "it",
+					"description": "luogo"
+				},
+				"streetType": " viale",
+				"streetName": "nomedellavia",
+				"number": "01",
+				"city": "roma",
+				"postCode": "00100",
+				"geometry": {
+					"type": "",
+					"latitude": "",
+					"longitude": ""
+				}
+			}
+		],
+		"webApplications": [
+			{
+				"type": "Modulo Online Libero",
+				"url": "www.modulolibero.it"
+			}
+		],
+		"phones": [],
+		"emails": [
+			{
+				"type": "Posta Elettronica Certificata - PEC",
+				"email": "pec@pec.it"
+			}, 
+			{
+				"type": "Email tradizionale",
+				"email": "email@a.it"
+			}
+		],
+		"otherElectronicChannels": []
+	},
+	"costo": true,
+	"costoEuro": "",
+	"descrizioneCosti": "",
+	"tempoProcessamento": [{
+			"unit": "Day",
+			"value": " 2"
+		}
+	]
+}

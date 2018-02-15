@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  service-templates:
+    image: service-templates
+    build: .
+    ports:
+      - 80:80

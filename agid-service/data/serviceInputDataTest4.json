@@ -1,0 +1,180 @@
+{
+	"serviceId": "",
+	"userId": "userregionelazio",
+	"codiceIpa": "r_lazio",
+	"templateRef": "5a100a65a122b400162a210b",
+	"nomedelservizioAlternativo": "nome alternativo del servizio",
+	"descrizioneServizio": "Servizio informazioni tramite web mail",
+	"urlservizio": "www.paginainformativa.it",
+	"altroIdentificativo": "altro identificativo del servizio",
+	"inputRichiesti": true,
+	"input": [{
+        "docRifInputRichiesti": "www.docref1.it",
+        "nomeInputRichiesti": "nome input 1",
+        "tipoInputRichiesti": {
+            "identifier": "",
+            "rdfUri": "",
+            "label": "Codice",
+            "language": "it"
+        }
+    }, {
+        "docRifInputRichiesti": "www.docref2.it",
+        "nomeInputRichiesti": "nome input 2",
+        "tipoInputRichiesti": {
+            "identifier": "",
+            "rdfUri": "",
+            "label": "Attestazione di Identità",
+            "language": "it"
+        }
+    }
+	],
+	"outputProdotti": true,
+	"output": [{
+        "nomeOutputProdotti": "nome output 1",
+        "tipoOutputProdotti": {
+            "identifier": "",
+            "rdfUri": "",
+            "label": "Certificazione",
+            "language": "it"
+        }
+    }, {
+        "nomeOutputProdotti": "nome output 2",
+        "tipoOutputProdotti": {
+            "identifier": "",
+            "rdfUri": "",
+            "label": "Atto autorizzativo",
+            "language": "it"
+        }
+    }
+	],
+	"coperturaTemporale": true,
+	"temporalCoverage": {
+		"dataDaTemp": "2017-11-01-08:00",
+		"dataATemp": "2017-11-30-17:00",
+		"giornoCheck": ["Mon", "Tue", "Wed", "Thu", "Fri"]
+	},
+	"coperturaGeografica": true,
+	"inputCoperturaGeog": {
+        "regione": ["12", "12", "10"],
+        "provincia": ["058", "-", "054"],
+		"comune": ["H501", "-", "-"]
+	},
+	"linguaCheck": ["it"],
+	"temaCheck": ["GOVE"],
+	"settoreservizio_1": ["J", "R"],
+	"settoreservizio_2": ["62", "91"],
+	"settoreservizio_3": ["-", "91.0"],
+	"settoreservizio_4": ["-", "-"],
+	"paroleChiaveClass": ["Informazione", "web", "mail"],
+	"organizations": [{
+			"type": "",
+			"organizz": "Regione Lazio",
+			"name": "",
+			"ruolo": "titolare",
+			"date": [{
+					"dal": "",
+					"al": ""
+				}
+			]
+		}, {
+			"type": "",
+			"organizz": "Accademia di Belle Arti di Roma",
+			"name": "",
+			"ruolo": "utente",
+			"date": [{
+					"dal": "",
+					"al": ""
+				}
+			]
+		}, {
+			"type": "",
+			"organizz": "Conservatorio di Musica di Perugia",
+			"name": "",
+			"ruolo": "utente",
+			"date": [{
+					"dal": "",
+					"al": ""
+				}
+			]
+		}
+	],
+	"contacts": [
+         {
+			"office": {
+				"language": "it",
+				"nomeContatto": "nome ufficio"
+			},
+			"telefonoContatto": "061234567",
+			"emailContatto": "ufficio@ufficio.it",
+			"urlContatto": "www.ufficio.it"
+        }, 
+        {
+			"office": {
+				"language": "it",
+				"nomeContatto": "segreteria"
+			},
+			"telefonoContatto": "051234567",
+			"emailContatto": "segreteria@segreteria.it",
+			"urlContatto": "www.segreteria.it"
+		}
+    ],
+    "radioOptionLivIner": "LEVEL 3",
+	"canaliErogazione": true,
+	"channels": {
+		"offlineChannels": [
+            {
+				"type": "01.1",
+				"subType": "01.1.1",
+				"locationName": {
+					"language": "it",
+					"description": "nome luogo canale"
+				},
+				"streetType": " viale",
+				"streetName": "nome della strada",
+				"number": "15",
+				"city": "Roma",
+				"postCode": "00100",
+				"geometry": {
+					"type": "tipo geometry",
+					"latitude": "0123456789",
+					"longitude": "9876543210"
+				}
+			}
+		],
+		"webApplications": [{
+				"type": "02.1",
+				"url": "www.modulolibero.it"
+			}
+		],
+		"phones": [{
+				"type": "03.2",
+				"phoneNumber": "041234567"
+			}
+		],
+		"emails": [{
+				"type": "04.2",
+				"email": "email@email.it"
+			}
+		],
+		"otherElectronicChannels": [{
+				"type": "05.1",
+				"subType": "-",
+				"accessReference": {
+					"language": "it",
+					"description": "riferimento app"
+				}
+			}
+		]
+    },
+    "checkAuth": ["NONE"],
+	"costo": true,
+	"costoEuro": {
+		"value": ["5"],
+		"description": ["app"]
+	},
+	"tempoProcessamento": [{
+			"unit": "Day",
+			"value": " 5"
+		}
+	]
+}

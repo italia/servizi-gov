@@ -1,0 +1,12 @@
+{
+  "naceDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "nace",
+    "password": "",
+    "name": "naceDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

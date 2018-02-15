@@ -1,0 +1,272 @@
+{
+  "@context": {
+    "adms": "http://www.w3.org/ns/adms#",
+    "clvapit": "http://dati.gov.it/onto/clvapit#",
+    "dct": "http://purl.org/dc/terms/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xkos": "http://rdf-vocabulary.ddialliance.org/xkos#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/PAYMENTDEC",
+      "@type": "skos:Concept",
+      "clvapit:hasRankOrder": "1",
+      "dcterms:identifier": "PAYMENTDEC",
+      "skos:inScheme": {
+        "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"
+      },
+      "skos:notation": "PAYMENTDEC",
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Payment declaration"
+        },
+        {
+          "@language": "it",
+          "@value": "Attestazione di pagamento"
+        }
+      ]
+    },
+    {
+      "@id": "xkos:numberOfLevels",
+      "@type": "rdfs:Property"
+    },
+    {
+      "@id": "skos:Concept",
+      "@type": "rdfs:Class"
+    },
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/CODE",
+      "@type": "skos:Concept",
+      "clvapit:hasRankOrder": "1",
+      "dcterms:identifier": "CODE",
+      "skos:definition": [
+        {
+          "@language": "en",
+          "@value": "E.g. a microchip code or any other code"
+        },
+        {
+          "@language": "it",
+          "@value": "E.g., un codice microchip, ogni altro tipo di codice"
+        }
+      ],
+      "skos:inScheme": {
+        "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"
+      },
+      "skos:notation": "CODE",
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Code"
+        },
+        {
+          "@language": "it",
+          "@value": "Codice"
+        }
+      ]
+    },
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput",
+      "@type": [
+        "skos:ConceptScheme",
+        "adms:SemanticAsset"
+      ],
+      "adms:representationTechnique": {
+        "@id": "http://purl.org/adms/representationtechnique/SKOS"
+      },
+      "dcterms:type": {
+        "@id": "http://purl.org/adms/assettype/Taxonomy"
+      },
+      "rdfs:comment": [
+        {
+          "@language": "en",
+          "@value": "Classification of the Service Input and Output"
+        },
+        {
+          "@language": "it",
+          "@value": "Classificazione dei tipi di input e di output per i servizi pubblici"
+        }
+      ],
+      "rdfs:label": [
+        {
+          "@language": "en",
+          "@value": "Service Input and Output"
+        },
+        {
+          "@language": "it",
+          "@value": "Input e output del servizio"
+        }
+      ],
+      "xkos:numberOfLevels": "1"
+    },
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/OTHDOC",
+      "@type": "skos:Concept",
+      "clvapit:hasRankOrder": "1",
+      "dcterms:identifier": "OTHDOC",
+      "skos:inScheme": {
+        "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"
+      },
+      "skos:notation": "OTHDOC",
+      "skos:prefLabel": [
+        {
+          "@language": "it",
+          "@value": "Altra documentazione"
+        },
+        {
+          "@language": "en",
+          "@value": "Other documents"
+        }
+      ]
+    },
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/IDDEC",
+      "@type": "skos:Concept",
+      "clvapit:hasRankOrder": "1",
+      "dcterms:identifier": "IDDEC",
+      "skos:definition": [
+        {
+          "@language": "it",
+          "@value": "Per esempio la carta di identità, la tessera sanitaria, il codice fiscale"
+        },
+        {
+          "@language": "en",
+          "@value": "For instance identity card, health card, tax code"
+        }
+      ],
+      "skos:inScheme": {
+        "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"
+      },
+      "skos:notation": "IDDEC",
+      "skos:prefLabel": [
+        {
+          "@language": "it",
+          "@value": "Attestazione di Identità"
+        },
+        {
+          "@language": "en",
+          "@value": "Identity Declaration"
+        }
+      ]
+    },
+    {
+      "@id": "skos:inScheme",
+      "@type": "rdfs:Property"
+    },
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/REQ",
+      "@type": "skos:Concept",
+      "clvapit:hasRankOrder": "1",
+      "dcterms:identifier": "REQ",
+      "skos:definition": [
+        {
+          "@language": "it",
+          "@value": "Questo è il solo elemento della classificazione che non può essere utilizzato come output del servizio"
+        },
+        {
+          "@language": "en",
+          "@value": "This is the only item of the classification that cannot be used for the output of the service"
+        }
+      ],
+      "skos:inScheme": {
+        "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"
+      },
+      "skos:notation": "REQ",
+      "skos:prefLabel": [
+        {
+          "@language": "it",
+          "@value": "Istanza/Richiesta"
+        },
+        {
+          "@language": "en",
+          "@value": "Request/application"
+        }
+      ]
+    },
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/ADMINDOC",
+      "@type": "skos:Concept",
+      "clvapit:hasRankOrder": "1",
+      "dcterms:identifier": "ADMINDOC",
+      "skos:inScheme": {
+        "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"
+      },
+      "skos:notation": "ADMINDOC",
+      "skos:prefLabel": [
+        {
+          "@language": "it",
+          "@value": "Documentazione Amministrativa"
+        },
+        {
+          "@language": "en",
+          "@value": "Administrative documentation"
+        }
+      ]
+    },
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/CERT",
+      "@type": "skos:Concept",
+      "clvapit:hasRankOrder": "1",
+      "dcterms:identifier": "CERT",
+      "skos:inScheme": {
+        "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"
+      },
+      "skos:notation": "CERT",
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Certification"
+        },
+        {
+          "@language": "it",
+          "@value": "Certificazione"
+        }
+      ]
+    },
+    {
+      "@id": "skos:notation",
+      "@type": "rdfs:Property"
+    },
+    {
+      "@id": "dcterms:identifier",
+      "@type": "rdfs:Property"
+    },
+    {
+      "@id": "skos:prefLabel",
+      "@type": "rdfs:Property"
+    },
+    {
+      "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput/AUTHACT",
+      "@type": "skos:Concept",
+      "clvapit:hasRankOrder": "1",
+      "dcterms:identifier": "AUTHACT3",
+      "skos:inScheme": {
+        "@id": "http://dati.gov.it/onto/controlledvocabulary/ServiceInputOutput"
+      },
+      "skos:notation": "AUThACT",
+      "skos:prefLabel": [
+        {
+          "@language": "en",
+          "@value": "Authorization Act"
+        },
+        {
+          "@language": "it",
+          "@value": "Atto autorizzativo"
+        }
+      ]
+    },
+    {
+      "@id": "clvapit:hasRankOrder",
+      "@type": "rdfs:Property"
+    },
+    {
+      "@id": "skos:ConceptScheme",
+      "@type": "rdfs:Class"
+    }
+  ]
+}

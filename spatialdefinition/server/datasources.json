@@ -1,0 +1,12 @@
+{
+  "spatialdefinitionDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "spatialdefinition",
+    "password": "",
+    "name": "spatialdefinitionDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "role",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "language": {
+      "type": "string",
+      "required": true
+    },
+    "rdfuri": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "neutralLanguageValue": {
+      "type": "string",
+      "required": true
+    },
+    "definition": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,29 @@
+{
+  "name": "event",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "eventType": {
+      "type": [
+        "string"
+      ]
+    },
+    "businessEvent": {
+      "type": [
+        "businessevent"
+      ]
+    },
+    "lifeEvent": {
+      "type": [
+        "lifeevent"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,25 @@
+{
+  "name": "ipaOrg",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "codiceIpa": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": [
+        "attribute"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

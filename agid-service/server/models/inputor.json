@@ -1,0 +1,25 @@
+{
+  "name": "inputor",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "groupName": {
+      "type": "langvalue"
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "names": {
+      "type": [
+        "namevalue"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

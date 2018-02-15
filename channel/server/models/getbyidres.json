@@ -1,0 +1,23 @@
+{
+  "name": "getbyidres",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "identifier": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "hasChild": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

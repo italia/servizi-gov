@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/* CSS Document 
+ * CoreUI - AgID customization
+*/
+.ui-autocomplete { z-index:1100; !important }
+body{font-size: 1em; background-color: #F6F9FC}
+a{color: #000}
+main a{color: #0654B5; border-bottom: dotted 1px #0654B5}
+footer a {color: #fff; border-bottom: dotted 1px #FFFFFF }
+footer a:hover{color: #62BCC5}
+h1{font-size: 1.4em; font-weight: bold;}
+h2.opzioni{font-size: 1.2em; margin-bottom: 2em; border-bottom: solid 1px #ccc}
+h3.opzioni{font-size: 1.1em}
+h2.stepform{font-size: 1.2em}
+
+.sidebar-fixed .main, .sidebar-fixed .app-footer{margin-left: 0}
+.breadcrumb {background: #0766CC; color: #FFFFFF}
+.breadcrumb a{color: #FFFFFF; border-bottom: dotted 1px #ffffff}
+.breadcrumb a:hover{text-decoration: none; border-bottom: solid 1px #ffffff}
+
+.app-header.navbar {background: #0766CC; color: #FFFFFF; border-bottom: none; }
+.app-header.navbar .navbar-brand{background-color: #0766CC; border-bottom: none}
+.navbar .navbar-nav .dropdown-toggle {color: #FFFFFF}
+.navbar .navbar-nav .dropdown-toggle:hover, .navbar .navbar-nav .dropdown-toggle:focus {color: #FFFFFF}
+header .icon-bell{color: #fff}
+.app-header.navbar .nav-item .nav-link {color: #FFFFFF}
+.app-footer {background: #00254E; min-height: 150px}
+.dropdown-header{color: #000}
+
+.card-header h2{font-size: 1.1em}
+.app-header.navbar .navbar-brand {background-size:110px auto}
+.breadcrumb-item.active {color: #000}
+.breadcrumb-item + .breadcrumb-item::before {content: ">"; color: #fff}
+.sidebar .nav .nav-item .nav-link.active, .sidebar .nav .nav-item .navbar .active.dropdown-toggle, .navbar .sidebar .nav .nav-item .active.dropdown-toggle {background:#0654B5}   
+.sidebar{background: #0861CE}
+.thead-default th{color: #000}
+.text-guide {font-size: 0.8em; color: #333}
+.table-th-50{width: 50%}
+.table-th-20{width: 30%}
+.btn-primary {background: #0654B5; border: none}
+.btn-primary:hover{background: #0870EE}
+a.btn-primary{background-color: #0056B6; border: none}
+.bg-primary{background-color: #0056B6}
+.fa-star-agidrate {color:#666;}
+.border-left-1{border-left: 1px #ccc solid}
+.align-left{text-align: left}
+progress{width: 100%;}
+.control-label{text-align: right; font-weight: bold}
+.item-azioni{display: inline; margin-right: 10px}
+.pa-totalnumber{font-size: 2em; font-weight: bold}
+
+table { table-layout: fixed;}
+pa-servicename {width: 40%}
+.pa-quantity{width: 25%}
+.pa-quality{width: 15%}
+.pa-action{width: 20%}
+
+.form-control{ font-size: 1.1em; color: #000 }
+.form-control:focus{color: #000}
+
+.wizard{margin-top: 30px}
+.nav-tabs .nav-link {color: #666; font-weight: 600}
+.nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover{border-color: #0766CC; border: solid 1px #fff; border-bottom: solid 1px #fff; border-bottom:solid 3px #F86D6C; color:#0766CC}
+.nav-tabs .nav-link:hover{color: #0766CC; border: solid 1px #fff; border-bottom: solid 3px #F86D6C}
+.nav-tabs .nav-link.active .icon-direction {color: #fff; background: #F86D6C; padding:0.3em;}
+.nav-tabs .nav-link .icon-direction {color: #666; padding:0.3em;}
+
+fieldset, .fieldset-like{background: #ECEFF1; margin: 1em 0 2.5em 0; padding: 1em; border: solid 1px #ccc}
+legend{font-weight: bold; background: #ECEFF1; border: solid 1px #ccc; width: auto; padding: 0 1em; font-size: 1.1em }
+.help-block {color:#333; font-size: 0.9em}
+.openFields{background: #fff; padding: 1em; margin-bottom: 2em; border: solid 6px #4EBB75; border-top: none}
+
+fieldset.ancestor{padding-top: 0}
+legend.ancestor{}
+fieldset.child, .fieldset-like{border: 3px #fff solid; background: #F0F3F6; margin-bottom: 1em}
+legend.child{border: none; background: none; margin-bottom: 0; font-size: 0.9em; padding: 0}
+
+/* livello interattività */
+.interaction label{font-weight: bold; margin-top: 1em}
+.interaction .custom-control-indicator {background-color: #fff; border: solid 1px #666}
+
+/* mobile */
+@media screen and (max-width: 767px) {
+
+	/* default */
+	.app-header.navbar .navbar-brand {background-position:10px 12px;}
+	.pa-search-group {margin-top: 20px}
+	.pa-add-service {width: 100%}
+	.control-label{text-align: left;}
+	
+
+	/* tabella dati responsive */	
+	table thead {position: absolute; border: none; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; width: 1px;}
+	table tr {border-top:solid 10px #ddd; display: block;}
+	table td {border-bottom: 1px solid #ddd; display: block; }
+	table td:before {content: attr(data-label); display: block; font-weight: bold; text-transform: uppercase;}
+	table td:last-child {border-bottom: 0;}
+	.table-th-50{width: 100%;}
+	
+}

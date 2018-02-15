@@ -1,0 +1,126 @@
+<div class="app-body">
+
+
+    <!-- Main content -->
+    <main class="main">
+        <nav aria-label="breadcrumb" role="navigation">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item">Nuovo servizio</li>
+            </ol>
+        </nav>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <p>Da qui puoi iniziare a descrivere il
+                    <strong>nuovo servizio</strong> della tua amministrazione. Hai due modalità per farlo, una
+                    <strong>veloce</strong> e una
+                    <strong>completa</strong>. Nella modalità di immissione completa avrai a disposizione una serie di opzioni più
+                    dettagliate che ti consentirà di creare istanze di servizi di maggiore qualità.</p>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+
+                        <div class="card">
+                            <h2 class="card-header">
+                                <strong>
+                                    <span class="icon-magic-wand"></span> Procedura veloce</strong>
+                            </h2>
+                            <div class="card-block">
+                                <p class="align-left">Puoi usare questa funzione se:</p>
+                                <ul>
+                                    <li class="align-left">Stai usando per la prima volta questo servizio.</li>
+                                    <li class="align-left">Voi descrivere velocemente tutti i servizi per poi completare la compilazione in un secondo
+                                        momento.</li>
+                                </ul>
+                                <a class="btn btn-primary btn-clean mt-3" onclick="setFastProcedure(true)" href="/servizi/service-wizard1" title="Carica velocemente il tuo servizio">
+                                    <span class="icon-magic-wand"></span> Inizia</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="card">
+                            <h2 class="card-header">
+                                <strong>
+                                    <span class="icon-plus"></span> Procedura completa</strong>
+                            </h2>
+
+                            <div class="card-block">
+                                <p class="align-left">Utilizza questa funzione per descrivere un servizio inserendo tutte le informazioni necessarie</p>
+
+                                <a class="btn btn-primary btn-clean mt-3" onclick="setFastProcedure(false)" href="/servizi/service-wizard-complete1" title="Crea il tuo servizio">
+                                    <span class="icon-magic-wand"></span> Creazione completa</a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!--/.row-->
+            </div>
+        </div>
+        <!-- /.conainer-fluid -->
+    </main>
+
+
+    <!-- il menù aside forse non serve vedremo -->
+    <aside class="aside-menu" style="display:none">
+
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="timeline" role="tabpanel">
+                <div class="callout m-0 py-2 text-center bg-faded text-uppercase">
+                    <small>
+                        <b>Storico azioni</b>
+                    </small>
+                </div>
+                <hr class="transparent mx-3 my-0">
+                <div class="callout callout-warning m-0 py-3">
+                    <div>
+                        <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
+                    </div>
+                    <div>
+                        <small class="text-guida mr-3">
+                            <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
+                    </div>
+                    <div>
+                        <small class="text-guida">
+                            <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
+                    </div>
+                </div>
+                <hr class="mx-3 my-0">
+                <div class="callout callout-info m-0 py-3">
+
+                    <div>
+                        <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
+                    </div>
+                    <div>
+                        <small class="text-guida mr-3">
+                            <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
+                    </div>
+                    <div>
+                        <small class="text-guida">
+                            <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
+                    </div>
+
+                </div>
+                <hr class="transparent mx-3 my-0">
+
+            </div>
+
+        </div>
+    </aside>
+
+
+</div>

@@ -1,0 +1,26 @@
+{
+  "name": "typeInOut",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "identifier": {
+      "type": "string"
+    },
+    "rdfUri": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

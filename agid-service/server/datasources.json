@@ -1,0 +1,12 @@
+{
+  "agid-serviceDS": {
+    "host": "",
+    "port": "",
+    "url": "",
+    "database": "service",
+    "password": "",
+    "name": "agid-serviceDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

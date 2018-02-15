@@ -1,0 +1,31 @@
+{
+  "name": "interactivitylevel",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "idlevel": {
+      "type": "string"
+    },
+    "rdfuri": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "definition": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

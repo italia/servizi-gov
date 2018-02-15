@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "attribute": {
+    "dataSource": null,
+    "public": false
+  },
+  "application": {
+    "dataSource": "abacDS",
+    "public": true
+  },
+  "user": {
+    "dataSource": "abacDS",
+    "public": true
+  },
+  "function": {
+    "dataSource": null,
+    "public": false
+  },
+  "ipaOrg": {
+    "dataSource": null,
+    "public": false
+  }
+}

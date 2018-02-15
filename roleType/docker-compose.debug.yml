@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  roletype:
+    image: roletype
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 80:80

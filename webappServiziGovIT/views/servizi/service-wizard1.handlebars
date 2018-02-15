@@ -1,0 +1,159 @@
+    
+    <div class="app-body">
+
+
+            <!-- Main content -->
+            <main class="main">
+
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="/servizi/service-new">Nuovo servizio</a>
+                    </li>
+                    <li class="breadcrumb-item">Scelta del modello</li>
+                </ol>
+
+                <div class="container-fluid">
+                    <div class="animated fadeIn">
+                        <p>Per facilitare il tuo lavoro abbiamo preparato dei modelli di servizio con alcuni dati già precompilati.
+                            Scegli un modello e inizia da qui: </p>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h1>Scelta del modello di servizio</h1>
+                            </div>
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-4">
+
+                                        <!-- filtri di ricerca -->
+                                        <h2 class="opzioni">Opzioni</h2>
+
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="appendedInputButton">Cerca tra i modelli</label>
+                                            <div class="controls">
+                                                <div class="input-group">
+                                                    <input id="appendedInputButton" class="form-control" size="16" type="text">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" id="btnSearch">Vai</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mt-2">
+                                            <h3 class="opzioni">Tipo servizi</h3>
+                                            <div class="col-md-12">
+                                                <select class="form-control" id="selectEnti">
+                                                    <option value="*" selected>Tutti</option>
+                                                    <option value="AdE">AdE</option>
+                                                    <option value="Inail">Inail</option>
+                                                    <option value="INPS">INPS</option>
+                                                    <option value="MAE">MAE</option>
+                                                    <option value="MEF">MEF</option>
+                                                    <option value="MIBACT">MIBACT</option>
+                                                    <option value="MISE">MISE</option>
+                                                    <option value="MIT">MIT</option>
+                                                    <option value="MIUR">MIUR</option>
+                                                    <option value="regionali">regionali</option>
+                                                    <option value="COMUNALI">Comunali</option>
+                                                    <option value="Ministero Difesa">Ministero Difesa</option>
+                                                    <option value="Ministero Giustizia">Ministero Giustizia</option>
+                                                    <option value="Ministero Interno">Ministero Interno</option>
+                                                    <option value="Ministero Lavoro">Ministero Lavoro</option>
+                                                    <option value="Ministero Salute">Ministero Salute</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group" style="margin-top:10px">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" id="btnClear">Cancella filtri ricerca</button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- <p class="mt-4">
+                                            <em>Altre opzioni di ricerca da definire</em>
+                                        </p> -->
+                                        <p class="mt-4"><em>Il servizio che stai cercando non è stato censito tra i modelli; puoi caricare un servizio senza un modello di riferimento, oppure prova a fare una nuova ricerca</em></p>
+                                        <button class="btn btn-primary" type="button">Crea servizio senza modello di riferimento</button><span> In fase di sviluppo</span>
+
+
+                                        <!-- /filtri di ricerca -->
+
+                                    </div>
+                                    <div class="col-md-8" id="servContainer">
+                                        <div class="row" id="cardContainer">
+                                            <!-- elenco servizi -->
+
+
+                                            <!-- /elenco servizi -->
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!--/.row-->
+                    </div>
+                </div>
+                <!-- /.conainer-fluid -->
+            </main>
+
+
+            <!-- il menù aside forse non serve vedremo -->
+            <aside class="aside-menu">
+
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="timeline" role="tabpanel">
+                        <div class="callout m-0 py-2 text-center bg-faded text-uppercase">
+                            <small>
+                                <b>Storico azioni</b>
+                            </small>
+                        </div>
+                        <hr class="transparent mx-3 my-0">
+                        <div class="callout callout-warning m-0 py-3">
+                            <div>
+                                <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
+                            </div>
+                            <div>
+                                <small class="text-guida mr-3">
+                                    <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
+                            </div>
+                            <div>
+                                <small class="text-guida">
+                                    <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
+                            </div>
+                        </div>
+                        <hr class="mx-3 my-0">
+                        <div class="callout callout-info m-0 py-3">
+
+                            <div>
+                                <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
+                            </div>
+                            <div>
+                                <small class="text-guida mr-3">
+                                    <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
+                            </div>
+                            <div>
+                                <small class="text-guida">
+                                    <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
+                            </div>
+
+                        </div>
+                        <hr class="transparent mx-3 my-0">
+
+                    </div>
+
+                </div>
+            </aside>
+
+
+        </div>

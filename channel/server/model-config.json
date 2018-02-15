@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "lv2channel": {
+    "dataSource": null,
+    "public": false
+  },
+  "lv1channel": {
+    "dataSource": null,
+    "public": false
+  },
+  "channel": {
+    "dataSource": "channelDS",
+    "public": true
+  },
+  "getbyidres": {
+    "dataSource": null,
+    "public": false
+  },
+  "channelIdLang": {
+    "dataSource": null,
+    "public": false
+  }
+}

@@ -1,0 +1,109 @@
+
+label.error {
+    height:17px;
+    border-top:1px solid #99182c;
+    border-right:1px solid #99182c;
+    border-bottom:1px solid #99182c;
+    margin-left:9px;
+    padding:1px 5px 0px 5px;
+    font-size:small;
+}
+.my-error-class {
+    color:#FF0000;  /* red */
+}
+select.error, textarea.error, input.error {
+    color:#FF0000;
+}
+.errorInput {
+    border: 2px solid #f00 !important;
+}
+.errorText{
+    color: red;
+}
+.show {
+    display: block !important;
+}
+.errorCheck {
+    color:#FF0000; 
+}
+.errorSettore{
+    color:#FF0000; 
+}
+.errorModalitaAutenticazione{
+    color:#FF0000; 
+}
+.errorLivInterazione{
+    color:#FF0000; 
+}
+.errorCosto{
+    color:#FF0000; 
+}
+.errorCostoHidden{
+    color:#FF0000; 
+}
+
+.divOpenddd {
+    height: 0px;
+    /*    max-height: 0;*/
+    overflow: hidden;
+    transition: height 600ms ease 0ms;
+}
+.divOpenddd.open {
+    display: block;
+    /*    max-height: 99999px;*/
+    height:auto;
+}
+
+
+.has-error .select2-selection {
+    border: 1px solid #a94442;
+    border-radius: 4px;
+}
+
+.app-header.navbar .show > .dropdown-menu {
+    display: block; }
+
+
+.label-info {
+    background-color: #5bc0de;
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+/*TOGLIE LE FRECCE DAL TIPO INPUT="NUMBER"*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+#settoreservizio_1 option{
+    width:150px;   
+  }
+.tableBackground{background: #fff; padding: 1em; margin-bottom: 2em; border-top: none}
+
+
+.help-block{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+/*uniformo parolechiave ad una lunghezza di 400 px */
+.bootstrap-tagsinput{min-width: 400px;line-height: 25px !important;}
+
+.ml-25p{margin-left: 25% !important;}
+
+
+
+.card{
+    min-height:300px !important; 
+}

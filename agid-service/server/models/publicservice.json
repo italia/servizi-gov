@@ -1,0 +1,149 @@
+{
+  "name": "publicservice",
+  "base": "Model",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "id": false,
+      "required": true
+    },
+    "template": {
+      "type": "template"
+    },
+    "name": {
+      "type": "langvalue",
+      "required": true
+    },
+    "alternativeName": {
+      "type": "langvalue"
+    },
+    "alternativeId": {
+      "type": "alternativeid"
+    },
+    "description": {
+      "type": "langvalue"
+    },
+    "serviceUrl": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": [
+        "langvalue"
+      ]
+    },
+    "themes": {
+      "type": [
+        "theme"
+      ]
+    },
+    "sector": {
+      "type": [
+        "sector"
+      ]
+    },
+    "regulationsAndRules": {
+      "type": [
+        "regulationrule"
+      ]
+    },
+    "technicalStandards": {
+      "type": [
+        "technicalStandard"
+      ]
+    },
+    "serviceType": {
+      "type": "string"
+    },
+    "languages": {
+      "type": [
+        "string"
+      ]
+    },
+    "requires": {
+      "type": [
+        "string"
+      ]
+    },
+    "relations": {
+      "type": [
+        "string"
+      ]
+    },
+    "organizations": {
+      "type": [
+        "organization"
+      ]
+    },
+    "contacts": {
+      "type": [
+        "contact"
+      ]
+    },
+    "temporalCoverage": {
+      "type": [
+        "temporalcoverage"
+      ]
+    },
+    "events": {
+      "type": "event"
+    },
+    "input": {
+      "type": [
+        "inputRev"
+      ]
+    },
+    "output": {
+      "type": [
+        "outputRev"
+      ]
+    },
+    "channels": {
+      "type": "channel"
+    },
+    "authentications": {
+      "type": [
+        "authentication"
+      ]
+    },
+    "costs": {
+      "type": [
+        "cost"
+      ]
+    },
+    "processingTimes": {
+      "type": [
+        "processingtime"
+      ]
+    },
+    "spatialCoverage": {
+      "type": [
+        "spatialcoverage"
+      ]
+    },
+    "faq": {
+      "type": [
+        "faq"
+      ]
+    },
+    "interactivityLevel": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "components": {
+      "type": "component"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

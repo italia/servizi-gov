@@ -1,0 +1,138 @@
+{
+  "name": "serviceInputData",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "serviceId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "codiceIpa": {
+      "type": "string",
+      "required": true
+    },
+    "templateRef": {
+      "type": "string"
+    },
+    "serviceName": {
+      "type": "string",
+      "required": true
+    },
+    "altServiceName": {
+      "type": "string"
+    },
+    "serviceDescription": {
+      "type": "string"
+    },
+    "serviceUrl": {
+      "type": "string"
+    },
+    "altServiceId": {
+      "type": "string"
+    },
+    "inputRichiestiCk": {
+      "type": "boolean"
+    },
+    "input": {
+      "type": [
+        "inputRev"
+      ]
+    },
+    "outputProdottiCk": {
+      "type": "boolean"
+    },
+    "output": {
+      "type": [
+        "outputRev"
+      ]
+    },
+    "temporalCoverageck": {
+      "type": "boolean"
+    },
+    "temporalCoverage": {
+      "type": "temporalcoverage"
+    },
+    "geoCoverageCk": {
+      "type": "boolean"
+    },
+    "geoValue": {
+      "type": "string"
+    },
+    "language": {
+      "type": [
+        "string"
+      ]
+    },
+    "themes": {
+      "type": [
+        "string"
+      ]
+    },
+    "sector_1": {
+      "type": [
+        "string"
+      ]
+    },
+    "sector_2": {
+      "type": [
+        "string"
+      ]
+    },
+    "sector_3": {
+      "type": [
+        "string"
+      ]
+    },
+    "sector_4": {
+      "type": [
+        "string"
+      ]
+    },
+    "keyWord": {
+      "type": [
+        "string"
+      ]
+    },
+    "organizations": {
+      "type": [
+        "organization"
+      ]
+    },
+    "contacts": {
+      "type": [
+        "contact"
+      ]
+    },
+    "interactivityLevel": {
+      "type": "string"
+    },
+    "channelCk": {
+      "type": "boolean"
+    },
+    "channels": {
+      "type": "channel"
+    },
+    "costCk": {
+      "type": "boolean"
+    },
+    "costValue": {
+      "type": "string"
+    },
+    "costDesc": {
+      "type": "string"
+    },
+    "processingTime": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

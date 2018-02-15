@@ -1,0 +1,52 @@
+{
+  "name": "publicservice",
+  "base": "Model",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "langvalue",
+      "required": true
+    },
+    "description": {
+      "type": "langvalue"
+    },
+    "keywords": {
+      "type": [
+        "langvalue"
+      ]
+    },
+    "themes": {
+      "type": [
+        "theme"
+      ]
+    },
+    "sector": {
+      "type": [
+        "sector"
+      ]
+    },
+    "events": {
+      "type": "event"
+    },
+    "authentications": {
+      "type": [
+        "authentication"
+      ]
+    },
+    "costs": {
+      "type": [
+        "cost"
+      ]
+    },
+    "components": {
+      "type": "component"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

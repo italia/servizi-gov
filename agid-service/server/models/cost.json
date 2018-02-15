@@ -1,0 +1,26 @@
+{
+  "name": "cost",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "description": {
+      "type": "langvalue"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "vatValue": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

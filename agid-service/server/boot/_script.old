@@ -1,0 +1,838 @@
+//'use strict';
+//var util = require('util');
+
+module.exports = async function(app) {
+    //var db = app.dataSources.database;
+    var ds = app.dataSources.agidServiceDS;
+
+    var conn = await ds.connect();
+
+    // Instance JSON document
+    var service = {
+        "$schema": "http://json-schema.org/draft-06/schema#",
+        "definitions": {},
+        "id": "http://sgi.agid.gov.it/cpsvapit",
+        "properties": {
+            "_id": {
+                "id": "http://sgi.agid.gov.it/cpsvapit/properties/_id",
+                "type": "string",
+                "title": "Id servizio",
+                "description": "Id del servizio nel formato <codice-soggetto>-<objectid>"
+            },
+            "approved": {
+                "id": "http://sgi.agid.gov.it/cpsvapit/properties/approved",
+                "properties": {
+                    "date": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/approved/properties/date",
+                        "type": "string",
+                        "title": "Data approvazione",
+                        "description": "Data di approvazione delle informazioni sul servizio"
+                    },
+                    "user": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/approved/properties/user",
+                        "type": "string",
+                        "title": "Utente approvazione",
+                        "description": "Utente che ha approvato le informazioni sul servizio"
+                    }
+                },
+                "type": "object"
+            },
+            "create": {
+                "id": "http://sgi.agid.gov.it/cpsvapit/properties/create",
+                "properties": {
+                    "date": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/create/properties/date",
+                        "type": "string",
+                        "title": "Data creazione",
+                        "description": "Data di inserimento delle informazioni del servizio"
+                    },
+                    "user": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/create/properties/user",
+                        "type": "string",
+                        "title": "Utente creazione",
+                        "description": "Utente che ha inserito le informazioni del servizio"
+                    }
+                },
+                "type": "object"
+            },
+            "publicService": {
+                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService",
+                "properties": {
+                    "alternativeName": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/alternativeName",
+                        "properties": {"it": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/alternativeName/properties/it",
+                            "type": "string",
+                            "title": "Nome alternativo",
+                            "description": "Nome alternativo del servizio (possibile inserimento multilingua)"
+                        }},
+                        "type": "object"
+                    },
+                    "authentications": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/authentications",
+                        "items": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/authentications/items",
+                            "properties": {
+                                "type": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/authentications/items/properties/type",
+                                    "type": "string",
+                                    "title": "Tipo autenticazione",
+                                    "description": "Tipologia di autenticazione presente sul servizio"
+                                },
+                                "url": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/authentications/items/properties/url",
+                                    "type": "string",
+                                    "title": "Url autenticazione",
+                                    "description": "Url dello IAM o della pagina di autenticazione al servizio"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "channels": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels",
+                        "properties": {
+                            "emails": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/emails",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/emails/items",
+                                    "properties": {
+                                        "email": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/emails/items/properties/email",
+                                            "type": "string"
+                                        },
+                                        "subType": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/emails/items/properties/subType",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/emails/items/properties/type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "offlineChannels": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items",
+                                    "properties": {
+                                        "city": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/city",
+                                            "type": "string"
+                                        },
+                                        "geometry": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/geometry",
+                                            "properties": {
+                                                "latitude": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/geometry/properties/latitude",
+                                                    "type": "string"
+                                                },
+                                                "longitude": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/geometry/properties/longitude",
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/geometry/properties/type",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "locationName": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName",
+                                            "properties": {"it": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/locationName/properties/it",
+                                                "type": "string"
+                                            }},
+                                            "type": "object"
+                                        },
+                                        "number": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/number",
+                                            "type": "string"
+                                        },
+                                        "postCode": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/postCode",
+                                            "type": "number"
+                                        },
+                                        "streetName": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/streetName",
+                                            "type": "string"
+                                        },
+                                        "streetType": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/streetType",
+                                            "type": "string"
+                                        },
+                                        "subType": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/subType",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/offlineChannels/items/properties/type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "otherElectronicChannels": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/otherElectronicChannels",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/otherElectronicChannels/items",
+                                    "properties": {
+                                        "accessReference": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/otherElectronicChannels/items/properties/accessReference",
+                                            "properties": {"it": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/otherElectronicChannels/items/properties/accessReference/properties/it",
+                                                "type": "string"
+                                            }},
+                                            "type": "object"
+                                        },
+                                        "subType": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/otherElectronicChannels/items/properties/subType",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/otherElectronicChannels/items/properties/type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "phones": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/phones",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/phones/items",
+                                    "properties": {
+                                        "phoneNumber": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/phones/items/properties/phoneNumber",
+                                            "type": "string"
+                                        },
+                                        "subType": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/phones/items/properties/subType",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/phones/items/properties/type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "webApplications": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/webApplications",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/webApplications/items",
+                                    "properties": {
+                                        "subType": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/webApplications/items/properties/subType",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/webApplications/items/properties/type",
+                                            "type": "string"
+                                        },
+                                        "url": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/channels/properties/webApplications/items/properties/url",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "components": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/components",
+                        "properties": {"spid": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/components/properties/spid",
+                            "items": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/components/properties/spid/items",
+                                "properties": {
+                                    "description": "This accepts anything, as long as it's valid JSON.",
+                                    "title": "Empty Object"
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }},
+                        "type": "object"
+                    },
+                    "contacts": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/contacts",
+                        "items": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/contacts/items",
+                            "properties": {
+                                "email": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/contacts/items/properties/email",
+                                    "type": "string"
+                                },
+                                "office": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/contacts/items/properties/office",
+                                    "properties": {"it": {
+                                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/contacts/items/properties/office/properties/it",
+                                        "type": "string"
+                                    }},
+                                    "type": "object"
+                                },
+                                "phoneNumber": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/contacts/items/properties/phoneNumber",
+                                    "type": "string"
+                                },
+                                "web": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/contacts/items/properties/web",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "costs": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/costs",
+                        "items": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/costs/items",
+                            "properties": {
+                                "currency": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/costs/items/properties/currency",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/costs/items/properties/description",
+                                    "properties": {"it": {
+                                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/costs/items/properties/description/properties/it",
+                                        "type": "string"
+                                    }},
+                                    "type": "object"
+                                },
+                                "value": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/costs/items/properties/value",
+                                    "type": "string"
+                                },
+                                "vatValue": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/costs/items/properties/vatValue",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "description": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/description",
+                        "properties": {"it": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/description/properties/it",
+                            "type": "string"
+                        }},
+                        "type": "object"
+                    },
+                    "events": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/events",
+                        "properties": {
+                            "businessEvent": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/events/properties/businessEvent",
+                                "items": {
+                                    "description": "This accepts anything, as long as it's valid JSON.",
+                                    "title": "Empty Object"
+                                },
+                                "type": "array"
+                            },
+                            "eventType": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/events/properties/eventType",
+                                "items": {
+                                    "description": "This accepts anything, as long as it's valid JSON.",
+                                    "title": "Empty Object"
+                                },
+                                "type": "array"
+                            },
+                            "lifeEvent": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/events/properties/lifeEvent",
+                                "items": {
+                                    "description": "This accepts anything, as long as it's valid JSON.",
+                                    "title": "Empty Object"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "input": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input",
+                        "properties": {
+                            "inputAnd": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputAnd",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputAnd/items",
+                                    "properties": {
+                                        "name": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputAnd/items/properties/name",
+                                            "type": "string"
+                                        },
+                                        "required": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputAnd/items/properties/required",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputAnd/items/properties/type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "inputOr": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputOr",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputOr/items",
+                                    "properties": {
+                                        "names": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputOr/items/properties/names",
+                                            "items": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputOr/items/properties/names/items",
+                                                "properties": {"name": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputOr/items/properties/names/items/properties/name",
+                                                    "type": "string"
+                                                }},
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "required": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputOr/items/properties/required",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputOr/items/properties/type",
+                                            "properties": {"it": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/inputOr/items/properties/type/properties/it",
+                                                "type": "string"
+                                            }},
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "referenceDocumentation": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/input/properties/referenceDocumentation",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "interactivityLevel": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/interactivityLevel",
+                        "type": "string"
+                    },
+                    "keywords": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/keywords",
+                        "items": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/keywords/items",
+                            "properties": {"it": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/keywords/items/properties/it",
+                                "type": "string"
+                            }},
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "languages": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/languages",
+                        "items": {
+                            "description": "This accepts anything, as long as it's valid JSON.",
+                            "title": "Empty Object"
+                        },
+                        "type": "array"
+                    },
+                    "name": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/name",
+                        "properties": {"it": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/name/properties/it",
+                            "type": "string"
+                        }},
+                        "type": "object"
+                    },
+                    "notes": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/notes",
+                        "type": "string"
+                    },
+                    "organizations": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/organizations",
+                        "items": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/organizations/items",
+                            "properties": {
+                                "endDateTime": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/organizations/items/properties/endDateTime",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/organizations/items/properties/name",
+                                    "type": "string"
+                                },
+                                "organizationCode": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/organizations/items/properties/organizationCode",
+                                    "type": "string"
+                                },
+                                "role": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/organizations/items/properties/role",
+                                    "type": "string"
+                                },
+                                "startDateTime": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/organizations/items/properties/startDateTime",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/organizations/items/properties/type",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "output": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output",
+                        "properties": {
+                            "outputAnd": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputAnd",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputAnd/items",
+                                    "properties": {
+                                        "name": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputAnd/items/properties/name",
+                                            "type": "string"
+                                        },
+                                        "required": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputAnd/items/properties/required",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputAnd/items/properties/type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "outputOr": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputOr",
+                                "items": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputOr/items",
+                                    "properties": {
+                                        "names": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputOr/items/properties/names",
+                                            "items": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputOr/items/properties/names/items",
+                                                "properties": {"name": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputOr/items/properties/names/items/properties/name",
+                                                    "type": "string"
+                                                }},
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "required": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputOr/items/properties/required",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputOr/items/properties/type",
+                                            "properties": {"it": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/outputOr/items/properties/type/properties/it",
+                                                "type": "string"
+                                            }},
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "referenceDocumentation": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/output/properties/referenceDocumentation",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "processingTimes": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/processingTimes",
+                        "items": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/processingTimes/items",
+                            "properties": {
+                                "unit": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/processingTimes/items/properties/unit",
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/processingTimes/items/properties/value",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "regulations": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations",
+                        "items": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items",
+                            "properties": {
+                                "description": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/description",
+                                    "properties": {"it": {
+                                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/description/properties/it",
+                                        "type": "string"
+                                    }},
+                                    "type": "object"
+                                },
+                                "rules": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/rules",
+                                    "items": {
+                                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/rules/items",
+                                        "properties": {
+                                            "description": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/rules/items/properties/description",
+                                                "properties": {"it": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/rules/items/properties/description/properties/it",
+                                                    "type": "string"
+                                                }},
+                                                "type": "object"
+                                            },
+                                            "title": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/rules/items/properties/title",
+                                                "properties": {"it": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/rules/items/properties/title/properties/it",
+                                                    "type": "string"
+                                                }},
+                                                "type": "object"
+                                            },
+                                            "url": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/rules/items/properties/url",
+                                                "properties": {"it": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/rules/items/properties/url/properties/it",
+                                                    "type": "string"
+                                                }},
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "technicalStandard": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard",
+                                    "items": {
+                                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard/items",
+                                        "properties": {
+                                            "description": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard/items/properties/description",
+                                                "properties": {"it": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard/items/properties/description/properties/it",
+                                                    "type": "string"
+                                                }},
+                                                "type": "object"
+                                            },
+                                            "title": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard/items/properties/title",
+                                                "properties": {"it": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard/items/properties/title/properties/it",
+                                                    "type": "string"
+                                                }},
+                                                "type": "object"
+                                            },
+                                            "type": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard/items/properties/type",
+                                                "type": "string"
+                                            },
+                                            "url": {
+                                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard/items/properties/url",
+                                                "properties": {"it": {
+                                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/technicalStandard/items/properties/url/properties/it",
+                                                    "type": "string"
+                                                }},
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "title": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/title",
+                                    "properties": {"it": {
+                                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/title/properties/it",
+                                        "type": "string"
+                                    }},
+                                    "type": "object"
+                                },
+                                "url": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/url",
+                                    "properties": {"it": {
+                                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/regulations/items/properties/url/properties/it",
+                                        "type": "string"
+                                    }},
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "relations": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/relations",
+                        "items": {
+                            "description": "This accepts anything, as long as it's valid JSON.",
+                            "title": "Empty Object"
+                        },
+                        "type": "array"
+                    },
+                    "requires": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/requires",
+                        "items": {
+                            "description": "This accepts anything, as long as it's valid JSON.",
+                            "title": "Empty Object"
+                        },
+                        "type": "array"
+                    },
+                    "sector": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/sector",
+                        "items": {
+                            "description": "This accepts anything, as long as it's valid JSON.",
+                            "title": "Empty Object"
+                        },
+                        "type": "array"
+                    },
+                    "serviceType": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/serviceType",
+                        "type": "string"
+                    },
+                    "status": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/status",
+                        "type": "string"
+                    },
+                    "template": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/template",
+                        "properties": {
+                            "id": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/template/properties/id",
+                                "type": "string"
+                            },
+                            "name": {
+                                "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/template/properties/name",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "themes": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/themes",
+                        "items": {
+                            "description": "This accepts anything, as long as it's valid JSON.",
+                            "title": "Empty Object"
+                        },
+                        "type": "array"
+                    },
+                    "timeIntervals": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/timeIntervals",
+                        "items": {
+                            "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/timeIntervals/items",
+                            "properties": {
+                                "endInterval": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/timeIntervals/items/properties/endInterval",
+                                    "type": "string"
+                                },
+                                "startInterval": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/timeIntervals/items/properties/startInterval",
+                                    "type": "string"
+                                },
+                                "weekDays": {
+                                    "id": "http://sgi.agid.gov.it/cpsvapit/properties/publicService/properties/timeIntervals/items/properties/weekDays",
+                                    "items": {
+                                        "description": "This accepts anything, as long as it's valid JSON.",
+                                        "title": "Empty Object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "published": {
+                "id": "http://sgi.agid.gov.it/cpsvapit/properties/published",
+                "properties": {
+                    "date": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/published/properties/date",
+                        "type": "string",
+                        "title": "Data pubblicazione",
+                        "description": "Data di pubblicazione del servizio"
+                    },
+                    "user": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/published/properties/user",
+                        "type": "string",
+                        "title": "Utente pubblicazione servizio",
+                        "description": "Utente che ha pubblicato il servizio"
+                    }
+                },
+                "type": "object"
+            },
+            "unpublished": {
+                "id": "http://sgi.agid.gov.it/cpsvapit/properties/unpublished",
+                "properties": {
+                    "date": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/unpublished/properties/date",
+                        "type": "string",
+                        "title": "Data rimozione pubblicazione",
+                        "description": "Data di rimozione della pubblicazione del servizio"
+                    },
+                    "user": {
+                        "id": "http://sgi.agid.gov.it/cpsvapit/properties/unpublished/properties/user",
+                        "type": "string",
+                        "title": "Utente rimozione pubblicazione",
+                        "description": "Utente che ha rimosso la pubblicazione del servizio"
+                    }
+                },
+                "type": "object"
+            },
+            "version": {
+                "id": "http://sgi.agid.gov.it/cpsvapit/properties/version",
+                "type": "integer",
+                "title": "Versione",
+                "description": "Versione dell'informazione sul servizio"
+            }
+        },
+        "type": "object"
+    };
+  
+    // Create a model from the service instance
+    var Service = ds.buildModelFromInstance('Service', service, {idInjection: true});
+  
+    // Use the model for create, retrieve, update, and delete
+    var obj = new Service(service);
+  
+    console.log(obj.toObject());
+  
+    Service.create(service, function (err, u1) {
+      //console.log('Created: ', u1.toObject());
+      Service.findById(u1.id, function (err, u2) {
+        //console.log('Found: ', u2.toObject());
+      });
+    });
+  };

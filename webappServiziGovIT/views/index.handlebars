@@ -1,0 +1,99 @@
+<script src="/js/index.js"></script>
+<div class="app-body">
+
+
+    <!-- Main content -->
+    <main class="main">
+        <div class="container-fluid" id="amm">
+            <div class="animated">
+                <div class="jumbotron">
+                    <h1 class="display-5">Amministrazioni autorizzate</h1>
+                    <h5>Seleziona l'amministrazione dall'elenco per proseguire</h5>
+                    <hr class="my-4">
+                    <div class="form-group col-md-4">
+                        {{#if user.isSuperAdmin}}
+                          <input type="text" name="paAutorizzate" class="form-control" id="paAutorizzate" data-placeholder="Cerca Applicazione" />
+                        {{else}}
+                        <select name="paAutorizzate" class="form-control" id="paAutorizzate">
+                            {{#each user.organizzazioni}}
+                            <option itemcode="{{this.codiceIpa}}">{{this.description}}</option>
+                            {{/each}} {{/if}}
+                        </select>
+                    </div>
+                </div>
+                <div id="components" class="jumbotron" hidden="hidden">
+                    <h1 class="display-5">Componenti per
+                        <strong>servizi.gov.it</strong>
+                    </h1>
+                    <hr class="my-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a id="dashboardRedirect" href="#">Dashboard default</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a id="dashboardArchiviatoRedirect" href="#">Dashboard archiviati e cancellati</a>
+                        </li>
+                        {{!--
+                        <li class="list-group-item">
+                            <a href="/servizi/service-from-spid-1">Servizio caricato da SPID</a>
+                        </li> --}}
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- il menù aside forse non serve vedremo -->
+    <aside class="aside-menu">
+
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="timeline" role="tabpanel">
+                <div class="callout m-0 py-2 text-center bg-faded text-uppercase">
+                    <small>
+                        <b>Storico azioni</b>
+                    </small>
+                </div>
+                <hr class="transparent mx-3 my-0">
+                <div class="callout callout-warning m-0 py-3">
+                    <div>
+                        <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
+                    </div>
+                    <div>
+                        <small class="text-guida mr-3">
+                            <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
+                    </div>
+                    <div>
+                        <small class="text-guida">
+                            <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
+                    </div>
+                </div>
+                <hr class="mx-3 my-0">
+                <div class="callout callout-info m-0 py-3">
+
+                    <div>
+                        <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
+                    </div>
+                    <div>
+                        <small class="text-guida mr-3">
+                            <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
+                    </div>
+                    <div>
+                        <small class="text-guida">
+                            <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
+                    </div>
+
+                </div>
+                <hr class="transparent mx-3 my-0">
+
+            </div>
+
+        </div>
+    </aside>
+
+
+</div>

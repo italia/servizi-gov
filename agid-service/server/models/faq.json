@@ -1,0 +1,23 @@
+{
+  "name": "faq",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "question": {
+      "type": "langvalue"
+    },
+    "answer": {
+      "type": "langvalue"
+    },
+    "active": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

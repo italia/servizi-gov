@@ -1,0 +1,12 @@
+{
+  "servicestatusDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "servicestatus",
+    "password": "",
+    "name": "servicestatusDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

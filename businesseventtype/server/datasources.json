@@ -1,0 +1,12 @@
+{
+  "businesseventtypeDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "businesseventtype",
+    "password": "",
+    "name": "businesseventtypeDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "user",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string"
+    },
+    "cognome": {
+      "type": "string"
+    },
+    "codicefiscale": {
+      "type": "string",
+      "required": true
+    },
+    "codiceSPID": {
+      "type": "string"
+    },
+    "loginName": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "isSuperAdmin": {
+      "type": "boolean",
+      "required": true
+    },
+    "organizzazioni": {
+      "type": [
+        "ipaOrg"
+      ]
+    },
+    "idApplicazione": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

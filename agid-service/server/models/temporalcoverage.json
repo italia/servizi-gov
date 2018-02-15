@@ -1,0 +1,25 @@
+{
+  "name": "temporalcoverage",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "startInterval": {
+      "type": "string"
+    },
+    "endInterval": {
+      "type": "string"
+    },
+    "weekDays": {
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

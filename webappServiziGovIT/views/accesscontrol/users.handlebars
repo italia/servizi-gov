@@ -1,0 +1,386 @@
+{{!--
+<script src="/js/accessControlUsers.js"></script> --}}
+<script src="/js/accessControlUsers.js"></script>
+
+
+
+<div class="app-body">
+
+
+    <!-- Main content -->
+    <main class="main">
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+
+                        <!-- Tab panes -->
+                        <div>
+
+                            <div <div class="card">
+                                <div class="card-header">
+                                    <h2>Applicazione:
+                                        <strong id="serviceName"></strong>
+                                    </h2>
+                                </div>
+                                <div class="mt-1 mb-1 row ml-1">
+                                    <label for="getOrganizationForTable">Organizzazione</label>
+                                    <div class="col-md-4">
+
+
+                                        {{#if user.isSuperAdmin}}
+                                        <input type="text" hidden id="isSuperAdminInput" value="{{user.isSuperAdmin}}" />
+                                        <input type="text" name="getOrganizationForTable" class="form-control" id="getOrganizationForTable" data-placeholder="Cerca Applicazione"
+                                        /> {{else}}
+                                        <select data-placeholder="Cerca gli attributi" name="getOrganizationForTable" id="getOrganizationForTable" class="form-control"
+                                            id="getOrganizationForTable">
+                                            <option selected value disabled>Seleziona una scelta</option>
+                                            {{#each user.organizzazioni}} {{#each this.attributes}} {{#if (foo this.name "admin")}}
+                                            <option itemCode="{{../this.description}}" id="{{../this.codiceIpa}}">{{../this.codiceIpa}}</option>
+                                            {{/if}} {{/each}} {{/each}}
+
+                                        </select>
+                                        {{/if}}
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-primary" id="visualizzaGriglia">Visualizza</button>
+                                    </div>
+                                    <div class="col-md-2" id="noResults" style="display: none">Nessun risultato trovaro</div>
+
+                                </div>
+                                <div id="buttonAddUserToApplication" class="mt-1 mb-1 row mb-3" style="display: none">
+
+                                    <div class=" text-center col-md-6">
+                                        <a href="" class="btn btn-primary pa-add-service" data-toggle="modal" data-target=".modal-lg-AddUser">
+                                            <i class="icon-plus icons font-2xl"></i> Aggiungi Utente</a>
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade modal-lg-AddUser" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+
+                                                <div class=" bg-color color-txt-white modal-header">
+                                                    <label class="l-font">Configura Utente</label>
+
+
+
+                                                    <button type="button" class="color-txt-white close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+
+
+
+                                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                                </div>
+                                                <div class="modal-body">
+
+
+                                                    <ul class="nav nav-tabs" id="tabModalAdd" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Home</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a>
+                                                        </li>
+
+                                                    </ul>
+
+                                                    <div>
+                                                        <form id="saveUserForm">
+                                                            <div class="tab-content" id="myTabContent">
+                                                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+                                                                    <div class="form-group">
+                                                                        <label for="cognomeUser">Cognome</label>
+                                                                        <input type="text" name="cognomeUser" class="form-control" id="cognomeUser" placeholder="Cognome">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="nameUser">Nome</label>
+                                                                        <input type="text" name="nameUser" class="form-control" id="nameUser" placeholder="Nome">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="codFiscUser">Codice Fiscale</label>
+                                                                        <input type="text" name="codFiscUser" class="form-control" id="codFiscUser" placeholder="Codice Fiscale">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="codSPIDUser">Codice SPID</label>
+                                                                        <input type="text" name="codSPIDUser" class="form-control" id="codSPIDUser" placeholder="codice SPID">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="usernameUser">Nome Utente</label>
+                                                                        <input type="text" name="usernameUser" class="form-control" id="usernameUser" placeholder="Nome utente">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="emailUser">Email</label>
+                                                                        <input type="email" name="emailUser" class="form-control" id="emailUser" placeholder="XXX@XXX.XX">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="passwordUser">Password</label>
+                                                                        <input type="password" name="passwordUser" class="form-control" id="passwordUser" placeholder="Password">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="passwordUserAgain">Ripetere password</label>
+                                                                        <input type="password" name="passwordUserAgain" class="form-control" id="passwordUserAgain" placeholder="Password">
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+
+                                                                    <div class="form-group">
+                                                                        <label for="getOrganization">Organizzazione</label>
+                                                                        {{!-- {{#if user.isSuperAdmin}}
+                                                                        <input type="text" name="getOrganization" class="form-control" id="getOrganization" data-placeholder="Cerca Applicazione"
+                                                                        /> {{else}}
+                                                                        <select data-placeholder="Cerca gli attributi" name="getOrganization" id="getOrganization" class="form-control" id="getOrganization">
+                                                                            <option selected value disabled>Seleziona una scelta</option>
+                                                                            {{#each user.organizzazioni}}
+                                                                            <option itemCode="{{this.description}}" id="{{this.codiceIpa}}">{{this.codiceIpa}}</option>
+                                                                            {{/each}}
+
+                                                                        </select>
+                                                                        {{/if}} --}} {{!--
+                                                                        <input type="text" name="getOrganization" class="form-control" id="getOrganization" data-placeholder="Cerca Applicazione"
+                                                                            disabled/> --}}
+
+
+
+                                                                        <label for="rolesAttributes">Attributo</label>
+
+                                                                        <select data-placeholder="Cerca gli attributi" name="rolesAttributes" id="rolesAttributes" class="form-control" id="ruoloUser">
+                                                                            <option selected disabled value>Seleziona una scelta</option>
+                                                                            {{!--
+                                                                            <option value="superAdmin" id="superAdmin">superAdmin</option>
+                                                                            <option value="Admin" id="Admin">Admin</option>
+                                                                            <option value="Viewer" id="viewer">Viewer</option> --}}
+                                                                        </select>
+
+
+                                                                    </div>
+                                                                    <button type="button" class="btn btn-primary" onclick="salvaParzialeInTabella()">Salva</button>
+
+                                                                    <p class="help-block">Inserire almeno un elemento nella tabella
+                                                                        <span id="alertTable" style="display: none" class="alert alert-danger" role="alert" style=" border: solid 1px #c00; padding-bottom: 0.6em; padding-top: 0.6em; ">È obbligatorio aggiungere un campo nella tabella</span>
+
+                                                                    </p>
+
+                                                                    <span id="alertField" style="display: none" class="alert alert-danger" role="alert" style=" border: solid 1px #c00; padding-bottom: 0.6em; padding-top: 0.6em; ">Verificare che tutti i campi obbligatori siano compilati</span>
+
+
+                                                                    <table class="table mt-5">
+                                                                        <thead class="m-font bold">
+                                                                            <tr class="text-center">
+                                                                                <td>Organizzazione</td>
+                                                                                <td>Attributo</td>
+                                                                                <td>Azioni</td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="tableBodyParziale">
+                                                                            <!-- contenuto tabella parziale                                                               -->
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                                                    <a class="color-txt-white pointer btn btn-primary pa-add-service" style="color:white" onclick="salvaUser()">
+                                                                        <span aria-hidden="true"></span>Salva Applicazione
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+
+                                                </div>
+
+   <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" id="indietroModalAdd">Indietro</button>
+                                                <button type="button" class="btn btn-primary" id="avantiModalAdd">Avanti</button>
+
+
+                                            </div>
+                                            </div>
+                                            <!--                                                        end modal body-->
+
+                                         
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="modal fade modal-lg-EditUser" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+
+                                            <div class=" bg-color color-txt-white modal-header">
+                                                <label class="l-font">Modifica Utente</label>
+
+
+
+                                                <button type="button" class="color-txt-white close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+
+
+
+                                                <h4 class="modal-title" id="myModalLabel"></h4>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                                <ul class="nav nav-tabs" id="tabModalEdit" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#homeEdit" role="tab" aria-controls="home" aria-expanded="true">Home</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profileEdit" role="tab" aria-controls="profile">Profile</a>
+                                                    </li>
+                                                    </li>
+                                                </ul>
+
+                                                <div>
+                                                    <form id="editUserFormEdit">
+                                                        <div class="tab-content" id="myTabContent">
+                                                            <div class="tab-pane fade show active" id="homeEdit" role="tabpanel" aria-labelledby="home-tab">
+
+
+                                                                <input type="text" id="idUserToEdit" hidden/>
+                                                                <div class="form-group">
+                                                                    <label for="cognomeUserEdit">Cognome</label>
+                                                                    <input type="text" name="cognomeUserEdit" class="form-control" id="cognomeUserEdit" placeholder="Cognome">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="nameUserEdit">Nome</label>
+                                                                    <input type="text" name="nameUserEdit" class="form-control" id="nameUserEdit" placeholder="Nome">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="codFiscUserEdit">Codice Fiscale</label>
+                                                                    <input type="text" name="codFiscUserEdit" class="form-control" id="codFiscUserEdit" placeholder="Codice Fiscale">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="codSPIDUserEdit">Codice SPID</label>
+                                                                    <input type="text" name="codSPIDUserEdit" class="form-control" id="codSPIDUserEdit" placeholder="codice SPID">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="usernameUserEdit">Nome Utente</label>
+                                                                    <input type="text" name="usernameUserEdit" class="form-control" id="usernameUserEdit" placeholder="Nome utente">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="emailUserEdit">Email</label>
+                                                                    <input type="email" name="emailUserEdit" class="form-control" id="emailUserEdit" placeholder="XXX@XXX.XX">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="passwordUserEdit">Password</label>
+                                                                    <input type="password" name="passwordUserEdit" class="form-control" id="passwordUserEdit" placeholder="Password">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="passwordUserEditAgain">Ripetere password</label>
+                                                                    <input type="password" name="passwordUserEditAgain" class="form-control" id="passwordUserEditAgain" placeholder="Password">
+                                                                </div>
+
+
+
+                                                            </div>
+                                                            <div class="tab-pane fade" id="profileEdit" role="tabpanel" aria-labelledby="profile-tab">
+                                                                <div class="form-group">
+
+
+                                                                </div>
+
+
+
+                                                                <button type="button" class="btn btn-primary" onclick="salvaParzialeInTabellaEdit()">Salva</button>
+
+                                                                <span id="alertFieldEdit" style="display: none" class="alert alert-danger" role="alert" style=" border: solid 1px #c00; padding-bottom: 0.6em; padding-top: 0.6em; ">Verificare che tutti i campi obbligatori siano compilati</span>
+                                                                </p>
+                                                                <table class="table mt-5">
+                                                                    <thead class="m-font bold">
+                                                                        <tr class="text-center">
+                                                                            <td>Organizzazione</td>
+                                                                            <td>Attributo</td>
+                                                                            <td>Azioni</td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tableBodyParzialeEdit">
+                                                                        <!-- contenuto tabella parziale                                                               -->
+                                                                    </tbody>
+                                                                </table>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                                                <a class="color-txt-white pointer btn btn-primary pa-add-service" style="color:white" onclick="editUser()" aria-label="Close">
+                                                                    <span aria-hidden="true"></span>Modifica Utente
+                                                                </a>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+
+
+                                            </div>
+                                            <!--                                                        end modal body-->
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" id="indietroModalEdit">Indietro</button>
+                                                <button type="button" class="btn btn-primary" id="avantiModalEdit">Avanti</button>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <table class="table table-hover table-outline mb-0" id="tableUser" style="display: none">
+                                <thead class="thead-default">
+                                    <tr>
+                                        <th scope="col" class=" text-center pa-servicename">Nome Applicazione</th>
+                                        <th scope="col" class="text-center pa-servicename">Utente</th>
+                                        <th scope="col" class="text-center pa-action">Amministrazione</th>
+                                        <th scope="col" class="text-center pa-action">Attributo</th>
+                                        <th scope="col" class="text-center pa-action">Azioni</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="applicationToUser">
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+                    </div>
+                    <!--tab-pane GUT-->
+                </div>
+                <!--tab-contet-->
+
+            </div>
+            <!--col-md 12-->
+        </div>
+        <!--                    row-->
+</div>
+<!--fade in-->
+</div>
+<!-- /.conainer-fluid -->
+</main>
+</div>
+<!--    app-body-->
+
+<!-- il menù aside forse non serve vedremo -->

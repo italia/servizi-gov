@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  serviceinputoutput:
+    image: serviceinputoutput
+    build: .
+    ports:
+      - 80:80

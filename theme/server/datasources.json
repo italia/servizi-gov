@@ -1,0 +1,12 @@
+{
+  "themeDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "themes",
+    "password": "",
+    "name": "themeDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

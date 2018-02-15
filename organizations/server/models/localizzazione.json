@@ -1,0 +1,42 @@
+{
+  "name": "localizzazione",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "codice": {
+      "type": "string",
+      "required": true
+    },
+    "entita": {
+      "type": "string",
+      "required": true
+    },
+    "comune": {
+      "type": "string",
+      "required": true
+    },
+    "regione": {
+      "type": "string",
+      "required": true
+    },
+    "citta_metropolitana": {
+      "type": "string",
+      "required": true
+    },
+    "provincia": {
+      "type": "string",
+      "required": true
+    },
+    "zona": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

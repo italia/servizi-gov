@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  service-templates:
+    image: service-templates
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 80:80

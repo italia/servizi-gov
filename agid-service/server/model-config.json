@@ -1,0 +1,204 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "regulation": {
+    "dataSource": null,
+    "public": true
+  },
+  "rule": {
+    "dataSource": null,
+    "public": true
+  },
+  "template": {
+    "dataSource": null,
+    "public": false
+  },
+  "langvalue": {
+    "dataSource": null,
+    "public": false
+  },
+  "regulationrule": {
+    "dataSource": null,
+    "public": false
+  },
+  "geometry": {
+    "dataSource": null,
+    "public": false
+  },
+  "webapplication": {
+    "dataSource": null,
+    "public": false
+  },
+  "phone": {
+    "dataSource": null,
+    "public": false
+  },
+  "email": {
+    "dataSource": null,
+    "public": false
+  },
+  "authentication": {
+    "dataSource": null,
+    "public": false
+  },
+  "processingtime": {
+    "dataSource": null,
+    "public": false
+  },
+  "attribute": {
+    "dataSource": null,
+    "public": false
+  },
+  "spid": {
+    "dataSource": null,
+    "public": false
+  },
+  "inputor": {
+    "dataSource": null,
+    "public": false
+  },
+  "inputand": {
+    "dataSource": null,
+    "public": false
+  },
+  "inputRev": {
+    "dataSource": null,
+    "public": false
+  },
+  "outputRev": {
+    "dataSource": null,
+    "public": false
+  },
+  "technicalStandard": {
+    "dataSource": null,
+    "public": false
+  },
+  "contact": {
+    "dataSource": null,
+    "public": false
+  },
+  "temporalcoverage": {
+    "dataSource": null,
+    "public": false
+  },
+  "offlinechannel": {
+    "dataSource": null,
+    "public": false
+  },
+  "inputoutput": {
+    "dataSource": null,
+    "public": false
+  },
+  "dateuser": {
+    "dataSource": null,
+    "public": false
+  },
+  "cost": {
+    "dataSource": null,
+    "public": false
+  },
+  "otherelectronicchannel": {
+    "dataSource": null,
+    "public": false
+  },
+  "event": {
+    "dataSource": null,
+    "public": false
+  },
+  "startenddate": {
+    "dataSource": null,
+    "public": false
+  },
+  "organization": {
+    "dataSource": null,
+    "public": false
+  },
+  "channel": {
+    "dataSource": null,
+    "public": false
+  },
+  "component": {
+    "dataSource": null,
+    "public": false
+  },
+  "serviceDate": {
+    "dataSource": null,
+    "public": false
+  },
+  "namevalue": {
+    "dataSource": null,
+    "public": false
+  },
+  "publicservice": {
+    "dataSource": null,
+    "public": false
+  },
+  "public-service": {
+    "dataSource": "agid-serviceDS",
+    "public": true
+  },
+  "publicationstatus": {
+    "dataSource": null,
+    "public": false
+  },
+  "alternativeid": {
+    "dataSource": null,
+    "public": false
+  },
+  "spatialcoverage": {
+    "dataSource": null,
+    "public": false
+  },
+  "faq": {
+    "dataSource": null,
+    "public": false
+  },
+  "sector": {
+    "dataSource": null,
+    "public": false
+  },
+  "theme": {
+    "dataSource": null,
+    "public": false
+  },
+  "businessevent": {
+    "dataSource": null,
+    "public": false
+  },
+  "lifeevent": {
+    "dataSource": null,
+    "public": false
+  },
+  "serviceInputData": {
+    "dataSource": null,
+    "public": true
+  },
+  "typeInOut": {
+    "dataSource": null,
+    "public": false
+  },
+  "deletedservice": {
+    "dataSource": "agid-serviceDS",
+    "public": true
+  },
+  "deleteInputData": {
+    "dataSource": null,
+    "public": false
+  },
+  "changesArchiveService": {
+    "dataSource": "agid-serviceDS",
+    "public": true
+  }
+}

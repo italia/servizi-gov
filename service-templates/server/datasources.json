@@ -1,0 +1,12 @@
+{
+  "serviceTemplateDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "serviceTemplate",
+    "password": "",
+    "name": "serviceTemplateDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

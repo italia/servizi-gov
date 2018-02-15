@@ -1,0 +1,22 @@
+{
+    "name": "function",
+    "base": "Model",
+    "idInjection": true,
+    "options": {
+      "validateUpsert": true
+    },
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "attributes": {
+        "type": [
+          "attribute"
+        ]
+      }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+  }

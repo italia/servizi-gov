@@ -1,0 +1,85 @@
+<main class="main">
+    <nav aria-label="breadcrumb" role="navigation">
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="dashboard.html">Dashboard</a>
+            </li>
+            {{!--
+            <li class="breadcrumb-item active" aria-current="page">Nuovo servizio</li> --}} {{!--
+            <li class="breadcrumb-item">
+                <a href="service-new.html">Nuovo servizio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="service-wizard1.html">Scelta del modello</a>
+            </li> --}} {{!--
+            <li class="breadcrumb-item">Creazione veloce</li> --}}
+        </ol>
+    </nav>
+    <div class="container-fluid">
+        <div class="animated">
+
+            <div class="card">
+                <div class="card-header">
+                    <h1>Login Servizi.gov.it</h1>
+                </div>
+                <div class="card-block">
+
+
+
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs wizard" role="tablist">
+
+                        </ul>
+
+                        <div class="tab-content">
+
+
+
+                            <div class="tab-pane active" id="info" role="tabpanel" aria-expanded="true">
+                                {{!--
+                                <h2 class="stepform mb-4">
+                                    <i class="fa fa-circle "></i> Dati autenticazione</h2> --}}
+                                <p style = "font-weight: bold; color:red">{{error}}</p>
+                                <form id="formtest" method="post" action="/users/login">
+
+                                    <div class=" row">
+                                        <label class="col-md-3 control-label" for="nome">Nome utente (Codice Fiscale) </label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="nome" class="form-control" aria-describedby="s-nome" name="username" required>
+                                            <p id="s-nome" class="help-block">Indicare il nome utente che equivale al codice fiscale</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" for="password">Password</label>
+                                        <div class="col-md-9">
+                                            <input type="password" id="password" class="form-control" aria-describedby="s-password" name="password" required>
+
+                                            <p id="s-password" class="help-block">Indicare la password di accesso</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="offset-md-3 col-md">
+                                            <button type="submit" form="formtest" class="btn btn-primary" onclick="startWait('info','Login in corso...')">Accedi</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <!--/animated fadeIn -->
+    </div>
+    <!-- /.conainer-fluid -->
+</main>

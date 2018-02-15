@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  roletype:
+    image: roletype
+    build: .
+    ports:
+      - 80:80

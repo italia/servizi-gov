@@ -1,0 +1,38 @@
+{
+  "name": "authentication",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "lv0id": {
+      "type": "string",
+      "required": true
+    },
+    "lv0rdfuri": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "order" : {
+      "type": "number"
+    },
+    "language": {
+      "type": "string",
+      "required": true
+    },
+    "lv1child": {
+      "type": [
+        "lv1authentication"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,41 @@
+{
+  "name": "offlinechannel",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "subType": {
+      "type": "string"
+    },
+    "locationName": {
+      "type": "langvalue"
+    },
+    "streetType": {
+      "type": "string"
+    },
+    "streetName": {
+      "type": "string"
+    },
+    "number": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "postCode": {
+      "type": "string"
+    },
+    "geometry": {
+      "type": "geometry"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

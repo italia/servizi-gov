@@ -1,0 +1,26 @@
+{
+  "name": "service-template",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "templateIndex": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "entePa": {
+      "type": "string"
+    },
+    "publicService": {
+      "type": "publicservice"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

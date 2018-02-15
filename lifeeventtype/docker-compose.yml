@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  lifeeventtype:
+    image: lifeeventtype
+    build: .
+    ports:
+      - 80:80

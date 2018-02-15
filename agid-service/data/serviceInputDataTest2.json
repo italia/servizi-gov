@@ -1,0 +1,122 @@
+{
+	"serviceId": "5a0ba4b393b8101e1885c0a9",
+	"userId": "RNCFNC81L14H501D",
+	"codiceIpa": "r_emiro",
+	"templateRef": "5a05d43227d4621b4cd3811b", 
+	"serviceName": "Denuncia da parte delle imprese di assicurazioni per i premi e accessori incassati",
+	"nomedelservizioAlternativo": "PROVA UPDATE2",
+	"descrizioneServizio": "Denuncia da parte delle imprese di assicurazioni per i premi e accessori incassati",
+	"urlservizio": "http://www.esempioservizio.com",
+	"altroIdentificativo": "UPDATE 2",
+	"inputRichiesti": true,
+	"input": [{
+			"docRifInputRichiesti": " http://www.refdocumentation1.it",
+			"nomeInputRichiesti": "111",
+			"tipoInputRichiesti": {
+				"identifier": "",
+				"rdfUri": "",
+				"label": "Attestazione di pagamento",
+				"language": ""
+			}
+		}
+	],
+	"outputProdotti": true,
+	"output": [{
+			"nomeOutputProdotti": "111",
+			"tipoOutputProdotti": {
+				"identifier": "",
+				"rdfUri": "",
+				"label": "Attestazione di pagamento",
+				"language": ""
+			}
+		}
+	],
+	"coperturaTemporale": true,
+	"temporalCoverage":{"dataDaTemp":"2001-05-05-05:00","dataATemp":"2009-05-05-05:00","giornoCheck":["Martedì","Mercoledì"]},
+	"coperturaGeografica": true,
+	"inputCoperturaGeog": "",
+	"linguaCheck": ["it", "en"],
+	"temaCheck": ["AGRI", "ECON"],
+	"settoreservizio_1": ["B", "N"],
+	"settoreservizio_2": ["06", "82"],
+	"settoreservizio_3": ["06.2"],
+	"settoreservizio_4": ["06.20"],
+	"paroleChiaveClass": ["Impresa", "premio", "incasso", "testy5"],
+	"organizations": [{
+			"type": "string",
+			"organizz": "Agid",
+			"name": "string",
+			"ruolo": "titolare",
+			"date": [{
+					"dal": "01/01/1999",
+					"al": "01/01/1999"
+				}
+			]
+		}, {
+			"type": "string",
+			"organizz": "Comunita' Montana Valle del Liri Zona XV",
+			"name": "string",
+			"ruolo": "titolare",
+			"date": [{
+					"dal": "01/01/1999",
+					"al": "01/01/1999"
+				}
+			]
+		}
+	],
+	"contacts": [{
+			"office": {
+				"language": "string",
+				"nomeContatto": "Agid"
+			},
+			"telefonoContatto": "+39 06 0000000",
+			"emailContatto": "info@agid.gov.it",
+			"urlContatto": "http://www.agid.gov.it"
+		}, {
+			"office": {
+				"language": "string",
+				"nomeContatto": "test"
+			},
+			"telefonoContatto": "060606",
+			"emailContatto": "test@test.test",
+			"urlContatto": "test.test.test"
+		}
+	],
+	"canaliErogazione": true,
+	"channels":{
+		"offlineChannels":[
+			{
+				"type":"Non telematico con intermediario",
+				"subType":"Altro intermediario",
+				"locationName":{
+					"language":"it",
+					"description":"test"
+					},
+				"streetType":" test",
+				"streetName":"test",
+				"number":"test",
+				"city":"test",
+				"postCode":"test",
+				"geometry":{
+					"type":"test",
+					"latitude":"test",
+					"longitude":"test"
+				}
+			}
+		],
+		"webApplications":[{"type":"","url":""}],
+		"phones":[{"type":"","phoneNumber":""}],
+		"emails":[{"type":"","email":""}],
+		"otherElectronicChannels":[
+			{
+				"type":"","subType":"",
+				"accessReference":{"language":"","description":""}
+			}
+		]
+	},
+	"checkAuth": ["USERID OTP BIO", "IDPWD", "SPIDL1"],
+	"costo": true,
+	"costoEuro": "",
+	"descrizioneCosti": "",
+	"tempoProcessamento": ""
+}

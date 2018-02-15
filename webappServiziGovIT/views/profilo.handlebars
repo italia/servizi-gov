@@ -1,0 +1,129 @@
+<script src="/js/profiloUser.js"></script>
+
+<div class="app-body">
+    <!-- Main content -->
+    <main class="main">
+        <div class="container-fluid">
+            <div class="animated">
+
+                <div class="jumbotron">
+                    <h1 class="display-5">Profilo utente
+
+                    </h1>
+                    <hr class="my-4">
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Cognome: </label>
+                        <div class="col-md-10">{{user.cognome}}</div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Nome: </label>
+                        <div class="col-md-10">{{user.nome}}</div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Codice fiscale: </label>
+                        <div class="col-md-10">{{user.codicefiscale}}</div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Username: </label>
+                        <div class="col-md-10">{{user.loginName}}</div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Email: </label>
+                        <div class="col-md-10">{{user.email}}</div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Codice SPID: </label>
+                        <div class="col-md-10">{{user.codiceSPID}}</div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Password: </label>
+                        <div class="col-md-10">*********
+                            <a class="ml-5" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Modifica</a>
+                        </div>
+                        <div id="msgResult"></div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="collapse" style="width: 100%;" id="collapseExample">
+                            <div class="card card-body" style="min-height:auto !important">
+                                <form id="changePasswordForm">
+                                <div class="form-group row">
+                                   <input type="text" id="idUser" name="idUser" hidden class="form-control"  value="{{user.id}}"/>
+                                    <div class="col-md-3"><label class="control-label" for="currentPassword">Password attuale</label></div>
+                                
+                                <div class="col-md-6">
+                                    <input type="password" id="currentPassword" name="currentPassword"  class="form-control" placeholder="Inserire password attuale"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3"><label class="control-label" for="newPassword">Nuova password</label></div>
+                                <div class="col-md-6">
+                                    <input type="password" id="newPassword" name="newPassword"  class="form-control" placeholder="Inserire nuova password"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3"><label class="control-label" for="repeatNewPassword">Ripetere nuova password</label></div>
+                               <div class="col-md-6">
+                                    <input type="password" id="repeatNewPassword" name="repeatNewPassword" class="form-control" placeholder="Inserire nuova password"/>
+                                    </div>
+                                </div>
+                                <div class="row"><div class="col-md-2 offset-md-10"> <button class="btn btn-primary"  id="changePassword" type="button">Aggiorna password</button> </div></div>
+                                
+                                </form>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {{#if user.isSuperAdmin}}
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Attributo: </label>
+                        <div class="col-md-10">superAdmin</div>
+                    </div>
+                    {{else}}
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">Organizzazioni: </label>
+                        <table id="tableInput" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Codice Ipa</th>
+                                    <th>Descrizione</th>
+                                    <th>Attributo</th>
+                                </tr>
+                            </thead>
+                            <tbody> {{#each user.organizzazioni}} {{#each this.attributes}}
+                                <tr>
+                                    <td>{{../this.codiceIpa}}</td>
+                                    <td>{{../this.description}}</td>
+
+                                    <td>{{this.name}}</td>
+                                </tr>
+                                {{/each}} {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{/if}}
+
+                </div>
+
+
+
+
+
+
+
+                {{!-- { _id: 5a09f805781ef4001a1624b3, nome: 'Giuseppe Carlo', cognome: 'Monteleone', codicefiscale: 'MNTGPP96D03H501A',
+                loginName: 'g.monteleone96@gmail.com', password: '$2a$10$nDvQvjaIVJ2I6aNFa31X1u.cRGKvAhjXoSOuQSYOsRs7HrDKe1IEC',
+                email: 'g.monteleone96@gmail.com', isSuperAdmin: false, idApplicazione: '5a09f509781ef4001a1624b0', codiceSPID:
+                '1234567890', organizzazioni: [ { codiceIpa: 'cnodas', description: 'Consiglio Nazionale dell\'Ordine Degli
+                Assistenti Sociali', attributes: [Array] } ] } --}}
+
+
+            </div>
+            <!-- / animate fadeIn -->
+        </div>
+        <!-- / container-fluid -->
+    </main>
+
+
+
+</div>

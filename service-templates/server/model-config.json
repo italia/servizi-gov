@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "service-template": {
+    "dataSource": "serviceTemplateDS",
+    "public": true
+  },
+  "template": {
+    "dataSource": null,
+    "public": false
+  },
+  "langvalue": {
+    "dataSource": null,
+    "public": false
+  },
+  "authentication": {
+    "dataSource": null,
+    "public": false
+  },
+  "attribute": {
+    "dataSource": null,
+    "public": false
+  },
+  "spid": {
+    "dataSource": null,
+    "public": false
+  },
+  "cost": {
+    "dataSource": null,
+    "public": false
+  },
+  "event": {
+    "dataSource": null,
+    "public": false
+  },
+  "component": {
+    "dataSource": null,
+    "public": false
+  },
+  "namevalue": {
+    "dataSource": null,
+    "public": false
+  },
+  "publicservice": {
+    "dataSource": null,
+    "public": false
+  },
+  "sector": {
+    "dataSource": null,
+    "public": false
+  },
+  "theme": {
+    "dataSource": null,
+    "public": false
+  },
+  "businessevent": {
+    "dataSource": null,
+    "public": false
+  },
+  "lifeevent": {
+    "dataSource": null,
+    "public": false
+  }
+}

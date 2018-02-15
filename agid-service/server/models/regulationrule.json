@@ -1,0 +1,20 @@
+{
+  "name": "regulationrule",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "regulation": {
+      "type": "regulation"
+    },
+    "rule": {
+      "type": "rule"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

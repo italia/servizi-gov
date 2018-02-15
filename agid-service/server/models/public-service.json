@@ -1,0 +1,35 @@
+{
+  "name": "public-service",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "creation": {
+      "type": "dateuser"
+    },
+    "approval": {
+      "type": "dateuser"
+    },
+    "publicationStatus": {
+      "type": "publicationstatus"
+    },
+    "codiceIpa": {
+      "type": "string"
+    },
+    "metadataPercentage": {
+      "type": "string"
+    },
+    "publicService": {
+      "type": "publicservice"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

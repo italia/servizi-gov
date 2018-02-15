@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  interactivitylevel:
+    image: interactivitylevel
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 80:80

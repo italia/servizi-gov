@@ -1,0 +1,27 @@
+{
+  "name": "inputoutput",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "referenceDocumentation": {
+      "type": "string"
+    },
+    "inputOr": {
+      "type": [
+        "inputor"
+      ]
+    },
+    "inputAnd": {
+      "type": [
+        "inputand"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

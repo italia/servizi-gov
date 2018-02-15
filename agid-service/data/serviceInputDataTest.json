@@ -1,0 +1,162 @@
+{
+  "userId": "RNCFNC81L14H501D",
+  "codiceIpa": "odad_044",
+  "templateRef": "5a05d43227d4621b4cd38161",
+  "serviceName": "Studi di settore e parametri (strumenti per la stima dei ricavi e compensi)",
+  "altServiceName": "altServiceName",
+  "serviceDescription": "Studi di settore e parametri (strumenti per la stima dei ricavi e compensi)",
+  "serviceUrl": "http://www.esempioservizio.com",
+  "altServiceId": "altServiceId",
+  "inputRichiestiCk": true,
+  "input": [
+    {
+      "referenceDocumentation": "http://www.refdocumentation1.it",
+      "name": "input - esempio 1",
+      "type": {
+        "identifier": "OTHDOC",
+        "language": "it"
+      }
+    },
+    {
+      "referenceDocumentation": "http://www.refdocumentation2.it",
+      "name": "input - esempio 2",
+      "type": {
+        "identifier": "IDDEC",
+        "language": "it"
+      }
+    }
+  ],
+  "outputProdottiCk": true,
+  "output": [
+    {
+      "name": "output",
+      "type": {
+        "identifier": "REQ",
+        "language": "it"
+      }
+    }
+  ],
+  "temporalCoverageck": true,
+  "temporalCoverage": {
+    "startInterval": "01/01/2001-00:01",
+    "endInterval": "31/12/2015-23:59",
+    "weekDays": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ]
+  },
+  "events": {
+    "businessEvent": [
+      {
+        "idBe": "BE/8"
+      }
+    ]
+  },
+  "geoCoverageCk": true,
+  "geoValue": "Roma",
+  "language": [
+    "it"
+  ],
+  "themes": [
+    "ECON"
+  ],
+  "sector_1": [
+    "M"
+  ],
+  "sector_2": [
+    "74.0"
+  ],
+  "sector_3": [],
+  "sector_4": [],
+  "keyWord": [
+    "settore",
+    "stima",
+    "compenso"
+  ],
+  "organizations": [
+    {
+      "organizationCode": "coda_006",
+      "name": "Consiglio dell'Ordine Degli Avvocati di Alessandria",
+      "role": "titolare",
+      "date": [
+        {
+          "startDateTime": "03/03/2011",
+          "endDateTime": "05/05/2015"
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "office": {
+        "language": "it",
+        "description": "ufficio"
+      },
+      "phoneNumber": "06/1234567",
+      "email": "a@a.com",
+      "web": "http://www.a.it"
+    }
+  ],
+  "interactivityLevel": "LEVEL 5",
+  "channelCk": true,
+  "channels": {
+    "offlineChannels": [
+      {
+        "type": "string",
+        "subType": "string",
+        "locationName": {
+          "language": "string",
+          "description": "string"
+        },
+        "streetType": "string",
+        "streetName": "string",
+        "number": "string",
+        "city": "string",
+        "postCode": "string",
+        "geometry": {
+          "type": "string",
+          "latitude": "string",
+          "longitude": "string"
+        }
+      }
+    ],
+    "webApplications": [
+      {
+        "type": "string",
+        "subType": "string",
+        "url": "string"
+      }
+    ],
+    "phones": [
+      {
+        "type": "string",
+        "subType": "string",
+        "phoneNumber": "string"
+      }
+    ],
+    "emails": [
+      {
+        "type": "string",
+        "subType": "string",
+        "email": "string"
+      }
+    ],
+    "otherElectronicChannels": [
+      {
+        "type": "string",
+        "subType": "string",
+        "accessReference": {
+          "language": "string",
+          "description": "string"
+        }
+      }
+    ]
+  },
+  "costCk": true,
+  "costValue": "300",
+  "costDesc": "string",
+  "processingTime": "3 ore"
+}

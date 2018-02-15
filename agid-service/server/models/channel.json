@@ -1,0 +1,39 @@
+{
+  "name": "channel",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "offlineChannels": {
+      "type": [
+        "offlinechannel"
+      ]
+    },
+    "webApplications": {
+      "type": [
+        "webapplication"
+      ]
+    },
+    "phones": {
+      "type": [
+        "phone"
+      ]
+    },
+    "emails": {
+      "type": [
+        "email"
+      ]
+    },
+    "otherElectronicChannels": {
+      "type": [
+        "otherelectronicchannel"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,24 @@
+{
+  "name": "sector",
+  "base": "Model",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "idNace": {
+      "type": "string",
+      "required": true
+    },
+    "levelNace": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

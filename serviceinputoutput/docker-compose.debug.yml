@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  serviceinputoutput:
+    image: serviceinputoutput
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 80:80

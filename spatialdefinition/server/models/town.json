@@ -1,0 +1,50 @@
+{
+  "name": "town",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "denominazioneIt": {
+      "type": "string"
+    },
+    "denominazioneDe": {
+      "type": "string"
+    },
+    "codiceNum": {
+      "type": "string"
+    },
+    "codiceCatastale": {
+      "type": "string"
+    },
+    "codiceProvincia": {
+      "type": "string"
+    },
+    "denomProvCitMetropol": {
+      "type": "string"
+    },
+    "siglaAutomobilistica": {
+      "type": "string"
+    },
+    "codiceRegione": {
+      "type": "string"
+    },
+    "codiceRipartizioneGeografica": {
+      "type": "string"
+    },
+    "denominazioneRegione": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "province": {
+      "type": "belongsTo",
+      "model": "province",
+      "foreignKey": "codiceProvincia"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

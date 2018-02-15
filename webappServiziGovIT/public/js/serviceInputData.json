@@ -1,0 +1,145 @@
+{
+    "serviceId": "",
+    "userId": "",
+    "codiceIpa": "",
+    "templateRef": "", 
+    "serviceName": "",
+    "nomedelservizioAlternativo": "",
+    "nomedelservizio":"",
+    "descrizioneServizio": "",
+    "urlservizio": "",
+    "altroIdentificativo": "",
+    "inputRichiesti": true,
+    "input": [
+        {
+            "docRifInputRichiesti": "",
+            "nomeInputRichiesti": "",
+            "tipoInputRichiesti": {
+                "identifier": "",
+                "rdfUri": "",
+                "label": "",
+                "language": ""
+            }
+        }
+    ],
+    "outputProdotti": true,
+    "output": [
+        {
+            "nomeOutputProdotti": "",
+            "tipoOutputProdotti": {
+                "identifier": "",
+                "rdfUri": "",
+                "label": "",
+                "language": ""
+            }
+        }
+    ],
+    "coperturaTemporale": true,
+    "temporalCoverage": {
+        "dataDaTemp": "",
+        "dataATemp": "",
+        "giornoCheck": [
+            ""
+        ]
+    },
+    "coperturaGeografica": true,
+    "inputCoperturaGeog": {
+        "regione":[""],
+        "provincia":[""],
+        "comune":[""]
+    },
+    "linguaCheck": [
+        ""
+    ],
+    "temaCheck": [
+        ""
+    ],
+    "settoreservizio_1": [
+        ""
+    ],
+    "settoreservizio_2": [
+        ""
+    ],
+    "settoreservizio_3": [
+        ""
+    ],
+    "settoreservizio_4": [
+        ""
+    ],
+    "paroleChiaveClass": [
+        ""
+    ],
+    "organizations": [],
+    "contacts": [
+        {
+            "office": {
+                "language": "",
+                "nomeContatto": ""
+            },
+            "telefonoContatto": "",
+            "emailContatto": "",
+            "urlContatto": ""
+        }
+    ],
+    "radioOptionLivIner": "",
+    "canaliErogazione": true,
+    "channels": {
+        "offlineChannels":[
+            {
+                "type": "",
+                "subType": "",
+                "locationName": {
+                    "language": "",
+                    "description": ""
+                },
+                "streetType": "",
+                "streetName": "",
+                "number": "",
+                "city": "",
+                "postCode": "",
+                "geometry": {
+                    "type": "",
+                    "latitude": "",
+                    "longitude": ""
+                }
+            }
+        ],
+        "webApplications": [
+            {
+                "type": "",
+                "url": ""
+            }
+        ],
+        "phones": [
+            {
+                "type": "",
+                "phoneNumber": ""
+            }
+        ],
+        "emails": [
+            {
+                "type": "",
+                "email": ""
+            }
+        ],
+        "otherElectronicChannels": [
+            {
+                "type": "",
+                "subType": "",
+                "accessReference": {
+                    "language": "",
+                    "description": ""
+                }
+            }
+        ]
+
+    },
+    "checkAuth":[""],
+    "radioOptionStato":"",
+    "costo": true,
+    "costoEuro": {
+        "value":[],
+        "description":[]
+    },
+    "tempoProcessamento": ""
+}

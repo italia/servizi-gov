@@ -1,0 +1,12 @@
+{
+  "channelDS": {
+    "host": "",
+    "port": ,
+    "url": "",
+    "database": "channel",
+    "password": "",
+    "name": "channelDS",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

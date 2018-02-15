@@ -1,0 +1,45 @@
+[
+    {
+        "language" : "it",
+        "rdfuri" : "",
+        "value" : "titolare",
+        "neutralLanguageValue" : "RightsHolder",
+        "definition" : "Autorità/organizzazione sotto la cui responsabilità il dataset o il servizio è reso disponibile."
+    },
+    {
+        "language" : "it",
+        "rdfuri" : "",
+        "value" : "autore",
+        "neutralLanguageValue" : "Creator",
+        "definition" : "Autorità/organizzazione che ha prodotto il dataset o sviluppato/implementato il servizio"
+    },
+    {
+        "language" : "it",
+        "rdfuri" : "",
+        "value" : "utente",
+        "neutralLanguageValue" : "User",
+        "definition" : "Parte che utilizza il servizio"
+    },
+    {
+        "language" : "it",
+        "rdfuri" : "",
+        "value" : "fornitore",
+        "neutralLanguageValue" : "Provider",
+        "definition" : "Autorità/Organizzazione responsabile nel rendere disponibile il servizio"
+    },
+    {
+        "language" : "it",
+        "rdfuri" : "",
+        "value" : "gestore",
+        "neutralLanguageValue" : "Maintainer",
+        "definition" : "Autorità/Organizzazione responsabile che gestisce il servizio"
+    },
+    {
+        "language" : "it",
+        "rdfuri" : "",
+        "value" : "concessionario",
+        "neutralLanguageValue" : "Concessionaire",
+        "definition" : "Autorità/Organizzazione che gestisce il servizio e, nel periodo della concessione, ed è responsabile del servizio stesso."
+    }
+]
+

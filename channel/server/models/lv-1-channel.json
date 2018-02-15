@@ -1,0 +1,43 @@
+{
+  "name": "lv1channel",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "lv1id": {
+      "type": "string",
+      "required": true
+    },
+    "lv0id": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "lv1description": {
+      "type": "string",
+      "required": true
+    },
+    "lv1rdfuri": {
+      "type": "string",
+      "required": true
+    },
+    "lv2child": {
+      "type": [
+        "lv2channel"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {
+    "lv2child": {
+      "type": "hasMany",
+      "model": "lv2channel",
+      "foreignKey": "lv1id",
+      "through": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

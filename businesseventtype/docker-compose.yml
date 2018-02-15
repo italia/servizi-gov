@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  businesseventtype:
+    image: businesseventtype
+    build: .
+    ports:
+      - 80:80

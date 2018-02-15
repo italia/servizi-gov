@@ -1,0 +1,36 @@
+{
+  "name": "application",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": [
+        "attribute"
+      ],
+      "required": true
+    },
+    "functions":{
+      "type":[
+        "function"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

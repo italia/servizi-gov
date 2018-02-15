@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  abac-controller:
+    image: abac-controller
+    build: .
+    ports:
+      - 80:80
