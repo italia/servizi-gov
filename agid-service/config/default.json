@@ -1,0 +1,12 @@
+{
+  "ServiceConf": {
+    "serviceCredentials": {
+      "user": "Foo",
+      "pwd": "bar"
+    },
+    "servicesConnectionString": {
+      "prefix": 100,
+      "suffix": 1
+    }
+  }
+}

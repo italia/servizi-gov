@@ -1,0 +1,53 @@
+[
+   {
+        "identifier": "IT",
+        "description": "Italiano",
+        "language": "it"
+    },
+    {
+        "identifier": "IT",
+        "description": "Italian",
+        "language": "en"
+    },
+    {
+        "identifier": "EN",
+        "description": "Inglese",
+        "language": "it"
+    },
+    {
+        "identifier": "EN",
+        "description": "English",
+        "language": "en"
+    },
+    {
+        "identifier": "DE",
+        "description": "Tedesco",
+        "language": "it"
+    },
+    {
+        "identifier": "DE",
+        "description": "German",
+        "language": "en"
+    },
+    {
+        "identifier": "FR",
+        "description": "Francese",
+        "language": "it"
+    },
+    {
+        "identifier": "FR",
+        "description": "Franch",
+        "language": "en"
+    },
+    {
+        "identifier": "ES",
+        "description": "Spagnolo",
+        "language": "it"
+    },
+    {
+        "identifier": "ES",
+        "description": "Spanish",
+        "language": "en"
+    }
+
+]

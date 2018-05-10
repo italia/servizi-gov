@@ -2,7 +2,7 @@
 /* CSS Document 
  * CoreUI - AgID customization
 */
-.ui-autocomplete { z-index:1100; !important }
+
 body{font-size: 1em; background-color: #F6F9FC}
 a{color: #000}
 main a{color: #0654B5; border-bottom: dotted 1px #0654B5}

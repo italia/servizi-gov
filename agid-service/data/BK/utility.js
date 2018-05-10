@@ -107,11 +107,11 @@ function urlComposer(serviceName, environment) {
     var url = ''
 
     switch (environment) {
-        case "test":
-            url = 'http://' + serviceName + '/api/'
+        case "azure":
+            url = 'http://' + serviceName + '.xxxx/api/'
             break;
         case "kong":
-            url = '' + serviceName + '/api/'
+            url = 'http:///' + serviceName + '/api/'
             break;
         case "local":
             //code block

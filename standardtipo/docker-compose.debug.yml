@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  authentication:
+    image: authentication
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 80:80
+      - 9229:9229
+    command: node --inspect .

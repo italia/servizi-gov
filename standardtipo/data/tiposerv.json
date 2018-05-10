@@ -1,0 +1,17 @@
+[
+    {
+        "identifier": "EXT",
+        "description": "Servizio al cittadino",
+        "language": "it"
+    },
+    {
+        "identifier": "INT",
+        "description": "Servizio interno",
+        "language": "it"
+    },
+    {
+        "identifier": "PA2PA",
+        "description": "Servizio tra PA",
+        "language": "it"
+    }
+]

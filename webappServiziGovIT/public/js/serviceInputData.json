@@ -10,6 +10,7 @@
     "urlservizio": "",
     "altroIdentificativo": "",
     "inputRichiesti": true,
+    "serviceType":"",
     "input": [
         {
             "docRifInputRichiesti": "",
@@ -35,13 +36,7 @@
         }
     ],
     "coperturaTemporale": true,
-    "temporalCoverage": {
-        "dataDaTemp": "",
-        "dataATemp": "",
-        "giornoCheck": [
-            ""
-        ]
-    },
+    "temporalCoverage": [],
     "coperturaGeografica": true,
     "inputCoperturaGeog": {
         "regione":[""],

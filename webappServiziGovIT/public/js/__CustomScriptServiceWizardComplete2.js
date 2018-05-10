@@ -1164,7 +1164,7 @@ function editRowContacts(numberRow){
 function loadComponentTabTema(){
     $.ajax({
         dataType: "json",
-        url: '-/api/naces',
+        url: 'http://sginace.xxxx/api/naces',
         success:function(data) {
             $("#wait").css("display", "block");
 
@@ -1186,7 +1186,7 @@ function loadComponentTabTema(){
 
     $.ajax({
         dataType: "json",
-        url: '/api/themes?filter[where][language]=it',
+        url: 'http://sgithemes.xxxx/api/themes?filter[where][language]=it',
         success:function(data) {
             $("#wait").css("display", "block");
 
@@ -1237,7 +1237,7 @@ function popolateSettoreSelect(data){
 function loadLiv1(id){
     $.ajax({
         dataType: "json",
-        url: '-/api/naces',
+        url: 'http://sginace.xxxx/api/naces',
         success:function(data) {
             $("#wait").css("display", "block");
             popolateLv1(data ,[id]);
@@ -1281,7 +1281,7 @@ function popolateLv1(data ,id){
 function loadLiv2(id){
     $.ajax({
         dataType: "json",
-        url: '-/api/naces',
+        url: 'http://sginace.xxxx/api/naces',
         success:function(data) {
             $("#wait").css("display", "block");
             popolateLv2(data ,[id]);
@@ -1325,7 +1325,7 @@ function popolateLv2(data ,id){
 function loadLiv3(id){
     $.ajax({
         dataType: "json",
-        url: '-/api/naces',
+        url: 'http://sginace.xxxx/api/naces',
         success:function(data) {
             $("#wait").css("display", "block");
             popolateLv3(data ,[id]);
@@ -1524,7 +1524,7 @@ function getChildren(idAppend , idFields ,containerBlankChildren){
         type: "POST",
         data: getChildren,
 
-        url: '/api/channels/getChildListById',
+        url: 'http://sgichannel.xxxx/api/channels/getChildListById',
         success:function(data) {
             $("#wait").css("display", "block");
             if(data.response == [] || data.response == "" || data.response == undefined || data.response.length == 0){
@@ -1572,7 +1572,7 @@ function getChildrenEdit(idAppend , idFields ,containerBlankChildren){
         type: "POST",
         data: getChildren,
 
-        url: '/api/channels/getChildListById',
+        url: 'http://sgichannel.xxxx/api/channels/getChildListById',
         success:function(data) {
             $("#wait").css("display", "block");
             if(data.response == [] || data.response == "" || data.response == undefined || data.response.length == 0){
@@ -1613,7 +1613,7 @@ function popolateAutocompleteOrganizz(insertWord , response){
     //liv interazione
     $.ajax({
         dataType: "json",
-        url: '/api/organizations?filter={"where":{"or":[{"name":{"like":"' + insertWord + '.*","options":"i"}},{"organizationCode":{"like":"' + insertWord + '.*","options":"i"}}]},"limit":20}',
+        url: 'http://sgiorganization.xxxx/api/organizations?filter={"where":{"or":[{"name":{"like":"' + insertWord + '.*","options":"i"}},{"organizationCode":{"like":"' + insertWord + '.*","options":"i"}}]},"limit":20}',
         success:function(data) {
             $("#wait").css("display", "block");
             var appName = [];
@@ -1644,7 +1644,7 @@ function popolateAutocompleteOrganizzSelectPA(insertWord , response){
     //liv interazione
     $.ajax({
         dataType: "json",
-        url: '/api/organizations?filter={"where":{"or":[{"name":{"like":"' + insertWord + '.*","options":"i"}},{"organizationCode":{"like":"' + insertWord + '.*","options":"i"}}]},"limit":20}',
+        url: 'http://sgiorganization.xxxx/api/organizations?filter={"where":{"or":[{"name":{"like":"' + insertWord + '.*","options":"i"}},{"organizationCode":{"like":"' + insertWord + '.*","options":"i"}}]},"limit":20}',
         success:function(data) {
             $("#wait").css("display", "block");
             var appName = [];

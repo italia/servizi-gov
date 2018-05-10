@@ -5,22 +5,87 @@ var utility = require('./utility')
 var serviceLang = 'it'
 
 function checkUserCanCreate(userId, codiceIpa) {
-    //call abac module
-    return true
+    var retVal = false
+
+    var attrRange = ["superAdmin", "admin", "DataManager", "DataEntry"]
+    var userToCheck = utility.getUserById(userId)
+
+    if (userToCheck.length == 1) {
+
+        var usr = userToCheck[0]
+
+        if (usr.isSuperAdmin || usr.organizzazioni.findIndex((item) => item.codiceIpa === codiceIpa) > -1) {
+            retVal = true
+        }
+    }
+
+    return retVal
 }
 
 module.exports.checkUserCanCreate = checkUserCanCreate;
 
 function checkUserCanDelete(userId, codiceIpa) {
-    //call abac module
-    return true
+    var attrRange = ["superAdmin", "admin", "DataManager"]
+    var retVal = false
+    var userToCheck = utility.getUserById(userId)
+
+    if (userToCheck.length == 1) {
+
+        var usr = userToCheck[0]
+
+        if (usr.isSuperAdmin ||
+            ((usr.organizzazioni.findIndex((item) => item.codiceIpa === codiceIpa) > -1) &&
+                ((usr.attributes.findIndex((item) => item.name === "admin") > -1)) || (usr.attributes.findIndex((item) => item.name === "DataManager") > -1))) {
+
+            retVal = true
+        }
+    }
+
+    return retVal
 }
 
 module.exports.checkUserCanDelete = checkUserCanDelete;
 
+function checkUserCanResume(userId, codiceIpa) {
+    var attrRange = ["superAdmin", "admin", "DataManager"]
+    var retVal = false
+    var userToCheck = utility.getUserById(userId)
+
+    if (userToCheck.length == 1) {
+
+        var usr = userToCheck[0]
+
+        if (usr.isSuperAdmin ||
+            ((usr.organizzazioni.findIndex((item) => item.codiceIpa === codiceIpa) > -1) &&
+                ((usr.attributes.findIndex((item) => item.name === "admin") > -1)) || (usr.attributes.findIndex((item) => item.name === "DataManager") > -1))) {
+
+            retVal = true
+        }
+    }
+
+    return retVal
+}
+
+module.exports.checkUserCanResume = checkUserCanResume;
+
 function checkUserCanChangeStatus(userId, codiceIpa) {
-    //call abac module
-    return true
+    var attrRange = ["superAdmin", "admin", "DataManager"]
+    var retVal = false
+    var userToCheck = utility.getUserById(userId)
+
+    if (userToCheck.length == 1) {
+
+        var usr = userToCheck[0]
+
+        if (usr.isSuperAdmin ||
+            ((usr.organizzazioni.findIndex((item) => item.codiceIpa === codiceIpa) > -1) &&
+                ((usr.attributes.findIndex((item) => item.name === "admin") > -1)) || (usr.attributes.findIndex((item) => item.name === "DataManager") > -1))) {
+
+            retVal = true
+        }
+    }
+
+    return retVal
 }
 
 module.exports.checkUserCanChangeStatus = checkUserCanChangeStatus;
@@ -32,7 +97,12 @@ function createServiceDataObj(jsonData) {
     serviceData.creation = getUserDateStr(jsonData.userId)
     serviceData.publicationStatus = getPublicationStatusObj("R", jsonData.userId)
     serviceData.codiceIpa = jsonData.codiceIpa
-    serviceData.publicService = getPublicServiceData(jsonData)
+
+    var publicServiceDataObj = getPublicServiceData(jsonData, "")
+
+    serviceData.publicService = publicServiceDataObj
+
+    serviceData.metadataPercentage = getMetadataPercentage(publicServiceDataObj)
 
     return serviceData
 }
@@ -49,6 +119,8 @@ function updateServiceDataObj(jsonData, publicService) {
     cre.user = publicService.creation.user
     serviceData.creation = cre
 
+    serviceData.update = getUserDateStr(jsonData.userId)
+
     var pub = {}
     pub.date = publicService.publicationStatus.date
     pub.user = publicService.publicationStatus.user
@@ -56,7 +128,12 @@ function updateServiceDataObj(jsonData, publicService) {
     serviceData.publicationStatus = pub
 
     serviceData.codiceIpa = jsonData.codiceIpa
-    serviceData.publicService = getPublicServiceData(jsonData)
+
+    var publicServiceDataObj = getPublicServiceData(jsonData, publicService)
+
+    serviceData.publicService = publicServiceDataObj
+
+    serviceData.metadataPercentage = getMetadataPercentage(publicServiceDataObj)
 
     return serviceData
 }
@@ -84,48 +161,92 @@ function getServiceToChange(serviceData) {
     var serviceChange = {}
 
     if (serviceData.version) serviceChange.version = serviceData.version
-    serviceChange.origId = serviceData.id.toString()
-    if(serviceData.creation) serviceChange.creation = serviceData.creation
-    if(serviceData.removal) serviceChange.removal = serviceData.removal
-    if(serviceData.approval) serviceChange.approval = serviceData.approval
-    if(serviceData.publicationStatus) serviceChange.publicationStatus = serviceData.publicationStatus
-    if(serviceData.codiceIpa) serviceChange.codiceIpa = serviceData.codiceIpa
-    if(serviceData.metadataPercentage) serviceChange.metadataPercentage = serviceData.metadataPercentage
-    if(serviceData.publicService) serviceChange.publicService = serviceData.publicService
+    // serviceChange.origId = serviceData.id.toString()
+    serviceChange.origId = serviceData.publicService.id.toString()
+    if (serviceData.creation) serviceChange.creation = serviceData.creation
+    if (serviceData.update) serviceChange.update = serviceData.update
+    if (serviceData.removal) serviceChange.removal = serviceData.removal
+    if (serviceData.approval) serviceChange.approval = serviceData.approval
+    if (serviceData.publicationStatus) serviceChange.publicationStatus = serviceData.publicationStatus
+    if (serviceData.codiceIpa) serviceChange.codiceIpa = serviceData.codiceIpa
+    if (serviceData.metadataPercentage) serviceChange.metadataPercentage = serviceData.metadataPercentage
+    if (serviceData.publicService) serviceChange.publicService = serviceData.publicService
 
     return serviceChange
 }
 
 module.exports.getServiceToChange = getServiceToChange;
 
-function getPublicServiceData(jsonData) {
+function getPublicServiceData(jsonData, oldService) {
     var publicService = {}
+
+    var servName = []
+    var servAltName = []
+    var servDescr = []
 
     if (jsonData.templateRef && jsonData.templateRef != "") {
         var templateData = getTemplate(jsonData.templateRef)
-        publicService.serviceType = templateData.entePa
         publicService.template = getTemplateStr(jsonData.templateRef, templateData.name)
-        publicService.name = getLangValue(serviceLang, templateData.name)
+
+        if (oldService == "") {
+            servName.push(getLangValue(serviceLang, templateData.name))
+        }
+        else {
+            servName = checkAndGetLangValueArray(serviceLang, templateData.name, oldService.publicService.name)
+        }
+
+        publicService.name = servName
+
         if (templateData.publicService.events && (templateData.publicService.events.businessEvent || templateData.publicService.events.lifeEvent)) {
             publicService.events = getEventsFromTemplate(templateData.publicService.events)
         }
-    } else {
-        publicService.serviceType = "NO-TEMPLATE SERVICE"
 
+    }
+    else {
         var tmpl = {}
         tmpl.id = "NO-TEMPLATE SERVICE"
         tmpl.name = "NO-TEMPLATE SERVICE"
         publicService.template = tmpl
 
-        publicService.name = getLangValue(serviceLang, jsonData.nomedelservizio)
+        if (oldService == "") {
+            servName.push(getLangValue(serviceLang, jsonData.nomedelservizio))
+        }
+        else {
+            servName = checkAndGetLangValueArray(serviceLang, jsonData.nomedelservizio, oldService.publicService.name)
+        }
+
+        publicService.name = servName
     }
 
+    if (jsonData.serviceType) publicService.serviceType = jsonData.serviceType
     publicService.id = jsonData.codiceIpa + '_' + Uuid.raw()
-    if (jsonData.nomedelservizioAlternativo) publicService.alternativeName = getLangValue(serviceLang, jsonData.nomedelservizioAlternativo)
+
+    if (jsonData.nomedelservizioAlternativo) {
+        if (oldService == "") {
+            servAltName.push(getLangValue(serviceLang, jsonData.nomedelservizioAlternativo))
+        }
+        else {
+            servAltName = checkAndGetLangValueArray(serviceLang, jsonData.nomedelservizioAlternativo, oldService.publicService.alternativeName)
+        }
+
+        publicService.alternativeName = servAltName
+    }
+
+    if (jsonData.descrizioneServizio) {
+        if (oldService == "") {
+            servDescr.push(getLangValue(serviceLang, jsonData.descrizioneServizio))
+        }
+        else {
+            servDescr = checkAndGetLangValueArray(serviceLang, jsonData.descrizioneServizio, oldService.publicService.description)
+        }
+
+        publicService.description = servDescr
+    }
+
     if (jsonData.altroIdentificativo) publicService.alternativeId = getIdDescription(jsonData.altroIdentificativo)
-    if (jsonData.descrizioneServizio) publicService.description = getLangValue(serviceLang, jsonData.descrizioneServizio)
+
     publicService.status = jsonData.radioOptionStato
-    publicService.urlservizio = jsonData.urlservizio
+    publicService.serviceUrl = jsonData.urlservizio
     if (jsonData.paroleChiaveClass && jsonData.paroleChiaveClass.length > 0) publicService.keywords = getKeywordArr(jsonData.paroleChiaveClass)
     if (jsonData.temaCheck && jsonData.temaCheck.length > 0) publicService.themes = getThemesArray(jsonData.temaCheck)
     var sector = arraySectorAdder(jsonData.settoreservizio_1, jsonData.settoreservizio_2, jsonData.settoreservizio_3, jsonData.settoreservizio_4)
@@ -145,16 +266,49 @@ function getPublicServiceData(jsonData) {
 
     //regulationsAndRules
     //technicalStandards
-    //publicService.requires = 
+    //publicService.requires =
     //publicService.relations =
 
     return publicService
 }
 
+function checkAndGetLangValueArray(serviceLangVal, name, oldServLanValArray) {
+    // var retArray = []
+
+    for (var i = 0; i < oldServLanValArray.length; i++) {
+        if (oldServLanValArray[i].language == serviceLangVal)
+            oldServLanValArray[i] = getLangValue(serviceLangVal, name)
+    }
+    // retArray.push(oldServLanValArray)
+
+    // return retArray
+    return oldServLanValArray
+}
+
+function getLangValueArray(serviceLangVal, name, oldServLanValArray) {
+
+    var checkVal = false
+    var serviceLangValLower = serviceLangVal.toLowerCase()
+
+    for (var i = 0; i < oldServLanValArray.length; i++) {
+        if (oldServLanValArray[i].language == serviceLangValLower) {
+            oldServLanValArray[i] = getLangValue(serviceLangVal, name)
+            checkVal = true
+        }
+    }
+
+    if (!checkVal)
+        oldServLanValArray.push(getLangValue(serviceLangVal, name))
+
+    return oldServLanValArray
+}
+
+module.exports.getLangValueArray = getLangValueArray;
+
 function getLangValue(lang, value) {
     var langValue = {}
 
-    langValue.language = lang
+    langValue.language = lang.toLowerCase()
     langValue.description = value
 
     return langValue
@@ -324,17 +478,21 @@ function getContactsArray(contacts) {
 
 function getTempCoverageArray(tempCoverage) {
     var tCovAr = []
-    var tC = {}
+    tempCoverage.forEach(element => {
+        var tC = {}
 
-    if (tempCoverage.dataDaTemp != '-' || tempCoverage.dataATemp != '-' || tempCoverage.giornoCheck) {
+        if (element.startInterval != '-' || element.endInterval != '-' || element.weekDays.length > 0) {
 
-        if (tempCoverage.dataDaTemp && tempCoverage.dataDaTemp != '-') tC.startInterval = tempCoverage.dataDaTemp
-        if (tempCoverage.dataATemp && tempCoverage.dataATemp != '-') tC.endInterval = tempCoverage.dataATemp
-        if (tempCoverage.giornoCheck && tempCoverage.giornoCheck.length > 0) tC.weekDays = tempCoverage.giornoCheck
+            if (element.startInterval && element.startInterval != '-') tC.startInterval = element.startInterval
+            if (element.endInterval && element.endInterval != '-') tC.endInterval = element.endInterval
+            if (element.weekDays && element.weekDays.length > 0) {
 
-        tCovAr.push(tC)
-    }
+                tC.weekDays = element.weekDays[0].split(",").map(String);
+            }
 
+            tCovAr.push(tC)
+        }
+    });
     return tCovAr
 }
 
@@ -501,7 +659,7 @@ function getChannels(channels) {
 
                 ema.type = email.type
                 if (email.subType != "-") ema.subType = email.subType
-                if (email.phoneNumber != "") ema.email = email.email
+                if (email.email != "") ema.email = email.email
 
                 em.push(ema)
             }
@@ -556,4 +714,14 @@ function getPublicationStatusObj(pubStatusVal, userId) {
     pubStatus.type = pubStatusVal
 
     return pubStatus
+}
+
+function getMetadataPercentage(serviceObj) {
+
+    //property count max 25
+    var propertyCount = Object.keys(serviceObj).length
+
+    var percentage = (propertyCount / 25) * 100
+
+    return (Math.round(percentage) <= 100) ? Math.round(percentage).toString() : '100'
 }

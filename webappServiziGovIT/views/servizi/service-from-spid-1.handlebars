@@ -1,212 +1,198 @@
-  <div class="app-body">
-        
+<div class="app-body">
 
-        <!-- Main content -->
-        <main class="main">
 
-            <!-- Breadcrumb -->
-            <ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-				<li class="breadcrumb-item">Scelta del modello</li>
-            </ol>
+	<!-- Main content -->
+	<main class="main">
 
-            <div class="container-fluid">
-                <div class="animated fadeIn">
-					<p>Per facilitare il tuo lavoro abbiamo preparato dei modelli di servizio con alcuni dati già precompilati. Scegli un modello e inizia da qui: </p>	    
-                   	
-                   	<div class="row">
-						<div class="col-md-2">
-							<figure class="figure">
-								 <img src="/img/componenti/spid.png" class="figure-img img-fluid rounded" alt="Spid">
-								 <figcaption class="figure-caption">Servizio caricato da SPID</figcaption>
-							</figure>
-						</div>
-                  		
-                  		<div class="col-md-10">
-                  		<div class="card">
-						<div class="card-header">
-							<h1>Scelta del modello di servizio</h1>
-						</div>
-						<div class="card-block">
-							<div class="row">
-								<div class="col-md-4">
-									
-									<!-- filtri di ricerca -->
-									<h2 class="opzioni">Opzioni</h2>
-									
+		<!-- Breadcrumb -->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="/dashboard">Dashboard</a>
+			</li>
+			<li class="breadcrumb-item">Scelta del modello</li>
+		</ol>
+
+		<div class="container-fluid">
+			<div class="animated fadeIn">
+				<p>Per facilitare il tuo lavoro abbiamo preparato dei modelli di servizio con alcuni dati già precompilati. Scegli un modello
+					e inizia da qui: </p>
+
+				<div class="row">
+					<div class="col-md-2">
+						<figure class="figure">
+							<img src="/img/componenti/spid.png" class="figure-img img-fluid rounded" alt="Spid">
+							<figcaption class="figure-caption">Servizio caricato da SPID</figcaption>
+						</figure>
+					</div>
+
+					<div class="col-md-10">
+						<div class="card">
+							<div class="card-header">
+								<h1>Scelta del modello di servizio</h1>
+							</div>
+							<div class="card-block">
+								<div class="row">
+									<div class="col-md-4">
+
+										<!-- filtri di ricerca -->
+										<h2 class="opzioni">Opzioni</h2>
+
 										<div class="form-group">
-                                            <label class="form-control-label" for="appendedInputButton">Cerca tra i modelli</label>
-                                            <div class="controls">
-                                                <div class="input-group">
-                                                    <input id="appendedInputButton" class="form-control" size="16" type="text">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button">Vai</button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div> 
-									
-									<div class="form-group mt-2">
-										<h3 class="opzioni">Tipo servizi</h3>
-										<div class="col-md-12">
-											<div class="checkbox">
-												<label for="checkbox1">
-													<input type="checkbox" id="checkbox1" name="checkbox1" value="option1"> Regionali
-												</label>
-											</div>
-											<div class="checkbox">
-												<label for="checkbox2">
-													<input type="checkbox" id="checkbox2" name="checkbox2" value="option2"> Comunali
-												</label>
-											</div>
-											<div class="checkbox">
-												<label for="checkbox3">
-													<input type="checkbox" id="checkbox3" name="checkbox3" value="option3"> ...
-												</label>
+											<label class="form-control-label" for="appendedInputButton">Cerca tra i modelli</label>
+											<div class="controls">
+												<div class="input-group">
+													<input id="appendedInputButton" class="form-control" size="16" type="text">
+													<span class="input-group-btn">
+														<button class="btn btn-default" type="button">Vai</button>
+													</span>
+												</div>
 											</div>
 										</div>
-                                    </div>
-                                    
-									<p class="mt-4"><em>Altre opzioni di ricerca da definire</em></p>
-									
-									<!-- /filtri di ricerca -->
-								
-								</div>
-								<div class="col-md-8">
-									<div class="row">
-									<!-- elenco servizi -->
-										
-										<div class="col-sm-6 col-md-6">
-											<div class="card">
-												<div class="card-header">
-													<h2><a href="/servizi/service-from-spid-2">Nome del servizio</a></h2>
+
+										<div class="form-group mt-2">
+											<h3 class="opzioni">Tipo servizi</h3>
+											<div class="col-md-12">
+												<div class="checkbox">
+													<label for="checkbox1">
+														<input type="checkbox" id="checkbox1" name="checkbox1" value="option1"> Regionali
+													</label>
 												</div>
-												<div class="card-block">
-													Descrizione del servizio - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-													ea commodo consequat.
+												<div class="checkbox">
+													<label for="checkbox2">
+														<input type="checkbox" id="checkbox2" name="checkbox2" value="option2"> Comunali
+													</label>
 												</div>
-												<div class="card-footer">
-													<a href="/servizi/service-from-spid-2" title="Nome del servizio" class="btn btn-primary float-right">Scegli questo modello</a>
+												<div class="checkbox">
+													<label for="checkbox3">
+														<input type="checkbox" id="checkbox3" name="checkbox3" value="option3"> ...
+													</label>
 												</div>
 											</div>
-                        				</div>
-                        				<div class="col-sm-6 col-md-6">
-											<div class="card">
-												<div class="card-header">
-													<h2><a href="/servizi/service-from-spid-2">Nome del servizio</a></h2>
-												</div>
-												<div class="card-block">
-													Descrizione del servizio - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-													ea commodo consequat.
-												</div>
-												<div class="card-footer">
-													<a href="/servizi/service-from-spid-2" title="Nome del servizio" class="btn btn-primary float-right">Scegli questo modello</a>
-												</div>
-											</div>
-                        				</div>
-                        				<div class="col-sm-6 col-md-6">
-											<div class="card">
-												<div class="card-header">
-													<h2><a href="/servizi/service-from-spid-2">Nome del servizio</a></h2>
-												</div>
-												<div class="card-block">
-													Descrizione del servizio - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-													ea commodo consequat.
-												</div>
-												<div class="card-footer">
-													<a href="/servizi/service-from-spid-2" title="Nome del servizio" class="btn btn-primary float-right">Scegli questo modello</a>
-												</div>
-											</div>
-                        				</div>
-                        				<div class="col-sm-6 col-md-6">
-											<div class="card">
-												<div class="card-header">
-													<h2><a href="/servizi/service-from-spid-2">Nome del servizio</a></h2>
-												</div>
-												<div class="card-block">
-													Descrizione del servizio - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-													ea commodo consequat.
-												</div>
-												<div class="card-footer">
-													<a href="" title="Nome del servizio" class="btn btn-primary float-right">Scegli questo modello</a>
-												</div>
-											</div>
-                        				</div>
-                        				
-                        				<ul class="pagination ml-3">
-                                        <li class="page-item"><a class="page-link" href="#">Prev</a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">1</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a>
-                                        </li>
-                                    	</ul>
-                        				
-                        			<!-- /elenco servizi -->
+										</div>
+
+										<p class="mt-4">
+											<em>Altre opzioni di ricerca da definire</em>
+										</p>
+
+										<!-- /filtri di ricerca -->
+
 									</div>
-								
-								</div>								
+									<div class="col-md-8">
+										<div class="row">
+											<!-- elenco servizi -->
+
+											<div class="col-sm-6 col-md-6">
+												<div class="card">
+													<div class="card-header">
+														<h2>
+															<a href="/servizi/service-from-spid-2">Nome del servizio</a>
+														</h2>
+													</div>
+													<div class="card-block">
+														Descrizione del servizio - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+														ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+														suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+													</div>
+													<div class="card-footer">
+														<a href="/servizi/service-from-spid-2" title="Nome del servizio" class="btn btn-primary float-right">Scegli questo modello</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<div class="card">
+													<div class="card-header">
+														<h2>
+															<a href="/servizi/service-from-spid-2">Nome del servizio</a>
+														</h2>
+													</div>
+													<div class="card-block">
+														Descrizione del servizio - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+														ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+														suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+													</div>
+													<div class="card-footer">
+														<a href="/servizi/service-from-spid-2" title="Nome del servizio" class="btn btn-primary float-right">Scegli questo modello</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<div class="card">
+													<div class="card-header">
+														<h2>
+															<a href="/servizi/service-from-spid-2">Nome del servizio</a>
+														</h2>
+													</div>
+													<div class="card-block">
+														Descrizione del servizio - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+														ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+														suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+													</div>
+													<div class="card-footer">
+														<a href="/servizi/service-from-spid-2" title="Nome del servizio" class="btn btn-primary float-right">Scegli questo modello</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<div class="card">
+													<div class="card-header">
+														<h2>
+															<a href="/servizi/service-from-spid-2">Nome del servizio</a>
+														</h2>
+													</div>
+													<div class="card-block">
+														Descrizione del servizio - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+														ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+														suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+													</div>
+													<div class="card-footer">
+														<a href="" title="Nome del servizio" class="btn btn-primary float-right">Scegli questo modello</a>
+													</div>
+												</div>
+											</div>
+
+											<ul class="pagination ml-3">
+												<li class="page-item">
+													<a class="page-link" href="#">Prev</a>
+												</li>
+												<li class="page-item active">
+													<a class="page-link" href="#">1</a>
+												</li>
+												<li class="page-item">
+													<a class="page-link" href="#">2</a>
+												</li>
+												<li class="page-item">
+													<a class="page-link" href="#">3</a>
+												</li>
+												<li class="page-item">
+													<a class="page-link" href="#">4</a>
+												</li>
+												<li class="page-item">
+													<a class="page-link" href="#">Next</a>
+												</li>
+											</ul>
+
+											<!-- /elenco servizi -->
+										</div>
+
+									</div>
+								</div>
+
 							</div>
-
 						</div>
-                   </div>
-						</div>
-                   	
-                   	
 					</div>
-                   	
-                   	
-                   	
-                   	
-                   	
-                    
-                    <!--/.row-->
-                </div>
-            </div>
-            <!-- /.conainer-fluid -->
-        </main>
-
-       
-        <!-- il menù aside forse non serve vedremo -->
-        <aside class="aside-menu">
-            
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane active" id="timeline" role="tabpanel">
-                    <div class="callout m-0 py-2 text-center bg-faded text-uppercase">
-                        <small><b>Storico azioni</b>
-                        </small>
-                    </div>
-                    <hr class="transparent mx-3 my-0">
-                    <div class="callout callout-warning m-0 py-3">
-                        <div><strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
-                        </div>
-						<div><small class="text-guida mr-3"><i class="icon-calendar"></i>&nbsp; 16/07/2017</small></div>
-						<div><small class="text-guida"><i class="icon-user"></i>&nbsp; Umberto Rosini</small></div>
-                    </div>
-                    <hr class="mx-3 my-0">
-                    <div class="callout callout-info m-0 py-3">
-                        
-                        <div><strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
-                        </div>
-						<div><small class="text-guida mr-3"><i class="icon-calendar"></i>&nbsp; 16/07/2017</small></div>
-						<div><small class="text-guida"><i class="icon-user"></i>&nbsp; Umberto Rosini</small></div>
-                    
-                    </div>
-                    <hr class="transparent mx-3 my-0">
-                    
-                </div>
-                
-            </div>
-        </aside>
 
 
-    </div>
+				</div>
+
+
+
+
+
+
+				<!--/.row-->
+			</div>
+		</div>
+		<!-- /.conainer-fluid -->
+	</main>
+
+</div>

@@ -15,17 +15,16 @@
       "type": "template"
     },
     "name": {
-      "type": "langvalue",
-      "required": true
+      "type": ["langvalue"]
     },
     "alternativeName": {
-      "type": "langvalue"
+      "type": ["langvalue"]
     },
     "alternativeId": {
       "type": "alternativeid"
     },
     "description": {
-      "type": "langvalue"
+      "type": ["langvalue"]
     },
     "serviceUrl": {
       "type": "string"

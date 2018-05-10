@@ -1,11 +1,11 @@
 var firstLoad = true;
+
 $(document).ready(function () {
 
     $("#nextTabBottom").click(function (e) {
         $("html, body").animate({
             scrollTop: 0
         }, "slow");
-        console.log(e);
         $(".nav-tabs .active")
             .parent()
             .next("li")
@@ -17,18 +17,17 @@ $(document).ready(function () {
         $("html, body").animate({
             scrollTop: 0
         }, "slow");
-        console.log(e);
         $(".nav-tabs .active")
             .parent()
             .prev("li")
             .find("a")
             .trigger("click");
     });
+
     $("#nextTabTop").click(function (e) {
         $("html, body").animate({
             scrollTop: 0
         }, "slow");
-        console.log(e);
         $(".nav-tabs .active")
             .parent()
             .next("li")
@@ -40,7 +39,6 @@ $(document).ready(function () {
         $("html, body").animate({
             scrollTop: 0
         }, "slow");
-        console.log(e);
         $(".nav-tabs .active")
             .parent()
             .prev("li")
@@ -55,11 +53,6 @@ $(document).ready(function () {
     });
 
     var numberFields;
-
-    $("#modalCanaliErogazioneEdit").on("show.bs.modal", function () {
-        //        popolateOtherFields();
-    });
-
     var loadInfo = false;
     var loadOrganizzazione = false;
     var loadAccesso = false;
@@ -88,29 +81,53 @@ $(document).ready(function () {
         minLength: 4
     });
 
-    //    $("#nomeOrganizz").attr("autocomplete" , "on")
-    //
-    //    $('#paroeChiaveClass').tagsinput({itemValue: 'id'})
-
-
-
-
-
     $("#formCanaleErogazione").validate({
         rules: {
-            urlWebApplErogCan: "url",
-
+            urlWebApplErogCan: {
+                pattern: /^(http|https)?(:\/\/)?[a-zA-Z0-9-\.]+\.[a-z]{2,4}/
+            },
+            urlWebApplErogCanEdit: {
+                pattern: /^(http|https)?(:\/\/)?[a-zA-Z0-9-\.]+\.[a-z]{2,4}/
+            },
             phoneNumberErogCan: {
-                pattern: '/[0-9 +]/gy',
-                minlength: 9,
-                maxlength: 11
+                pattern: '[0-9 +]{5,15}'
+            },
+            phoneNumberErogCanEdit: {
+                pattern: '[0-9 +]{5,15}'
+
             },
             emailErogCan: "email",
+            emailErogCanEdit: "email",
+            streetNameErogCan: "required",
+            numberErogCan: "required",
+            cityErgoCan: "required",
+            postCodeErogCan: "required",
+            streetNameErogCanEdit: "required",
+            numberErogCanEdit: "required",
+            cityErgoCanEdit: "required",
+            postCodeErogCanEdit: "required",
+            tipoCanaleErog: "required",
+
         },
         messages: {
             urlWebApplErogCan: 'Inserire un url valido',
             phoneNumberErogCan: 'Inserire un numero valido',
-            emailErogCan: 'Inserire un\'email valida'
+            emailErogCan: 'Inserire un\'email valida',
+
+            urlWebApplErogCanEdit: 'Inserire un url valido',
+            phoneNumberErogCanEdit: 'Inserire un numero valido',
+            emailErogCanEdit: 'Inserire un\'email valida',
+
+
+            streetNameErogCan: "Campo obbligatorio",
+            numberErogCan: "Campo obbligatorio",
+            cityErgoCan: "Campo obbligatorio",
+            postCodeErogCan: "Campo obbligatorio",
+            streetNameErogCanEdit: "Campo obbligatorio",
+            numberErogCanEdit: "Campo obbligatorio",
+            cityErgoCanEdit: "Campo obbligatorio",
+            postCodeErogCanEdit: "Campo obbligatorio",
+            tipoCanaleErog: "Campo obbligatorio",
 
         },
         errorClass: "errorText",
@@ -122,40 +139,43 @@ $(document).ready(function () {
         }
     });
 
-
-
-
-
-
-
-
-
     $("#infoAForm").validate({
         rules: {
             nomedelservizio: "required",
             descrizioneServizio: "required",
-            urlservizio: "url",
+            urlservizio: {
+                pattern: /^(http|https)?(:\/\/)?[a-zA-Z0-9-\.]+\.[a-z]{2,4}/
+            },
+            docRifInputRichiesti: {
+                pattern: /^(http|https)?(:\/\/)?[a-zA-Z0-9-\.]+\.[a-z]{2,4}/
+            },
             descrizioneServizio: "required",
-            // altroIdentificativo: "required",
 
             nomeInputRichiesti: "required",
             tipoInputRichiesti: "required",
-            //            nomeOutputProdotti:"required",
-            //            tipoOutputProdotti:"required",
-            dataATemp: "required"
+            nomeInputRichiestiEdit: "required",
+            tipoInputRichiestiEdit: "required",
+            nomeOutputProdotti: "required",
+            nomeOutputProdottiEdit: "required",
+            tipoOutputProdotti: "required",
+            tipoOutputProdottiEdit: "required",
+            regioneCoperturaGeog: "required",
         },
         messages: {
             descrizioneServizio: "Campo obbligatorio",
             nomedelservizio: "Campo obbligatorio",
             urlservizio: "Inserire un url valido",
             descrizioneServizio: "Campo obbligatorio",
-            // altroIdentificativo: "Campo obbligatorio",
-
             nomeInputRichiesti: "Campo obbligatorio",
             tipoInputRichiesti: "Campo obbligatorio",
-            //            nomeOutputProdotti:"Campo obbligatorio",
-            //            tipoOutputProdotti:"Campo obbligatorio",
-            dataATemp: "required"
+            docRifInputRichiesti: "Inserire un url valido",
+            nomeInputRichiestiEdit: "Campo obbligatorio",
+            tipoInputRichiestiEdit: "Campo obbligatorio",
+            nomeOutputProdotti: "Campo obbligatorio",
+            nomeOutputProdottiEdit: "Campo obbligatorio",
+            tipoOutputProdotti: "Campo obbligatorio",
+            tipoOutputProdottiEdit: "Campo obbligatorio",
+            regioneCoperturaGeog: "Campo obbligatorio",
         },
         errorClass: "errorText",
         highlight: function (element) {
@@ -169,8 +189,11 @@ $(document).ready(function () {
     $("#temaAForm").validate({
         rules: {
             "temaCheck[]": "required"
+
         },
-        messages: {},
+        messages: {
+            settoreservizio_1: "Campo obbligatorio"
+        },
         errorPlacement: function (error, element) {
             return false;
         },
@@ -296,19 +319,35 @@ $(document).ready(function () {
         else $(".divOpenCanErog").slideUp();
     });
 
-    $("#formContatti").validate({
+    $("#contattoAForm").validate({
         rules: {
             nomeUfficioContatti: "required",
+            nomeUfficioContattiEdit: "required",
             emailContatti: {
                 required: true,
                 email: true
             },
+            emailContattiEdit: {
+                required: true,
+                email: true
+            },
             telefonoContatti: {
-                pattern: /[0-9 +]/g
+                pattern: '[0-9 +]{5,15}'
                 // minlength: 9,
                 // maxlength: 11
             },
-            sitoWebContatti: "url"
+            telefonoContattiEdit: {
+                pattern: '[0-9 +]{5,15}'
+                // minlength: 9,
+                // maxlength: 11
+            },
+
+            sitoWebContatti: {
+                pattern: /^(http|https)?(:\/\/)?[a-zA-Z0-9-\.]+\.[a-z]{2,4}/
+            },
+            sitoWebContattiEdit: {
+                pattern: /^(http|https)?(:\/\/)?[a-zA-Z0-9-\.]+\.[a-z]{2,4}/
+            }
 
         },
         messages: {
@@ -318,8 +357,14 @@ $(document).ready(function () {
                 email: "Inserire email valida"
             },
             telefonoContatti: "Inserire telefono valido",
-            sitoWebContatti: "Inserire url valido"
-
+            sitoWebContatti: "Inserire url valido",
+            nomeUfficioContattiEdit: "Campo obbligatorio",
+            emailContattiEdit: {
+                required: "Campo obbligatorio",
+                email: "Inserire email valida"
+            },
+            telefonoContattiEdit: "Inserire telefono valido",
+            sitoWebContattiEdit: "Inserire url valido",
         },
         errorClass: "errorText",
         highlight: function (element) {
@@ -335,30 +380,46 @@ $(document).ready(function () {
         else $(".divOpenCosti").slideUp();
     });
 
-
-
     $('a[data-toggle="tab"]').on("hide.bs.tab", function (e) {
-
-
 
         if (e.target.tabIndex < e.relatedTarget.tabIndex) {
             var tab = e.relatedTarget.tabIndex;
             tab++
             $('a[tabIndex=' + tab + ']').removeClass("disabled")
             // $("#"+e.relatedTarget.id).removeClass("disabled")
-
-            if (
-                e.target.id != "fineA" &&
-                e.target.id != "faqA" &&
+            if (e.target.id != "faqA" &&
                 e.target.id != "temaA" &&
                 e.target.id != "accessoA"
             ) {
                 var formName = e.target.id;
                 var form = "Form";
-                return $("#" + formName + form).valid();
+                var bool = $("#" + formName + form).valid();
+                if (e.relatedTarget.id == "fineA") {
+                    $("#nextTabBottom").hide()
+                    $("#nextTabTop").hide()
+                    $("#prevTabTop").show()
+                    $("#prevTabBottom").show()
+                } else if (bool) {
+                    $("#nextTabBottom").show()
+                    $("#nextTabTop").show()
+                    $("#prevTabTop").show()
+                    $("#prevTabBottom").show()
+                }
+                return bool
             } else if (e.target.id == "temaA") {
+                if (e.relatedTarget.id == "fineA") {
+                    $("#nextTabBottom").hide()
+                    $("#nextTabTop").hide()
+                    $("#prevTabTop").show()
+                    $("#prevTabBottom").show()
+                } else {
+                    $("#nextTabBottom").show()
+                    $("#nextTabTop").show()
+                    $("#prevTabTop").show()
+                    $("#prevTabBottom").show()
+                }
                 var appTemaBool = false;
-                var appKeyBool = false;
+                // var appKeyBool = false;
                 if (
                     $("#popolateSettoreDiv")
                     .children()
@@ -370,23 +431,22 @@ $(document).ready(function () {
                     $("#alertServizi").show();
                     appTemaBool = false;
                 }
-                if ($("#paroleChiaveClass").length > 0) {
-                    if ($("#paroleChiaveClass").tagsinput('items').length > 0) {
-                        $("#textKey").hide();
-                        $("#paroleChiaveClass").prev().removeClass("errorInput");
-                        appKeyBool = true;
-                    } else {
-                        $("#textKey").show();
-                        $("#paroleChiaveClass").prev().addClass("errorInput");
-                        appKeyBool = false;
-                    }
-                } else
-                    appKeyBool = true;
-
-
-
-                return $("#temaAForm").valid() && appTemaBool && appKeyBool;
+                // if ($("#paroleChiaveClass").length > 0) {
+                //     if ($("#paroleChiaveClass").tagsinput('items').length > 0) {
+                //         $("#textKey").hide();
+                //         $("#paroleChiaveClass").prev().removeClass("errorInput");
+                //         appKeyBool = true;
+                //     } else {
+                //         $("#textKey").show();
+                //         $("#paroleChiaveClass").prev().addClass("errorInput");
+                //         appKeyBool = false;
+                //     }
+                // } else
+                //     appKeyBool = true;
+                // return $("#temaAForm").valid() && appTemaBool && appKeyBool;
+                return $("#temaAForm").valid() && appTemaBool;
             } else if (e.target.id == "accessoA") {
+
                 var appAccessoBool = false;
                 if ($("#divPopolateCanaliErogazione").length > 0) {
                     if (
@@ -402,28 +462,61 @@ $(document).ready(function () {
                     }
                 } else
                     appAccessoBool = true;
+                if (e.relatedTarget.id == "fineA" && $("#accessoAForm").valid() && appAccessoBool) {
+                    $("#nextTabBottom").hide()
+                    $("#nextTabTop").hide()
+                    $("#prevTabTop").show()
+                    $("#prevTabBottom").show()
+                } else {
+                    $("#nextTabBottom").show()
+                    $("#nextTabTop").show()
+                    $("#prevTabTop").show()
+                    $("#prevTabBottom").show()
+                }
                 return $("#accessoAForm").valid() && appAccessoBool;
+            } else if (e.target.id == "faqA") {
+                if (e.relatedTarget.id == "fineA") {
+                    $("#nextTabBottom").hide()
+                    $("#nextTabTop").hide()
+                    $("#prevTabTop").show()
+                    $("#prevTabBottom").show()
+                } else {
+                    $("#nextTabBottom").show()
+                    $("#nextTabTop").show()
+                    $("#prevTabTop").show()
+                    $("#prevTabBottom").show()
+                }
             }
+
+        } else if (e.relatedTarget.id == "infoA") {
+            $("#nextTabBottom").show()
+            $("#nextTabTop").show()
+            $("#prevTabTop").hide()
+            $("#prevTabBottom").hide()
+        } else {
+            $("#nextTabBottom").show()
+            $("#nextTabTop").show()
+            $("#prevTabTop").show()
+            $("#prevTabBottom").show()
         }
     });
-    // if($("#popolateSettoreDiv").children().children().length > 0 ){
-    //   $("#alertServizi").hide();
-    // }else{
-
-    //   $("#alertServizi").show();
-    //   return false
-    // }
 
     $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
         if (e.target.id == "accessoA") {
             if (!loadAccesso) {
                 loadAccesso = true;
+
                 loadComponentTabAccesso();
                 popolateChannelsFromService(template.publicService.channels);
             }
             //            setTimeout($('#livInterazione').select2({"width": "100%" , placeholder: "Please select a country",allowClear: true}),2000);
+            if (sessionStorage.getItem("serviceArchivedId") || sessionStorage.getItem("isArchived") == 'true') {
+                $(":input").prop("disabled", true)
+                $(".btn-primary").prop("disabled", false)
+            }
         } else if (e.target.id == "organizzazioneA") {
             if (!loadOrganizzazione) {
+                $("#selectChoiceQuery").trigger("change");
                 loadComponentTabOrganizzazione();
 
             }
@@ -431,7 +524,10 @@ $(document).ready(function () {
                 PopulateTab3Fields(template);
             }
             loadOrganizzazione = true;
-
+            if (sessionStorage.getItem("serviceArchivedId") || sessionStorage.getItem("isArchived") == 'true') {
+                $(":input").prop("disabled", true)
+                $(".btn-primary").prop("disabled", false)
+            }
         } else if (e.target.id == "temaA") {
             if (!loadTema) {
                 loadComponentTabTema();
@@ -442,16 +538,26 @@ $(document).ready(function () {
                     .attr("id", "bootstrapTags");
                 if (firstLoad) PopulateTab2Fields(template);
             }
+            if (sessionStorage.getItem("serviceArchivedId") || sessionStorage.getItem("isArchived") == 'true') {
+                $(":input").prop("disabled", true)
+                $(".btn-primary").prop("disabled", false)
+            }
         } else if (e.target.id == "contattoA") {
             if (firstLoad && !loadContatti) {
-                PopulateTab4Fields(template);
-
+                if (template) {
+                    PopulateTab4Fields(template);
+                }
                 loadContatti = true
+            }
+            if (sessionStorage.getItem("serviceArchivedId") || sessionStorage.getItem("isArchived") == 'true') {
+                $(":input").prop("disabled", true)
+                $(".btn-primary").prop("disabled", false)
             }
         } else return;
     });
 
     $("#tipoCanaleErog").change(function () {
+
         var selected = $(this)
             .children(":selected")
             .attr("id");
@@ -471,16 +577,6 @@ $(document).ready(function () {
         loadSubTypeNonTelematico(self);
     });
 
-    //    $("#tipoCanaleSitoWeb").change(function(){
-    //        var self = $(this);
-    //        loadSubTypeSitoWeb(self);
-    //    })
-
-    //    $("#tipoCanaleTelefonico").change(function(){
-    //        var self = $(this);
-    //        loadSubTypePhone(self);
-    //    })
-
     $("#tipoAltroCanale").change(function () {
         var self = $(this);
         loadSubTypeAltriCanali(self);
@@ -490,16 +586,6 @@ $(document).ready(function () {
         var self = $(this);
         loadSubTypeNonTelematicoEdit(self);
     });
-
-    //    $("#tipoCanaleSitoWebEdit").change(function(){
-    //        var self = $(this);
-    //        loadSubTypeSitoWebEdit(self);
-    //    })
-
-    //    $("#tipoCanaleTelefonicoEdit").change(function(){
-    //        var self = $(this);
-    //        loadSubTypePhoneEdit(self);
-    //    })
 
     $("#tipoAltroCanaleEdit").change(function (e) {
         console.log(e)
@@ -629,7 +715,7 @@ $(document).ready(function () {
     });
 
     $("#btnAggiungiContatti").click(function () {
-        if ($("#formContatti").valid() == true) {
+        if ($("#contattoAForm").valid() == true) {
             $("#modalContatti").modal("hide");
             popolateContatti();
             blankFieldContacts();
@@ -642,8 +728,6 @@ $(document).ready(function () {
     });
 
     $("#settoreservizio_1").change(function (e) {
-        console.log(e);
-
         $("#settoreservizio_3").html("");
         $("#settoreservizio_4").html("");
         // $("#settoreservizio_1 option").removeAttr("selected");
@@ -656,7 +740,6 @@ $(document).ready(function () {
     });
 
     $("#settoreservizio_1Edit").change(function (e) {
-        console.log(e);
         $("#settoreservizio_3Edit").html("");
         $("#settoreservizio_4Edit").html("");
         // $("#settoreservizio_1 option").removeAttr("selected");
@@ -715,26 +798,32 @@ $(document).ready(function () {
     });
 
     $("#btnAggiungiInput").click(function (e) {
-        popolateInputFields();
+        if ($("#infoAForm").valid())
+            popolateInputFields();
     });
+
     $("#btnAggiungiOutput").click(function (e) {
-        popolateOutputFields();
-        blanckOutputFields();
+        if ($("#infoAForm").valid()) {
+            popolateOutputFields();
+            blanckOutputFields();
+        }
     });
 
     $("#btnAggiungiInputEdit").click(function (e) {
-        var nome = $("#nomeInputRichiestiEdit").val();
-        var tipo = $("#tipoInputRichiestiEdit").val();
-        var doc = $("#docRifInputRichiestiEdit").val();
-        var numberRow = $("#numberOfRowInputEdit").val();
-        $("#nomeInput_" + numberRow).html(nome);
-        $("#tipoInput_" + numberRow).html(tipo);
-        $("#documInput_" + numberRow).html(doc);
-        $("#nomeInputRichiestiEdit").val("");
-        //        //        $("#ruoloOrganizzModalEdit").val("");
-        $("#tipoInputRichiestiEdit").val("");
-        $("#docRifInputRichiestiEdit").val("");
-        $("#modalInputRichiestiEdit").modal("hide");
+        if ($("#infoAForm").valid()) {
+            var nome = $("#nomeInputRichiestiEdit").val();
+            var tipo = $("#tipoInputRichiestiEdit").val();
+            var doc = $("#docRifInputRichiestiEdit").val();
+            var numberRow = $("#numberOfRowInputEdit").val();
+            $("#nomeInput_" + numberRow).html(nome);
+            $("#tipoInput_" + numberRow).html(tipo);
+            $("#documInput_" + numberRow).html(doc);
+            $("#nomeInputRichiestiEdit").val("");
+            //        //        $("#ruoloOrganizzModalEdit").val("");
+            $("#tipoInputRichiestiEdit").val("");
+            $("#docRifInputRichiestiEdit").val("");
+            $("#modalInputRichiestiEdit").modal("hide");
+        }
     });
 
     $("#btnAggiungiOutputEdit").click(function (e) {
@@ -804,17 +893,18 @@ $(document).ready(function () {
     });
 
     $("#btnAggiungiServizio").click(function (e) {
-        popolateServiziFields();
-        blankFieldsServizi();
-        $("#tableSettori").slideDown();
+        if ($("#settoreservizio_1").val()) {
+            popolateServiziFields();
+            blankFieldsServizi();
+            $("#tableSettori").slideDown();
+        }
     });
 
     $("#regioneCoperturaGeog").change(function (e) {
         $("#provCoperturaGeog").html("");
         $("#cittaCoperturaGeog").html("");
-        var idRegione = $(
-            '#regioneCoperturaGeog option[value="' + $(this).val() + '"'
-        ).attr("id");
+        var selector = String.format('#regioneCoperturaGeog option[value="{0}"]', $(this).val())
+        var idRegione = $(selector).attr("id");
         getProvCopert(idRegione);
     });
 
@@ -822,7 +912,7 @@ $(document).ready(function () {
         $("#provCoperturaGeogEdit").html("");
         $("#cittaCoperturaGeogEdit").html("");
         var idRegione = $(
-            '#regioneCoperturaGeogEdit option[value="' + $(this).val() + '"'
+            '#regioneCoperturaGeogEdit option[value="' + $(this).val() + '"]'
         ).attr("id");
         getProvCopertEdit(idRegione);
     });
@@ -830,7 +920,7 @@ $(document).ready(function () {
     $("#provCoperturaGeog").change(function (e) {
         $("#cittaCoperturaGeog").html("");
         var idProv = $(
-            '#provCoperturaGeog option[value="' + $(this).val() + '"'
+            '#provCoperturaGeog option[value="' + $(this).val() + '"]'
         ).attr("id");
         getCittaCopert(idProv);
     });
@@ -838,15 +928,17 @@ $(document).ready(function () {
     $("#provCoperturaGeogEdit").change(function (e) {
         $("#cittaCoperturaGeogEdit").html("");
         var idProv = $(
-            '#provCoperturaGeogEdit option[value="' + $(this).val() + '"'
+            '#provCoperturaGeogEdit option[value="' + $(this).val() + '"]'
         ).attr("id");
         getCittaCopertEdit(idProv);
     });
 
     $("#btnAggiungiGeog").click(function () {
-        popolateFieldsCopertGeog();
-        blankFieldsGeog();
-        $("#modalGeog").modal("hide");
+        if ($("#infoAForm").valid()) {
+            popolateFieldsCopertGeog();
+            blankFieldsGeog();
+            $("#modalGeog").modal("hide");
+        }
     });
 
     $("#btnEditGeog").click(function () {
@@ -875,29 +967,155 @@ $(document).ready(function () {
         $("#cittaCoperturaGeogEdit").val("");
         $("#modalGeogEdit").modal("hide");
     });
+
     $("#btnAggiungiCosto").click(function () {
-        popolateCostoField();
-        blanckInputCosto();
+        if (validateCost()) {
+            popolateCostoField();
+            blanckInputCosto();
+        }
     });
+
     $("#btnModificaCosto").click(function () {
-        var costoEuroEdit = $("#costoEuroEdit").val();
-        var descrizioneCostiEdit = $("#descrizioneCostiEdit").val();
-        var numberOfRowCosto = $("#numberOfRowCosto").val();
-        $("#" + numberOfRowCosto + "_costoEuro").html(costoEuroEdit);
-        $("#" + numberOfRowCosto + "_descrCosto").html(descrizioneCostiEdit);
-        $("#costoEuroEdit").val("");
-        $("#descrizioneCostiEdit").val("");
-        $("#modalCostoEdit").modal("hide");
+        if (validateCostEdit()) {
+            var costoEuroEdit = $("#costoEuroEdit").val();
+            var descrizioneCostiEdit = $("#descrizioneCostiEdit").val();
+            var numberOfRowCosto = $("#numberOfRowCosto").val();
+            $("#" + numberOfRowCosto + "_costoEuro").html(costoEuroEdit);
+            $("#" + numberOfRowCosto + "_descrCosto").html(descrizioneCostiEdit);
+            $("#costoEuroEdit").val("");
+            $("#descrizioneCostiEdit").val("");
+            $("#modalCostoEdit").modal("hide");
+        }
     });
 
-    //firstLoad = false;
+    $("#btnAggiungiTemp").click(function (e) {
+        if (validateCopertGeogToAdd()) {
+            var fieldObj = getFieldTemp();
+            popolateTableCopertTemporale(fieldObj);
+        }
+    })
+    $("#btnEditTemp").click(function (e) {
+        if (validateCopertGeogToAddEdit()) {
+            var fieldObj = getFieldTempEdit();
+            var row = $("#rowCopertGeog").val()
+            editTableCopertGeog(fieldObj, row);
+            $("#modalCopertTempEdit").modal("hide");
+            blankFieldCoperGeogEdit();
+        }
+    })
 
-    // var readOnly=sessionStorage.getItem("readOnly");
-    // if(readOnly =="true"){
-    //     $("body :input").prop("disabled", true);
-    // }
-
+    popolateServiceStatus();
 });
+
+function getFieldTemp() {
+    var obj = {}
+    var giorni = []
+    obj.dataDa = $("#dataDaTemp").val()
+    obj.dataDaOra = $("#dataDaTempOra").val()
+    obj.dataA = $("#dataATemp").val()
+    obj.dataAOra = $("#dataATempOra").val()
+    obj.giorni = []
+    $.each($('input[name="giornoCheck[]"]:checked'), function (i, val) {
+        obj.giorni.push($(val).attr("id"));
+    });
+    return obj
+}
+
+function getFieldTempEdit() {
+    var obj = {}
+    var giorni = []
+    obj.dataDa = $("#dataDaTempEdit").val()
+    obj.dataDaOra = $("#dataDaTempOraEdit").val()
+    obj.dataA = $("#dataATempEdit").val()
+    obj.dataAOra = $("#dataATempOraEdit").val()
+    obj.giorni = []
+    $.each($('input[name="giornoCheckEdit[]"]:checked'), function (i, val) {
+        obj.giorni.push($(val).attr("id"));
+    });
+    return obj
+}
+
+function popolateTableCopertTemporale(obj) {
+    var container = $("#popolateCopertTemporaleDiv");
+    var numberRowTableParziale = container.children().attr("id")
+
+    if (numberRowTableParziale == undefined)
+        numberRowTableParziale = 0
+    else
+        numberRowTableParziale++
+        var giorni = obj.giorni + ""
+    var html = '<tr id="' + numberRowTableParziale + '"><td>'
+    if (obj.dataDa)
+        html += '<span class="fa fa-ellipsis-h" style="margin-right:5px!important;margin-left:5px!important;font-size:15px !important"></span><span> Dal <span id="giorniDaCopert_' + numberRowTableParziale + '">' + obj.dataDa + '</span> Al <span id="giorniACopert_' + numberRowTableParziale + '">' + obj.dataA + '</span></span>';
+    if (obj.dataDaOra)
+        html += '<span class="fa fa-ellipsis-h" style="margin-right:5px!important;margin-left:5px!important;font-size:15px !important"></span><span>Dalle <span id="giorniDaCopertOra_' + numberRowTableParziale + '">' + obj.dataDaOra + '</span> Alle <span id="giorniACopertOra_' + numberRowTableParziale + '">' + obj.dataAOra + '</span></span>';
+    if (giorni.length > 0)
+        html += '<span class="fa fa-ellipsis-h" style="margin-right:5px!important;margin-left:5px!important;font-size:15px !important"></span><span><span id="giorniCopert_' + numberRowTableParziale + '">' + giorni + '</span></span>';
+    html += '</td>';
+    html += '<td><button type="button" onClick="editRowCoperTemp(' +
+        numberRowTableParziale +
+        ')" class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button> <button type="button" onClick="deleteRowCopertTemp(' +
+        numberRowTableParziale +
+        ')" class="btn btn-default btn-icon"><span class="fa fa-times"></span></button></td></tr>';
+    html += '</tr>';
+    container.prepend(html)
+    $("#tableCoperturTempor").show();
+    blankFieldCoperGeog();
+    $("#modalCopertTemp").modal("hide")
+}
+
+function deleteRowCopertTemp(id) {
+    $("#popolateCopertTemporaleDiv #" + id).remove();
+}
+
+function blankFieldCoperGeogEdit() {
+    $("#dataDaTempEdit").val("")
+    $("#dataDaTempOraEdit").val("")
+    $("#dataATempEdit").val("")
+    $("#dataATempOraEdit").val("")
+    $.each($('input[name="giornoCheckEdit[]"]:checked'), function (i, val) {
+        $(val).prop('checked', false);
+    });
+}
+
+function blankFieldCoperGeog() {
+    $("#dataDaTemp").val("")
+    $("#dataDaTempOra").val("")
+    $("#dataATemp").val("")
+    $("#dataATempOra").val("")
+    $.each($('input[name="giornoCheck[]"]:checked'), function (i, val) {
+        $(val).prop('checked', false);
+    });
+}
+
+function editRowCoperTemp(numebrRowCopertGeog) {
+    $("#rowCopertGeog").val(numebrRowCopertGeog)
+    $("#modalCopertTempEdit").modal("show");
+    $("#dataDaTempEdit").datepicker("setDate", $("#giorniDaCopert_" + numebrRowCopertGeog).html())
+    $("#dataDaTempOraEdit").val($("#giorniDaCopertOra_" + numebrRowCopertGeog).html())
+    $("#dataATempEdit").datepicker("setDate", $("#giorniACopert_" + numebrRowCopertGeog).html())
+    $("#dataATempOraEdit").val($("#giorniACopertOra_" + numebrRowCopertGeog).html())
+    var giorni = $("#giorniCopert_" + numebrRowCopertGeog).html().split(",")
+
+    $.each($('input[name="giornoCheckEdit[]"]'), function (i, val) {
+        for (var a = 0; a < giorni.length; a++) {
+            if ($(val).attr("id") == giorni[a])
+                $(val).prop('checked', true);
+        }
+    });
+    // $("#dataATemp").datepicker("setDate", end.substring(0, end.lastIndexOf("-")))
+    // $("#dataATempOra").val(end.substring(end.lastIndexOf("-") + 1, end.length))
+}
+
+function editTableCopertGeog(obj, row) {
+    $("#popolateCopertTemporaleDiv #" + row).remove();
+    popolateTableCopertTemporale(obj)
+    // $("#giorniDaCopert_" + row).html(obj.dataDa)
+    // $("#giorniDaCopertOra_" + row).html(obj.dataDaOra)
+    // $("#giorniACopert_" + row).html(obj.dataA)
+    // $("#giorniACopertOra_" + row).html(obj.dataAOra)
+    // $("#giorniCopert_" + row).html(obj.giorni + "")
+}
 
 function popolateChannelsFromService(templateChannel) {
     $.each(templateChannel, function (i, field) {
@@ -913,77 +1131,137 @@ function popolateChannelsFromService(templateChannel) {
 
                     var inputCanaliErogazioneType =
                         '{"identifier": "' + idType + '", "language": "it"}';
-                    $.ajax({
-                            type: "GET",
-                            // data: inputCanaliErogazione,
-                            async: false,
-                            processData: false,
-                            url: "--api/channels/getDescriptionByIdentifier?identifier=" +
-                                inputCanaliErogazioneType,
-                            success: function (data) {
-                                var json = idType + '":"' + data.response;
-                                // JSON.parse(json)
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"description":"' +
-                                        data.response +
-                                        '","id":"' +
-                                        idType +
-                                        '"}'
-                                    )
-                                );
+                    var name = "sgichannel"
+                    var collection = "channels/"
+                    var query = "getDescriptionByIdentifier?identifier=" + inputCanaliErogazioneType;
+                    var environment = ""
+                    var url = urlComposer(name, collection, query, environment);
 
-                            },
-                            error: function (data) {}
-                        })
-                        .done(function (data) {})
-                        .fail(function () {});
+                    var objData = callService("GET", url);
+                    if (objData.success) {
+                        var data = objData.data
+                        var json = idType + '":"' + data.response;
+                        // JSON.parse(json)
+                        objInput.push(
+                            JSON.parse(
+                                '{"description":"' +
+                                data.response +
+                                '","id":"' +
+                                idType +
+                                '"}'
+                            )
+                        );
+                    } else {
 
+                    }
+
+                    // $.ajax({
+                    //         type: "GET",
+                    //         // data: inputCanaliErogazione,
+                    //         async: false,
+                    //         processData: false,
+                    //         url: "https://sgichannel.xxxx/api/channels/getDescriptionByIdentifier?identifier=" +
+                    //             inputCanaliErogazioneType,
+                    //         success: function (data) {
+                    //             var json = idType + '":"' + data.response;
+                    //             // JSON.parse(json)
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"description":"' +
+                    //                     data.response +
+                    //                     '","id":"' +
+                    //                     idType +
+                    //                     '"}'
+                    //                 )
+                    //             );
+
+                    //         },
+                    //         error: function (data) {}
+                    //     })
                     var inputCanaliErogazioneSubType =
                         '{"identifier": "' + idSubType + '", "language": "it"}';
-                    $.ajax({
-                            type: "GET",
-                            // data: inputCanaliErogazione,
-                            async: false,
-                            processData: false,
-                            url: "--api/channels/getDescriptionByIdentifier?identifier=" +
-                                inputCanaliErogazioneSubType,
-                            success: function (data) {
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"description":"' +
-                                        data.response +
-                                        '","id":"' +
-                                        idSubType +
-                                        '"}'
-                                    )
-                                );
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"id":"accessReferenceCanErog","description":"' +
-                                        value.accessReference.description +
-                                        '"}'
-                                    )
-                                );
+                    var nameCanaliErogSubType = "sgichannel"
+                    var collectionCanaliErogSubType = "channels/"
+                    var queryCanaliErogSubType = "getDescriptionByIdentifier?identifier=" + inputCanaliErogazioneType;
+                    var environmentCanaliErogSubType = ""
+                    var urlCanaliErogSubType = urlComposer(nameCanaliErogSubType, collectionCanaliErogSubType, queryCanaliErogSubType, environmentCanaliErogSubType);
 
-                            },
-                            error: function (data) {}
-                        })
-                        .done(function (data) {
-                            var idCampi = [
-                                "tipoCanaleErog",
-                                "tipoAltroCanale",
-                                "sottotipoAltroCanale",
-                                "accessReferenceCanErog"
-                            ];
-                            popolateCanaliErogazioneService(
-                                templateChannel,
-                                objInput,
-                                idCampi
-                            );
-                            objInput = []
-                        })
-                        .fail(function () {});
+                    var objData = callService("GET", urlCanaliErogSubType);
+                    if (objData.success) {
+                        var data = objData.data
+                        objInput.push(
+                            JSON.parse(
+                                '{"description":"' +
+                                data.response +
+                                '","id":"' +
+                                idSubType +
+                                '"}'
+                            )
+                        );
+                        objInput.push(
+                            JSON.parse(
+                                '{"id":"accessReferenceCanErog","description":"' +
+                                value.accessReference.description +
+                                '"}'
+                            )
+                        );
+                        var idCampi = [
+                            "tipoCanaleErog",
+                            "tipoAltroCanale",
+                            "sottotipoAltroCanale",
+                            "accessReferenceCanErog"
+                        ];
+                        popolateCanaliErogazioneService(
+                            templateChannel,
+                            objInput,
+                            idCampi
+                        );
+                        objInput = []
+                    } else {
+
+                    }
+                    // $.ajax({
+                    //         type: "GET",
+                    //         // data: inputCanaliErogazione,
+                    //         async: false,
+                    //         processData: false,
+                    //         url: "https://sgichannel.xxxx/api/channels/getDescriptionByIdentifier?identifier=" +
+                    //             inputCanaliErogazioneSubType,
+                    //         success: function (data) {
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"description":"' +
+                    //                     data.response +
+                    //                     '","id":"' +
+                    //                     idSubType +
+                    //                     '"}'
+                    //                 )
+                    //             );
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"id":"accessReferenceCanErog","description":"' +
+                    //                     value.accessReference.description +
+                    //                     '"}'
+                    //                 )
+                    //             );
+
+                    //         },
+                    //         error: function (data) {}
+                    //     })
+                    //     .done(function (data) {
+                    //         var idCampi = [
+                    //             "tipoCanaleErog",
+                    //             "tipoAltroCanale",
+                    //             "sottotipoAltroCanale",
+                    //             "accessReferenceCanErog"
+                    //         ];
+                    //         popolateCanaliErogazioneService(
+                    //             templateChannel,
+                    //             objInput,
+                    //             idCampi
+                    //         );
+                    //         objInput = []
+                    //     })
                 });
                 $("#tableCanaliErogazione").show();
 
@@ -1003,49 +1281,91 @@ function popolateChannelsFromService(templateChannel) {
 
 
                     var inputCanaliErogazioneType =
-                        '{"identifier": "' + idType + '", "language": "it"}';
-                    $.ajax({
-                            type: "GET",
-                            // data: inputCanaliErogazione,
-                            async: false,
-                            processData: false,
-                            url: "--api/channels/getDescriptionByIdentifier?identifier=" +
-                                inputCanaliErogazioneType,
-                            success: function (data) {
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"description":"' +
-                                        data.response +
-                                        '","id":"' +
-                                        idType +
-                                        '"}'
-                                    )
-                                );
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"id":"urlWebApplErogCan","description":"' +
-                                        value.url +
-                                        '"}'
-                                    )
-                                );
+                        '{"identifier":"' + idType + '", "language": "it"}';
 
-                            },
-                            error: function (data) {}
-                        })
-                        .done(function (data) {
-                            var idCampi = [
-                                "tipoCanaleErog",
-                                "tipoCanaleSitoWeb",
-                                "urlWebApplErogCan"
-                            ];
-                            popolateCanaliErogazioneService(
-                                templateChannel,
-                                objInput,
-                                idCampi
-                            );
-                            objInput = []
-                        })
-                        .fail(function () {});
+                    var nameCanaliErogType = "sgichannel"
+                    var collectionCanaliErogType = "channels/"
+                    var queryCanaliErogType = "getDescriptionByIdentifier?identifier=" + inputCanaliErogazioneType;
+                    var environmentCanaliErogType = ""
+                    var urlCanaliErogType = urlComposer(nameCanaliErogType, collectionCanaliErogType, queryCanaliErogType, environmentCanaliErogType);
+
+                    var objData = callService("GET", urlCanaliErogType);
+                    if (objData.success) {
+                        var data = objData.data
+
+                        objInput.push(
+                            JSON.parse(
+                                '{"description":"' +
+                                data.response +
+                                '","id":"' +
+                                idType +
+                                '"}'
+                            )
+                        );
+                        objInput.push(
+                            JSON.parse(
+                                '{"id":"urlWebApplErogCan","description":"' +
+                                value.url +
+                                '"}'
+                            )
+                        );
+                        var idCampi = [
+                            "tipoCanaleErog",
+                            "tipoCanaleSitoWeb",
+                            "urlWebApplErogCan"
+                        ];
+                        popolateCanaliErogazioneService(
+                            templateChannel,
+                            objInput,
+                            idCampi
+                        );
+                        objInput = []
+
+                    } else {
+
+                    }
+                    // $.ajax({
+                    //         type: "GET",
+                    //         // data: inputCanaliErogazione,
+                    //         async: false,
+                    //         processData: false,
+                    //         url: "https://sgichannel.xxxx/api/channels/getDescriptionByIdentifier?identifier=" +
+                    //             inputCanaliErogazioneType,
+                    //         success: function (data) {
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"description":"' +
+                    //                     data.response +
+                    //                     '","id":"' +
+                    //                     idType +
+                    //                     '"}'
+                    //                 )
+                    //             );
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"id":"urlWebApplErogCan","description":"' +
+                    //                     value.url +
+                    //                     '"}'
+                    //                 )
+                    //             );
+
+                    //         },
+                    //         error: function (data) {}
+                    //     })
+                    //     .done(function (data) {
+                    //         var idCampi = [
+                    //             "tipoCanaleErog",
+                    //             "tipoCanaleSitoWeb",
+                    //             "urlWebApplErogCan"
+                    //         ];
+                    //         popolateCanaliErogazioneService(
+                    //             templateChannel,
+                    //             objInput,
+                    //             idCampi
+                    //         );
+                    //         objInput = []
+                    //     })
+                    //     .fail(function () {});
                 });
                 $("#tableCanaliErogazione").show();
                 break;
@@ -1059,51 +1379,88 @@ function popolateChannelsFromService(templateChannel) {
                     var labelType;
                     var labelSubType;
                     objInput.push(JSON.parse('{"name":"Telefono"}'));
-
-
                     var inputCanaliErogazioneType =
                         '{"identifier": "' + idType + '", "language": "it"}';
-                    $.ajax({
-                            type: "GET",
-                            // data: inputCanaliErogazione,
-                            async: false,
-                            processData: false,
-                            url: "--api/channels/getDescriptionByIdentifier?identifier=" +
-                                inputCanaliErogazioneType,
-                            success: function (data) {
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"description":"' +
-                                        data.response +
-                                        '","id":"' +
-                                        idType +
-                                        '"}'
-                                    )
-                                );
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"id":"phoneNumber","description":"' +
-                                        value.phoneNumber +
-                                        '"}'
-                                    )
-                                );
-                            },
-                            error: function (data) {}
-                        })
-                        .done(function (data) {
-                            var idCampi = [
-                                "tipoCanaleErog",
-                                "tipoCanaleTelefonico",
-                                "phoneNumberErogCan"
-                            ];
-                            popolateCanaliErogazioneService(
-                                templateChannel,
-                                objInput,
-                                idCampi
-                            );
-                            objInput = []
-                        })
-                        .fail(function () {});
+                    var nameCanaliErogType = "sgichannel"
+                    var collectionCanaliErogType = "channels/"
+                    var queryCanaliErogType = "getDescriptionByIdentifier?identifier=" + inputCanaliErogazioneType;
+                    var environmentCanaliErogType = ""
+                    var urlCanaliErogType = urlComposer(nameCanaliErogType, collectionCanaliErogType, queryCanaliErogType, environmentCanaliErogType);
+                    var objData = callService("GET", urlCanaliErogType);
+                    if (objData.success) {
+                        var data = objData.data
+                        objInput.push(
+                            JSON.parse(
+                                '{"description":"' +
+                                data.response +
+                                '","id":"' +
+                                idType +
+                                '"}'
+                            )
+                        );
+                        objInput.push(
+                            JSON.parse(
+                                '{"id":"phoneNumber","description":"' +
+                                value.phoneNumber +
+                                '"}'
+                            )
+                        );
+                        var idCampi = [
+                            "tipoCanaleErog",
+                            "tipoCanaleTelefonico",
+                            "phoneNumberErogCan"
+                        ];
+                        popolateCanaliErogazioneService(
+                            templateChannel,
+                            objInput,
+                            idCampi
+                        );
+                        objInput = []
+
+                    } else {
+
+                    }
+                    // $.ajax({
+                    //         type: "GET",
+                    //         // data: inputCanaliErogazione,
+                    //         async: false,
+                    //         processData: false,
+                    //         url: "https://sgichannel.xxxx/api/channels/getDescriptionByIdentifier?identifier=" +
+                    //             inputCanaliErogazioneType,
+                    //         success: function (data) {
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"description":"' +
+                    //                     data.response +
+                    //                     '","id":"' +
+                    //                     idType +
+                    //                     '"}'
+                    //                 )
+                    //             );
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"id":"phoneNumber","description":"' +
+                    //                     value.phoneNumber +
+                    //                     '"}'
+                    //                 )
+                    //             );
+                    //         },
+                    //         error: function (data) {}
+                    //     })
+                    //     .done(function (data) {
+                    //         var idCampi = [
+                    //             "tipoCanaleErog",
+                    //             "tipoCanaleTelefonico",
+                    //             "phoneNumberErogCan"
+                    //         ];
+                    //         popolateCanaliErogazioneService(
+                    //             templateChannel,
+                    //             objInput,
+                    //             idCampi
+                    //         );
+                    //         objInput = []
+                    //     })
+                    //     .fail(function () {});
                 });
                 $("#tableCanaliErogazione").show();
 
@@ -1122,47 +1479,85 @@ function popolateChannelsFromService(templateChannel) {
 
                     var inputCanaliErogazioneType =
                         '{"identifier": "' + idType + '", "language": "it"}';
-                    $.ajax({
-                            type: "GET",
-                            // data: inputCanaliErogazione,
-                            async: false,
-                            processData: false,
-                            url: "--api/channels/getDescriptionByIdentifier?identifier=" +
-                                inputCanaliErogazioneType,
-                            success: function (data) {
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"description":"' +
-                                        data.response +
-                                        '","id":"' +
-                                        idType +
-                                        '"}'
-                                    )
-                                );
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"id":"email","description":"' +
-                                        value.email +
-                                        '"}'
-                                    )
-                                );
-                            },
-                            error: function (data) {}
-                        })
-                        .done(function (data) {
-                            var idCampi = [
-                                "tipoCanaleErog",
-                                "tipoCanaleEmail",
-                                "emailErogCan"
-                            ];
-                            popolateCanaliErogazioneService(
-                                templateChannel,
-                                objInput,
-                                idCampi
-                            );
-                            objInput = []
-                        })
-                        .fail(function () {});
+                    var nameCanaliErogType = "sgichannel"
+                    var collectionCanaliErogType = "channels/"
+                    var queryCanaliErogType = "getDescriptionByIdentifier?identifier=" + inputCanaliErogazioneType;
+                    var environmentCanaliErogType = ""
+                    var urlCanaliErogType = urlComposer(nameCanaliErogType, collectionCanaliErogType, queryCanaliErogType, environmentCanaliErogType);
+                    var objData = callService("GET", urlCanaliErogType);
+                    if (objData.success) {
+                        var data = objData.data
+                        objInput.push(
+                            JSON.parse(
+                                '{"description":"' +
+                                data.response +
+                                '","id":"' +
+                                idType +
+                                '"}'
+                            )
+                        );
+                        objInput.push(
+                            JSON.parse(
+                                '{"id":"email","description":"' +
+                                value.email +
+                                '"}'
+                            )
+                        );
+                        var idCampi = [
+                            "tipoCanaleErog",
+                            "tipoCanaleEmail",
+                            "emailErogCan"
+                        ];
+                        popolateCanaliErogazioneService(
+                            templateChannel,
+                            objInput,
+                            idCampi
+                        );
+                        objInput = []
+                    } else {
+
+                    }
+                    // $.ajax({
+                    //         type: "GET",
+                    //         // data: inputCanaliErogazione,
+                    //         async: false,
+                    //         processData: false,
+                    //         url: "https://sgichannel.xxxx/api/channels/getDescriptionByIdentifier?identifier=" +
+                    //             inputCanaliErogazioneType,
+                    //         success: function (data) {
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"description":"' +
+                    //                     data.response +
+                    //                     '","id":"' +
+                    //                     idType +
+                    //                     '"}'
+                    //                 )
+                    //             );
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"id":"email","description":"' +
+                    //                     value.email +
+                    //                     '"}'
+                    //                 )
+                    //             );
+                    //         },
+                    //         error: function (data) {}
+                    //     })
+                    //     .done(function (data) {
+                    //         var idCampi = [
+                    //             "tipoCanaleErog",
+                    //             "tipoCanaleEmail",
+                    //             "emailErogCan"
+                    //         ];
+                    //         popolateCanaliErogazioneService(
+                    //             templateChannel,
+                    //             objInput,
+                    //             idCampi
+                    //         );
+                    //         objInput = []
+                    //     })
+                    //     .fail(function () {});
                 });
                 $("#tableCanaliErogazione").show();
 
@@ -1181,103 +1576,194 @@ function popolateChannelsFromService(templateChannel) {
 
                     var inputCanaliErogazioneType =
                         '{"identifier": "' + idType + '", "language": "it"}';
-                    $.ajax({
-                            type: "GET",
-                            // data: inputCanaliErogazione,
-                            async: false,
-                            processData: false,
-                            url: "--api/channels/getDescriptionByIdentifier?identifier=" +
-                                inputCanaliErogazioneType,
-                            success: function (data) {
-                                var json = idType + '":"' + data.response;
-                                // JSON.parse(json)
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"description":"' +
-                                        data.response +
-                                        '","id":"' +
-                                        idType +
-                                        '"}'
-                                    )
-                                );
-                            },
-                            error: function (data) {}
-                        })
-                        .done(function (data) {})
-                        .fail(function () {});
+                    var nameCanaliErogType = "sgichannel"
+                    var collectionCanaliErogType = "channels/"
+                    var queryCanaliErogType = "getDescriptionByIdentifier?identifier=" + inputCanaliErogazioneType;
+                    var environmentCanaliErogType = ""
+                    var urlCanaliErogType = urlComposer(nameCanaliErogType, collectionCanaliErogType, queryCanaliErogType, environmentCanaliErogType);
+
+                    var objData = callService("GET", urlCanaliErogType);
+                    if (objData.success) {
+                        var data = objData.data
+                        var json = idType + '":"' + data.response;
+                        // JSON.parse(json)
+                        objInput.push(
+                            JSON.parse(
+                                '{"description":"' +
+                                data.response +
+                                '","id":"' +
+                                idType +
+                                '"}'
+                            )
+                        );
+
+                    } else {
+
+                    }
+
+                    // $.ajax({
+                    //         type: "GET",
+                    //         // data: inputCanaliErogazione,
+                    //         async: false,
+                    //         processData: false,
+                    //         url: "https://sgichannel.xxxx/api/channels/getDescriptionByIdentifier?identifier=" +
+                    //             inputCanaliErogazioneType,
+                    //         success: function (data) {
+                    //             var json = idType + '":"' + data.response;
+                    //             // JSON.parse(json)
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"description":"' +
+                    //                     data.response +
+                    //                     '","id":"' +
+                    //                     idType +
+                    //                     '"}'
+                    //                 )
+                    //             );
+                    //         },
+                    //         error: function (data) {}
+                    //     })
+
 
                     var inputCanaliErogazioneSubType =
                         '{"identifier": "' + idSubType + '", "language": "it"}';
-                    $.ajax({
-                            type: "GET",
-                            // data: inputCanaliErogazione,
-                            async: false,
-                            processData: false,
-                            url: "--api/channels/getDescriptionByIdentifier?identifier=" +
-                                inputCanaliErogazioneSubType,
-                            success: function (data) {
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"description":"' +
-                                        data.response +
-                                        '","id":"' +
-                                        idSubType +
-                                        '"}'
-                                    )
-                                );
-                                objInput.push(
-                                    JSON.parse(
-                                        '{"id":"locationNameErogCan","description":"' + value.locationName.description + '"}'));
+                    var nameCanaliErogTypeSub = "sgichannel"
+                    var collectionCanaliErogTypeSub = "channels/"
+                    var queryCanaliErogTypeSub = "getDescriptionByIdentifier?identifier=" + inputCanaliErogazioneSubType;
+                    var environmentCanaliErogTypeSub = ""
+                    var urlCanaliErogTypeSub = urlComposer(nameCanaliErogTypeSub, collectionCanaliErogTypeSub, queryCanaliErogTypeSub, environmentCanaliErogTypeSub);
+
+                    var objData = callService("GET", urlCanaliErogTypeSub);
+                    if (objData.success) {
+                        var data = objData.data;
+                        objInput.push(
+                            JSON.parse(
+                                '{"description":"' +
+                                data.response +
+                                '","id":"' +
+                                idSubType +
+                                '"}'
+                            )
+                        );
+                        objInput.push(
+                            JSON.parse(
+                                '{"id":"locationNameErogCan","description":"' + value.locationName.description + '"}'));
 
 
-                                objInput.push(
-                                    JSON.parse('{"id":"streetTypeErogCan","description":"' + value.streetType + '"}'));
-                                objInput.push(
-                                    JSON.parse('{"id":"streetNameErogCan","description":"' + value.streetName + '"}'));
-                                objInput.push(
-                                    JSON.parse('{"id":"numberErogCan","description":"' + value.number + '"}'));
-                                objInput.push(
-                                    JSON.parse('{"id":"cityErgoCan","description":"' + value.city + '"}'));
-                                objInput.push(
-                                    JSON.parse('{"id":"postCodeErogCan","description":"' + value.postCode + '"}'));
-                                objInput.push(
-                                    JSON.parse('{"id":"typeGeometryErogCan","description":"' + value.geometry.type + '"}'));
-                                objInput.push(
-                                    JSON.parse('{"id":"latitudeCanErog","description":"' + value.geometry.latitude + '"}'));
-                                objInput.push(
-                                    JSON.parse('{"id":"longitudeCanErog","description":"' + value.geometry.longitude + '"}'));
+                        objInput.push(
+                            JSON.parse('{"id":"streetTypeErogCan","description":"' + value.streetType + '"}'));
+                        objInput.push(
+                            JSON.parse('{"id":"streetNameErogCan","description":"' + value.streetName + '"}'));
+                        objInput.push(
+                            JSON.parse('{"id":"numberErogCan","description":"' + value.number + '"}'));
+                        objInput.push(
+                            JSON.parse('{"id":"cityErgoCan","description":"' + value.city + '"}'));
+                        objInput.push(
+                            JSON.parse('{"id":"postCodeErogCan","description":"' + value.postCode + '"}'));
+                        objInput.push(
+                            JSON.parse('{"id":"typeGeometryErogCan","description":"' + value.geometry.type + '"}'));
+                        objInput.push(
+                            JSON.parse('{"id":"latitudeCanErog","description":"' + value.geometry.latitude + '"}'));
+                        objInput.push(
+                            JSON.parse('{"id":"longitudeCanErog","description":"' + value.geometry.longitude + '"}'));
+
+                        var idCampi = [
+                            "tipoCanaleErog",
+                            "tipoCanaleNonTelematico",
+                            "sottotipoCanaleNonTelematico",
+                            "locationNameErogCan",
+                            "streetTypeErogCan",
+                            "streetNameErogCan",
+                            "numberErogCan",
+                            "cityErgoCan",
+                            "postCodeErogCan",
+                            "typeGeometryErogCan",
+
+                            "latitudeCanErog",
+                            "longitudeCanErog"
 
 
-                            },
-                            error: function (data) {}
-                        })
-                        .done(function (data) {
-                            var idCampi = [
-                                "tipoCanaleErog",
-                                "tipoCanaleNonTelematico",
-                                "sottotipoCanaleNonTelematico",
-                                "locationNameErogCan",
-                                "streetTypeErogCan",
-                                "streetNameErogCan",
-                                "numberErogCan",
-                                "cityErgoCan",
-                                "postCodeErogCan",
-                                "typeGeometryErogCan",
+                        ];
+                        popolateCanaliErogazioneService(
+                            templateChannel,
+                            objInput,
+                            idCampi
+                        );
+                        objInput = []
 
-                                "latitudeCanErog",
-                                "longitudeCanErog"
+                    } else {
+
+                    }
+                    // $.ajax({
+                    //         type: "GET",
+                    //         // data: inputCanaliErogazione,
+                    //         async: false,
+                    //         processData: false,
+                    //         url: "https://sgichannel.xxxx/api/channels/getDescriptionByIdentifier?identifier=" +
+                    //             inputCanaliErogazioneSubType,
+                    //         success: function (data) {
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"description":"' +
+                    //                     data.response +
+                    //                     '","id":"' +
+                    //                     idSubType +
+                    //                     '"}'
+                    //                 )
+                    //             );
+                    //             objInput.push(
+                    //                 JSON.parse(
+                    //                     '{"id":"locationNameErogCan","description":"' + value.locationName.description + '"}'));
 
 
-                            ];
-                            popolateCanaliErogazioneService(
-                                templateChannel,
-                                objInput,
-                                idCampi
-                            );
-                            objInput = []
+                    //             objInput.push(
+                    //                 JSON.parse('{"id":"streetTypeErogCan","description":"' + value.streetType + '"}'));
+                    //             objInput.push(
+                    //                 JSON.parse('{"id":"streetNameErogCan","description":"' + value.streetName + '"}'));
+                    //             objInput.push(
+                    //                 JSON.parse('{"id":"numberErogCan","description":"' + value.number + '"}'));
+                    //             objInput.push(
+                    //                 JSON.parse('{"id":"cityErgoCan","description":"' + value.city + '"}'));
+                    //             objInput.push(
+                    //                 JSON.parse('{"id":"postCodeErogCan","description":"' + value.postCode + '"}'));
+                    //             objInput.push(
+                    //                 JSON.parse('{"id":"typeGeometryErogCan","description":"' + value.geometry.type + '"}'));
+                    //             objInput.push(
+                    //                 JSON.parse('{"id":"latitudeCanErog","description":"' + value.geometry.latitude + '"}'));
+                    //             objInput.push(
+                    //                 JSON.parse('{"id":"longitudeCanErog","description":"' + value.geometry.longitude + '"}'));
 
-                        })
-                        .fail(function () {});
+
+                    //         },
+                    //         error: function (data) {}
+                    //     })
+                    //     .done(function (data) {
+                    //         var idCampi = [
+                    //             "tipoCanaleErog",
+                    //             "tipoCanaleNonTelematico",
+                    //             "sottotipoCanaleNonTelematico",
+                    //             "locationNameErogCan",
+                    //             "streetTypeErogCan",
+                    //             "streetNameErogCan",
+                    //             "numberErogCan",
+                    //             "cityErgoCan",
+                    //             "postCodeErogCan",
+                    //             "typeGeometryErogCan",
+
+                    //             "latitudeCanErog",
+                    //             "longitudeCanErog"
+
+
+                    //         ];
+                    //         popolateCanaliErogazioneService(
+                    //             templateChannel,
+                    //             objInput,
+                    //             idCampi
+                    //         );
+                    //         objInput = []
+
+                    //     })
+                    //     .fail(function () {});
                 });
                 $("#tableCanaliErogazione").show();
 
@@ -1326,7 +1812,7 @@ function popolateCanaliErogazioneService(templateLoad, objInput, idCampi) {
     $.each(objInput, function (key, value) {
         if (key != 0) {
             html +=
-                "<span id='" +
+                "<div style='margin-left:0px' class='row'><span id='" +
                 idCampi[key] +
                 "_" +
                 number +
@@ -1334,7 +1820,7 @@ function popolateCanaliErogazioneService(templateLoad, objInput, idCampi) {
                 value.id +
                 "'>" +
                 value.description +
-                "</span> <br/>";
+                "</span> </div>";
             value = "";
         }
     });
@@ -1620,38 +2106,89 @@ function loadSubTypePhoneEdit(self) {
 }
 
 function loadComponentTabOrganizzazione() {
-    //$("#wait").css("display", "block");
+    // defaultOrganizzazione()
+    //  startWait("ruolo", "Caricamento ruoli in corso...")
+    var name = "sgiroletype"
+    var collection = "roles"
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data;
+        //$("#wait").css("display", "block");
+        popolateRoles(data);
+        stopWait("ruolo")
+    } else {
+        $("#ruoloOrganizzModal").html("");
+        $("#ruoloOrganizzModalEdit").html("");
+        error("Errore durante il caricamento dei ruoli")
+        $("#ruoloOrganizzModal").append(
+            "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+        );
+        $("#ruoloOrganizzModalEdit").append(
+            "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+        );
+        // $("#wait").css("display", "none");
 
-    $.ajax({
-            dataType: "json",
-            url: "-/api/roles",
-            //url:'https://',
-            success: function (data) {
-                $("#wait").css("display", "block");
+    }
 
-                popolateRoles(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sgiroletype.xxxx/api/roles",
+    //         //url:'https://',
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
 
-                //            $("#ruoloOrganizzazioni").html("");
-                $("#ruoloOrganizzModal").html("");
-                $("#ruoloOrganizzModalEdit").html("");
-                //            $("#ruoloOrganizzazioni").append('<option value selected disabled>SERVIZIO NON DISPONIBILE</option>');
-                $("#ruoloOrganizzModal").append(
-                    "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                );
-                $("#ruoloOrganizzModalEdit").append(
-                    "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    //             popolateRoles(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             //            $("#ruoloOrganizzazioni").html("");
+    //             $("#ruoloOrganizzModal").html("");
+    //             $("#ruoloOrganizzModalEdit").html("");
+    //             //            $("#ruoloOrganizzazioni").append('<option value selected disabled>SERVIZIO NON DISPONIBILE</option>');
+    //             $("#ruoloOrganizzModal").append(
+    //                 "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //             $("#ruoloOrganizzModalEdit").append(
+    //                 "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
+}
+
+function defaultOrganizzazione() {
+    var name = sessionStorage.getItem("description")
+    var role = "titolare"
+    var a = 1
+    var appRows = "";
+    appRows += '<tr id="' + a + '"><td id="' + a + '_organizz">';
+    appRows += name;
+    appRows += '</td><td id="' + a + '_ruolo">';
+    appRows += role;
+    appRows += '</td><td id="' + a + '_dal">';
+
+    appRows += '</td><td id="' + a + '_al">';
+
+    appRows +=
+        '</td><td><button type="button" onClick="editRowOrganiz(' +
+        a +
+        ')" class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button> <button type="button" onClick="deleteRowOrganiz(' +
+        a +
+        ')" class="btn btn-default btn-icon"><span class="fa fa-times"></span></button></td></tr>';
+
+
+    $("#bodyOrganizz").prepend(appRows);
+    $("#tableOrg").show();
+
 }
 
 function popolateRoles(result) {
@@ -1660,10 +2197,10 @@ function popolateRoles(result) {
     $("#ruoloOrganizzModalEdit").html("");
     //    $("#ruoloOrganizzazioni").append('<option value selected disabled>Seleziona un campo</option>');
     $("#ruoloOrganizzModal").append(
-        "<option value selected disabled>Seleziona un campo</option>"
+        "<option value selected disabled>Scegli</option>"
     );
     $("#ruoloOrganizzModalEdit").append(
-        "<option value selected disabled>Seleziona un campo</option>"
+        "<option value selected disabled>Scegli</option>"
     );
     $.each(result, function (i, field) {
         var z = result;
@@ -1676,71 +2213,82 @@ function popolateRoles(result) {
 }
 
 function loadComponentTabInfo() {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/serviceinputoutputs?filter[where][language]=it",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateInputOutput(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-                $("#tipoInputRichiesti").html("");
-                $("#tipoOutputProdotti").html("");
-                $("#tipoInputRichiestiEdit").html("");
-                $("#tipoInputRichiesti").append(
-                    "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                );
-                $("#tipoOutputProdotti").append(
-                    "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                );
-                $("#tipoInputRichiestiEdit").append(
-                    "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    //startWait("info", "Caricamento tab in corso...")
+    var name = "sgiserviceinputoutput"
+    var collection = "serviceinputoutputs"
+    var query = "?filter[where][language]=it"
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment)
 
-    $.ajax({
-            dataType: "json",
-            url: "-/api/regions",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateRegionCopGeog(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-                //   $("#tipoInputRichiesti").html("");
-                //   $("#tipoOutputProdotti").html("");
-                //   $("#tipoInputRichiestiEdit").html("");
-                //   $("#tipoInputRichiesti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoOutputProdotti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoInputRichiestiEdit").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    var objData = callService("GET", url);
+    if (objData.success) {
+        // $("#wait").css("display", "block");
+        popolateInputOutput(objData.data);
+    } else {
+        //stopWait("info")
+        // $("#wait").css("display", "block");
+        $("#tipoInputRichiesti").html("");
+        $("#tipoOutputProdotti").html("");
+        $("#tipoInputRichiestiEdit").html("");
+        $("#tipoInputRichiesti").append(
+            "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+        );
+        $("#tipoOutputProdotti").append(
+            "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+        );
+        $("#tipoInputRichiestiEdit").append(
+            "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
+
+
+    var nameCopertGeog = "sgispatialdefinition"
+    var collectionCopertGeog = "regions"
+    var queryCopertGeog = ""
+    var environmentCopertGeog = ""
+    var urlCopertGeog = urlComposer(nameCopertGeog, collectionCopertGeog, queryCopertGeog, environmentCopertGeog)
+    var objData = callService("GET", urlCopertGeog);
+    if (objData.success) {
+        var data = objData.data
+        // $("#wait").css("display", "block");
+        popolateRegionCopGeog(data);
+        stopWait("info")
+        // $("#wait").css("display", "none");
+    } else {
+        // $("#wait").css("display", "block");
+        stopWait("info")
+    }
+
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sgispatialdefinition.xxxx/api/regions",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateRegionCopGeog(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+    //             //   $("#tipoInputRichiesti").html("");
+    //             //   $("#tipoOutputProdotti").html("");
+    //             //   $("#tipoInputRichiestiEdit").html("");
+    //             //   $("#tipoInputRichiesti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoOutputProdotti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoInputRichiestiEdit").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //         }
+    //     })
+
 }
 
 function popolateRegionCopGeog(data) {
     // console.log(data);
     $("#regioneCoperturaGeog").append(
-        "<option selected disabled value>Seleziona un elemento</option>"
+        "<option selected disabled value>Scegli</option>"
     );
     $.each(data, function (i, value) {
         // console.log(value);
@@ -1776,79 +2324,117 @@ function popolateRegionCopGeogEdit(data) {
 }
 
 function getProvCopert(idRegione) {
-    var url =
-        "-/api/provinces?filter[where][codiceRegione]=" +
-        idRegione;
+    // var url =
+    //     "https://sgispatialdefinition.xxxx/api/provinces?filter[where][codiceRegione]=" +
+    //     idRegione;
+    var name = "sgispatialdefinition"
+    var collection = "provinces"
+    var query = "?filter[where][codiceRegione]=" + idRegione;
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
+        popolateProvCopert(data);
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+    }
 
-    $.ajax({
-            dataType: "json",
-            url: url,
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateProvCopert(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-                //   $("#tipoInputRichiesti").html("");
-                //   $("#tipoOutputProdotti").html("");
-                //   $("#tipoInputRichiestiEdit").html("");
-                //   $("#tipoInputRichiesti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoOutputProdotti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoInputRichiestiEdit").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+
+    // $.ajax({
+    //         dataType: "json",
+    //         url: url,
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateProvCopert(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+    //             //   $("#tipoInputRichiesti").html("");
+    //             //   $("#tipoOutputProdotti").html("");
+    //             //   $("#tipoInputRichiestiEdit").html("");
+    //             //   $("#tipoInputRichiesti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoOutputProdotti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoInputRichiestiEdit").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function getProvCopertEdit(idRegione) {
-    var url =
-        "-/api/provinces?filter[where][codiceRegione]=" +
-        idRegione;
+    // var url =
+    //     "https://sgispatialdefinition.xxxx/api/provinces?filter[where][codiceRegione]=" +
+    //     idRegione;
 
-    $.ajax({
-            dataType: "json",
-            url: url,
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateProvCopertEdit(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-                //   $("#tipoInputRichiesti").html("");
-                //   $("#tipoOutputProdotti").html("");
-                //   $("#tipoInputRichiestiEdit").html("");
-                //   $("#tipoInputRichiesti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoOutputProdotti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoInputRichiestiEdit").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-            var numberRow = $("#numberRowCopertGeog").val();
-            var provincia = $("#provincia_" + numberRow).html();
-            $("#provCoperturaGeogEdit").val(provincia);
-            $("#provCoperturaGeogEdit").trigger("change");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    var name = "sgispatialdefinition"
+    var collection = "provinces"
+    var query = "?filter[where][codiceRegione]=" + idRegione;
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
+        popolateProvCopertEdit(data);
+        $("#wait").css("display", "none");
+        var numberRow = $("#numberRowCopertGeog").val();
+        var provincia = $("#provincia_" + numberRow).html();
+        $("#provCoperturaGeogEdit").val(provincia);
+        $("#provCoperturaGeogEdit").trigger("change");
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+    }
+
+
+
+
+    // $.ajax({
+    //         dataType: "json",
+    //         url: url,
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateProvCopertEdit(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+    //             //   $("#tipoInputRichiesti").html("");
+    //             //   $("#tipoOutputProdotti").html("");
+    //             //   $("#tipoInputRichiestiEdit").html("");
+    //             //   $("#tipoInputRichiesti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoOutputProdotti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoInputRichiestiEdit").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //         var numberRow = $("#numberRowCopertGeog").val();
+    //         var provincia = $("#provincia_" + numberRow).html();
+    //         $("#provCoperturaGeogEdit").val(provincia);
+    //         $("#provCoperturaGeogEdit").trigger("change");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function popolateProvCopert(data) {
@@ -1886,80 +2472,115 @@ function popolateProvCopertEdit(data) {
 }
 
 function getCittaCopert(idProv) {
-    var url =
-        "-/api/towns?filter[where][codiceProvincia]=" +
-        idProv;
+    // var url =
+    //     "https://sgispatialdefinition.xxxx/api/towns?filter[where][codiceProvincia]=" +
+    //     idProv;
+    var name = "sgispatialdefinition"
+    var collection = "towns"
+    var query = "?filter[where][codiceProvincia]=" + idProv;
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
+        popolateCittaCopert(data);
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+    }
 
-    $.ajax({
-            dataType: "json",
-            url: url,
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateCittaCopert(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-                //   $("#tipoInputRichiesti").html("");
-                //   $("#tipoOutputProdotti").html("");
-                //   $("#tipoInputRichiestiEdit").html("");
-                //   $("#tipoInputRichiesti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoOutputProdotti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoInputRichiestiEdit").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+
+
+    // $.ajax({
+    //         dataType: "json",
+    //         url: url,
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateCittaCopert(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+    //             //   $("#tipoInputRichiesti").html("");
+    //             //   $("#tipoOutputProdotti").html("");
+    //             //   $("#tipoInputRichiestiEdit").html("");
+    //             //   $("#tipoInputRichiesti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoOutputProdotti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoInputRichiestiEdit").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function getCittaCopertEdit(idProv) {
-    var url =
-        "-/api/towns?filter[where][codiceProvincia]=" +
-        idProv;
+    // var url =
+    //     "https://sgispatialdefinition.xxxx/api/towns?filter[where][codiceProvincia]=" +
+    //     idProv;
+    var name = "sgispatialdefinition"
+    var collection = "towns"
+    var query = "?filter[where][codiceProvincia]=" + idProv;
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
+        popolateCittaCopertEdit(data);
+        var numberRow = $("#numberRowCopertGeog").val();
+        var citta = $("#citta_" + numberRow).html();
+        $("#cittaCoperturaGeogEdit").val(citta);
+        $("#cittaCoperturaGeogEdit").trigger("change");
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+    }
 
-    $.ajax({
-            dataType: "json",
-            url: url,
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateCittaCopertEdit(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-                //   $("#tipoInputRichiesti").html("");
-                //   $("#tipoOutputProdotti").html("");
-                //   $("#tipoInputRichiestiEdit").html("");
-                //   $("#tipoInputRichiesti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoOutputProdotti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoInputRichiestiEdit").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
 
-            var numberRow = $("#numberRowCopertGeog").val();
-            var citta = $("#citta_" + numberRow).html();
-            $("#cittaCoperturaGeogEdit").val(citta);
-            $("#cittaCoperturaGeogEdit").trigger("change");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    // $.ajax({
+    //         dataType: "json",
+    //         url: url,
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateCittaCopertEdit(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+    //             //   $("#tipoInputRichiesti").html("");
+    //             //   $("#tipoOutputProdotti").html("");
+    //             //   $("#tipoInputRichiestiEdit").html("");
+    //             //   $("#tipoInputRichiesti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoOutputProdotti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoInputRichiestiEdit").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+
+    //         var numberRow = $("#numberRowCopertGeog").val();
+    //         var citta = $("#citta_" + numberRow).html();
+    //         $("#cittaCoperturaGeogEdit").val(citta);
+    //         $("#cittaCoperturaGeogEdit").trigger("change");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function popolateCittaCopert(data) {
@@ -2004,8 +2625,8 @@ function popolateFieldsCopertGeogFromArray(geoData) {
         count++;
         var container = $("#popolateCopertDivDiv");
         var valueRegione = (geoData[k].regioneVal == "-") ? " " : geoData[k].regioneVal
-        var valueProvincia = (geoData[k].provinciaVal = "-") ? " " : geoData[k].provinciaVa
-        var valueCitta = (geoData[k].comuneVal = "-") ? " " : geoData[k].comuneVal
+        var valueProvincia = (geoData[k].provinciaVal == "-") ? " " : geoData[k].provinciaVal
+        var valueCitta = (geoData[k].comuneVal == "-") ? " " : geoData[k].comuneVal
         var idRegione = geoData[k].regioneId;
         var idProvincia = geoData[k].provinciaId
         var idCitta = geoData[k].comuneId
@@ -2013,25 +2634,26 @@ function popolateFieldsCopertGeogFromArray(geoData) {
         var regione =
             "<tr id='" +
             count +
-            "'><td><span identifier = '" + idRegione + "' value='" +
+            "'><td><span identifier = '" + idRegione + "' value=\'" +
             valueRegione +
-            "' id='regione_" +
+            "\' id='regione_" +
             count +
             "'>" +
             valueRegione +
             "</span></td>";
+
         var provincia =
-            "<td><span  identifier = '" + idProvincia + "' value='" +
+            "<td><span  identifier = '" + idProvincia + "' value=\'" +
             valueProvincia +
-            "' id='provincia_" +
+            "\' id='provincia_" +
             count +
             "'>" +
             valueProvincia +
             "</span></td>";
         var citta =
-            "<td><span  identifier = '" + idCitta + "' value='" +
+            "<td><span  identifier = '" + idCitta + "' value=\'" +
             valueCitta +
-            "' id='citta_" +
+            "\' id='citta_" +
             count +
             "'>" +
             valueCitta +
@@ -2080,37 +2702,27 @@ function popolateFieldsCopertGeog() {
         $("#cittaCoperturaGeog").children(":selected").attr("id");
     var html = "";
     var regione =
-        "<tr id='" +
-        number +
-        "'><td><span identifier = '" +
-        idRegione +
-        "' value='" +
-        valueRegione +
-        "' id='regione_" +
-        number +
-        "'>" +
-        valueRegione +
-        "</span></td>";
+        '<tr id="' + number + '"><td><span identifier = "' + idRegione + '" value="' + valueRegione + '" id="regione_' + number + '">' + valueRegione + '</span></td>';
     var provincia =
-        "<td><span  identifier = '" +
+        '<td><span  identifier = "' +
         idProvincia +
-        "' value='" +
+        '" value="' +
         valueProvincia +
-        "' id='provincia_" +
+        '" id="provincia_' +
         number +
-        "'>" +
+        '">' +
         valueProvincia +
-        "</span></td>";
+        '</span></td>';
     var citta =
-        "<td><span  identifier = '" +
+        '<td><span  identifier = "' +
         idCitta +
-        "' value='" +
+        '" value="' +
         valueCitta +
-        "' id='citta_" +
+        '" id="citta_' +
         number +
-        "'>" +
+        '">' +
         valueCitta +
-        "</span></td>";
+        '</span></td>';
     var action =
         '<td><button type="button" onClick="editRowCoperGeog(' +
         number +
@@ -2149,56 +2761,76 @@ function editRowCoperGeog(numberRow) {
 }
 
 function popolateSelectRegioneEdit() {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/regions",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateRegionCopGeogEdit(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-                //   $("#tipoInputRichiesti").html("");
-                //   $("#tipoOutputProdotti").html("");
-                //   $("#tipoInputRichiestiEdit").html("");
-                //   $("#tipoInputRichiesti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoOutputProdotti").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-                //   $("#tipoInputRichiestiEdit").append(
-                //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                //   );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-            var numberRow = $("#numberRowCopertGeog").val();
-            var regione = $("#regione_" + numberRow).html();
-            $("#regioneCoperturaGeogEdit").val(regione);
-            $("#regioneCoperturaGeogEdit").trigger("change");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    var name = "sgispatialdefinition";
+    var collection = "regions";
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
+        popolateRegionCopGeogEdit(data);
+        var numberRow = $("#numberRowCopertGeog").val();
+        var regione = $("#regione_" + numberRow).html();
+        $("#regioneCoperturaGeogEdit").val(regione);
+        $("#regioneCoperturaGeogEdit").trigger("change");
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+    }
+
+
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sgispatialdefinition.xxxx/api/regions",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateRegionCopGeogEdit(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+    //             //   $("#tipoInputRichiesti").html("");
+    //             //   $("#tipoOutputProdotti").html("");
+    //             //   $("#tipoInputRichiestiEdit").html("");
+    //             //   $("#tipoInputRichiesti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoOutputProdotti").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //             //   $("#tipoInputRichiestiEdit").append(
+    //             //     "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             //   );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //         var numberRow = $("#numberRowCopertGeog").val();
+    //         var regione = $("#regione_" + numberRow).html();
+    //         $("#regioneCoperturaGeogEdit").val(regione);
+    //         $("#regioneCoperturaGeogEdit").trigger("change");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function popolateInputOutput(result) {
     $("#tipoInputRichiesti").html("");
     $("#tipoOutputProdotti").html("");
     $("#tipoInputRichiesti").append(
-        "<option value selected disabled>Seleziona un campo</option>"
+        "<option value selected disabled>Scegli</option>"
     );
     $("#tipoInputRichiestiEdit").append(
-        "<option value selected disabled>Seleziona un campo</option>"
+        "<option value selected disabled>Scegli</option>"
     );
     $("#tipoOutputProdottiEdit").append(
-        "<option value selected disabled>Seleziona un campo</option>"
+        "<option value selected disabled>Scegli</option>"
     );
 
     $("#tipoOutputProdotti").append(
-        "<option value selected disabled>Seleziona un campo</option>"
+        "<option value selected disabled>Scegli</option>"
     );
 
     $.each(result, function (i, field) {
@@ -2214,87 +2846,146 @@ function popolateInputOutput(result) {
 }
 
 function loadComponentTabAccesso() {
-    $("#wait").css("display", "block");
     $("#containerRadioLivInteraizone").ready(function (e) {
         PopulateTab5Fields(template);
+        if (isTemplate) {
+            $("#NONE").prop('checked', "true")
+        }
     });
-    //liv interazione
-    $.ajax({
-            dataType: "json",
-            async: false,
-            url: "-" +
-                "/api/interactivitylevels?filter[where][language]=it",
-            success: function (data) {
-                $("#wait").css("display", "block");
 
-                popolateLivInterazione(data);
-                //PopulateTab5Fields(template)
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
 
-                $("#containerRadioLivInteraizone").html("");
-                $("#containerRadioLivInteraizone").append("SERVIZIO NON DISPONIBILE");
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-            //PopulateTab5Fields(template)
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+
+    var name = "sgiinteractivitylevel"
+    var collection = "interactivitylevels"
+    var query = "?filter[where][language]=it";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
+        popolateLivInterazione(data);
+
+
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+        $("#containerRadioLivInteraizone").html("");
+        $("#containerRadioLivInteraizone").append("SERVIZIO NON DISPONIBILE");
+    }
+    // //liv interazione
+    // $.ajax({
+    //         dataType: "json",
+    //         async: false,
+    //         url: "https://sgiinteractivitylevel.xxxx" +
+    //             "/api/interactivitylevels?filter[where][language]=it",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             popolateLivInterazione(data);
+    //             //PopulateTab5Fields(template)
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             $("#containerRadioLivInteraizone").html("");
+    //             $("#containerRadioLivInteraizone").append("SERVIZIO NON DISPONIBILE");
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //         //PopulateTab5Fields(template)
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
+    // https://sgiauth.xxxx/api/authentications?filter[order]=order%20ASC&filter[where][language]=it
+
+    var nameAuth = "sgiauth"
+    var collectionAuth = "authentications"
+    var queryAuth = "?filter[order]=order%20ASC&filter[where][language]=it";
+    var environmentAuth = ""
+    var urlAuth = urlComposer(nameAuth, collectionAuth, queryAuth, environmentAuth);
+    var objDataAuth = callService("GET", urlAuth);
+    if (objDataAuth.success) {
+        var data = objDataAuth.data
+
+        popolateModAuth(data);
+        populateAuthTab5(template);
+        // populateAuthTab5(template);
+    } else {
+        $("#modalitaautenticazione").append(
+            "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
+
     //modalita auth
-    $.ajax({
-            dataType: "json",
-            url: "-/api/authentications?filter[order]=order%20ASC&filter[where][language]=it ",
-            async: false,
-            //url: 'http://' + sgiauth.ip + '/' + sgiauth.serviceName + '/api/authentications?filter[where][language]=it',
-            success: function (data) {
-                $("#wait").css("display", "block");
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sgiauth.xxxx/api/authentications?filter[order]=order%20ASC&filter[where][language]=it ",
+    //         async: false,
+    //         //url: 'http://' + sgiauth.ip + '/' + sgiauth.serviceName + '/api/authentications?filter[where][language]=it',
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
 
-                popolateModAuth(data);
-                populateAuthTab5(template)
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    //             popolateModAuth(data);
+    //             populateAuthTab5(template)
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
 
-                $("#modalitaautenticazione").append(
-                    "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-            populateAuthTab5(template);
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    //             $("#modalitaautenticazione").append(
+    //                 "<option value selected disabled>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //         populateAuthTab5(template);
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 
-    $.ajax({
-            dataType: "json",
-            url: "" +
-                "/api/channels?filter[where][language]=it&filter[order]=lv0id",
-            //url: 'http://' + sgichannel.ip + '/' + sgichannel.serviceName + '/api/channels?filter[where][language]=it&filter[order]=lv0id',
-            success: function (data) {
-                $("#wait").css("display", "block");
 
-                popolateChannels(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    var nameChannel = "sgichannel"
+    var collectionChannel = "channels"
+    var queryChannel = "?filter[where][language]=it&filter[order]=lv0id";
+    var environmentChannel = ""
+    var urlChannel = urlComposer(nameChannel, collectionChannel, queryChannel, environmentChannel);
+    var objDataChannel = callService("GET", urlChannel);
+    if (objDataChannel.success) {
+        var data = objDataChannel.data
+        popolateChannels(data);
+    } else {
+        $("#tipoCanaleErog").append("SERVIZIO NON DISPONIBILE");
+    }
 
-                $("#tipoCanaleErog").html("");
-                $("#tipoCanaleErog").append("SERVIZIO NON DISPONIBILE");
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+
+
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sgichannel.xxxx" +
+    //             "/api/channels?filter[where][language]=it&filter[order]=lv0id",
+    //         //url: 'http://' + sgichannel.ip + '/' + sgichannel.serviceName + '/api/channels?filter[where][language]=it&filter[order]=lv0id',
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             popolateChannels(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             $("#tipoCanaleErog").html("");
+    //             $("#tipoCanaleErog").append("SERVIZIO NON DISPONIBILE");
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function popolateLivInterazione(result) {
@@ -2302,7 +2993,7 @@ function popolateLivInterazione(result) {
     var html = "";
     var closeDiv = "</div></div>";
     // var element = '<div class="col-md-3"></div><div class='col-md-9 interaction"><div class="form-group row"><label class="custom-control custom-radio"><input id="radio1" name="radio" type="radio" aria-describedby="inter_1" class="custom-control-input"><span class="custom-control-indicator"></span><span class="custom-control-description">Personalizzazione</span></label><div id="inter_1" class="help-block"></div></div>'
-    html += '<div class="col-md-3"></div><div class="col-md-9 interaction">';
+    html += '<div class="col-md-9 interaction">';
     $.each(result, function (i, field) {
         html +=
             '<div class="form-group row"><label class="custom-control custom-radio"><input id="' +
@@ -2325,39 +3016,6 @@ function popolateLivInterazione(result) {
     });
     $("#containerRadioLivInteraizone").append(html);
     $("#containerRadioLivInteraizone").append(closeDiv);
-}
-
-{
-    /*
-    function popolateLivInterazione(result) {
-      $("#containerRadioLivInteraizone").html("");
-      var html = "";
-      var row = '<div class="form-group row">';
-      var divCol = '<div class="col-md-9">';
-      var closeDiv = "</div>";
-      $.each(result, function (i, field) {
-        var label =
-          '<label class="col-md-3 control-label" for="modalitaautenticazione">' +
-          field.label +
-          "</label>";
-        //        var check = '<option>' + field.definition + '</option>';
-        var check =
-          '<label><input type="radio" id="' +
-          field.idlevel +
-          '" name="radioOption">' +
-          field.definition +
-          " </label>";
-  
-        html += row;
-        html += label;
-        html += divCol;
-        html += check;
-        html += closeDiv;
-        html += closeDiv;
-        html += closeDiv;
-      });
-      $("#containerRadioLivInteraizone").append(html);
-    } */
 }
 
 function popolateModAuth(result) {
@@ -2389,10 +3047,12 @@ function popolateModAuth(result) {
             $("#appendField").prepend(
                 '<div class="fieldset-like"><div class="row"><div class="col-9"><label class="custom-control custom-checkbox"><input type="checkbox" id="' +
                 field.lv0id +
-                '"  name="checkBoxAuth" class="custom-control-input" checked value="0"><span class="custom-control-indicator"></span><span class="custom-control-description"> ' +
+                '"  name="checkBoxAuth" class="custom-control-input" value="0"><span class="custom-control-indicator"></span><span class="custom-control-description"> ' +
                 field.description +
                 "</span></label></div></div>"
             );
+
+
         } else {
             $("#appendField").append(padreTest);
 
@@ -2434,18 +3094,12 @@ function popolateModAuth(result) {
     // appendFreeAccess();
 }
 
-// function appendFreeAccess() {
-//   var fieldFreeAccess = $("#modalitaautenticazione option[id='NONE']");
-//   $("#modalitaautenticazione option[id='NONE']").remove();
-//   $("#modalitaautenticazione").append(fieldFreeAccess);
-// }
-
 function popolateChannels(results) {
     $("#tipoCanaleErog").append(
-        "<option disabled selected value>Seleziona una scelta</option>"
+        "<option disabled selected value>Scegli</option>"
     );
     $("#tipoCanaleErogEdit").append(
-        "<option disabled selected value>Seleziona una scelta</option>"
+        "<option disabled selected value>Scegli</option>"
     );
     $.each(results, function (i, field) {
         $("#tipoCanaleErog").append(
@@ -2465,7 +3119,6 @@ function popolateChannels(results) {
 
 function popolateOrganization() {
     var a = $("#bodyOrganizz").children().length;
-    a++;
     if ($("#formOrganizz").valid() == true) {
         $("#modalOrganizz").modal("hide");
 
@@ -2498,7 +3151,7 @@ function popolateOrganization() {
 
 function popolateOrganizationTemplate(template) {
     var a = $("#bodyOrganizz").children().length;
-    a++;
+
     if (
         $("#formOrganizz").valid() == true &&
         template.publicService.organizations
@@ -2554,31 +3207,41 @@ function popolateOrganizationTemplate(template) {
 function editRowOrganiz(numberRow) {
     var nome = $("#" + numberRow + "_organizz").html();
     var ruolo = $("#" + numberRow + "_ruolo").text();
-    var dal = new Date(
-        $("#" + numberRow + "_dal")
-        .html()
-        .replace(/\s/g, "")
-    ).setHours(15);
-    var al = new Date(
-        $("#" + numberRow + "_al")
-        .html()
-        .replace(/\s/g, "")
-    ).setHours(15);
+    var dal
+    if ($("#" + numberRow + "_dal").html() != "" && $("#" + numberRow + "_dal").html() != undefined) {
+        dal = new Date(
+            $("#" + numberRow + "_dal")
+            .html()
+            .replace(/\s/g, "")
+        ).setHours(15);
+    }
+    var al
+    if ($("#" + numberRow + "_al").html() != "" && $("#" + numberRow + "_al").html() != undefined) {
+        al = new Date(
+            $("#" + numberRow + "_al")
+            .html()
+            .replace(/\s/g, "")
+        ).setHours(15);
+    }
+
     //alert(ruolo)
     $("#numberOfRowOrganization").val(numberRow);
 
     $("#nomeOrganizzEdit").val(nome);
     $("#ruoloOrganizzModalEdit").val(ruolo);
     //        $('#dalOrganizz').attr("value" , "05-05-2005")
-    var dalControl = (document.getElementById(
-        "dalOrganizzEdit"
-    ).valueAsDate = new Date(dal));
+    if (dal != undefined) {
+        var dalControl = (document.getElementById(
+            "dalOrganizzEdit"
+        ).valueAsDate = new Date(dal));
+    }
     //        dalControl.value = "2017/01/01"
     //        $("#dalOrganizz").trigger("change")
-    var dalControl = (document.getElementById(
-        "alOrganizzEdit"
-    ).valueAsDate = new Date(al));
-
+    if (dal != undefined) {
+        var dalControl = (document.getElementById(
+            "alOrganizzEdit"
+        ).valueAsDate = new Date(al));
+    }
     $("#modalOrganizzEdit").modal("show");
 }
 
@@ -2763,58 +3426,50 @@ function deleteRowContacts(numberRowContacts) {
 }
 
 function loadComponentTabTema() {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/naces",
-            success: function (data) {
-                $("#wait").css("display", "block");
-
-                popolateSettoreSelect(data);
-                if (template.publicService.themes) {
-                    $.each(template.publicService.themes, function (index, element) {
-                        $("[identifier='" + element.id + "']").attr("checked", "checked");
-                    })
-                }
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-
-                $("#settoreservizio_1").html("");
-                $("#settoreservizio_1").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
+    startWait("temaFieldset", "Caricamento temi in corso...")
+    startWait("sectorFieldset", "Caricamento settori in corso...")
+    var name = "sginace"
+    var collection = "naces"
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        popolateSettoreSelect(data);
+        if (template) {
+            if (template.publicService.themes) {
+                $.each(template.publicService.themes, function (index, element) {
+                    $("[identifier='" + element.id + "']").attr("checked", "checked");
+                })
             }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+        }
+        stopWait("temaFieldset")
+    } else {
 
-    $.ajax({
-            dataType: "json",
-            url: "-/api/themes?filter[where][language]=it",
-            success: function (data) {
-                $("#wait").css("display", "block");
-
-                popolateCheckTema(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-
-                $("#settoreservizio_1").html("");
-                $("#settoreservizio_1").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+        $("#settoreservizio_1").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
+    var nameTheme = "sgithemes"
+    var collectionTheme = "themes"
+    var queryTheme = "?filter[where][language]=it";
+    var environment = ""
+    var urlTheme = urlComposer(nameTheme, collectionTheme, queryTheme, environment);
+    var objDataTheme = callService("GET", urlTheme);
+    if (objDataTheme.success) {
+        var data = objDataTheme.data
+        // $("#wait").css("display", "block");
+        popolateCheckTema(data);
+        stopWait('sectorFieldset')
+        // $("#wait").css("display", "none");
+    } else {
+        // $("#wait").css("display", "none");
+        $("#settoreservizio_1").html("");
+        $("#settoreservizio_1").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
 }
 
 function popolateSettoreSelect(data) {
@@ -2823,7 +3478,7 @@ function popolateSettoreSelect(data) {
     $("#settoreservizio_1").html("");
     $("#settoreservizio_1Edit").html("");
     $("#settoreservizio_1").append(
-        "<option disabled selected value>Seleziona un elemento</option> "
+        "<option disabled selected value>Scegli</option> "
     );
     $("#settoreservizio_1Edit").append(
         "<option disabled selected value>Seleziona un elemento</option> "
@@ -2857,33 +3512,57 @@ function popolateSettoreSelect(data) {
 
 function loadLiv1(id) {
     // if (!template.publicService.sector) {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/naces",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateLv1(data, id);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    var name = "sginace"
+    var collection = "naces"
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
 
-                $("#settoreservizio_1").html("");
-                $("#settoreservizio_1Edit").html("");
+        popolateLv1(data, id);
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+        $("#settoreservizio_1").html("");
+        $("#settoreservizio_1Edit").html("");
 
-                $("#settoreservizio_1").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-                $("#settoreservizio_1Edit").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+        $("#settoreservizio_1").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+        $("#settoreservizio_1Edit").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sginace.xxxx/api/naces",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateLv1(data, id);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             $("#settoreservizio_1").html("");
+    //             $("#settoreservizio_1Edit").html("");
+
+    //             $("#settoreservizio_1").append(
+    //                 "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //             $("#settoreservizio_1Edit").append(
+    //                 "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
     // }
     // else{
     //     console.log(template.publicService.sector)
@@ -2892,33 +3571,57 @@ function loadLiv1(id) {
 
 function loadLiv1Edit(id) {
     // if (!template.publicService.sector) {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/naces",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateLv1Edit(data, id);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    var name = "sginace"
+    var collection = "naces"
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
 
-                $("#settoreservizio_1").html("");
-                $("#settoreservizio_1Edit").html("");
+        popolateLv1Edit(data, id);
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+        $("#settoreservizio_1").html("");
+        $("#settoreservizio_1Edit").html("");
 
-                $("#settoreservizio_1").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-                $("#settoreservizio_1Edit").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+        $("#settoreservizio_1").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+        $("#settoreservizio_1Edit").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sginace.xxxx/api/naces",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateLv1Edit(data, id);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             $("#settoreservizio_1").html("");
+    //             $("#settoreservizio_1Edit").html("");
+
+    //             $("#settoreservizio_1").append(
+    //                 "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //             $("#settoreservizio_1Edit").append(
+    //                 "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
     // }
     // else{
     //     console.log(template.publicService.sector)
@@ -2927,7 +3630,7 @@ function loadLiv1Edit(id) {
 
 function popolateLv1(data, id) {
     $("#settoreservizio_2").append(
-        "<option disabled selected value>Seleziona un elemento</option>"
+        "<option disabled selected value>Scegli</option>"
     );
     $.each(data, function (i, results) {
         if (results.idParent == id) {
@@ -2973,64 +3676,107 @@ function popolateLv1Edit(data, id) {
 }
 
 function loadLiv2(id) {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/naces",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateLv2(data, id);
-                //if (firstLoad) PopulateSettore3FromService(template);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    var name = "sginace"
+    var collection = "naces"
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
 
-                $("#settoreservizio_2").html("");
-                $("#settoreservizio_2").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+        popolateLv2(data, id);
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+        $("#settoreservizio_2").html("");
+        $("#settoreservizio_2").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sginace.xxxx/api/naces",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateLv2(data, id);
+    //             //if (firstLoad) PopulateSettore3FromService(template);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             $("#settoreservizio_2").html("");
+    //             $("#settoreservizio_2").append(
+    //                 "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function loadLiv2Edit(id) {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/naces",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateLv2Edit(data, id);
-                //if (firstLoad) PopulateSettore3FromService(template);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    var name = "sginace"
+    var collection = "naces"
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
 
-                $("#settoreservizio_2Edit").html("");
-                $("#settoreservizio_2Edit").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            var number = $("#numberOfRowSettoriEdit").val();
-            var tipo_3 = $("#serviziosottotipo3_" + number).html();
-            $("#settoreservizio_3Edit").val(tipo_3);
-            $("#settoreservizio_3Edit").trigger("change");
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+        popolateLv2Edit(data, id);
+        var number = $("#numberOfRowSettoriEdit").val();
+        var tipo_3 = $("#serviziosottotipo3_" + number).html();
+        $("#settoreservizio_3Edit").val(tipo_3);
+        $("#settoreservizio_3Edit").trigger("change");
+
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+        $("#settoreservizio_2Edit").html("");
+        $("#settoreservizio_2Edit").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sginace.xxxx/api/naces",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateLv2Edit(data, id);
+    //             //if (firstLoad) PopulateSettore3FromService(template);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             $("#settoreservizio_2Edit").html("");
+    //             $("#settoreservizio_2Edit").append(
+    //                 "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //         }
+    //     })
+    //     .done(function () {
+    //         var number = $("#numberOfRowSettoriEdit").val();
+    //         var tipo_3 = $("#serviziosottotipo3_" + number).html();
+    //         $("#settoreservizio_3Edit").val(tipo_3);
+    //         $("#settoreservizio_3Edit").trigger("change");
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function popolateLv2(data, id) {
     $("#settoreservizio_3").append(
-        "<option disabled selected value>Seleziona un elemento</option>"
+        "<option disabled selected value>Scegli</option>"
     );
     $.each(data, function (i, results) {
         if (results.idParent == id) {
@@ -3075,63 +3821,103 @@ function popolateLv2Edit(data, id) {
 }
 
 function loadLiv3(id) {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/naces",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateLv3(data, [id]);
-                //if (firstLoad) PopulateSettore4FromService(template);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    var name = "sginace"
+    var collection = "naces"
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
+        popolateLv3(data, [id]);
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+        $("#settoreservizio").html("");
+        $("#settoreservizio").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
 
-                $("#settoreservizio").html("");
-                $("#settoreservizio").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sginace.xxxx/api/naces",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateLv3(data, [id]);
+    //             //if (firstLoad) PopulateSettore4FromService(template);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             $("#settoreservizio").html("");
+    //             $("#settoreservizio").append(
+    //                 "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //         }
+    //     })
+    //     .done(function () {
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function loadLiv3Edit(id) {
-    $.ajax({
-            dataType: "json",
-            url: "-/api/naces",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                popolateLv3Edit(data, [id]);
-                //if (firstLoad) PopulateSettore4FromService(template);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    var name = "sginace"
+    var collection = "naces"
+    var query = "";
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        $("#wait").css("display", "block");
+        popolateLv3Edit(data, [id]);
+        var numberRow = $("#numberOfRowSettoriEdit").val();
+        var tipo_4 = $("#sottotipo4_" + numberRow).html();
+        $("#wait").css("display", "none");
+    } else {
+        $("#wait").css("display", "none");
+        $("#settoreservizio").html("");
+        $("#settoreservizio").append(
+            "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+        );
+    }
 
-                $("#settoreservizio").html("");
-                $("#settoreservizio").append(
-                    "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
-                );
-            }
-        })
-        .done(function () {
-            var numberRow = $("#numberOfRowSettoriEdit").val();
-            var tipo_4 = $("#sottotipo4_" + numberRow).html();
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+    // $.ajax({
+    //         dataType: "json",
+    //         url: "https://sginace.xxxx/api/naces",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             popolateLv3Edit(data, [id]);
+    //             //if (firstLoad) PopulateSettore4FromService(template);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //             $("#settoreservizio").html("");
+    //             $("#settoreservizio").append(
+    //                 "<option disabled selected value>SERVIZIO NON DISPONIBILE</option>"
+    //             );
+    //         }
+    //     })
+    //     .done(function () {
+    //         var numberRow = $("#numberOfRowSettoriEdit").val();
+    //         var tipo_4 = $("#sottotipo4_" + numberRow).html();
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function popolateLv3(data, id) {
     $("#settoreservizio_4").html("");
     $("#settoreservizio_4").append(
-        "<option disabled selected value>Seleziona un elemento</option>"
+        "<option disabled selected value>Scegli</option>"
     );
 
     $.each(data, function (i, results) {
@@ -3180,58 +3966,6 @@ function popolateLv3Edit(data, id) {
     // $("#settoreservizio_4Edit").trigger("change");
     $("#wait").css("display", "none");
 }
-
-// function popolateInputFields() {
-//   var number = $("#popolateInputDiv")
-//     .children()
-//     .attr("id");
-//   number++;
-
-//   //    if (number == "" || number == undefined)
-//   //        number=0;
-//   var container = $("#popolateInputDiv");
-//   container.removeAttr("hidden");
-//   var html = "";
-//   var rowFormGroup = '<div class="form-group row" id="' + number + '">';
-//   var labelNome =
-//     '<div class="col-md-3 control-label"><button type="button" onClick="editRowInput(' +
-//     number +
-//     ')" class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button> <button type="button" onClick="deleteRowInput(' +
-//     number +
-//     ')" class="btn btn-default btn-icon"><span class="fa fa-times"></span></button><span id="nome_' +
-//     number +
-//     '">' +
-//     $("#nomeInputRichiesti").val() +
-//     "</span></div>";
-//   var col = '<div class="col-9">';
-//   var row = '<div class="row">';
-//   var tipo =
-//     "<p class='col-md-5'><strong> Tipo input </strong><span id='tipo_" +
-//     number +
-//     "'>" +
-//     $("#tipoInputRichiesti").val() +
-//     "</span></p>";
-//   var documentazione =
-//     "<p class='col-md-5'><strong>Documentazione </strong><span id='docum_" +
-//     number +
-//     "'> " +
-//     $("#docRifInputRichiesti").val() +
-//     "</span></p>";
-//   var closeDiv = "</div>"; //per 3
-
-//   html += rowFormGroup;
-//   html += labelNome;
-//   html += col;
-//   html += row;
-//   html += tipo;
-//   html += documentazione;
-//   html += closeDiv;
-//   html += closeDiv;
-//   html += closeDiv;
-
-//   container.prepend(html);
-//   $("#modalInputRichiesti").modal("hide");
-// }
 
 function popolateInputFields() {
     var number = $("#popolateInputDiv")
@@ -3305,9 +4039,7 @@ function popolateServiziFields() {
     var tipo4Number = $(
         '#settoreservizio_4 option[value="' + $("#settoreservizio_4").val() + '"'
     ).attr("id");
-
     var html = "";
-
     html +=
         '<tr id="' +
         number +
@@ -3363,8 +4095,6 @@ function popolateServiziFields() {
         ')" class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button> <button type="button" onClick="deleteRowServizi(' +
         number +
         ')" class="btn btn-default btn-icon"><span class="fa fa-times"></span></button></td>';
-    // html += ;
-    // html += ;
     $("#popolateSettoreDiv").prepend(html);
     $("#modalSettori").modal("hide");
 }
@@ -3530,80 +4260,7 @@ function populateSectorFromSortedArray(data) {
     $("#popolateSettoreDiv").prepend(html);
     $("#tableSettori").removeAttr("style");
 }
-// function popolateServiziFields() {
-//   var number = $("#popolateSettoreDiv")
-//     .children()
-//     .attr("id");
-//   number++;
 
-//   //    if (number == "" || number == undefined)
-//   //        number=0;
-//   var container = $("#popolateSettoreDiv");
-//   container.removeAttr("hidden");
-//   var html = "";
-//   var rowFormGroup = '<div class="form-group row" id="' + number + '">';
-//   var labelNome =
-//     '<div class="col-md-3 control-label"><button type="button" onClick="editRowServizio(' +
-//     number +
-//     ')" class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button> <button type="button" onClick="deleteRowServizi(' +
-//     number +
-//     ')" class="btn btn-default btn-icon"><span class="fa fa-times"></span></button><span number="' +
-//     $(
-//       "#settoreservizio_1 option[value='" + $("#settoreservizio_1").val() + "'"
-//     ).attr("id") +
-//     '" id="serviziotipo_' +
-//     number +
-//     '">' +
-//     $("#settoreservizio_1").val() +
-//     "</span></div>";
-//   var col = '<div class="col-9">';
-//   var row = '<div class="row">';
-//   var tipo_2 =
-//     "<p class='col-md-5'><strong> Sottotipo </strong><span number='" +
-//     $(
-//       "#settoreservizio_2 option[value='" + $("#settoreservizio_2").val() + "'"
-//     ).attr("id") +
-//     "' id='serviziosottotipo2_" +
-//     number +
-//     "'>" +
-//     $("#settoreservizio_2").val() +
-//     "</span></p>";
-//   var tipo_3 =
-//     "<p class='col-md-5'><strong>Sottotipo </strong><span  number='" +
-//     $(
-//       "#settoreservizio_3 option[value='" + $("#settoreservizio_3").val() + "'"
-//     ).attr("id") +
-//     "' id='serviziosottotipo3_" +
-//     number +
-//     "'>" +
-//     $("#settoreservizio_3").val() +
-//     "</span></p>";
-//   var tipo_4 =
-//     "<p class='col-md-5'><strong>Sottotipo </strong><span  number='" +
-//     $(
-//       "#settoreservizio_4 option[value='" + $("#settoreservizio_4").val() + "'"
-//     ).attr("id") +
-//     "' id='serviziosottotipo4_" +
-//     number +
-//     "'>" +
-//     $("#settoreservizio_4").val() +
-//     "</span></p>";
-//   var closeDiv = "</div>"; //per 3
-
-//   html += rowFormGroup;
-//   html += labelNome;
-//   html += col;
-//   html += row;
-//   html += tipo_2;
-//   html += tipo_3;
-//   html += tipo_4;
-//   html += closeDiv;
-//   html += closeDiv;
-//   html += closeDiv;
-
-//   container.prepend(html);
-//   $("#modalSettori").modal("hide");
-// }
 function blankFieldsServizi() {
     $("#settoreservizio_1").val("");
     $("#settoreservizio_2").html("");
@@ -3658,10 +4315,10 @@ function popolateInputFieldsTemplate(template) {
             appRows += '</td><td id="tipoInput_' + number + '">';
             appRows += (element.type.label && element.type.label != "-") ? element.type.label : "";
             appRows += '</td><td id="documInput_' + number + '">';
-            appRows += (element.referenceDocumentation 
-                && element.referenceDocumentation !="-"
-                && element.referenceDocumentation != "undefined"
-                && element.referenceDocumentation != undefined) ?
+            appRows += (element.referenceDocumentation &&
+                    element.referenceDocumentation != "-" &&
+                    element.referenceDocumentation != "undefined" &&
+                    element.referenceDocumentation != undefined) ?
                 element.referenceDocumentation :
                 "";
             appRows +=
@@ -3685,9 +4342,9 @@ function popolateOutputFields() {
     var nomeOtuput = $("#nomeOutputProdotti").val();
     var tipoOutput = $("#tipoOutputProdotti").val() == null ? " " : $("#tipoOutputProdotti").val();
     appRows += '<tr id="' + number + '"><td id="nomeOutput_' + number + '">';
-    appRows += nomeOtuput != "-" ? nomeOtuput : "" ;
+    appRows += nomeOtuput != "-" ? nomeOtuput : "";
     appRows += '</td><td id="tipoOutput_' + number + '">';
-    appRows += tipoOutput != "-" ? tipoOutput : "" ;
+    appRows += tipoOutput != "-" ? tipoOutput : "";
     appRows +=
         '</td><td><button type="button" onClick="editRowOutput(' +
         number +
@@ -3810,232 +4467,232 @@ function getChildren(idAppend, idFields, containerBlankChildren) {
     var getChildren =
         'channelIdLang={"identifier":"' + idFields + '","language":"it"}';
     $("#" + idAppend).html("");
-    $.ajax({
-            type: "POST",
-            data: getChildren,
+    var name = "sgichannel"
+    var collection = "channels/getChildListById"
+    var query = ""
+    var environment
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("POST", url, getChildren);
+    if (objData.success) {
+        var data = objData.data;
+        if (
+            data.response == [] ||
+            data.response == "" ||
+            data.response == undefined ||
+            data.response.length == 0
+        ) {
+            $("." + containerBlankChildren).slideUp();
+        } else {
+            $("." + containerBlankChildren).slideDown();
 
-            url: "--api/channels/getChildListById",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                if (
-                    data.response == [] ||
-                    data.response == "" ||
-                    data.response == undefined ||
-                    data.response.length == 0
-                ) {
-                    $("." + containerBlankChildren).slideUp();
-                } else {
-                    $("." + containerBlankChildren).slideDown();
+            $("#" + idAppend).append(
+                "<option disabled selected value>Scegli</option>"
+            );
+            $.each(data.response, function (i, field) {
+                $("#" + idAppend).append(
+                    "<option id='" +
+                    field.identifier +
+                    "'>" +
+                    field.description +
+                    "</option>"
+                );
+            });
+        }
+    } else {
+        $("#" + idAppend).html("");
+        $("#" + idAppend).append("SERVIZIO NON DISPONIBILE");
 
-                    $("#" + idAppend).append(
-                        "<option disabled selected value>Seleziona una scelta</option>"
-                    );
-                    $.each(data.response, function (i, field) {
-                        $("#" + idAppend).append(
-                            "<option id='" +
-                            field.identifier +
-                            "'>" +
-                            field.description +
-                            "</option>"
-                        );
-                    });
-                }
+    }
+    // $.ajax({
+    //     type: "POST",
+    //     data: getChildren,
+    //     headers: {
+    //         "Authorization": "Basic " + btoa("nomeutente:-")
+    //     },
+    //     url: "https://sgichannel.xxxx/api/channels/getChildListById",
+    //     success: function (data) {
 
-                console.log(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
+    //     },
+    //     error: function (data) {
+    //     }
+    // })
 
-                $("#" + idAppend).html("");
-                $("#" + idAppend).append("SERVIZIO NON DISPONIBILE");
-            }
-        })
-        .done(function (data) {
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
 }
 
 function getChildrenEdit(idAppend, idFields, containerBlankChildren) {
     var getChildren =
         'channelIdLang={"identifier":"' + idFields + '","language":"it"}';
     $("#" + idAppend).html("");
-    $.ajax({
-            type: "POST",
-            data: getChildren,
 
-            url: "--api/channels/getChildListById",
-            success: function (data) {
-                $("#wait").css("display", "block");
-                // if (
-                //   data.response == [] ||
-                //   data.response == "" ||
-                //   data.response == undefined ||
-                //   data.response.length == 0
-                // ) {
-                //   $("." + containerBlankChildren).slideUp();
-                // } else {
-                //   $("." + containerBlankChildren).slideDown();
+    var name = "sgichannel"
+    var collection = "channels/getChildListById"
+    var query = ""
+    var environment
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("POST", url, getChildren);
+    if (objData.success) {
+        var data = objData.data;
+        if (
+            data.response == [] ||
+            data.response == "" ||
+            data.response == undefined ||
+            data.response.length == 0
+        ) {
+            $("." + containerBlankChildren).slideUp();
+        } else {
+            $("." + containerBlankChildren).slideDown();
 
-                //   $("#" + idAppend).append(
-                //     "<option disabled selected value>Seleziona una scelta</option>"
-                //   );
-                //   //                    var count = 0;
-                //   $.each(data.response, function(i, field) {
-                //     $("#" + idAppend).append(
-                //       "<option value='" +
-                //         field.description +
-                //         "' id='" +
-                //         field.identifier +
-                //         "'>" +
-                //         field.description +
-                //         "</option>"
-                //     );
-                //     //                        count++;
-                //   });
-                // }
-                // $("#" + idAppend).trigger("change")
-                // $("#" + idFields).trigger("change")
-
-                // $("#" + idAppend).trigger("change")
-                console.log(data);
-            },
-            error: function (data) {
-                $("#wait").css("display", "block");
-
-                $("#" + idAppend).html("");
-                $("#" + idAppend).append("SERVIZIO NON DISPONIBILE");
-            }
-        })
-        .done(function (data) {
-
-            if (
-                data.response == [] ||
-                data.response == "" ||
-                data.response == undefined ||
-                data.response.length == 0
-            ) {
-                $("." + containerBlankChildren).slideUp();
-            } else {
-                $("." + containerBlankChildren).slideDown();
-
+            $("#" + idAppend).append(
+                "<option disabled selected value>Scegli</option>"
+            );
+            //                    var count = 0;
+            $.each(data.response, function (i, field) {
                 $("#" + idAppend).append(
-                    "<option disabled selected value>Seleziona una scelta</option>"
+                    "<option value='" +
+                    field.description +
+                    "' id='" +
+                    field.identifier +
+                    "'>" +
+                    field.description +
+                    "</option>"
                 );
-                //                    var count = 0;
-                $.each(data.response, function (i, field) {
-                    $("#" + idAppend).append(
-                        "<option value='" +
-                        field.description +
-                        "' id='" +
-                        field.identifier +
-                        "'>" +
-                        field.description +
-                        "</option>"
-                    );
-                    //                        count++;
-                });
-            }
+                //                        count++;
+            });
+        }
 
 
-            popolateOtherFields();
-            $("#" + idAppend).trigger("change")
+        popolateOtherFields();
+        $("#" + idAppend).trigger("change")
+    } else {
 
-            $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            $("#wait").css("display", "none");
-        });
+        $("#" + idAppend).html("");
+        $("#" + idAppend).append("SERVIZIO NON DISPONIBILE");
+    }
+
+    // $.ajax({
+    //         type: "POST",
+    //         data: getChildren,
+    //         headers: {
+    //             "Authorization": "Basic " + btoa("nomeutente:-")
+    //         },
+    //         url: "https://sgichannel.xxxx/api/channels/getChildListById",
+    //         success: function (data) {
+    //             $("#wait").css("display", "block");
+    //             // if (
+    //             //   data.response == [] ||
+    //             //   data.response == "" ||
+    //             //   data.response == undefined ||
+    //             //   data.response.length == 0
+    //             // ) {
+    //             //   $("." + containerBlankChildren).slideUp();
+    //             // } else {
+    //             //   $("." + containerBlankChildren).slideDown();
+
+    //             //   $("#" + idAppend).append(
+    //             //     "<option disabled selected value>Seleziona una scelta</option>"
+    //             //   );
+    //             //   //                    var count = 0;
+    //             //   $.each(data.response, function(i, field) {
+    //             //     $("#" + idAppend).append(
+    //             //       "<option value='" +
+    //             //         field.description +
+    //             //         "' id='" +
+    //             //         field.identifier +
+    //             //         "'>" +
+    //             //         field.description +
+    //             //         "</option>"
+    //             //     );
+    //             //     //                        count++;
+    //             //   });
+    //             // }
+    //             // $("#" + idAppend).trigger("change")
+    //             // $("#" + idFields).trigger("change")
+
+    //             // $("#" + idAppend).trigger("change")
+    //             console.log(data);
+    //         },
+    //         error: function (data) {
+    //             $("#wait").css("display", "block");
+
+    //         }
+    //     })
+    //     .done(function (data) {
+
+
+    //         $("#wait").css("display", "none");
+    //     })
+    //     .fail(function () {
+    //         $("#wait").css("display", "none");
+    //     });
 }
 
 function popolateAutocompleteOrganizz(insertWord, response) {
     //$("#wait").css("display", "block");
     startWait("modalOrganizz", "Ricerca organizzazioni...");
-    
-    $.ajax({
-            dataType: "json",
-            url: '/organizations?filter={"where":{"or":[{"name":{"like":"' +
-                insertWord +
-                '.*","options":"i"}},{"organizationCode":{"like":"' +
-                insertWord +
-                '.*","options":"i"}}]},"limit":20}',
-            success: function (data) {
-                //$("#wait").css("display", "block");
-                var appName = [];
 
-                $.each(data, function (i, field) {
-                    appName.push(field.name);
-                });
+    var name = "sgiorganization"
+    var collection = "organizations"
+    var query = ""
+    if ($("#selectChoiceQuery").val() == "codiceIpa") {
+        query = '?filter={"where":{"organizationCode":{"like":"' +
+            insertWord +
+            '.*","options":"i"}},"limit":20}';
 
-                response(appName);
-                stopWait("modalOrganizz")
-            },
-            error: function (data) {
-                stopWait("modalOrganizz")
-                //$("#wait").css("display", "block");
-            }
-        })
-        .done(function () {
-            stopWait("modalOrganizz")
-            //$("#wait").css("display", "none");
-        })
-        .fail(function () {
-            stopWait("modalOrganizz");
-            //$("#wait").css("display", "none");
+    } else if ($("#selectChoiceQuery").val() == "nomeOrganizzazione") {
+        query = '?filter={"where":{"name":{"like":"' +
+            insertWord +
+            '.*","options":"i"}}}'
+    }
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        var appName = [];
+
+        $.each(data, function (i, field) {
+            appName.push(field.name);
         });
+
+        response(appName);
+        stopWait("modalOrganizz")
+    } else {
+        stopWait("modalOrganizz")
+    }
+
+
+    //     $.ajax({
+    //             dataType: "json",
+    //             url: 'https://sgiorganization.xxxx/api/organizations?filter={"where":{"or":[{"name":{"like":"' +
+    //                 insertWord +
+    //                 '.*","options":"i"}},{"organizationCode":{"like":"' +
+    //                 insertWord +
+    //                 '.*","options":"i"}}]},"limit":20}',
+    //             success: function (data) {
+    //                 //$("#wait").css("display", "block");
+    //                 var appName = [];
+
+    //                 $.each(data, function (i, field) {
+    //                     appName.push(field.name);
+    //                 });
+
+    //                 response(appName);
+    //                 stopWait("modalOrganizz")
+    //             },
+    //             error: function (data) {
+    //                 stopWait("modalOrganizz")
+    //                 //$("#wait").css("display", "block");
+    //             }
+    //         })
+    //         .done(function () {
+    //             stopWait("modalOrganizz")
+    //             //$("#wait").css("display", "none");
+    //         })
+    //         .fail(function () {
+    //             stopWait("modalOrganizz");
+    //             //$("#wait").css("display", "none");
+    //         });
 }
-
-// function popolateCanaliErogazione(numberFields) {
-//   var number = $("#divPopolateCanaliErogazione")
-//     .children()
-//     .attr("id");
-//   number++;
-//   var container = $("#divPopolateCanaliErogazione");
-//   var html = "";
-//   var numberInput = $("#containerAllInput :input:visible").length;
-//   var input = $("#containerAllInput :input:visible");
-//   var a = 0;
-
-//   var rowFormGroup = '<div class="form-group row" id="' + number + '">';
-//   var labelNome =
-//     '<div class="col-md-3 control-label"><button type="button" onClick="editRowCanErog(' +
-//     number +
-//     ", " +
-//     numberFields +
-//     ' )" class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button> <button type="button" onClick="deleteRowCanErog(' +
-//     number +
-//     ')" class="btn btn-default btn-icon"><span class="fa fa-times"></span></button><span id="' +
-//     $(input[a]).attr("id") +
-//     "_" +
-//     number +
-//     '">' +
-//     $(input[a]).val() +
-//     "</span></div>";
-//   var col = '<div class="col-9">';
-//   var row = '<div class="row">';
-//   var closeDiv = "</div>"; //per 3
-//   a++;
-//   html += rowFormGroup;
-//   html += labelNome;
-//   //    html+=col
-
-//   for (a; a < numberInput; a++) {
-//     html +=
-//       "<p class='col-md-3'><strong> Tipo input </strong><span id='" +
-//       $(input[a]).attr("id") +
-//       "_" +
-//       number +
-//       "'>" +
-//       $(input[a]).val() +
-//       "</span></p>";
-//   }
-//   //    html+=closeDiv
-//   html += closeDiv;
-//   html += closeDiv;
-//   container.prepend(html);
-// }
 
 function popolateCanaliErogazione(numberFields) {
     var number = $("#divPopolateCanaliErogazione")
@@ -4092,7 +4749,7 @@ function popolateCanaliErogazione(numberFields) {
             $(input[a]).val();
         if ($(input[a]).is("select")) {
             html +=
-                "<span identifier= '" +
+                "<div style='margin-left:0px' class='row'><span identifier= '" +
                 $(input[a])
                 .children(":selected")
                 .attr("id") +
@@ -4102,17 +4759,17 @@ function popolateCanaliErogazione(numberFields) {
                 number +
                 "'>" +
                 value +
-                "</span> <br/>";
+                "</span> </div>";
             value = "";
         } else {
             html +=
-                "<span id='" +
+                "<div style='margin-left:0px' class='row'><span id='" +
                 $(input[a]).attr("id") +
                 "_" +
                 number +
                 "'>" +
                 value +
-                "</span> <br/>";
+                "</span> </div>";
             value = "";
         }
     }
@@ -4123,48 +4780,6 @@ function popolateCanaliErogazione(numberFields) {
 
     container.prepend(html);
 }
-
-// appRows += '<tr id="' + number + '"><td id="nomeOutput_' + number + '">';
-// appRows += nomeOtuput;
-// appRows += '</td><td id="tipoOutput_' + number + '">';
-// appRows += tipoOutput;
-// appRows +=
-//   '</td><td><button type="button" onClick="editRowOutput(' +
-//   number +
-//   ')" class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button> <button type="button" onClick="deleteRowOutput(' +
-//   number +
-//   ')" class="btn btn-default btn-icon"><span class="fa fa-times"></span></button></td></tr>';
-//function editRowCanErog(number){
-//    $('#modalCanaliErogazioneEdit').modal('show');
-//    var lengthInput = $('#divPopolateCanaliErogazione #'+ number +' span').length;
-//    var parent = $('#divPopolateCanaliErogazione #'+ number +' span');
-//    var a = 2;
-//    $.map(parent , function(val, i ){
-//        if(i>1){
-//            var id=$("#"+val.id).attr("id");
-//            var idInput = id.substring(0, id.indexOf("_"))+"Edit";
-//
-//            if($('#' +idInput).is("select")){
-//                $('#' +idInput + ' option[value='+ $("#"+val.id).text().replace(/\s/g, "")+']').attr("selected", "selected");
-//
-//                //                $('#' +idInput).trigger("change");
-//                if(i == 2){
-//                    var selected = $("#tipoCanaleErogEdit").children(":selected").attr("id");
-//                    showFieldsInputEdit(selected);
-//                }
-//            }
-//            else
-//                $('#' +idInput).val($("#"+val.id).text().replace(/\s/g, ""))
-//
-//            //            console.log($("#"+val.id).text().replace(/\s/g, ""));
-//        }
-//        else
-//            return
-//    })
-//    //    for(a=2;a<lengthInput;a++){
-//    //
-//    //    }
-//}
 
 function editRowCanErog(number, numberFields) {
     $("#numberRow").val(number);
@@ -4242,7 +4857,7 @@ function popolateOtherFields() {
 }
 
 function salvaFile(data) {
-    startWait("fine","Salvataggio in corso...")
+    startWait("fine", "Salvataggio in corso...")
     if (sessionStorage.getItem("userId")) {
         $("#userId").val(sessionStorage.getItem("userId"));
     }
@@ -4268,29 +4883,29 @@ function salvaFile(data) {
             data["input"] = [];
             for (a = 0; a < length; a++) {
 
-                var tipoDoc = $("#popolateInputDiv #" + a + " #documInput_" + a).html() == null ? "-" :$("#popolateInputDiv #" + a + " #documInput_" + a).html()
+                var tipoDoc = $("#popolateInputDiv #" + a + " #documInput_" + a).html() == null ? "-" : $("#popolateInputDiv #" + a + " #documInput_" + a).html()
                 var nomeInput = $("#popolateInputDiv #" + a + " #nomeInput_" + a).html()
                 var tipoInput = $("#popolateInputDiv #" + a + " #tipoInput_" + a).html() == null ? "-" : $("#popolateInputDiv #" + a + " #tipoInput_" + a).html();
 
-                if(tipoDoc != undefined && tipoDoc != "") var tipoDocStr = tipoDoc.replace(/"/g, '\\"');
-                if(nomeInput != undefined && nomeInput != "") var nomeInputStr = nomeInput.replace(/"/g, '\\"');
+                if (tipoDoc != undefined && tipoDoc != "") var tipoDocStr = tipoDoc.replace(/"/g, '\\"');
+                if (nomeInput != undefined && nomeInput != "") var nomeInputStr = nomeInput.replace(/"/g, '\\"');
 
-                if(tipoInput!= undefined &&
-                    tipoDoc!= undefined &&
-                    nomeInput!= undefined ){
-                var inputArray =
-                    '{"docRifInputRichiesti":' +
-                    '"' +
-                    tipoDocStr +
-                    '",  "nomeInputRichiesti":"' +
-                    nomeInputStr +
-                    '","tipoInputRichiesti":{"identifier": "","rdfUri": "","label":"' +
-                    tipoInput +
-                    '", "language": "it"}}';
-                inputArray.toString();
-                var myObj = JSON.parse(inputArray);
-                data["input"].push(myObj);
-            }
+                if (tipoInput != undefined &&
+                    tipoDoc != undefined &&
+                    nomeInput != undefined) {
+                    var inputArray =
+                        '{"docRifInputRichiesti":' +
+                        '"' +
+                        tipoDocStr +
+                        '",  "nomeInputRichiesti":"' +
+                        nomeInputStr +
+                        '","tipoInputRichiesti":{"identifier": "","rdfUri": "","label":"' +
+                        tipoInput +
+                        '", "language": "it"}}';
+                    inputArray.toString();
+                    var myObj = JSON.parse(inputArray);
+                    data["input"].push(myObj);
+                }
             }
         } else if (id == "output") {
             var length = $("#popolateOutputDiv").children().attr("id");
@@ -4300,19 +4915,19 @@ function salvaFile(data) {
             for (a = 0; a < length; a++) {
                 var nomeOutput = $("#popolateOutputDiv #" + a + " #nomeOutput_" + a).html()
                 var tipoOutput = $("#popolateOutputDiv #" + a + " #tipoOutput_" + a).html();
-                if(nomeOutput != undefined && nomeOutput != "") nomeOutput.replace(/"/g, '\\"');
-                if(nomeOutput!= undefined &&
-                    tipoOutput!= undefined){
-                var inputArray =
-                    '{"nomeOutputProdotti":"' +
-                    nomeOutput +
-                    '","tipoOutputProdotti":{"identifier": "","rdfUri": "","label":"' +
-                    tipoOutput +
-                    '", "language": "it"}}';
-                inputArray.toString();
-                var myObj = JSON.parse(inputArray);
-                data["output"].push(myObj);
-                    }
+                if (nomeOutput != undefined && nomeOutput != "") nomeOutput.replace(/"/g, '\\"');
+                if (nomeOutput != undefined &&
+                    tipoOutput != undefined) {
+                    var inputArray =
+                        '{"nomeOutputProdotti":"' +
+                        nomeOutput +
+                        '","tipoOutputProdotti":{"identifier": "","rdfUri": "","label":"' +
+                        tipoOutput +
+                        '", "language": "it"}}';
+                    inputArray.toString();
+                    var myObj = JSON.parse(inputArray);
+                    data["output"].push(myObj);
+                }
             }
         } else if (id == "paroleChiaveClass") {
             data[id] = [];
@@ -4320,20 +4935,63 @@ function salvaFile(data) {
                 data[id].push(val);
             });
         } else if (id == "temporalCoverage") {
-            $.map(data.temporalCoverage, function (id, val) {
-                if (val == "giornoCheck") {
-                    data.temporalCoverage.giornoCheck = [];
-                    $.each($('input[name="giornoCheck[]"]:checked'), function (i, val) {
-                        data.temporalCoverage.giornoCheck.push($(val).val());
-                    });
-                } else {
-                    var date = $("#" + val).val();
-                    var ora = $("#" + val + "Ora").val();
-                    if (date != undefined)
-                    //data.temporalCoverage[val] = new Date(date.concat(" " + ora));
-                    data.temporalCoverage[val] = date.concat("-" + ora);
+            var length = $("#popolateCopertTemporaleDiv tr").attr("id");
+            length++
+            for (var a = 0; a < length; a++) {
+                var obj = {}
+                var giorniDaCopert = ($("#giorniDaCopert_" + a).html() == null || $("#giorniDaCopert_" + a).html() == undefined) ? "" : $("#giorniDaCopert_" + a).html();
+                var giorniDaCopertOra = ($("#giorniDaCopertOra_" + a).html() == null || $("#giorniDaCopertOra_" + a).html() == undefined) ? "" : $("#giorniDaCopertOra_" + a).html();
+                var giorniACopert = ($("#giorniACopert_" + a).html() == null || $("#giorniACopert_" + a).html() == undefined) ? "" : $("#giorniACopert_" + a).html();
+                var giorniACopertOra = ($("#giorniACopertOra_" + a).html() == null || $("#giorniACopertOra_" + a).html() == undefined) ? "" : $("#giorniACopertOra_" + a).html();
+                obj.startInterval = giorniDaCopert + "-" + giorniDaCopertOra;
+                obj.endInterval = giorniACopert + "-" + giorniACopertOra;
+
+                if ($("#giorniCopert_" + a).html()) {
+                    obj.weekDays = []
+                    var days = $("#giorniCopert_" + a).html().split(",");
+                    var daysToPost = []
+                    for (var a = 0; a < days.length; a++) {
+                        switch (days[a]) {
+                            case "Lunedì":
+                                daysToPost.push("Mon");
+                                break;
+                            case "Martedì":
+                                daysToPost.push("Tue");
+                                break;
+                            case "Mercoledì":
+                                daysToPost.push("Wed");
+                                break;
+                            case "Giovedì":
+                                daysToPost.push("Thu");
+                                break;
+                            case "Venerdì":
+                                daysToPost.push("Fri");
+                                break;
+                            case "Sabato":
+                                daysToPost.push("Sat");
+                                break;
+                            case "Domenica":
+                                daysToPost.push("Sun");
+                                break;
+                        }
+                    }
+                    daysToPost = daysToPost + ""
+                    obj.weekDays.push(daysToPost);
                 }
-            });
+                data[id].push(obj)
+            }
+            // if (val == "giornoCheck") {
+            //     data.temporalCoverage.giornoCheck = [];
+            //     $.each($('input[name="giornoCheck[]"]:checked'), function (i, val) {
+            //         data.temporalCoverage.giornoCheck.push($(val).val());
+            //     });
+            // } else {
+            //     var date = $("#" + val).val();
+            //     var ora = $("#" + val + "Ora").val();
+            //     if (date != undefined)
+            //         //data.temporalCoverage[val] = new Date(date.concat(" " + ora));
+            //         data.temporalCoverage[val] = date.concat("-" + ora);
+            // }
         } else if (id == "settoreservizio_1") {
             data[id] = [];
             data["settoreservizio_2"] = [];
@@ -4377,17 +5035,18 @@ function salvaFile(data) {
             var lengthTr = $("#bodyOrganizz").children().attr("id")
             console.log(lengthTr)
             lengthTr++;
-            for (var a = 1; a < lengthTr; a++) {
+            for (var a = 0; a < lengthTr; a++) {
 
                 if ($("#" + a + "_organizz").html() != "" && $("#" + a + "_organizz").html() != undefined) var organizz = $("#" + a + "_organizz").html().replace(/"/g, '\\"');
                 if ($("#" + a + "_dal").html() != "" && $("#" + a + "_dal").html() != undefined) var dal = $("#" + a + "_dal").html().replace(/"/g, '\\"');
                 if ($("#" + a + "_al").html() != "" && $("#" + a + "_al").html() != undefined) var al = $("#" + a + "_al").html().replace(/"/g, '\\"');
-                if ($("#" + a + "__ruolo").html() != "" && $("#" + a + "__ruolo").html() != undefined) var ruolo = $("#" + a + "_ruolo").html().replace(/\s/g, "")
+                if ($("#" + a + "_ruolo").html() != "" && $("#" + a + "_ruolo").html() != undefined) var ruolo = $("#" + a + "_ruolo").html().replace(/\s/g, "")
                 var orgStr = organizz == "" || organizz == " " ? "-" : organizz
                 var dalStr = dal == "" || dal == " " ? "-" : dal
                 var alStr = al == "" || al == " " ? "-" : al
                 var ruoloStr = ruolo == "" || ruolo == " " ? "-" : ruolo
-                if (orgStr != "-" || dalStr!="-"|| alStr!="-"|| ruoloStr!="-"){
+                if (orgStr != "-" || dalStr != "-" || alStr != "-" || ruoloStr != "-" ||
+                    orgStr != undefined || dalStr != undefined || alStr != undefined || ruoloStr != undefined) {
                     var input =
                         '{"type": "","organizz": "' +
                         orgStr +
@@ -4398,9 +5057,9 @@ function salvaFile(data) {
                         '","al": "' +
                         alStr +
                         '"}]}';
-                var myObj = JSON.parse(input);
-                data[id].push(myObj);
-            }
+                    var myObj = JSON.parse(input);
+                    data[id].push(myObj);
+                }
             }
         } else if (id == "channels") {
             var lengthChannel = $("#divPopolateCanaliErogazione")
@@ -4542,24 +5201,24 @@ function salvaFile(data) {
                 var telefono = $("#" + a + "_telefonoContatto").html() == undefined || $("#" + a + "_telefonoContatto").html() == " " ? "-" : $("#" + a + "_telefonoContatto").html().replace(/"/g, '\\"')
                 var email = $("#" + a + "_emailContatto").html() == undefined || $("#" + a + "_emailContatto").html() == " " ? "-" : $("#" + a + "_emailContatto").html().replace(/"/g, '\\"')
                 var url = $("#" + a + "_urlContatto").html() == undefined || $("#" + a + "_urlContatto").html() == " " ? "-" : $("#" + a + "_urlContatto").html().replace(/"/g, '\\"')
-               if(nome != "-"||
-                telefono != "-"||
-                email != "-"||
-                url != "-"){
-                var input =
-                    ' {"office": {"language": "it","nomeContatto": "' +
-                    nome +
-                    '"},"telefonoContatto": "' +
-                    telefono +
-                    '","emailContatto": "' +
-                    email +
-                    '","urlContatto": "' +
-                    url +
-                    '"}';
-                var myObj = JSON.parse(input);
-                data[id].push(myObj);
+                if (nome != "-" ||
+                    telefono != "-" ||
+                    email != "-" ||
+                    url != "-") {
+                    var input =
+                        ' {"office": {"language": "it","nomeContatto": "' +
+                        nome +
+                        '"},"telefonoContatto": "' +
+                        telefono +
+                        '","emailContatto": "' +
+                        email +
+                        '","urlContatto": "' +
+                        url +
+                        '"}';
+                    var myObj = JSON.parse(input);
+                    data[id].push(myObj);
+                }
             }
-        }
         } else if ($('input[name="' + id + '[]"]:checkbox').length > 0) {
             data[id] = [];
             $.each($('input[name="' + id + '[]"]:checked'), function (i, val) {
@@ -4601,9 +5260,9 @@ function salvaFile(data) {
             var a = 0;
             for (a = 0; a < length; a++) {
                 if ($("#regione_" + a).html() != undefined) {
-                    var regione= $("#regione_" + a).attr("identifier") == " " ? "-" : $("#regione_" + a).attr("identifier");
-                    var provincia= $("#provincia_" + a).attr("identifier") == " " ? "-" : $("#provincia_" + a).attr("identifier");
-                    var citta = $("#citta_" + a).attr("identifier") == " " ? "-" :$("#citta_" + a).attr("identifier");
+                    var regione = $("#regione_" + a).attr("identifier") == " " ? "-" : $("#regione_" + a).attr("identifier");
+                    var provincia = $("#provincia_" + a).attr("identifier") == " " ? "-" : $("#provincia_" + a).attr("identifier");
+                    var citta = $("#citta_" + a).attr("identifier") == " " ? "-" : $("#citta_" + a).attr("identifier");
                     data[id].regione.push(regione);
                     data[id].provincia.push(provincia);
                     data[id].comune.push(citta);
@@ -4634,6 +5293,12 @@ function salvaFile(data) {
                     data[id].description.push(descrCosto);
                 }
             }
+        } else if (id == "serviceName") {
+            value = $("#nomedelservizio").val();
+            data[id] = value;
+        } else if (id == "serviceType") {
+            value = (sessionStorage.getItem("serviceFor")) ? sessionStorage.getItem("serviceFor") : ""
+            data[id] = value;
         } else {
             if (data[id] == "" || data[id] == " ") {
                 value = $("#" + id).val();
@@ -4648,66 +5313,148 @@ function salvaFile(data) {
     //    var saveData ='"serivceInputData":'+JSON.stringify(data);
 
     //   var testtest = "{"+JSON.parse(saveData)+"}";
-    var inputService = "serviceInputData=" + JSON.stringify(data);
-    var inputFinal = encodeURI(inputService);
+    var inputService = "serviceInputData=" + btoa(JSON.stringify(data));
+    // var inputFinal = encodeURI(inputService);
+    var inputFinal = inputService;
     //appInsights.trackEvent("POST", inputFinal)
-    $.ajax({
-            type: "POST",
-            data: inputFinal,
-            processData: false,
-            url: "api/public-services/checkAndSaveService/",
-            success: function (data) {
-                stopWait("fine");
-                $("#insertResultProvvisorio").append("<p>" + data.result + "</p>");
-                window.location.href = "../../dashboard";
 
-            },
-            error: function (data) {
-                $("#insertResultProvvisorio").append("<p>" + data.result + "</p>");
-            }
-        })
-        .done(function (data) {
-            stopWait("fine");
-           // $("#wait").css("display", "none");
-        })
-        .fail(function () {
-            //$("#wait").css("display", "none");
-        });
 
-    //    $("#settoreservizio_1 option[value='ATTIVITÀ ESTRATTIVA']").attr("id")
+    // "https://sgiservice.xxxx/api/public-services/checkAndSaveService/",
+
+
+    // var name = "sgiservice";
+    // var collection = "public-services/checkAndSaveService/";
+    // var query = "";
+    // var environment = "";
+    // var url = urlComposer(name, collection, query, environment);
+
+    // var objData = callService("POST", url, inputFinal);
+    // if (objData.success) {
+    //     var data = objData.data
+    //     stopWait("fine");
+    //     $("#insertResultProvvisorio").append("<p>" + data.result + "</p>");
+    //     window.location.href = "../../dashboard";
+    // } else {
+    //     $("#insertResultProvvisorio").append("<p>" + data.result + "</p>");
+    //     stopWait("fine");
+    // }
+    // let url = "https://sgiservice.xxxx/api/public-services/checkAndSaveService/"
+    //let url = "http://localhost:3500/api/public-services/checkAndSaveService"
+
+    var name = "sgiservice"
+    var collection = "public-services/checkAndSaveService"
+    var query = ""
+    var environment
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("POST", url, inputFinal);
+    if (objData.success) {
+        stopWait("fine");
+        success(objData.data.result)
+        setTimeout(function () {
+            sessionStorage.setItem("serviceFor", "");
+            window.location.href = "../../dashboard";
+
+        }, 2000)
+    } else {
+
+        stopWait("fine");
+        swal("Errore durante il salvataggio. Riprovare tra qualche minuto  ", {
+            icon: "error",
+            buttons: false
+        })
+    }
+
+    // $.ajax({
+    //         type: "POST",
+    //         data: inputFinal,
+    //         crossDomain: true,
+    //         processData: false,
+    //         headers: {
+    //             "Authorization": "Basic " + btoa("nomeutente:-")
+    //         },
+    //         url: url,
+    //         success: function (data) {
+    //         },
+    //         error: function (data) {}
+    //     })
+    //     .done(function (data) {
+    //         stopWait("fine");
+    //     })
+    //     .fail(function () {
+    //     });
 }
 
-//   var fileDati = file.target.result;
-//        var jsonData = JSON.parse(fileDati);
-//
-//        //var attrId = "-1";
-//
-//        for (var key in jsonData){
-//            var attrName = key;
-//            var attrValue = jsonData[key];
-//            if ($('#'+attrName).hasClass('dp')){
-//                $('#'+attrName).datepicker("update", new Date(attrValue) );
-//                //                $('#'+attrName).trigger('change');
-//                //                $('#'+attrName).datepicker('update');
-//            }
-//
-//            $('#'+attrName).val(attrValue);
-//            //            if(attrName != "staEmiss")
-//            //                $('#'+attrName).trigger('change');
-//
-//            //SE L'INPUT è UNA SELECT SETTA IL VALORE TRAMITE ID
-//            if($('#'+attrName).is('select')){
-//                //                $('#'+attrName +' option[id="-1"]').removeProp('selected');
-//                if(attrName == 'statMemDest' || attrName == 'altroScopDelViag'){
-//                    var selectedValues = attrValue.split(',')
-//                    $('#'+attrName).val(selectedValues).trigger('change');
-//                    //                    $('#'+attrName).select2('val',selectedValues[1]);
-//                }
-//                else
-//                    //$('#'+attrName +' option:selected').prop("selected", false);
-//                    $('#'+attrName +' option[id='+ attrValue + ']' ).prop("selected", "selected").trigger('change');
-//
-//                //                document.getElementById(attrName).getElementsByTagName('option')[0] = '<option disabled="" id="-1" lang="it" value="">Seleziona una scelta</option>'
-//            }
-//
-//
+function popolateServiceStatus() {
+    var container = $("#divStatoServ");
+    var name = "sgistandardtipo";
+    var collection = "statoservs";
+    var query = '?filter={"where":{"language":"it"}}';
+    var query2 = "?filter[where][language]='it'";
+    var environment = "";
+    var url = urlComposer(name, collection, query, environment);
+    var verb = "GET";
+    var obj = callService(verb, url);
+    if (obj.success) {
+        $.each(obj.data, function (index, value) {
+            var disabled = ""
+            if (sessionStorage.getItem('isArchived') == 'true') {
+                disabled = "disabled = true"
+            }
+
+            var html = '<div class="app-radio primary"><label><input ' + disabled + ' type="radio" value="' + value.identifier + '" id="radioOptionStatus" name="radioOptionStatus"> ' + value.description + '</label></div>'
+            container.prepend(html)
+        })
+    } else {
+        container.html("")
+        var errorHtml = 'SERVIZIO NON DISPONIBILE'
+        container.append(errorHtml)
+
+    }
+}
+
+function validateCopertGeogToAdd() {
+    var bool = false
+    var boolCheck = false
+    if ($("#dataATemp").val() ||
+        $("#dataDaTemp").val() ||
+        $("#dataDaTempOra").val() ||
+        $("#dataATempOra").val()
+    )
+        bool = true
+
+    $.each($('input[name="giornoCheck[]"]:checked'), function (i, val) {
+        boolCheck = true
+    });
+    return bool || boolCheck
+
+}
+
+function validateCopertGeogToAddEdit() {
+    var bool = false;
+    var boolCheck = false;
+    if ($("#dataATempEdit").val() ||
+        $("#dataDaTempEdit").val() ||
+        $("#dataDaTempOraEdit").val() ||
+        $("#dataATempOraEdit").val())
+        bool = true
+    $.each($('input[name="giornoCheckEdit[]"]:checked'), function (i, val) {
+        boolCheck = true
+    });
+    return bool || boolCheck
+
+}
+
+function validateCost() {
+    if ($("#costoEuro").val() ||
+        $("#descrizioneCosti").val())
+        return true
+    else false
+}
+
+function validateCostEdit() {
+    if ($("#costoEuroEdit").val() ||
+        $("#descrizioneCostiEdit").val())
+        return true;
+    else false;
+
+}

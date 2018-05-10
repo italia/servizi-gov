@@ -2,7 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var router = express.Router();
-
+var request = require('request');
 // Get Homepage
 router.get('/', ensureAuthenticated, function (req, res) {
 	res.render('index2');
@@ -45,23 +45,13 @@ router.get('/service-from-spid-2', ensureAuthenticated, function (req, res) {
 	res.render('servizi/service-from-spid-2');
 });
 
-
-
-
-
 router.get('/accesscontrol/index', ensureAuthenticated, function (req, res) {
 	res.render('accesscontrol/index');
 });
 
-
-
-
-
-
-
-
-
-
+router.get('/service-wizard-complete-archived2', ensureAuthenticated, function (req, res) {
+	res.render('servizi/service-wizard-complete-archived2');
+});
 
 // router.post('/login', passport.authenticate('local', {successRedirect:'/servizi/index', failureRedirect:'/users/login',failureFlash: true}),
 // function(req, res) {
@@ -75,5 +65,4 @@ function ensureAuthenticated(req, res, next) {
 		res.redirect('/users/login');
 	}
 }
-
 module.exports = router;

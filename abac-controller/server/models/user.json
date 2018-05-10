@@ -14,16 +14,21 @@
     },
     "codicefiscale": {
       "type": "string",
-      "required": true
+      "required": true,
+      "index": {
+        "unique": true
+      }
     },
     "codiceSPID": {
-      "type": "string"
-    },
-    "loginName": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "index": {
+        "unique": true
+      }
     },
     "password": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "email": {
       "type": "string"
@@ -31,6 +36,11 @@
     "isSuperAdmin": {
       "type": "boolean",
       "required": true
+    },
+    "attributes": {
+      "type": [
+        "attribute"
+      ]
     },
     "organizzazioni": {
       "type": [

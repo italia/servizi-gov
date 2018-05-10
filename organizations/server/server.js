@@ -2,6 +2,7 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+const basicAuth = require('express-basic-auth')
 
 //codice aggiunto per default limit
 var qs = require('qs');
@@ -32,6 +33,17 @@ app.start = function () {
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname, function (err) {
   if (err) throw err;
+
+  app.use(basicAuth({
+    users: { 'nomeutente': '-' },
+    unauthorizedResponse: getUnauthorizedResponse
+  }))
+
+  function getUnauthorizedResponse(req) {
+    return req.auth
+      ? ('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected')
+      : 'No credentials provided'
+  }
 
   // start the server if `$ node server.js`
   if (require.main === module)

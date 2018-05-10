@@ -1,0 +1,52 @@
+[
+    {
+        "identifier": "Hour",
+        "description": "Ora",
+        "language": "it"
+    },
+    {
+        "identifier": "Hour",
+        "description": "Hour",
+        "language": "en"
+    },
+    {
+        "identifier": "Day",
+        "description": "Giorno",
+        "language": "it"
+    },
+    {
+        "identifier": "Day",
+        "description": "Day",
+        "language": "en"
+    },
+    {
+        "identifier": "Week",
+        "description": "Settimana",
+        "language": "it"
+    },
+    {
+        "identifier": "Week",
+        "description": "Week",
+        "language": "en"
+    },
+    {
+        "identifier": "Month",
+        "description": "Mese",
+        "language": "it"
+    },
+    {
+        "identifier": "Month",
+        "description": "Month",
+        "language": "en"
+    },
+    {
+        "identifier": "Year",
+        "description": "Anno",
+        "language": "it"
+    },
+    {
+        "identifier": "Year",
+        "description": "Year",
+        "language": "en"
+    }
+]

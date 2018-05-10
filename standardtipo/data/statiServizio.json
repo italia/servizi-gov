@@ -1,0 +1,32 @@
+[
+    {
+        "identifier": "Active",
+        "description": "Attivo",
+        "language": "it"
+    },
+    {
+        "identifier": "Active",
+        "description": "Active",
+        "language": "en"
+    },
+    {
+        "identifier": "Non-Active",
+        "description": "Non attivo",
+        "language": "it"
+    },
+    {
+        "identifier": "Non-Active",
+        "description": "Non-Active",
+        "language": "en"
+    },
+    {
+        "identifier": "UnderDev",
+        "description": "In fase di sviluppo ",
+        "language": "it"
+    },
+    {
+        "identifier": "UnderDev",
+        "description": "Under Development",
+        "language": "en"
+    }
+]

@@ -71,17 +71,11 @@ var organizzazione = mongoose.Schema({
 	},
 	description: {
 		type: String
-	},
-	attributes: {
-		type: [attribute]
 	}
 });
 
 var user = mongoose.Schema({
-	loginName: {
-		type: String,
-		index: true
-	},
+	
 	codicefiscale: {
 		type: String
 	},
@@ -102,6 +96,9 @@ var user = mongoose.Schema({
 	},
 	isSuperAdmin: {
 		type: Boolean
+	},
+	attributes: {
+		type: [attribute]
 	},
 	organizzazioni: {
 		type: [

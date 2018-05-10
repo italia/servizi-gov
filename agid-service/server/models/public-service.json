@@ -15,6 +15,9 @@
     "approval": {
       "type": "dateuser"
     },
+    "update": {
+      "type": "dateuser"
+    },
     "publicationStatus": {
       "type": "publicationstatus"
     },

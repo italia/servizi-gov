@@ -1,7 +1,10 @@
 <script src="/js/dashboard.js"></script>
 <script src="/js/dashboardArchiviati.js"></script>
-
-
+<style>
+    .swal-text {
+        text-align: center !important;
+    }
+</style>
 <div class="app-body">
     <!-- Main content -->
     <main class="main">
@@ -11,18 +14,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card mt-5">
-                            
-
-
-
-
-
-
-
-
-
-
-
                             <div class="card-block">
                                 <ul class="nav nav-tabs" id="tabModalAdd" role="tablist">
                                     <li class="nav-item">
@@ -36,17 +27,17 @@
 
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="home-tab">
-<div class="card-header">
-                                {{!--
-                                <h2>Gestione Servizi</h2> --}}
-                                <h2>Servizi PA:
-                                    <strong id="paName"></strong>
-                                </h2>
-                                <h2 style="display:  inline-flex;">Servizi caricati:
-                                    <div class="h5pa-totalnumber" id="serviceCount"></div>
-                                </h2>
-                            </div>
-                                        <div class="row mb-3">
+                                        <div class="card-header">
+                                            {{!--
+                                            <h2>Gestione Servizi</h2> --}}
+                                            <h2>Servizi PA:
+                                                <strong id="paName"></strong>
+                                            </h2>
+                                            <h2 style="display:  inline-flex;">Servizi caricati:
+                                                <div class="h5pa-totalnumber" id="serviceCount"></div>
+                                            </h2>
+                                        </div>
+                                        <div class="row mb-3 mt-3">
                                             <div class="col-md-6">
                                                 <a href="/servizi/service-new" class="btn btn-primary pa-add-service">
                                                     <i class="icon-plus icons font-2xl"></i> Aggiungi un nuovo servizio</a>
@@ -57,17 +48,17 @@
                                                     <label for="search" class="sr-only">Cerca tra i servizi</label>
                                                     <input type="text" id="search" name="search" class="form-control" placeholder="Cerca tra i servizi caricati">
                                                     <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-primary">VAI</button>
+                                                        <button type="button" id="btnSearch" class="btn btn-primary">VAI</button>
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <table class="table table-hover table-outline mb-0">
+                                        <table class="table table-hover mb-0">
                                             <thead class="thead-default">
                                                 <tr>
                                                     <th scope="col" class="pa-servicename">Nome servizio</th>
+                                                    <th scope="col" class="pa-servicename">Lingua</th>
                                                     <th scope="col" class="pa-quantity">Quantità</th>
-                                                    <th scope="col" class="pa-quality">Qualità</th>
                                                     <th scope="col" class="text-center pa-action">Azioni</th>
                                                 </tr>
                                             </thead>
@@ -75,58 +66,109 @@
 
                                             </tbody>
                                         </table>
-                                        <div id="servContainerD">
+                                        <div class="row">
 
+                                            <div class="col-md-10 offset-md-3 mt-3" id="paginatorContainer">
+
+                                            </div>
                                         </div>
 
+                                        <!--MODAL EDIT LANGUAGE-->
+                                        <div id="modalLanguage" class="modal fade" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Lingua</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="formLanguage">
+                                                            <input hidden type="text" id="idServiceLanguage" />
+                                                            <div class="form-group row">
 
+                                                                <label class="col-md-3 control-label" for="languageSelect">Seleziona lingua</label>
+                                                                <div class="col-md-9">
+                                                                    <select class="form-control" id="languageSelect">
+                                                                        <option selected disabled value>Seleziona una lingua</option>
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 control-label" for="nameServiceLanguage">Nome</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" id="nameServiceLanguage" class="form-control" aria-describedby="s-nomeOutputProdotti" name="nameServiceLanguage">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 control-label" for="alternativenameServiceLanguage">Nome alternativo</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" id="alternativenameServiceLanguage" class="form-control" aria-describedby="s-alternativenameServiceLanguage"
+                                                                        name="alternativenameServiceLanguage">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-3 control-label" for="descriptionServiceLanguage">Descrizione</label>
+                                                                <div class="col-md-9">
+                                                                    <textarea id="descriptionServiceLanguage" class="form-control" aria-describedby="s-descriptionServiceLanguage" name="descriptionServiceLanguage"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="btnSaveLanguage" class="btn btn-primary">Salva</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- Fine modal LANGUAGE -->
 
                                     </div>
                                     <div class="tab-pane fade" id="dashboardArchiviati" role="tabpanel" aria-labelledby="profile-tab">
-<div class="card-header">
-                                {{!--
-                                <h2>Gestione Servizi</h2> --}}
-                                <h2>Servizi PA:
-                                    <strong id="paNameArchiviati"></strong>
-                                </h2>
-                                <h2 style="display:  inline-flex;">Servizi archiviati:
-                                    <div class="h5pa-totalnumber" id="serviceCountArchiviati"></div>
-                                </h2>
-                            </div>
-
-           <div class="row mb-3">
-                                    {{!-- <div class="col-md-6">
-                                        <a href="/servizi/service-new" class="btn btn-primary pa-add-service">
-                                            <i class="icon-plus icons font-2xl"></i> Aggiungi un nuovo servizio</a>
-                                    </div> --}}
-
-                                    <div class="col-md-6 offset-md-6">
-                                        <div class="input-group pa-search-group">
-                                            <label for="search" class="sr-only">Cerca tra i servizi</label>
-                                            <input type="text" id="search" name="search" class="form-control" placeholder="Cerca tra i servizi archiviati">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-primary">VAI</button>
-                                            </span>
+                                        <div class="card-header">
+                                            {{!--
+                                            <h2>Gestione Servizi</h2> --}}
+                                            <h2>Servizi PA:
+                                                <strong id="paNameArchiviati"></strong>
+                                            </h2>
+                                            <h2 style="display:  inline-flex;">Servizi archiviati:
+                                                <div class="h5pa-totalnumber" id="serviceCountArchiviati"></div>
+                                            </h2>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <table class="table table-hover table-outline mb-0">
-                                    <thead class="thead-default">
-                                        <tr>
-                                            <th scope="col" class="pa-servicename">Nome servizio</th>
-                                            <th scope="col" class="pa-quantity">Stato</th>
-                                            <th scope="col" class="text-center pa-action">Azioni</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="serviceBodyArchiviati">
+                                        <div class="row mb-3 mt-3">
 
-                                    </tbody>
-                                </table>
-                                <div id="servContainerDArchiviati">
+                                            <div class="col-md-6 offset-md-6">
+                                                <div class="input-group pa-search-group">
+                                                    <label for="search" class="sr-only">Cerca tra i servizi</label>
+                                                    <input type="text" id="searchArchiviati" name="search" class="form-control" placeholder="Cerca tra i servizi archiviati">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" id="btnSearchArc" class="btn btn-primary">VAI</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
+                                        <table class="table table-hover mb-0">
+                                            <thead class="thead-default">
+                                                <tr>
+                                                    <th scope="col" class="pa-servicename">Nome servizio</th>
+                                                    <th scope="col" class="pa-quantity">Stato</th>
+                                                    <th scope="col" class="text-center pa-action">Azioni</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="serviceBodyArchiviati">
 
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-10 offset-md-3 mt-3" id="paginatorContainerArchiviati">
+                                            </div>
+                                        </div>
 
 
                                     </div>
@@ -144,5 +186,6 @@
 
         </div>
         <!-- /.conainer-fluid -->
+
     </main>
 </div>

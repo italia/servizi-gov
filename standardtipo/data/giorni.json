@@ -1,0 +1,73 @@
+[
+    {
+        "identifier": "Mon",
+        "description": "Lunedì",
+        "language": "it"
+    },
+    {
+        "identifier": "Mon",
+        "description": "Monday",
+        "language": "en"
+    },
+    {
+        "identifier": "Tue",
+        "description": "Martedì",
+        "language": "it"
+    },
+    {
+        "identifier": "Tue",
+        "description": "Tuesday",
+        "language": "en"
+    },
+    {
+        "identifier": "Wed",
+        "description": "Mercoledì",
+        "language": "it"
+    },
+    {
+        "identifier": "Wed",
+        "description": "Wednesday",
+        "language": "en"
+    },
+    {
+        "identifier": "Thu",
+        "description": "Giovedì",
+        "language": "it"
+    },
+    {
+        "identifier": "Thu",
+        "description": "Thursday",
+        "language": "en"
+    },
+    {
+        "identifier": "Fri",
+        "description": "Venerdì",
+        "language": "it"
+    },
+    {
+        "identifier": "Fri",
+        "description": "Friday",
+        "language": "en"
+    },
+    {
+        "identifier": "Sat",
+        "description": "Sabato",
+        "language": "it"
+    },
+    {
+        "identifier": "Sat",
+        "description": "Saturday",
+        "language": "en"
+    },
+    {
+        "identifier": "Sun",
+        "description": "Domenica",
+        "language": "it"
+    },
+    {
+        "identifier": "Sun",
+        "description": "Sunday",
+        "language": "en"
+    }
+
+]

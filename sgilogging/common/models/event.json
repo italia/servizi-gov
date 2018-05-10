@@ -1,0 +1,36 @@
+{
+  "name": "event",
+  "plural": "events",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "caller": {
+      "type": "string",
+      "required": true
+    },
+    "logLevel": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "message": {
+      "type": "string"
+    },
+    "date":{
+      "type":"date"
+    },
+    "timestamp":{
+      "type":"number"
+    },
+    "debugObject":{
+      "type":"Object"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

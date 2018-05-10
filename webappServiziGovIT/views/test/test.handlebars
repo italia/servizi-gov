@@ -1,0 +1,270 @@
+{{!--
+<script src="/js/accessControlApplication.js"></script> --}}
+
+<div class="app-body">
+
+
+    <!-- Main content -->
+    <main class="main">
+        <nav aria-label="breadcrumb" role="navigation">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+               
+
+                <li class="breadcrumb-item">Gestione applicazioni</li>
+            </ol>
+        </nav>
+        <script src="/js/accessControlApplication.js"></script>
+
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+
+<input hidden value="{{user.isSuperAdmin}}" id="isSuperAdmin"/>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+
+                        <!-- Tab panes -->
+                        <div>
+                            <div>
+
+                                <div class="card">
+
+                                    {{#if user.isSuperAdmin}}
+                                    <div class="mt-1 mb-1 row mb-3">
+                                        <div class=" text-center col-md-6">
+                                            <a href="#" class="btn btn-primary pa-add-service" data-toggle="modal" data-target=".modalAddApplication">
+                                                <i class="icon-plus icons font-2xl"></i> Aggiungi Applicazione</a>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade bs-example-modal-lg modalAddApplication" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class=" bg-color color-txt-white modal-header">
+                                                    <label class="l-font">Aggiugi Applicazione</label>
+
+                                                    <button type="button" class="color-txt-white close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+
+                                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="saveApplicationForm">
+                                                        <div class="form-group">
+                                                            <label for="nomeApplicazione">Nome Applicazione</label>
+                                                            <input type="text" class="form-control" id="nomeApplicazione" name="nomeApplicazione" placeholder="nome applicazione">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="urlApplicazione">URL</label>
+                                                            <input type="text" class="form-control" id="urlApplicazione" name="urlApplicazione" placeholder="url applicazione">
+                                                        </div>
+
+                                                        <label for="descrizioneApplicazione">Descrizione</label>
+                                                        <textarea class="form-control" id="descrizioneApplicazione" name="descrizioneApplicazione" rows="2" placeholder="descrizione"></textarea>
+                                                        <div class="row m-top-5 m-bottom-5 m-left-60">
+                                                            <a class="btn btn-primary pa-add-service" role="button" data-toggle="collapse" href="#addAttributeCollapse" aria-expanded="false"
+                                                                aria-controls="collapseExample">
+                                                                Aggiungi attributo
+                                                            </a>
+                                                        </div>
+                                                        <!--       Collapsed Area-->
+                                                        <div class="collapse" id="addAttributeCollapse">
+                                                            <div class="well">
+                                                                <hr style="background-color: black">
+                                                                <div class="form-group">
+                                                                    <label for="nomeAttributo">Nome Attributo</label>
+                                                                    <input type="text" class="form-control" id="nomeAttributo" name="nomeAttributo" placeholder="nome">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="URL">Descrizione Attributo</label>
+                                                                    <input type="text" class="form-control" id="descrizioneAttributo" name="descrizioneAttributo" placeholder="descrizione">
+                                                                </div>
+                                                                <button type="button" id="btnAggiungiAttributo" class="btn btn-primary">Aggiungi</button>
+                                                                <hr style="background-color: black">
+                                                            </div>
+                                                        </div>
+                                                        <table class="table" id="attributeList">
+                                                            <thead class="m-font bold">
+                                                                <tr class="text-center">
+                                                                    <td>Attributo</td>
+                                                                    <td>Descrizione</td>
+                                                                    <td>Azioni</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="bodyTableCreateApplication">
+                                                                <tr id="1">
+                                                                    <td class="text-center" id="roleName_1">admin</td>
+                                                                    <td class="text-center" id="roleDescription_1">Utente con permessi di amministrazione per un set di
+                                                                        PA
+                                                                    </td>
+                                                                    <td class="inline text-center">
+
+                                                                        {{!--
+                                                                        <a href="#" title="modifica" class="m-left-39 m-right-10">
+                                                                            <i class="icon-note icons font-2xl d-block"></i>
+                                                                        </a>
+                                                                        <a href="#" title="cancella">
+                                                                            <i class="icon-close icons font-2xl d-block"></i>
+                                                                        </a> --}}
+
+                                                                    </td>
+                                                                </tr>
+                                                                <tr id="0">
+                                                                    <td class="text-center" id="roleName_0">superAdmin</td>
+                                                                    <td class="text-center" id="roleDescription_0">Amministrazione totale</td>
+                                                                    <td class="inline text-center">
+
+                                                                        {{!--
+                                                                        <a href="#" title="modifica" class="m-left-39 m-right-10">
+                                                                            <i class="icon-note icons font-2xl d-block"></i>
+                                                                        </a>
+                                                                        <a href="#" title="cancella">
+                                                                            <i class="icon-close icons font-2xl d-block"></i>
+                                                                        </a> --}}
+
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <a class="color-txt-white pointer btn btn-primary pa-add-service" onclick="getFieldsToCreateApplication()" aria-label="Close">
+                                                        <span aria-hidden="true"></span>Salva Applicazione
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade bs-example-modal-lg modalEditApplication" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class=" bg-color color-txt-white modal-header">
+                                                    <label class="l-font">Aggiugi Applicazione</label>
+
+                                                    <button type="button" class="color-txt-white close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+
+                                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="saveApplicationFormEdit">
+                                                        <input type="text" hidden id="idApplication" value="" />
+                                                        <div class="form-group">
+                                                            <label for="nomeApplicazioneEdit">Nome Applicazione</label>
+                                                            <input type="text" class="form-control" id="nomeApplicazioneEdit" name="nomeApplicazioneEdit" placeholder="nome applicazione">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="urlApplicazioneEdit">URL</label>
+                                                            <input type="text" class="form-control" id="urlApplicazioneEdit" name="urlApplicazioneEdit" placeholder="url">
+                                                        </div>
+
+                                                        <label for="descrizioneApplicazioneEdit">Descrizione</label>
+                                                        <textarea class="form-control" id="descrizioneApplicazioneEdit" name="descrizioneApplicazioneEdit" rows="2" placeholder="descrizione"></textarea>
+                                                        <div class="row m-top-5 m-bottom-5 m-left-60 " style="display:flex;justify-content: flex-end">
+                                                            <a class="btn btn-primary pa-add-service m-3" role="button" data-toggle="collapse" href="#addAttributeCollapseEdit" aria-expanded="false"
+                                                                aria-controls="collapseExample">
+                                                                Aggiungi attributo
+                                                            </a>
+                                                        </div>
+                                                        <!--       Collapsed Area-->
+                                                        <div class="collapse" id="addAttributeCollapseEdit">
+                                                            <div class="well">
+                                                                <hr style="background-color: black">
+                                                                <div class="form-group">
+                                                                    <label for="nomeAttributoEdit">Nome Attributo</label>
+                                                                    <input type="text" class="form-control" id="nomeAttributoEdit" name="nomeAttributoEdit" placeholder="nome">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="URLEdit">Descrizione Attributo</label>
+                                                                    <input type="text" class="form-control" id="descrizioneAttributoEdit" name="descrizioneAttributoEdit" placeholder="descrizione">
+                                                                </div>
+                                                                <button type="button" id="btnAggiungiAttributoEdit" class="btn btn-primary">Aggiungi</button>
+                                                                <hr style="background-color: black">
+                                                            </div>
+                                                        </div>
+                                                        <table class="table" id="attributeList">
+                                                            <thead class="m-font bold">
+                                                                <tr class="text-center">
+                                                                    <td>Attributo</td>
+                                                                    <td>Descrizione</td>
+                                                                    <td>Azioni</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="bodyTableCreateApplicationEdit">
+
+                                                                <tr id="1">
+                                                                    <td class="text-center" id="roleNameEdit_1">admin</td>
+                                                                    <td class="text-center" id="roleDescriptionEdit_1">Utente con permessi di amministrazione per un set di
+                                                                        PA
+                                                                    </td>
+                                                                    <td class="inline text-center">
+
+                                                                        {{!--
+                                                                        <a href="#" title="modifica" class="m-left-39 m-right-10">
+                                                                            <i class="icon-note icons font-2xl d-block"></i>
+                                                                        </a>
+                                                                        <a href="#" title="cancella">
+                                                                            <i class="icon-close icons font-2xl d-block"></i>
+                                                                        </a> --}}
+
+                                                                    </td>
+                                                                </tr>
+                                                                <tr id="0">
+                                                                    <td class="text-center" id="roleNameEdit_0">superAdmin</td>
+                                                                    <td class="text-center" id="roleDescriptionEdit_0">Amministrazione totale</td>
+                                                                    <td class="inline text-center">
+
+                                                                        {{!--
+                                                                        <a href="#" title="modifica" class="m-left-39 m-right-10">
+                                                                            <i class="icon-note icons font-2xl d-block"></i>
+                                                                        </a>
+                                                                        <a href="#" title="cancella">
+                                                                            <i class="icon-close icons font-2xl d-block"></i>
+                                                                        </a> --}}
+
+                                                                    </td>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <a class="color-txt-white pointer btn btn-primary pa-add-service" style="color:white" onclick="updateApplication()" aria-label="Close">
+                                                        <span aria-hidden="true"></span>Salva Applicazione
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/if}}
+
+                                    <table class="table table-hover table-outline mb-0">
+                                        <thead class="thead-default">
+                                            <tr>
+                                                <th scope="col" class=" text-center pa-servicename">Nome Applicazione</th>
+                                                <th scope="col" class="text-center pa-action">Gestione utenti</th>
+                                                <th scope="col" class="text-center pa-action">Azioni</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="applicationBody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </main>
+    </div>

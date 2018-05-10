@@ -38,7 +38,7 @@ $(function(){
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent',
+          fontColor: 'transparent'
         }
 
       }],
@@ -47,7 +47,7 @@ $(function(){
         ticks: {
           display: false,
           min: Math.min.apply(Math, data.datasets[0].data) - 5,
-          max: Math.max.apply(Math, data.datasets[0].data) + 5,
+          max: Math.max.apply(Math, data.datasets[0].data) + 5
         }
       }],
     },
@@ -58,7 +58,7 @@ $(function(){
       point: {
         radius: 4,
         hitRadius: 10,
-        hoverRadius: 4,
+        hoverRadius: 4
       },
     }
   };
@@ -93,7 +93,7 @@ $(function(){
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent',
+          fontColor: 'transparent'
         }
 
       }],
@@ -102,7 +102,7 @@ $(function(){
         ticks: {
           display: false,
           min: Math.min.apply(Math, data.datasets[0].data) - 5,
-          max: Math.max.apply(Math, data.datasets[0].data) + 5,
+          max: Math.max.apply(Math, data.datasets[0].data) + 5
         }
       }],
     },
@@ -114,7 +114,7 @@ $(function(){
       point: {
         radius: 4,
         hitRadius: 10,
-        hoverRadius: 4,
+        hoverRadius: 4
       },
     }
   };
@@ -145,7 +145,7 @@ $(function(){
       point: {
         radius: 0,
         hitRadius: 10,
-        hoverRadius: 4,
+        hoverRadius: 4
       },
     }
   };
@@ -189,10 +189,10 @@ $(function(){
     scales: {
       xAxes: [{
         display: false,
-        barPercentage: 0.6,
+        barPercentage: 0.6
       }],
       yAxes: [{
-        display: false,
+        display: false
       }]
     },
 
@@ -265,7 +265,7 @@ $(function(){
     scales: {
       xAxes: [{
         gridLines: {
-          drawOnChartArea: false,
+          drawOnChartArea: false
         }
       }],
       yAxes: [{
@@ -282,7 +282,7 @@ $(function(){
         radius: 0,
         hitRadius: 10,
         hoverRadius: 4,
-        hoverBorderWidth: 3,
+        hoverBorderWidth: 3
       }
     },
   };
@@ -301,14 +301,14 @@ $(function(){
     responsive: true,
     maintainAspectRatio: false,
     legend: {
-      display: false,
+      display: false
     },
     scales: {
       xAxes: [{
-        display:false,
+        display:false
       }],
       yAxes: [{
-        display:false,
+        display:false
       }]
     },
     elements: {
@@ -316,7 +316,7 @@ $(function(){
         radius: 0,
         hitRadius: 10,
         hoverRadius: 4,
-        hoverBorderWidth: 3,
+        hoverBorderWidth: 3
       }
     }
   };
@@ -402,14 +402,14 @@ $(function(){
 
   var options = {
     legend: {
-      display: false,
+      display: false
     },
     scales: {
       xAxes: [{
-        display:false,
+        display:false
       }],
       yAxes: [{
-        display:false,
+        display:false
       }]
     },
     elements: {
@@ -417,7 +417,7 @@ $(function(){
         radius: 0,
         hitRadius: 10,
         hoverRadius: 4,
-        hoverBorderWidth: 3,
+        hoverBorderWidth: 3
       }
     },
   };

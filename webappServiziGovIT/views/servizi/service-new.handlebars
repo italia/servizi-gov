@@ -22,8 +22,6 @@
 
                 <div class="row">
                     <div class="col-md-6">
-
-
                         <div class="card">
                             <h2 class="card-header">
                                 <strong>
@@ -34,93 +32,96 @@
                                 <ul>
                                     <li class="align-left">Stai usando per la prima volta questo servizio.</li>
                                     <li class="align-left">Voi descrivere velocemente tutti i servizi per poi completare la compilazione in un secondo
-                                        momento.</li>
+                                        momento.
+                                    </li>
                                 </ul>
-                                <a class="btn btn-primary btn-clean mt-3" onclick="setFastProcedure(true)" href="/servizi/service-wizard1" title="Carica velocemente il tuo servizio">
-                                    <span class="icon-magic-wand"></span> Inizia</a>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="spanTextSceltaServizio">Creazione di servizi esposti ai cittadini</span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-primary btn-clean mt-3 btnSceltaServizio" serviceFor="EXT" onclick="setFastProcedure(true, this)" href="/servizi/service-wizard1"
+                                            title="Carica velocemente il tuo servizio">
+                                            <span>Servizio al cittadino</span></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="spanTextSceltaServizio">Creazione servizi interni alla PA</span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-primary btn-clean mt-3 btnSceltaServizio" serviceFor="INT" onclick="setFastProcedure(true, this)" href="/servizi/service-wizard2/"
+                                            title="Carica velocemente il tuo servizio">
+                                            <span>Servizio interno</span></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="spanTextSceltaServizio">Creazione servizi tra due PA</span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-primary btn-clean mt-3 btnSceltaServizio" serviceFor="PA2PA" onclick="setFastProcedure(true, this)" href="/servizi/service-wizard2/"
+                                            title="Carica velocemente il tuo servizio">
+                                            <span>Servizio Infra</span></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-6">
-
                         <div class="card">
                             <h2 class="card-header">
                                 <strong>
                                     <span class="icon-plus"></span> Procedura completa</strong>
                             </h2>
-
                             <div class="card-block">
-                                <p class="align-left">Utilizza questa funzione per descrivere un servizio inserendo tutte le informazioni necessarie</p>
+                                <p class="align-left">Puoi usare questa funzione se:</p>
+                                <ul>
+                                    <li class="align-left">Sei a conoscenza almeno di tutti i dati obbligatori all'interno della form di inserimento.</li>
+                                    <li class="align-left">Vuoi argomentare maggiormente il tuo servizio per renderlo più chiaro.
+                                    </li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="spanTextSceltaServizio">Creazione di servizi esposti ai cittadini</span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-primary btn-clean mt-3 btnSceltaServizio" serviceFor="EXT" onclick="setFastProcedure(false, this)" href="/servizi/service-wizard-complete1"
+                                            title="Crea il tuo servizio">
+                                            <span>Servizio al cittadino</span></a>
+                                    </div>
+                                </div>
 
-                                <a class="btn btn-primary btn-clean mt-3" onclick="setFastProcedure(false)" href="/servizi/service-wizard-complete1" title="Crea il tuo servizio">
-                                    <span class="icon-magic-wand"></span> Creazione completa</a>
 
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="spanTextSceltaServizio">Creazione servizi interni alla PA</span>
+                                    </div>
+                                    <div class="col-md-5">
+
+                                        <a class="btn btn-primary btn-clean mt-3 btnSceltaServizio" serviceFor="INT" onclick="setFastProcedure(false, this)" href="/servizi/service-wizard-complete2/"
+                                            title="Crea il tuo servizio">
+                                            <span>Servizio interno</span></a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="spanTextSceltaServizio">Creazione servizi tra due PA</span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-primary btn-clean mt-3 btnSceltaServizio" serviceFor="PA2PA" onclick="setFastProcedure(false, this)" href="/servizi/service-wizard-complete2/"
+                                            title="Crea il tuo servizio">
+                                            <span>Servizio Infra</span></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-
                     </div>
-
                 </div>
-
-
-                <!--/.row-->
             </div>
         </div>
         <!-- /.conainer-fluid -->
     </main>
-
-
-    <!-- il menù aside forse non serve vedremo -->
-    <aside class="aside-menu" style="display:none">
-
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane active" id="timeline" role="tabpanel">
-                <div class="callout m-0 py-2 text-center bg-faded text-uppercase">
-                    <small>
-                        <b>Storico azioni</b>
-                    </small>
-                </div>
-                <hr class="transparent mx-3 my-0">
-                <div class="callout callout-warning m-0 py-3">
-                    <div>
-                        <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
-                    </div>
-                    <div>
-                        <small class="text-guida mr-3">
-                            <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
-                    </div>
-                    <div>
-                        <small class="text-guida">
-                            <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
-                    </div>
-                </div>
-                <hr class="mx-3 my-0">
-                <div class="callout callout-info m-0 py-3">
-
-                    <div>
-                        <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
-                    </div>
-                    <div>
-                        <small class="text-guida mr-3">
-                            <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
-                    </div>
-                    <div>
-                        <small class="text-guida">
-                            <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
-                    </div>
-
-                </div>
-                <hr class="transparent mx-3 my-0">
-
-            </div>
-
-        </div>
-    </aside>
-
-
 </div>

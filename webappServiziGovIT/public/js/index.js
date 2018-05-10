@@ -1,6 +1,7 @@
-
 $(document).ready(function (e) {
-    $("#components").css("transition","all 0.5s ease-in-out;")
+    sessionStorage.removeItem("cpa")
+    sessionStorage.removeItem("description")
+    $("#components").css("transition", "all 0.5s ease-in-out;")
     if (!$("#paAutorizzate").is("select")) {
         $("#paAutorizzate").autocomplete({
             source: function (request, resolve) {
@@ -12,7 +13,7 @@ $(document).ready(function (e) {
                 $("#paAutorizzate").attr("itemCode", ui.item.value);
                 $("#components").removeAttr("hidden")
                 $("#components").fadeIn()
-                
+
                 return false;
             },
             change: function (event, ui) {
@@ -20,9 +21,9 @@ $(document).ready(function (e) {
                 $("#components").fadeIn()
             },
         });
-    }else{
+    } else {
         $("#components").removeAttr("hidden")
-        } 
+    }
 
 
     $("#dashboardRedirect").click(function (e) {
@@ -41,23 +42,33 @@ $(document).ready(function (e) {
             $("#dashboardRedirect").attr("href", val)
             sessionStorage.setItem("cpa", $("#paAutorizzate").attr("itemCode"))
         }
-        $(this).click()
+        //$(this).click()
+        var href = $(this).attr("href")
+        window.location.href = href;
     })
 })
 
 function popolateAutocompleteOrganizzInDashboard(insertWord, response) {
-    //$("#wait").css("display", "block");
     startWait("amm", "Caricamento amministrazioni in corso");
-    //liv interazione
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: '/api/organizations?filter={"where":{"or":[{"name":{"like":"' +
-            insertWord +
-            '.*","options":"i"}},{"organizationCode":{"like":"' +
-            insertWord +
-            '.*","options":"i"}}]},"limit":20}'
-    }).done(function (data) {
+    var name = "sgiorganization"
+    var collection = "organizations"
+    var query = '?filter={"where":{"or":[{"name":{"like":"' +
+        insertWord +
+        '.*","options":"i"}},{"organizationCode":{"like":"' +
+        insertWord +
+        '.*","options":"i"}}]},"limit":20}';
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        if (data.lenght = 0)
+        {
+            swal(String.format("Nessuna amministrazione trovata con il termine di ricerca \"{0}\"",insertWord), {
+                icon: "error",
+            });
+            return;
+        }
         stopWait("amm");
         var appName = [];
         $.each(data, function (i, field) {
@@ -67,7 +78,32 @@ function popolateAutocompleteOrganizzInDashboard(insertWord, response) {
             });
         });
         response(appName);
-    }).fail(function (res) {
+    } else {
         stopWait("amm");
-    });
+
+    }
+
+
+    //liv interazione
+    // $.ajax({
+    //     type: "GET",
+    //     dataType: "json",
+    //     url: 'https://sgiorganization.xxxx/api/organizations?filter={"where":{"or":[{"name":{"like":"' +
+    //         insertWord +
+    //         '.*","options":"i"}},{"organizationCode":{"like":"' +
+    //         insertWord +
+    //         '.*","options":"i"}}]},"limit":20}'
+    // }).done(function (data) {
+    //     stopWait("amm");
+    //     var appName = [];
+    //     $.each(data, function (i, field) {
+    //         appName.push({
+    //             value: field.organizationCode,
+    //             label: field.name
+    //         });
+    //     });
+    //     response(appName);
+    // }).fail(function (res) {
+    //     stopWait("amm");
+    // });
 }

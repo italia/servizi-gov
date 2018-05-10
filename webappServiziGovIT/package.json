@@ -16,15 +16,22 @@
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
     "cors": "^2.8.4",
+    "dont-sniff-mimetype": "^1.0.0",
     "express": "*",
+    "express-csp-header": "^2.2.0",
     "express-handlebars": "*",
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "helmet": "^3.11.0",
+    "helmet-csp": "^2.7.0",
     "mongodb": "*",
     "mongoose": "*",
+    "nocache": "^2.0.0",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "referrer-policy": "^1.1.0",
+    "request": "2.83.0"
   }
 }

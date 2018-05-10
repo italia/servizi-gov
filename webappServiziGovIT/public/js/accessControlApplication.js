@@ -9,14 +9,14 @@ if (!String.format) {
     };
 }
 //dovrebbe essere gia caricata da service<Templates
-function  getQueryStringParam(name, url) {
-    if  (!url) url  = window.location.href;
-    name  = name.replace(/[\[\]]/g,  "\\$&");
-    var  regex  = new  RegExp("[?&]"  + name  + "(=([^&#]*)|&|#|$)"),
-        results  = regex.exec(url);
-    if  (!results)  return null;
-    if  (!results[2])  return  '';
-    return  decodeURIComponent(results[2].replace(/\+/g,  " "));
+function getQueryStringParam(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 // const serviceRow = '<tr><td data-label="{1}" class="table-th-50">{1}<div class="small text-guide">{2}</div></td><td data-label="caricamento dati"><div class="clearfix">' +
 //     '<div class="float-left"><strong></strong></div><div class="float-right"><small class="text-guide">quantità di metadati caricati</small></div></div>' +
@@ -27,22 +27,29 @@ function  getQueryStringParam(name, url) {
 //     '<span class="switch-label"></span><span class="switch-handle"></span><span class="sr-only">Pubblica servizio</span></label></div></div></td></tr>'
 
 
+// const applicationRow = '<tr><td data-label="{1}" class="table-th-50">{1}' +
+//     '<div class="small text-guide">{2}</div></td>' +
+//     '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a onclick="loadPageApplication(\'{1}\',\'{0}\');" href="/accesscontrol/users" title="utenti"><i class="icon-user-follow icons font-2xl d-block"></i></a></div></div></td>' +
+//     '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a href="#" onClick="editService(\'{0}\')" {4} title="modifica"><i class="icon-note icons font-2xl d-block"></i></a></div>' +
+//     '<div class="col-5"><a href="/service/?serviceDelete={0}" {4} title="cancella"><i class="icon-trash icons font-2xl d-block"></i></a></div></div></td></tr>'
+
 const applicationRow = '<tr><td data-label="{1}" class="table-th-50">{1}' +
     '<div class="small text-guide">{2}</div></td>' +
-    '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a onclick="loadPageApplication(\'{1}\',\'{0}\');" href="/accesscontrol/users" title="utenti"><i class="icon-user-follow icons font-2xl d-block"></i></a></div></div></td>' +
-    '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a href="#" onClick="editService(\'{0}\')" title="modifica"><i class="icon-note icons font-2xl d-block"></i></a></div>' +
-    '<div class="col-5"><a href="/service/?serviceDelete={0}" title="cancella"><i class="icon-close icons font-2xl d-block"></i></a></div></div></td></tr>'
+    '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a onclick="loadPageApplication(\'{1}\',\'{0}\');" href="/accesscontrol/users" title="utenti"><i class="fa fa-user-plus icons font-2xl d-block"></i></a></div></div></td>' +
+    '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a href="#" onClick="editService(\'{0}\')" {4} title="modifica"><i class="fa fa-edit icons font-2xl d-block"></i></a></div>' +
+    '</div></td></tr>'
+
 
 var currentPos = 0;
 var total;
 var perPageUser = 3;
 var isLoadedAttributes = false;
 $(document).ready(function () {
-   
+
     $("#btnAggiungiAttributo").click(function (e) {
         // var isValid = checkIsValidField()
         // if (isValid)
-            popolateTableRoleInModal()
+        popolateTableRoleInModal()
         // else{
 
         // }
@@ -51,7 +58,7 @@ $(document).ready(function () {
     $("#btnAggiungiAttributoEdit").click(function (e) {
         // var isValid = checkIsValidFieldEdit()
         // if (isValid)        
-            popolateTableRoleInModalEdit()
+        popolateTableRoleInModalEdit()
         // else{
 
         // }
@@ -63,79 +70,81 @@ $(document).ready(function () {
             nomeApplicazione: "required",
             urlApplicazione: "required",
             descrizioneApplicazione: "required",
-            nomeAttributo:"required",
-            descrizioneAttributo:"required"
+            nomeAttributo: "required",
+            descrizioneAttributo: "required"
         },
         messages: {
             nomeApplicazione: "Campo obbligatorio",
             urlApplicazione: "Campo obbligatorio",
             descrizioneApplicazione: "Campo obbligatorio",
-            nomeAttributo:"Campo obbligatorio",
-            descrizioneAttributo:"Campo obbligatorio"
+            nomeAttributo: "Campo obbligatorio",
+            descrizioneAttributo: "Campo obbligatorio"
         },
         errorClass: "errorText",
         highlight: function (element) {
-          $(element).addClass("errorInput");
+            $(element).addClass("errorInput");
         },
         unhighlight: function (element) {
-          $(element).removeClass("errorInput");
+            $(element).removeClass("errorInput");
         }
-      });
+    });
 
-      $("#saveApplicationFormEdit").validate({
+    $("#saveApplicationFormEdit").validate({
         ignore: ':hidden',
         rules: {
             nomeApplicazioneEdit: "required",
             urlApplicazioneEdit: "required",
             descrizioneApplicazioneEdit: "required",
-            nomeAttributoEdit:"required",
-            descrizioneAttributoEdit:"required"
+            nomeAttributoEdit: "required",
+            descrizioneAttributoEdit: "required"
         },
         messages: {
             nomeApplicazioneEdit: "Campo obbligatorio",
             urlApplicazioneEdit: "Campo obbligatorio",
             descrizioneApplicazioneEdit: "Campo obbligatorio",
-            nomeAttributoEdit:"Campo obbligatorio",
-            descrizioneAttributoEdit:"Campo obbligatorio"
+            nomeAttributoEdit: "Campo obbligatorio",
+            descrizioneAttributoEdit: "Campo obbligatorio"
         },
         errorClass: "errorText",
         highlight: function (element) {
-          $(element).addClass("errorInput");
+            $(element).addClass("errorInput");
         },
         unhighlight: function (element) {
-          $(element).removeClass("errorInput");
+            $(element).removeClass("errorInput");
         }
-      });
-     
-      
-           
-         
-
+    });
     injectApplication();
 
 })
 
 function injectApplication() {
 
-    var url = ""
-    $.ajax({
-        url: url
-    }).done(function (data) {
+    var name = "sgiabaccontroller"
+    var collection = "applications"
+    var query = ""
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
         renderApplication(data)
-    }).fail(function () {
-        //alert("errore nella ricerca")
-    })
+    } else {
+
+    }
 
 }
 
 function renderApplication(data) {
     $("#applicationBody").empty()
-    data.forEach(element => {
+    var isHidden;
+    $.each(data, function (index, element) {
+        isHidden = $("#isSuperAdmin").val() == "true" ? "" : "hidden";
         var applicationHtmlFormatted = String.format(applicationRow,
             element.id,
             element.nome,
             element.description,
-            "100%")
+            "100%",
+            isHidden)
         $("#applicationBody").append(applicationHtmlFormatted)
     })
 }
@@ -160,7 +169,7 @@ function popolateTableRoleInModal() {
         '<a href="#" title="modifica" class="m-left-39 m-right-10">' +
         // '<i class="icon-note icons font-2xl d-block"></i></a>' +
         '<a href="#" class="ml-15" onClick="deleteRow(' + newId + ')" title="cancella">' +
-        '<i class="icon-close icons font-2xl d-block"></i></a> </td></tr>'
+        '<i class="fa fa-times-circle icons font-2xl d-block"></i></a> </td></tr>'
 
     $("#bodyTableCreateApplication").prepend(html);
     $("#nomeAttributo").val("")
@@ -170,99 +179,132 @@ function popolateTableRoleInModal() {
 
 }
 
-function popolateTableRoleInModalEdit(){
-    var nameRole = $("#nomeAttributoEdit").val() == "" ? "-" : $("#nomeAttributoEdit").val();
-    var descrizioneRole = $("#descrizioneAttributoEdit").val() == "" ? "-" : $("#descrizioneAttributoEdit").val();
-    var lastId = $("#bodyTableCreateApplicationEdit tr").attr("id");
-    lastId++;
-    var newId = lastId
-    var html =
-        '<tr id="' + newId + '"><td class="text-center" id="roleNameEdit_' + newId + '">' + nameRole + '</td>' +
-        '<td class="text-center" id="roleDescriptionEdit_' + newId + '">' + descrizioneRole + '</td>' +
-        '<td class="inline text-center">' +
-        '<a href="#" title="modifica" class="m-left-39 m-right-10">' +
-        // '<i class="icon-note icons font-2xl d-block"></i></a>' +
-        '<a href="#" class="ml-15" onClick="deleteRowEdit(' + newId + ')" title="cancella">' +
-        '<i class="icon-close icons font-2xl d-block"></i></a> </td></tr>'
+function popolateTableRoleInModalEdit() {
+    if ($("#nomeAttributoEdit").val() != "" && $("#nomeAttributoEdit").val() != undefined) {
+        var nameRole = $("#nomeAttributoEdit").val() == "" ? "-" : $("#nomeAttributoEdit").val();
+        var descrizioneRole = $("#descrizioneAttributoEdit").val() == "" ? "-" : $("#descrizioneAttributoEdit").val();
+        var lastId = $("#bodyTableCreateApplicationEdit tr").attr("id");
+        lastId++;
+        var newId = lastId
+        var html =
+            '<tr id="' + newId + '"><td class="text-center" id="roleNameEdit_' + newId + '">' + nameRole + '</td>' +
+            '<td class="text-center" id="roleDescriptionEdit_' + newId + '">' + descrizioneRole + '</td>' +
+            '<td class="inline text-center">' +
+            '<a href="#" title="modifica" class="m-left-39 m-right-10">' +
+            // '<i class="icon-note icons font-2xl d-block"></i></a>' +
+            '<a href="#" class="ml-15" onClick="deleteRow(' + newId + ')" title="cancella">' +
+            '<i class="fa fa-times-circle icons font-2xl d-block"></i></a> </td></tr>'
 
-    $("#bodyTableCreateApplicationEdit").prepend(html);
-    $("#nomeAttributoEdit").val("");
-    $("#descrizioneAttributoEdit").val("");
-    $("#addAttributeCollapseEdit").collapse("hide")
+        $("#bodyTableCreateApplicationEdit").prepend(html);
+        $("#nomeAttributoEdit").val("");
+        $("#descrizioneAttributoEdit").val("");
+        $("#addAttributeCollapseEdit").collapse("hide");
+    }
 }
 
 function deleteRow(row) {
-    $("#bodyTableCreateApplication tr#" + row).remove();
-}
-function deleteRowEdit(row) {
-    $("#bodyTableCreateApplicationEdit tr#" + row).remove();
-}
-function getFieldsToCreateApplication() {
-    if($("#saveApplicationForm").valid()){
-    var objApplication = app = {
-        nome: "",
-        url: "",
-        description: "",
-        attributes: [],
-    }
+    var message = "Rimozione utente";
+    var description = "Sei sicuro di voler rimuovere definitivamente l'attibuto?";
+    swal({
+            title: message,
+            text: description,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            buttons: ["Annulla", "Conferma"]
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $("#bodyTableCreateApplicationEdit tr#" + row).remove();
+                updateApplication();
+                swal("Rimozione effettuata!", {
+                    icon: "success",
+                });
+                return true;
+            } else {
+                swal("Operazione annullata");
+                return false;
+            }
+        });
 
-    objApplication.nome = $("#nomeApplicazione").val();
-    objApplication.url = $("#urlApplicazione").val();
-    objApplication.description = $("#descrizioneApplicazione").val();
-    //prendere tutti gli elementi della tabella
-    var lengthTable = $("#bodyTableCreateApplication tr").attr("id");
-    lengthTable++
-    for (var a = 0; a < lengthTable; a++) {
-        var roleName = $("#roleName_" + a).html()
-        var roleDesc = $("#roleDescription_" + a).html()
-        var attribute = '{"name":"' + roleName + '", "description":"' + roleDesc + '"}';
-        objApplication.attributes.push(JSON.parse(attribute))
-    }
-    insertInDatabase(objApplication)
+
 }
+
+function getFieldsToCreateApplication() {
+    if ($("#saveApplicationForm").valid()) {
+        var objApplication = app = {
+            nome: "",
+            url: "",
+            description: "",
+            attributes: [],
+        }
+
+        objApplication.nome = $("#nomeApplicazione").val();
+        objApplication.url = $("#urlApplicazione").val();
+        objApplication.description = $("#descrizioneApplicazione").val();
+        //prendere tutti gli elementi della tabella
+        var lengthTable = $("#bodyTableCreateApplication tr").attr("id");
+        lengthTable++
+        for (var a = 0; a < lengthTable; a++) {
+            var roleName = $("#roleName_" + a).html().replace(/\s\s+/g, ' ');
+            var roleDesc = $("#roleDescription_" + a).html().replace(/\s\s+/g, ' ');
+            var attribute = '{"name":"' + roleName + '", "description":"' + roleDesc + '"}';
+            var test = JSON.parse(attribute)
+            objApplication.attributes.push(JSON.parse(attribute))
+        }
+        obj.codiceFiscaleAdmin = sessionStorage.getItem("userId")
+        insertInDatabase(objApplication)
+    }
 
 }
 
 function insertInDatabase(obj) {
     obj = JSON.stringify(obj);
     obj = JSON.parse(obj)
-    $.ajax({
-        type: "POST",
-        async: false,
-        data: obj,
-        url: "",
-        success: function (data) {
 
+    var objToString = JSON.stringify(obj)
+    objToString = 'appObj=' + objToString
 
-            console.log(data)
-        },
-        error: function (data) {
+    //createApplication
+    var name = "sgiabaccontroller"
+    var collection = "applications/createApplication"
+    var query = ""
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("POST", url, objToString);
+    if (objData.success) {
+        var data = objData.data
+        console.log(data)
+        self.location.assign(location)
+    } else {
 
-        }
-    })
+    }
 }
 
 function editService(service) {
-    if(!isLoadedAttributes){
-    var objService = getService(service)
-    // console.log(objService)
-    popolateModalEdit(objService);
-    isLoadedAttributes = true
-}
+    if (!isLoadedAttributes) {
+        var objService = getApplication(service)
+        // console.log(objService)
+        popolateModalEdit(objService);
+        isLoadedAttributes = true
+    }
     $(".modalEditApplication").modal("show")
 }
 
-function getService(id) {
+function getApplication(id) {
     var obj;
-    $.ajax({
-        type: "GET",
-        async: false,
-        url: "" + id,
-        success: function (data) {
-            obj = data
-        },
-        error: function (data) {}
-    })
+
+    var name = "sgiabaccontroller"
+    var collection = "applications/" + id;
+    var query = ""
+    var environment = ""
+    //TODO
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        obj = data
+    } else {}
     return obj
 }
 
@@ -284,17 +326,18 @@ function popolateTableInModal(attr) {
     $("#bodyTableCreateApplicationEdit").html()
     var container = $("#bodyTableCreateApplicationEdit")
     var lastId = $("#bodyTableCreateApplicationEdit tr").attr("id");
-    lastId++;
-    var newId = lastId
+
     $.each(attr, function (index, value) {
-        var html = '<tr id="' + newId + '"><td class="text-center" id="roleName_' + newId + '">' + value.name + '</td>' +
-            '<td class="text-center" id="roleDescription_' + newId + '">' + value.description + '</td>' +
-            '<td class="inline text-center">' +
-            '<a href="#" title="modifica" class="m-left-39 m-right-10">' +
-            // '<i class="icon-note icons font-2xl d-block"></i></a>' +
-            '<a href="#" class="ml-15" onClick="deleteRow(' + newId + ')" title="cancella">' +
-            '<i class="icon-close icons font-2xl d-block"></i></a> </td></tr>'
         if (value.name != 'admin' && value.name != 'superAdmin') {
+            lastId++;
+
+            var html = '<tr id="' + lastId + '"><td class="text-center" id="roleNameEdit_' + lastId + '">' + value.name + '</td>' +
+                '<td class="text-center" id="roleDescriptionEdit_' + lastId + '">' + value.description + '</td>' +
+                '<td class="inline text-center">' +
+                '<a href="#" title="modifica" class="m-left-39 m-right-10">' +
+                // '<i class="icon-note icons font-2xl d-block"></i></a>' +
+                '<a href="#" class="ml-15" onClick="deleteRow(' + lastId + ')" title="cancella">' +
+                '<i class="fa fa-times-circle icons font-2xl d-block"></i></a> </td></tr>'
             container.prepend(html);
 
         }
@@ -304,49 +347,52 @@ function popolateTableInModal(attr) {
 
 
 }
-function removeAttributesLoad(){
-    var lastId = $("#bodyTableCreateApplicationEdit tr").attr("id");
 
-}
+// function removeAttributesLoad() {
+//     var lastId = $("#bodyTableCreateApplicationEdit tr").attr("id");
 
-function updateApplication(){
-var obj = popolateObjToUpdate();
+// }
+
+function updateApplication() {
+    var obj = popolateObjToUpdate();
     console.log(obj)
     var objToString = JSON.stringify(obj)
-    objToString = 'appToAdd='+objToString
-    $.ajax({
-        type: "POST",
-        async: false,
-        data:objToString,
-        url: "",
-        success: function (data) {
-            console.log(data)
-        },
-        error: function (data) {}
-    })
+    objToString = 'appToAdd=' + objToString
+
+    var name = "sgiabaccontroller"
+    var collection = "applications/updateApplication"
+    var query = ""
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    //var url = "http://localhost:3500/api/applications/updateApplication"
+    var objData = callService("POST", url, objToString);
+    if (objData.success) {
+        var data = objData.data;
+        console.log(data);
+        location.reload();
+    } else {
+        error("Errore durante il salvataggio della modifica")
+        return;
+    }
 }
 
-function popolateObjToUpdate(){
-    var objApplication = app = {
-        nome: "",
-        url: "",
-        description: "",
-        attributes: [],
-        id:""
-    }
+function popolateObjToUpdate() {
+    var objApplication = {};
     objApplication.nome = $("#nomeApplicazioneEdit").val();
     objApplication.url = $("#urlApplicazioneEdit").val();
     objApplication.description = $("#descrizioneApplicazioneEdit").val();
-    objApplication.id=$("#idApplication").val()
+    objApplication.id = $("#idApplication").val()
+    objApplication.attributes = []
     //prendere tutti gli elementi della tabella
     var lengthTable = $("#bodyTableCreateApplicationEdit tr").attr("id");
     lengthTable++
     for (var a = 0; a < lengthTable; a++) {
-        var roleName = $("#roleNameEdit_" + a).html()
-        var roleDesc = $("#roleDescriptionEdit_" + a).html()
+        var roleName = $("#roleNameEdit_" + a).html().replace(/\s\s+/g, ' ');
+        var roleDesc = $("#roleDescriptionEdit_" + a).html().replace(/\s\s+/g, ' ');
         var attribute = '{"name":"' + roleName + '", "description":"' + roleDesc + '"}';
         objApplication.attributes.push(JSON.parse(attribute))
     }
+    objApplication.codiceFiscaleAdmin = sessionStorage.getItem("userId");
     return objApplication
 
 }

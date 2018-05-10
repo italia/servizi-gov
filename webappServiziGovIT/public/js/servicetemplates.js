@@ -1,25 +1,17 @@
-
 const templateHtml = '<div class="col-sm-4 col-md-4"><div class="card"><div class="card-header"><h2><a href="/servizi/service-wizard-complete2?templateId={0}">{2}</a></h2>' +
     '</div> <div class="card-block">{1}</div><div class="card-footer">' +
     '<a href="/servizi/service-wizard-complete2/?templateId={0}" title="{2}" id="templateButton" class="btn btn-primary float-right">Scegli questo modello</a></div></div></div>'
-const templateHtmlFastForm = '<div class="col-sm-6 col-md-6"><div class="card"><div class="card-header"><h2><a href="/servizi/service-wizard2?templateId={0}">{2}</a></h2>' +
+const templateHtmlFastForm = '<div class="col-sm-4 col-md-4"><div class="card"><div class="card-header"><h2><a href="/servizi/service-wizard2?templateId={0}">{2}</a></h2>' +
     '</div> <div class="card-block">{1}</div><div class="card-footer">' +
     '<a href="/servizi/service-wizard2/?templateId={0}" title="{2}" id="templateButton" class="btn btn-primary float-right">Scegli questo modello</a></div></div></div>'
-const pagerHtml = '<ul class="pagination ml-3"><li class="page-item"><a class="page-link" id="btnPrev" href="#">Prev</a></li><li class="page-item"><a class="page-link" id="btnForw" href="#">Next</a></li></ul>'
-const pagerOpen = '<ul class="pagination ml-3" id="pagerOpen">'
-const pagerItem = '<li class="page-item"><a class="page-link" href="#">{0}</a></li>'
-const pagerClose = '</ul>'
-const pagerPrevious = '<li id="prev" class="page-item"><a class="page-link" disabled href="#">Precedente</a></li>'
-const pagerFwd = '<li id="fwd" class="page-item"><a class="page-link"  href="#">Successiva</a></li>'
 const pagerPlaceHolder = '<div class="row" id="pagerPlaceHolder"></div>'
-var pagerContainer = ''
-const notFoundHtml = '<p class="mt-4"><em>Se il risultato della ricerca non ha prodotto i risultati aspettati, affina la ricerca, oppure crea un nuovo servizio non partendo dal modello.</em></p>' +
-    '<button class="btn btn-primary" type="button">Nuovo servizio</button>'
-const serviceUri = "-/api/service-templates?filter[where][entePa]="
+const notFoundHtml = '<div class="col-md-3"><p class=""> <em>Il servizio che stai cercando non è stato censito tra i modelli; puoi caricare un servizio ' +
+    'senza un modello di riferimento, oppure prova a fare una nuova ricerca</em></p></div><div class="col-md-3"><span class="input-group-btn mt-4">' +
+    '<a class="btn btn-primary" style="margin-top: 9px;" href="/servizi/service-wizard-complete2/" id="">Crea servizio senza modello di riferimento</a></span></div>'
+// const serviceUri = "https://sgiservicetemplate.xxxx/api/service-templates/?filter[where][entePa]="
 var currentPos = 0;
 var total;
 let perPage = 12;
-let pagerCount;
 $(document).ready(function () {
     total = getGlobalCount();
     $("#selectEnti").change(function (e) {
@@ -30,9 +22,10 @@ $(document).ready(function () {
                 $("#selectEnti").val()
             )
         } else {
-            searchTemplatesByType($("#selectEnti").val())
+            searchTemplatesByType($(this).val())
         }
     });
+
     $("#btnSearch").click(function (e) {
         currentPos = 0;
         if ($("#selectEnti").val() != "*") {
@@ -41,265 +34,282 @@ $(document).ready(function () {
                 $("#selectEnti").val()
             )
         } else {
-            searchTemplates($("#appendedInputButton").val())
+            searchTemplatesToText($("#appendedInputButton").val())
+        }
+    })
+    $("#appendedInputButton").keyup(function (event) {
+        if (event.keyCode === 13) {
+            if ($("#selectEnti").val() != "*") {
+                combineSearchFilters(
+                    $("#appendedInputButton").val(),
+                    $("#selectEnti").val()
+                )
+            } else {
+
+                searchTemplatesToText($("#appendedInputButton").val())
+            }
         }
     })
     $("#btnClear").click(function (e) {
         clearSearchFilters()
     })
-    //initial fetch
-    fetchData()
-    //$("#prev").removeAttr('href');
-
+    initCardTotalQuery(total)
 });
 
 function getGlobalCount() {
     let totalL;
-    $.ajax({
-            url: "-/api/service-templates/count",
-            datatype: "json",
-            async: "false"
-        })
-        .done(function (res) {
-            totalL = res.count;
-        });
+    var name = "sgiservicetemplate"
+    var collection = "service-templates/count"
+    var query = ""
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        var data = objData.data
+        totalL = data.count;
+    } else {}
     return totalL;
 }
 
 function fetchData() {
-    $.get('-/api/service-templates?filter[limit]=' + perPage + '&filter[skip]=' + currentPos,
-        function (res) {
-            renderData(res);
-            // renderPagerWithNumbers(total)
-        }, 'json').done(function () {
-        //renderPagerWithNumbers(total)
-        renderPager()
-        addPagerEventHandler();
-        if (currentPos > 0) $("#prev").removeAttr('href');
-        if (currentPos + perPage < total) $("#forw").attr('disabled', "disabled")
-    });
-
+    var name = "sgiservicetemplate"
+    var collection = "service-templates"
+    var query = '?filter[limit]=' + perPage + '&filter[skip]=' + currentPos;
+    var environment = ""
+    startWait("mainContainer", "Caricamento template in corso...", function () {})
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+        renderData(objData.data);
+        stopWait("mainContainer")
+    } else {
+        stopWait('mainContainer')
+        swal("Oops!", "Errore durante il caricamento dei template", "error")
+    }
 }
-
 
 function renderData(p) {
     if (document.getElementById("cardContainer") && document.getElementById("cardContainer").hasChildNodes) {
         $("#cardContainer").empty()
     }
     var controlFastProcedure = sessionStorage.getItem("fastProcedure");
-
     if (controlFastProcedure === "true") {
-        $.each(p, function(index, element){
+        hideBreadcrumbFastProcedure();
+        $.each(p, function (index, element) {
             var htmlFastForm = String.format(templateHtmlFastForm, element.id, element.publicService.description.description, element.name)
             $("#cardContainer").append(htmlFastForm);
         })
     } else {
-        $.each(p,function(index, element){
-             var htmlFormatted = String.format(templateHtml, element.id, element.publicService.description.description, element.name)
+        $.each(p, function (index, element) {
+            var htmlFormatted = String.format(templateHtml, element.id, element.publicService.description.description, element.name)
             $("#cardContainer").append(htmlFormatted);
         })
     }
 }
 
-function renderPagerWithNumbers(c) {
+function hideBreadcrumbFastProcedure() {
+    var serviceFor = sessionStorage.getItem("serviceFor");
+    if (serviceFor != "EXT") {
+        $("#breadcrumbSceltaModello").hide();
+    }
+}
+
+function initCardTotalQuery(c) {
     let i = 0;
-    let pagecount = Math.ceil((c / perPage) + 1);
-    $("#servContainer").append(pagerPlaceHolder);
-    if (document.getElementById("pagerPlaceHolder") && document.getElementById("pagerPlaceHolder").hasChildNodes) {
-        $("#pagerPlaceHolder").empty()
-    }
-    var pager = $("#pagerPlaceHolder")
-
-    pager.append(pagerOpen)
-    $("#pagerOpen").append(pagerPrevious)
-    do {
-        ++i
-        $("#pagerOpen").append(String.format(pagerItem, i))
-    }
-    while (i < pagecount)
-    $("#pagerOpen").append(pagerFwd)
-
-}
-
-function renderPager() {
-    $("#servContainer").append(pagerPlaceHolder);
-    if (document.getElementById("pagerPlaceHolder") && document.getElementById("pagerPlaceHolder").hasChildNodes) {
-        $("#pagerPlaceHolder").empty()
-    }
-    var pager = $("#pagerPlaceHolder")
-    pager.append(pagerOpen)
-    $("#pagerOpen").append(pagerPrevious)
-    $("#pagerOpen").append(pagerFwd)
-
-}
-
-function addPagerEventHandler() {
-    $("#prev").on('click', moveBack);
-    $("#fwd").on('click', moveForward)
-}
-
-function moveBack() {
-    currentPos -= perPage;
-    if (currentPos < 0) currentPos = 0
-    //if (!(currentPos < perPage)) {
-        $("#prev").attr('href', "#");
-        if ($("#selectEnti").val()) {
-            searchTemplatesByType($("#selectEnti").val())
-        } else if ($("#appendedInputButton").val()) {
-            searchTemplates($("#appendedInputButton").val())
-        } else if ($("#selectEnti").val() && $("#appendedInputButton").val()) {
-            combineSearchFilters(
-                $("#appendedInputButton").val(),
-                $("#selectEnti").val()
-            )
-        } else
+    let pagecount = Math.ceil((c / perPage));
+    startWait("mainContainer", "Caricamento template in corso...", function () {})
+    $('#paginatorContainer').twbsPagination({
+        totalPages: pagecount,
+        visiblePages: 10,
+        first: 'Inizio',
+        prev: 'Indietro',
+        next: 'Successivo',
+        last: 'Fine',
+        onPageClick: function (event, page) {
+            currentPos = 12 * (page - 1);
             fetchData();
-    // } else {
-    //     $("#prev").attr('disabled', "disabled")
-    //     $("#prev").removeAttr('href');
-    // }
-}
-
-function moveForward() {
-    // if (!(currentPos > perPage)) {
-
-    if (currentPos < 0) currentPos = 0
-    currentPos += perPage;
-    $("#fwd").attr('href', "#");
-    if ($("#selectEnti").val()) {
-        searchTemplatesByType($("#selectEnti").val())
-    } else if ($("#appendedInputButton").val()) {
-        searchTemplates($("#appendedInputButton").val())
-    } else if ($("#selectEnti").val() && $("#appendedInputButton").val()) {
-        combineSearchFilters(
-            $("#appendedInputButton").val(),
-            $("#selectEnti").val()
-        )
-    } else
-        fetchData();
-    // } else {
-    //     $("#forw").attr('disabled', "disabled")
-    //     $("#forw").removeAttr('href');
-    // }
-}
-
-function searchTemplates(searchString) {
-    var relativeUrl = "-/api/service-templates/" + String.format('?filter={"where":{"name":{"like":"{0}.*","options":"i"}},"limit":{1},"skip":{2}}', searchString, perPage, currentPos)
-    $.ajax({
-        url: relativeUrl
-    }).done(function (data) {
-
-        if (data && data.length > 0) {
-            renderData(data);
-            if (data.length >= 12) {
-                renderPager();
-            } else {
-                hidePager();
-            }
-
-        } else {
-            renderTemplateNotFound()
         }
+    });
+    stopWait("mainContainer")
+}
 
-    })
+function searchTemplatesToText(searchString) {
+    if (searchString != " ") {
+        $('#paginatorContainer').twbsPagination('destroy');
+        startWait("mainContainer", "Ricerca template in corso...", function () {})
+        // startWait("mainContainer", "Ricerca template in corso...", function () {})
+        // var relativeUrl = "https://sgiservicetemplate.xxxx/api/service-templates/" + String.format('?filter={"where":{"name":{"like":"{0}.*","options":"i"}},"limit":{1},"skip":{2}}', searchString, perPage, currentPos)
+        var name = "sgiservicetemplate"
+        var collection = "service-templates"
+        // var query = String.format('?filter={"where":{"name":{"like":"{0}.*","options":"i"}},"limit":{1},"skip":{2}}', searchString, perPage, currentPos);
+        var query = '?filter={"where":{"name":{"like":"' + searchString + '.*","options":"i"}}';
+        var queryToCount = query + "}"
+        var environment = "";
+        var url = urlComposer(name, collection, queryToCount, environment);
 
+        var objData = callService('GET', url);
+        if (objData.success) {
+            var totalCard;
+            totalCard = objData.data.length;
+        } else {
+
+        }
+        if (totalCard == 0) {
+            //metto in corto e rimando il controllo al browser senza inizializzare la paginazione
+            stopWait("mainContainer")
+            renderTemplateNotFound();
+            return;
+        }
+        var pagecountCard = Math.ceil((totalCard / perPage));
+        $('#paginatorContainer').twbsPagination({
+            totalPages: pagecountCard,
+            visiblePages: 10,
+            first: 'Inizio',
+            prev: 'Indietro',
+            next: 'Successivo',
+            last: 'Fine',
+            onPageClick: function (event, page) {
+                currentPos = 12 * (page - 1);
+                var queryToGetCard = query + ',"limit":' + perPage + ',"skip":' + currentPos + '}';
+                var absoluteUrl = urlComposer(name, collection, queryToGetCard, environment);
+                var objData = callService('GET', absoluteUrl);
+                var getData;
+                if (objData.success) {
+                    getData = objData.data;
+                } else {}
+
+
+                if (getData.length > 0) {
+                    renderData(getData);
+
+                } else
+                    renderTemplateNotFound()
+            }
+        });
+        stopWait("mainContainer")
+    }
 }
 
 function searchTemplatesByType(searchString) {
     if (searchString != "*") {
-        var relativeUrl = serviceUri + "{0}"
+        // var relativeUrl = serviceUri + searchString;
 
-        var absoluteUrl = String.format(relativeUrl, searchString) + '&filter[limit]=' + perPage + '&filter[skip]=' + currentPos
+        var name = "sgiservicetemplate"
+        var collection = "service-templates"
+        // var query = String.format('?filter={"where":{"name":{"like":"{0}.*","options":"i"}},"limit":{1},"skip":{2}}', searchString, perPage, currentPos);
+        var query = '?filter={"where":{"name":{"like":"' + searchString + '.*","options":"i"}}';
+        var queryToCount = query + "}"
+        var environment = "";
+        var url = urlComposer(name, collection, queryToCount, environment);
+        var objData = callService('GET', url);
+        if (objData.success) {
+            var totalCard;
+            totalCard = objData.data.length;
+        } else {
 
-        $.ajax({
-            url: absoluteUrl
-        }).done(function (data) {
-            renderData(data)
-            if (data.length >= 12) {
-                renderPager();
-            } else {
-                hidePager();
+        }
+
+        $('#paginatorContainer').twbsPagination('destroy');
+        var pagecountCard = Math.ceil((totalCard / perPage));
+        $('#paginatorContainer').twbsPagination({
+            totalPages: pagecountCard,
+            visiblePages: 10,
+            first: 'Inizio',
+            prev: 'Indietro',
+            next: 'Successivo',
+            last: 'Fine',
+            onPageClick: function (event, page) {
+                currentPos = 12 * (page - 1);
+                var name = "sgiservicetemplate"
+                var collection = "service-templates"
+                // var query = String.format('?filter={"where":{"name":{"like":"{0}.*","options":"i"}},"limit":{1},"skip":{2}}', searchString, perPage, currentPos);
+                var query = '?filter={"where":{"name":{"like":"' + searchString + '.*","options":"i"}}';
+                var queryToCount = query + "}"
+                var environment = "";
+                var url = urlComposer(name, collection, queryToCount, environment);
+                var objData = callService('GET', url);
+                if (objData.success) {
+                    var getData;
+                    getData = objData.data;
+                } else {
+
+                }
+                var query = query+'&filter[limit]=' + perPage + '&filter[skip]=' + currentPos;
+                var url = urlComposer(name, collection, query, environment);
+                var objData = callService('GET', url);
+                if (objData.success) {
+                    var getData;
+                    getData = objData.data;
+                } else {
+                }
+                if (getData.length > 0)
+                    renderData(getData);
+                else renderTemplateNotFound()
             }
-            addPagerEventHandler();
-        })
+        });
     } else {
         fetchData()
     }
 }
 
+
 function combineSearchFilters(searchString, selectString) {
-    if (!searchString && !selectString) {
-        alert("Nessun filtro specificato")
+    $('#paginatorContainer').twbsPagination('destroy');
+    var name = "sgiservicetemplate"
+    var collection = "service-templates"
+    var query = '?filter={"where":{"name":{"like":"' + searchString + '.*","options":"i"},"entePa":{"like":"' + selectString + '.*","options":"i"}}';
+    var queryToCount = query + "}";
+    var environment = "";
+    var url = urlComposer(name, collection, queryToCount, environment);
+
+    var objData = callService('GET', url);
+    if (objData.success) {
+        var totalCard;
+        totalCard = objData.data.length;
+    } else {
+
     }
-    var relativeUrl = serviceUri + "{0}"
-    var absoluteUrl = "-/api/service-templates/" + String.format('?filter={"where":{"name":{"like":"{0}.*","options":"i"},"entePa":{"like":"{3}.*","options":"i"}},"limit":{1},"skip":{2}}', searchString, perPage, currentPos, selectString)
-    $.ajax({
-        url: absoluteUrl
-    }).done(function (data) {
-        renderData(data)
-        $("#pagerPlaceHolder").empty()
-        if (document.getElementById("pagerPlaceHolder").hasChildNodes && data.length > 0) {
-            renderPager();
-            addPagerEventHandler();
-        } else {
-            renderTemplateNotFound()
+
+    var pagecountCard = Math.ceil((totalCard / perPage));
+    startWait("mainContainer", "Ricerca template in corso...", function () {})
+    $('#paginatorContainer').twbsPagination({
+        totalPages: pagecountCard,
+        visiblePages: 10,
+        first: 'Inizio',
+        prev: 'Indietro',
+        next: 'Successivo',
+        last: 'Fine',
+        onPageClick: function (event, page) {
+            currentPos = 12 * (page - 1);
+            var queryToGetCard = query + ',"limit":' + perPage + ',"skip":' + currentPos + '}';
+            var absoluteUrl = urlComposer(name, collection, queryToGetCard, environment);
+            var objData = callService('GET', absoluteUrl);
+            var getData;
+            if (objData.success) {
+                getData = objData.data;
+            } else {}
+            if (getData.length > 0) {
+                renderData(getData);
+
+            } else renderTemplateNotFound()
         }
-    })
+    });
+    stopWait("mainContainer")
 }
 
 function clearSearchFilters() {
-    $("#selectEnti").val("")
+    currentPos = 0
+    total = getGlobalCount();
+    $('#paginatorContainer').twbsPagination('destroy');
+    initCardTotalQuery(total)
+    $('#selectEnti').val('*')
     $("#appendedInputButton").val("")
     document.getElementById("appendedInputButton").dispatchEvent(new Event("change"))
 }
 
-function count() {
-    if ($("#appendedInputButton").val()) {
-        combineSearchFilters(
-            $("#appendedInputButton").val(),
-            $("#selectEnti").val()
-        )
-    } else {
-        searchTemplatesByType($("#selectEnti").val())
-    }
-}
-
 function renderTemplateNotFound() {
+    $('#paginatorContainer').twbsPagination('destroy');
     $("#cardContainer").empty()
     $("#cardContainer").append(notFoundHtml)
     $("#pagerPlaceHolder").attr("hidden", "hidden")
 }
-
-function hidePager() {
-    $("#pagerPlaceHolder").attr("hidden", "hidden")
-}
-
-// //future development
-// function pagination(c, m) {
-//     var delta = 2,
-//         range = [],
-//         rangeWithDots = [],
-//         l;
-
-//     range.push(1)
-//     for (let i = c - delta; i <= c + delta; i++) {
-//         if (i < m && i > 1) {
-//             range.push(i);
-//         }
-//     }
-//     range.push(m);
-
-//     for (let i of range) {
-//         if (l) {
-//             if (i - l === 2) {
-//                 rangeWithDots.push(l + 1);
-//             } else if (i - l !== 1) {
-//                 rangeWithDots.push('...');
-//             }
-//         }
-//         rangeWithDots.push(i);
-//         l = i;
-//     }
-
-//     return rangeWithDots;
-// }

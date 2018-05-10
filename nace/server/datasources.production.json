@@ -1,0 +1,20 @@
+{
+  "naceDS": {
+    "host": "",
+    "port": 27017,
+    "url": "",
+    "database": "",
+    "password": "",
+    "name": "",
+    "user": "",
+    "connector": "mongodb",
+    "ssl": true,
+    "server": {
+      "auto_reconnect": true,
+      "reconnectTries": 100,
+      "reconnectInterval": 1000,
+      "sslValidate": false,
+      "checkServerIdentity": false
+    }
+  }
+}

@@ -66,7 +66,8 @@
 
 
                                 <div class="row mb-3">
-                                    {{!-- <div class="col-md-6">
+                                    {{!--
+                                    <div class="col-md-6">
                                         <a href="/servizi/service-new" class="btn btn-primary pa-add-service">
                                             <i class="icon-plus icons font-2xl"></i> Aggiungi un nuovo servizio</a>
                                     </div> --}}
@@ -82,7 +83,7 @@
                                     </div>
                                 </div>
 
-                                <table class="table table-hover table-outline mb-0">
+                                <table class="table table-hover mb-0">
                                     <thead class="thead-default">
                                         <tr>
                                             <th scope="col" class="pa-servicename">Nome servizio</th>
@@ -90,12 +91,13 @@
                                             <th scope="col" class="text-center pa-action">Azioni</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="serviceBody">
+                                    <tbody id="serviceBodyArchiviati">
 
                                     </tbody>
                                 </table>
-                                <div id="servContainerD">
-
+                                <div class="row">
+                                    <div class="col-md-10 offset-md-3 mt-3" id="paginatorContainerArchiviati">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -109,57 +111,5 @@
         </div>
         <!-- /.conainer-fluid -->
     </main>
-
-
-    <!-- il menù aside forse non serve vedremo -->
-    {{!--
-    <aside class="aside-menu">
-
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane active" id="timeline" role="tabpanel">
-                <div class="callout m-0 py-2 text-center bg-faded text-uppercase">
-                    <small>
-                        <b>Storico azioni</b>
-                    </small>
-                </div>
-                <hr class="transparent mx-3 my-0">
-                <div class="callout callout-warning m-0 py-3">
-                    <div>
-                        <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
-                    </div>
-                    <div>
-                        <small class="text-guida mr-3">
-                            <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
-                    </div>
-                    <div>
-                        <small class="text-guida">
-                            <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
-                    </div>
-                </div>
-                <hr class="mx-3 my-0">
-                <div class="callout callout-info m-0 py-3">
-
-                    <div>
-                        <strong>Aggiunto servizio:</strong> "Lorem ipsum dolor sit"
-                    </div>
-                    <div>
-                        <small class="text-guida mr-3">
-                            <i class="icon-calendar"></i>&nbsp; 16/07/2017</small>
-                    </div>
-                    <div>
-                        <small class="text-guida">
-                            <i class="icon-user"></i>&nbsp; Umberto Rosini</small>
-                    </div>
-
-                </div>
-                <hr class="transparent mx-3 my-0">
-
-            </div>
-
-        </div>
-    </aside> --}}
-
 
 </div>

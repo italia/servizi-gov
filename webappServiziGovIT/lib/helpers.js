@@ -21,8 +21,8 @@
  function checkIsAdmin(user) {
      var control = false
      if (user.isSuperAdmin == false) {
-         for (var a = 0; a < user.organizzazioni.length; a++) {
-             if (user.organizzazioni[a].attributes[0].name == "admin") {
+         for (var a = 0; a < user.attributes.length; a++) {
+             if (user.attributes[0].name == "admin") {
                  control = true
                  break;
              }
@@ -31,7 +31,3 @@
          control = true
      return control
  }
-
-
-
- // module.exports = {

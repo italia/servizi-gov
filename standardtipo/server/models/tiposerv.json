@@ -1,0 +1,26 @@
+{
+    "name": "tiposerv",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+      "validateUpsert": true
+    },
+    "properties": {
+      "identifier": {
+        "type": "string",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "required": true
+      },
+      "language": {
+        "type": "string",
+        "required": true
+      }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+  }

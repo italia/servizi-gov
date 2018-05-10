@@ -141,9 +141,25 @@ function callAuthArrayByLang(serviceLang) {
 
 module.exports.callAuthArrayByLang = callAuthArrayByLang
 
+function getUserById(userId) {
+    var userFilter = '?filter={"where":{"codicefiscale":"' + userId + '"}}'
+
+    var address = urlComposer('sgiabaccontroller', env) + 'users' + userFilter
+    var jsonOrganization = restCallerGET(address)
+
+    return jsonOrganization
+}
+
+module.exports.getUserById = getUserById
+
 function restCallerGET(queryUrl) {
 
-    var reqVal = request('GET', queryUrl)
+    var reqVal = request('GET', queryUrl, {
+        headers: {
+            'content-type': 'application/json; charset=utf8',
+            "Authorization": "Basic " + Buffer.from("nomeutente:-").toString('base64')
+        }
+    })
 
     var retVal = JSON.parse(reqVal.getBody('utf8'))
 
@@ -154,11 +170,11 @@ function urlComposer(serviceName, environment) {
     var url = ''
 
     switch (environment) {
-        case "test":
-            url = 'https://' + serviceName + '/api/'
+        case "azure":
+            url = 'https://' + serviceName + '.xxxx/api/'
             break;
         case "kong":
-            url = 'http://  /' + serviceName + '/api/'
+            url = 'http:///' + serviceName + '/api/'
             break;
         case "local":
             //code block

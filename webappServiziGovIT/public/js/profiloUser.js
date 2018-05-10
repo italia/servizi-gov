@@ -88,10 +88,6 @@ function changePassword(){
     var isValid = validateForm();
     if(isValid){
       changePasswordService();
-
-
-
-
     }
 }
 function validateForm(){
@@ -107,25 +103,36 @@ function changePasswordService(){
   var userString = 'userToChangePassword=' + user
 
 
-  $.ajax({
-      type: "POST",
-      data: userString,
-      //url: "http://localhost:3500/api/users/changePassword/",
-      url: "/api/users/changePassword/",
-      success: function (data) {
-        console.log(data)
-        $("#msgResult").html(data.result)
-      },
-      error: function (data) {
+	var name = "sgiabaccontroller"
+    var collection = "users/changePassword/"
+    var query = ""
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("POST", url, userString);
+    if (objData.success) {
+        var data = objData.data
+        var message = data.result
+        success(message)
+        setTimeout(function () {
+          location.reload();
+        }, 2000)
+        // $("#msgResult").html(data.result)
+    } else {
+        
+    }
+  // $.ajax({
+  //     type: "POST",
+  //     data: userString,
+  //     //url: "http://localhost:3500/api/users/changePassword/",
+  //     url: "https://sgiabaccontroller.xxxx/api/users/changePassword/",
+  //     success: function (data) {
+  //       console.log(data)
+  //       $("#msgResult").html(data.result)
+  //     },
+  //     error: function (data) {
 
-      }
-    })
-    .done(function () {
-
-    })
-    .fail(function () {
-
-    });
+  //     }
+  //   })
 }
 
 function createUserToUpdate(){

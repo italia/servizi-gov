@@ -1,103 +1,141 @@
-if (!String.format) {
-  String.format = function (format) {
-    var args = Array.prototype.slice.call(arguments, 1);
-    return format.replace(/{(\d+)}/g, function (match, number) {
-      return typeof args[number] != "undefined" ? args[number] : match;
-    });
-  };
-}
-//dovrebbe essere gia caricata da service<Templates
-function getQueryStringParam(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-    results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return "";
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-
-// const serviceRow = '<tr><td data-label="{1}" class="table-th-50">{1}<div class="small text-guide">{2}</div></td><td data-label="caricamento dati"><div class="clearfix">' +
-//     '<div class="float-left"><strong></strong></div><div class="float-right"><small class="text-guide">quantità di metadati caricati</small></div></div>' +
-//     '<div class="progress progress-xs"> <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>' +
-//     '</div></td><td data-label="Qualità"><p class="sr-only">Indice di qualità: 5 su 5</p><i class="fa fa-star fa-star-agidrate" aria-disabled="true"></i></td><td data-label="azioni" class="text-center">' +
-//     '<div class="row"><div class="col-4"> <a href="/servizi/service-wizard-complete2/?serviceId={0}" title="modifica"><i class="icon-note icons font-2xl d-block"></i> </a></div><div class="col-4"><a id="rimuovi{0}" href="/service/remove?serviceId={0}" title="cancella">' +
-//     '<i class="icon-close icons font-2xl d-block"></i></a></div> <div class="col-4"> <label title="Pubblica servizio" class="switch switch-3d switch-success"><input type="checkbox" class="switch-input" checked value="">' +
-//     '<span class="switch-label"></span><span class="switch-handle"></span><span class="sr-only">Pubblica servizio</span></label></div></div></td></tr>'
-
 const applicationRow =
   '<tr><td data-label="{1}" class="table-th-50">{1}' +
   '<div class="small text-guide">{2}</div></td>' +
   '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a href="/accesscontrol/users" title="utenti"><i class="icon-user-follow icons font-2xl d-block"></i></a></div></div></td>' +
-  '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a href="#" title="modifica"><i class="icon-note icons font-2xl d-block"></i></a></div>' +
-  '<div class="col-5"><a href="#" title="cancella"><i class="icon-close icons font-2xl d-block"></i></a></div></div></td></tr>';
-
+  '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a href="#" title="modifica"><i class="fa fa-edit icons font-2xl d-block"></i></a></div>' +
+  '<div class="col-5"><a href="#" title="cancella"><i class="fa fa-times-circle icons font-2xl d-block"></i></a></div></div></td></tr>';
 const applicationUserRow =
-  '<tr><td data-label="{1}" class="table-th-30">{1}' +
+  '<tr>' +
   "<td>{2}</td>" +
-  "<td>{3}</td>" +
-  '<td id="userToAttr">{4}</td>' +
-  '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a href="#" onclick="editUsersPopolateModal(\'{0}\')" title="modifica"><i class="icon-note icons font-2xl d-block"></i></a></div>' +
-  '<div class="col-5"><a href="#" onclick="removeUsers(\'{0}\',this)" title="cancella"><i class="icon-close icons font-2xl d-block"></i></a></div></div></td></tr>';
+  // "<td>{3}</td>" +
+  '<td id="userToAttr">{3}</td>' +
+  '<td data-label="azioni" class="text-center"><div class="row"><div class="col-5"><a href="#" onclick="editUsersPopolateModal(\'{0}\')" title="modifica"><i class="fa fa-edit icons font-2xl d-block"></i></a></div>' +
+  '<div class="col-5"><a href="#" onclick="removeUsers(\'{0}\',this)" title="cancella"><i class="fa fa-times-circle icons font-2xl d-block"></i></a></div></div></td></tr>';
+
 var currentPos = 0;
 var total;
 var perPageUser = 3;
 
 $(document).ready(function () {
+  $("#nextTabTopEdit").click(function (e) {
+    $("html, body").animate({
+      scrollTop: 0
+    }, "slow");
+    console.log(e);
+    $("#tabModalEdit .active")
+      .parent()
+      .next("li")
+      .find("a")
+      .trigger("click");
+  });
 
+  $("#prevTabTopEdit").click(function (e) {
+    $("html, body").animate({
+      scrollTop: 0
+    }, "slow");
+    console.log(e);
+    $("#tabModalEdit .active")
+      .parent()
+      .prev("li")
+      .find("a")
+      .trigger("click");
+  });
 
-  $("#visualizzaGriglia").click(function () {
-    // alert($("#getOrganizationForTable").val())
+  $("#nextTabTopSave").click(function (e) {
+    $("html, body").animate({
+      scrollTop: 0
+    }, "slow");
+    console.log(e);
+    $("#tabModalAdd .active")
+      .parent()
+      .next("li")
+      .find("a")
+      .trigger("click");
+  });
 
+  $("#prevTabTopSave").click(function (e) {
+    $("html, body").animate({
+      scrollTop: 0
+    }, "slow");
+    console.log(e);
+    $("#tabModalAdd .active")
+      .parent()
+      .prev("li")
+      .find("a")
+      .trigger("click");
+  });
 
-    var organization = $("#getOrganizationForTable").val()
+  $('#tabModalAdd a[data-toggle="tab"]').on("hide.bs.tab", function (e) {
+    if (e.relatedTarget.id == "home-tab") {
+      $("#prevTabTopSave").hide();
+      $("#nextTabTopSave").show();
+    } else
+    if (e.relatedTarget.id == "profile-tab") {
+      $("#prevTabTopSave").show();
+      $("#nextTabTopSave").show();
+    } else
+    if (e.relatedTarget.id == "organizations-tab") {
+      $("#prevTabTopSave").show();
+      $("#nextTabTopSave").show();
+    } else
+    if (e.relatedTarget.id == "save-tab") {
+      $("#prevTabTopSave").show();
+      $("#nextTabTopSave").hide();
+    }
 
-    var url = '?filter={"where":{"organizzazioni":{"elemMatch":{"codiceIpa":"' + organization + '"}}}}';
+  })
 
-    $.ajax({
-      type: "GET",
-      url: url,
-      async: false,
-      success: function (data) {
-        if (data.length > 0) {
-          renderApplicationToUser(data);
-          $("#buttonAddUserToApplication").show();
-          $("#tableUser").show();
-          $("#noResults").hide();
-        } else
-          $("#noResults").show();
-      },
-      error: function (data) {
+  $('#tabModalEdit a[data-toggle="tab"]').on("hide.bs.tab", function (e) {
+    if (e.relatedTarget.id == "home-tab-edit") {
+      $("#prevTabTopEdit").hide();
+      $("#nextTabTopEdit").show();
+    } else
+    if (e.relatedTarget.id == "profile-tab-edit") {
+      $("#prevTabTopEdit").show();
+      $("#nextTabTopEdit").show();
+    } else
+    if (e.relatedTarget.id == "organizations-tab-edit") {
+      $("#prevTabTopEdit").show();
+      $("#nextTabTopEdit").show();
+    } else
+    if (e.relatedTarget.id == "save-tab-edit") {
+      $("#prevTabTopEdit").show();
+      $("#nextTabTopEdit").hide();
+    }
 
-      }
-    })
   })
 
 
-  // cognomeUserEdit
-  // nameUserEdit
-  // codFiscUserEdit
-  // codSPIDUserEdit
-  // usernameUserEdit
-  // emailUserEdit
-  // passwordUserEdit
-  // getOrganizationEdit
-  // rolesAttributesEdit
-
-
-
-  // cognomeUser
-  // nameUser
-  // codFiscUser
-  // codSPIDUser
-  // usernameUser
-  // emailUser
-  // passwordUser
-  // passwordUserAgain
-  // getOrganization
-  // rolesAttributes
-
+  $("#visualizzaGriglia").click(function () {
+    startWait("card", "Caricamento utenti in corso..")
+    var organization = $("#getOrganizationForTable").val()
+    //?
+    var idApp = sessionStorage.getItem("idService")
+    var name = "sgiabaccontroller"
+    var collection = "users"
+    var query = '?filter={"where":{"organizzazioni":{"elemMatch":{"codiceIpa":"' + organization + '"}}}}';
+    var environment = ""
+    var url = urlComposer(name, collection, query, environment);
+    var objData = callService("GET", url);
+    if (objData.success) {
+      var data = objData.data
+      if (data.length > 0) {
+        renderApplicationToUser(data);
+        $("#buttonAddUserToApplication").show();
+        $("#tableUser").show();
+        $("#noResults").hide();
+        stopWait("card")
+      } else {
+        stopWait("card");
+        $("#noResults").show();
+      }
+    } else {
+      error('Impossibile caricare gli utenti autorizzati per la PA selezionata')
+    }
+  })
+  $("#btnSaveUser").click(function (event) {
+    salvaUser()
+  })
   $("#saveUserForm").validate({
     ignore: [],
     rules: {
@@ -132,6 +170,10 @@ $(document).ready(function () {
       $(element).removeClass("errorInput");
     }
   });
+  $("#getOrganizationForTable").keyup(function (event) {
+    if (event.keyCode === 13)
+      document.getElementById('visualizzaGriglia').dispatchEvent(new Event('click'))
+  });
 
 
   $("#editUserFormEdit").validate({
@@ -143,10 +185,9 @@ $(document).ready(function () {
       codSPIDUserEdit: "required",
       usernameUserEdit: "required",
       emailUserEdit: "email",
-      passwordUserEdit: "required",
-      passwordUserAgainEdit: {
-        equalTo: "#passwordUserEdit"
-      }
+      // passwordUserAgainEdit: {
+      //   equalTo: "#passwordUserEdit"
+      // }
 
     },
     messages: {
@@ -156,8 +197,7 @@ $(document).ready(function () {
       codSPIDUserEdit: "Campo obbligatorio",
       usernameUserEdit: "Campo obbligatorio",
       emailUserEdit: "Inserire email valida",
-      passwordUserEdit: "Campo obbligatorio",
-      passwordUserAgainEdit: "Password diversa"
+      // passwordUserAgainEdit: "Password diversa"
 
     },
     errorClass: "errorText",
@@ -168,217 +208,166 @@ $(document).ready(function () {
       $(element).removeClass("errorInput");
     }
   });
-
-
-
-
-
-
-
   getNameService();
   // applicationToUser();
   $("#btnAggiungiAttributo").click(function (e) {
     popolateAttributeFields();
   });
 
+  // $("#avantiModalEdit").click(function (e) {
+  //   $("#tabModalEdit .active")
+  //     .parent()
+  //     .next("li")
+  //     .find("a")
+  //     .trigger("click");
+  // })
+  // $("#indietroModalEdit").click(function (e) {
+  //   $("#tabModalEdit .active")
+  //     .parent()
+  //     .prev("li")
+  //     .find("a")
+  //     .trigger("click");
+  // })
 
-  //   $("#getOrganization").autocomplete({
-  //     source: function (request, resolve) {
-  //         popolateAutocompleteOrganizz(request.term, resolve);
-  //     },
-  //     minLenngth: 4
-  // });
+  // $("#avantiModalAdd").click(function (e) {
+  //   $("#tabModalAdd .active")
+  //     .parent()
+  //     .next("li")
+  //     .find("a")
+  //     .trigger("click");
+  // })
+  // $("#indietroModalAdd").click(function (e) {
+  //   $("#tabModalAdd .active")
+  //     .parent()
+  //     .prev("li")
+  //     .find("a")
+  //     .trigger("click");
+  // })
+  if (!$("#getOrganizationForTable").is("select")) {
+    $("#getOrganizationForTable").autocomplete({
+      source: function (request, resolve) {
+        popolateAutocompleteOrganizzUser(request.term, resolve);
+      },
 
-  // $("#getOrganization").autocomplete({
-  //   source: optionAutocomplete
-  // });
+      select: function (event, ui) {
+        $("#getOrganizationForTable").val(ui.item.label);
+        $("#getOrganizationForTable").attr("itemCode", ui.item.value);
+        return false;
+      },
+      change: function (event, ui) {
+        $(this).val((ui.item ? ui.item.label : ""));
+      },
+    });
+  }
 
-  // $("#getOrganization").autocomplete({
-  //   source: function (request, resolve) {
-  //     popolateAutocompleteOrganizz(request.term, resolve);
-  //   },
+  if (!$("#getOrganizationEditUser").is("select")) {
+    $("#getOrganizationEditUser").autocomplete({
+      source: function (request, resolve) {
+        popolateAutocompleteOrganizzUser(request.term, resolve);
+      },
 
+      select: function (event, ui) {
+        $("#getOrganizationEditUser").val(ui.item.label);
+        $("#getOrganizationEditUser").attr("itemCode", ui.item.value);
+        return false;
+      },
+      change: function (event, ui) {
+        $(this).val((ui.item ? ui.item.label : ""));
+      },
+    });
+  }
 
-  //   select: function (event, ui) {
-  //     $("#getOrganization").val(ui.item.label);
-  //     $("#getOrganization").attr("itemCode", ui.item.value);
-  //     return false;
-  //   }
-  // });
+  if (!$("#getOrganizationForInsertUser").is("select")) {
+    $("#getOrganizationForInsertUser").autocomplete({
+      source: function (request, resolve) {
+        popolateAutocompleteOrganizzUser(request.term, resolve);
+      },
 
-  // $("#getOrganizationEdit").autocomplete({
-  //   source: function (request, resolve) {
-  //     popolateAutocompleteOrganizz(request.term, resolve);
-  //   },
-
-  //   select: function (event, ui) {
-  //     $("#getOrganizationEdit").val(ui.item.label);
-  //     $("#getOrganizationEdit").attr("itemCode", ui.item.value);
-  //     return false;
-  //   }
-  // });
-
-
-
-  $("#avantiModalEdit").click(function (e) {
-    $("#tabModalEdit .active")
-      .parent()
-      .next("li")
-      .find("a")
-      .trigger("click");
-  })
-  $("#indietroModalEdit").click(function (e) {
-    $("#tabModalEdit .active")
-      .parent()
-      .prev("li")
-      .find("a")
-      .trigger("click");
-  })
-
-  $("#avantiModalAdd").click(function (e) {
-    $("#tabModalAdd .active")
-      .parent()
-      .next("li")
-      .find("a")
-      .trigger("click");
-  })
-  $("#indietroModalAdd").click(function (e) {
-    $("#tabModalAdd .active")
-      .parent()
-      .prev("li")
-      .find("a")
-      .trigger("click");
-  })
+      select: function (event, ui) {
+        $("#getOrganizationForInsertUser").val(ui.item.label);
+        $("#getOrganizationForInsertUser").attr("itemCode", ui.item.value);
+        return false;
+      },
+      change: function (event, ui) {
+        $(this).val((ui.item ? ui.item.label : ""));
+      },
+    });
+  }
 
 
 
-if(!$("#getOrganizationForTable").is("select")){
-  $("#getOrganizationForTable").autocomplete({
-    source: function (request, resolve) {
-      popolateAutocompleteOrganizz(request.term, resolve);
-    },
-
-    select: function (event, ui) {
-      $("#getOrganizationForTable").val(ui.item.label);
-      $("#getOrganizationForTable").attr("itemCode", ui.item.value);
-      return false;
-    },
-    change: function (event, ui) {
-      $(this).val((ui.item ? ui.item.label : ""));
-    },
-  });
-}
-
-  popolateSelectRole()
+  popolateSelectRole();
 
 
 });
 
-
-function popolateAutocompleteOrganizz(insertWord, response) {
-  $("#wait").css("display", "block");
-
-  //liv interazione
-  $.ajax({
-      dataType: "json",
-      url: '?filter={"where":{"or":[{"name":{"like":"' +
-        insertWord +
-        '.*","options":"i"}},{"organizationCode":{"like":"' +
-        insertWord +
-        '.*","options":"i"}}]},"limit":20}',
-      success: function (data) {
-        $("#wait").css("display", "block");
-        var appName = [];
-
-        $.each(data, function (i, field) {
-          appName.push({
-            value: field.organizationCode,
-            label: field.name
-          });
-        });
-
-        response(appName);
-      },
-      error: function (data) {
-        $("#wait").css("display", "block");
-      }
-    })
-    .done(function () {
-      $("#wait").css("display", "none");
-    })
-    .fail(function () {
-      $("#wait").css("display", "none");
-    });
-}
-
 function popolateSelectRole() {
-
-
-
-
   var applicationId = sessionStorage.getItem("idService")
+  var name = "sgiabaccontroller"
+  var collection = "applications/" + applicationId
+  var query = ""
+  var environment = ""
+  var url = urlComposer(name, collection, query, environment);
+  var objData = callService("GET", url);
+  if (objData.success) {
+    var data = objData.data
+    popolateSelectAttributesRole(data.attributes)
 
+    console.log(data)
+  } else {}
 
-  $.ajax({
-      type: "GET",
-      async:false,
-      url: "/"+applicationId,
-      success: function (data) {
-        popolateSelectAttributesRole(data.attributes)
-
-        console.log(data)
-      },
-      error: function (data) {
-
-      }
-    })
-
-    if(!$("#isSuperAdminInput").val())
-      $("#rolesAttributes option[value='superAdmin']").remove()
+  if (!$("#isSuperAdminInput").val())
+    $("#rolesAttributes option[value='superAdmin']").remove()
 
 }
 
 function popolateSelectAttributesRole(data) {
+  var userIsAdmin = false;
+  var userIsSuperAdmin = !$("#isSuperAdminInput").val()
+  var boolAdmin = $("#roleUser").val().search("admin");
+  if (boolAdmin != -1) {
+    userIsAdmin = true
+  }
   $.each(data, function (index, value) {
-    var html = "<option value='" + value.name + "' description='" + value.description + "'>" + value.name + "</option>"
-    $("#rolesAttributesEdit").append(html)
-    $("#rolesAttributes").append(html)
+    if (value.name != "superAdmin") {
+      if (userIsSuperAdmin) {
+        if (value.name != "admin" && userIsAdmin) {
+          var html = "<option value='" + value.name + "' description='" + value.description + "'>" + value.name + "</option>"
+          $("#rolesAttributesEdit").append(html)
+          $("#rolesAttributes").append(html)
+        }
+      } else {
+        var html = "<option value='" + value.name + "' description='" + value.description + "'>" + value.name + "</option>"
+        $("#rolesAttributesEdit").append(html)
+        $("#rolesAttributes").append(html)
+      }
+    }
   })
+
 }
 
 function injectApplication() {
-  var url = "";
-  $.ajax({
-      url: url
-    })
-    .done(function (data) {
-      renderApplication(data);
-    })
-    .fail(function () {
-      //alert("errore nella ricerca")
-    });
+  var name = "sgiabaccontroller"
+  var collection = "applications"
+  var query = ""
+  var environment = ""
+  var url = urlComposer(name, collection, query, environment);
+  var objData = callService("GET", url);
+  if (objData.success) {
+    var data = objData.data
+    renderApplication(data);
+  } else {
+    error("generic error")
+  }
 }
 
 function loadPageApplication(name) {
   alert(name);
 }
 
-// function applicationToUser() {
-//   var url = "http://localhost:3500/api/users";
-//   $.ajax({
-//       url: url
-//     })
-//     .done(function (data) {
-//       renderApplicationToUser(data);
-//     })
-//     .fail(function () {
-//       //alert("errore nella ricerca")
-//     });
-// }
-
 function renderApplication(data) {
   $("#applicationBody").empty();
-  data.forEach(element => {
+  $.each(data, function (index, element) {
     var applicationHtmlFormatted = String.format(
       applicationRow,
       element.id,
@@ -387,7 +376,7 @@ function renderApplication(data) {
       "100%"
     );
     $("#applicationBody").append(applicationHtmlFormatted);
-  });
+  })
 }
 
 function renderApplicationToUser(data) {
@@ -395,29 +384,22 @@ function renderApplicationToUser(data) {
   var x;
   var attributes = "";
   var organizzazioni = "";
-  data.forEach(element => {
-    $.each(element.attributes, function (i, field) {
-      attributes += field.codiceIpa;
-    });
-    $.each(element.organizzazioni, function (i, field) {
-      organizzazioni += field.description;
-    });
+  var isHidden;
 
+  $.each(data, function (index, element) {
     var applicationUserFormatted = String.format(
       applicationUserRow,
       element.id,
       element.idApplicazione,
       element.cognome + " " + element.nome,
-      organizzazioni,
-      attributes,
+      element.attributes[0].name,
       element.organizzazioni,
-      "100%"
+      "100%",
     );
-
     $("#applicationToUser").append(applicationUserFormatted);
     attributes = "";
     organizzazioni = "";
-  });
+  })
 }
 
 
@@ -441,7 +423,7 @@ function popolateAttributeFields() {
     "</td>" +
     '<td class="inline text-center">' +
     '<a href="#" title="modifica" class="m-left-39 m-right-10"><i class="icon-note icons font-2xl d-block"></i></a>' +
-    '<a href="#" title="cancella"><i class="icon-close icons font-2xl d-block"></i></a>' +
+    '<a href="#" title="cancella"><i class="fa fa-times-circle icons font-2xl d-block"></i></a>' +
     "</td>";
   var closeDiv = "</tr>";
 
@@ -467,74 +449,145 @@ function deleteRowTableParzialeEdit(row) {
 }
 
 function salvaParzialeInTabella() {
-  if ($("#getOrganizationForTable").is("select")) {
-    var optionValue = $("#getOrganizationForTable").val()
-    // console.log($("#getOrganization option[value="+optionValue+"]").attr("itemCode"))
-    var organizzazione = $("#getOrganizationForTable option#" + optionValue + "").attr("itemcode") == "" ? "-" : $("#getOrganizationForTable option#" + optionValue + "").attr("itemcode")
+  if ($("#rolesAttributes").val() != null) {
+    //giusto
+    var check = checkIfIsInTable($("#rolesAttributes").val(), $("#tableBodyParziale"));
+    if (!check) {
+      var ruolo = $("#rolesAttributes").val() == null ? "-" : $("#rolesAttributes").val();
+      var ruoloDescription = $("#rolesAttributes").find(":selected").attr("description");
+      var numberRowTableParziale = $("#tableBodyParziale tr").attr("id");
+      // numberRowTableParziale = numberRowTableParziale != undefined ? numberRowTableParziale++ : 0;
+      if (numberRowTableParziale == undefined) {
+        numberRowTableParziale = 0
+      } else
+        numberRowTableParziale++
+        var html =
+          '<tr id="' +
+          numberRowTableParziale +
+          '" >' +
+          '<td class="text-center" description="' + ruoloDescription + '" id="roleTableParziale_' + numberRowTableParziale + '">' +
+          ruolo +
+          '</td><td class="text-center"><a href="#" title="cancella" class="" onclick="removeRow(this)">' +
+          '<i class="fa fa-times-circle icons font-2xl d-block"></i></a></td></tr>';
+      $("#tableBodyParziale").prepend(html);
+      $("#alertFieldAttributes").hide();
+      $("#alertFieldGlobalSave").hide();
+    }
+  }
 
+}
+
+function checkIfIsInTable(value, elmTable) {
+  var numberRowInTable = elmTable.children().attr("id");
+  if (numberRowInTable == undefined) {
+    return false
   } else
-    var organizzazione = $("#getOrganizationForTable").children(":selected").attr("itemcode") == "" ? "-" : $("#getOrganizationForTable").attr("itemcode")
+    numberRowInTable++
+    for (var a = 0; a < numberRowInTable; a++) {
+      if (($("#roleTableParziale_" + a).html() != "" || $("#roleTableParziale_" + a).html() != undefined) && $("#roleTableParziale_" + a).html() == value) {
+        return true
+      }
+    }
+  return false
 
-  var codeOrganizzazione = $("#getOrganizationForTable").val() == "" ? "-" : $("#getOrganizationForTable").val();
-  var ruolo = $("#rolesAttributes").val() == null ? "-" : $("#rolesAttributes").val();
-  var ruoloDescription = $("#rolesAttributes").find(":selected").attr("description");
-  var numberRowTableParziale = $("#tableBodyParziale").children().length++;
-  var html =
-    '<tr id="' +
-    numberRowTableParziale +
-    '" ><td class="text-center" code="' + codeOrganizzazione + '" id="organizzTableParziale_' + numberRowTableParziale + '">' +
-    organizzazione +
-    "</td>" +
-    '<td class="text-center" description="' + ruoloDescription + '" id="roleTableParziale_' + numberRowTableParziale + '">' +
-    ruolo +
-    '</td><td class="text-center"><a href="#" title="cancella" class="ml-5" onclick="deleteRowTableParziale(' +
-    numberRowTableParziale +
-    ')">' +
-    '<i class="icon-close icons font-2xl d-block"></i></a></td></tr>';
-  $("#tableBodyParziale").prepend(html);
+}
 
+function salvaParzialeInTabellaAttrEdit() {
+
+
+  // if ($("#getOrganizationForTable").is("select")) {
+  //   var optionValue = $("#getOrganizationForTable").val()
+  //   // console.log($("#getOrganization option[value="+optionValue+"]").attr("itemCode"))
+  //   var organizzazione = $("#getOrganizationForTable option#" + optionValue + "").attr("itemcode") == "" ? "-" : $("#getOrganizationForTable option#" + optionValue + "").attr("itemcode")
+
+  // } else
+  //   var organizzazione = $("#getOrganizationForTable").children(":selected").attr("itemcode") == "" ? "-" : $("#getOrganizationForTable").attr("itemcode")
+
+  // var codeOrganizzazione = $("#getOrganizationForTable").val() == "" ? "-" : $("#getOrganizationForTable").val();
+  if ($("#rolesAttributesEdit").val() != null) {
+    var check = checkIfIsInTableEdit($("#rolesAttributesEdit").val(), $("#tableBodyParzialeAttrEdit"));
+    if (!check) {
+      $("#alertFieldAttributesEdit").hide();
+      $("#alertFieldGlobalEdit").hide();
+      var ruolo = $("#rolesAttributesEdit").val() == null ? "-" : $("#rolesAttributesEdit").val();
+      var ruoloDescription = $("#rolesAttributesEdit").find(":selected").attr("description");
+      var numberRowTableParziale = $("#tableBodyParzialeAttrEdit tr").attr("id");
+      if (numberRowTableParziale == undefined) {
+        numberRowTableParziale = 0
+      } else
+        numberRowTableParziale++
+        var html =
+          '<tr id="' +
+          numberRowTableParziale +
+          '" >' +
+          '<td class="text-center" description="' + ruoloDescription + '" id="roleTableParzialeEdit_' + numberRowTableParziale + '">' +
+          ruolo +
+          '</td><td class="text-center"><a href="#" title="cancella" class="" onclick="removeRow(this)">' +
+          '<i class="fa fa-times-circle icons font-2xl d-block"></i></a></td></tr>';
+      $("#tableBodyParzialeAttrEdit").prepend(html);
+    }
+  }
+}
+
+function checkIfIsInTableEdit(value, elmTable) {
+  var numberRowInTable = elmTable.children().attr("id");
+  if (numberRowInTable == undefined) {
+    return false
+  } else
+    numberRowInTable++
+    for (var a = 0; a < numberRowInTable; a++) {
+      if (($("#roleTableParzialeEdit_" + a).html() != "" || $("#roleTableParzialeEdit_" + a).html() != undefined) && $("#roleTableParzialeEdit_" + a).html() == value) {
+        return true
+      }
+    }
+  return false
 
 }
 
 function salvaUser() {
   if (validateForm()) {
+    $("#alertFieldGlobalSave").hide()
     var obj = {
       "nome": "",
       "cognome": "",
       "codicefiscale": "",
-      "loginName": "",
       "password": "",
       "email": "",
       "codiceSPID": "",
       "isSuperAdmin": false,
       "organizzazioni": [],
-      "idApplicazione": ""
+      "attributes": [],
+      "idApplicazione": "",
+      "codiceFiscaleAdmin": ""
     };
     var objUser = parseAndInsertData(obj);
-    saveOnDatabase(objUser);
-
-    blanckFields();
-  }
-
+    if (saveOnDatabase(objUser)) {
+      success("Utente aggiunto correttamente")
+      setTimeout(function () {
+        location.reload();
+      }, 2000)
+    }
+  } else
+    $("#alertFieldGlobalSave").show()
 }
 
 function validateForm() {
   var form = $("#saveUserForm").valid();
-  var validTable = false;
-  var haveElementsInTab = $("#tableBodyParziale").children().length;
-  if (haveElementsInTab > 0) {
-    $("#alertTable").hide()
-    validTable = true;
+  var haveElementsInTab = $("#tableBodyParziale").children().length > 0;
+  var haveElementsInTabOrg = $("#tableOrgParziale").children().length > 0;
+  if (haveElementsInTab) {
+    $("#alertFieldAttributes").hide()
   } else
-    $("#alertTable").show()
+    $("#alertFieldAttributes").show()
   if (!form)
-    $("#alertField").show()
+    $("#alertFieldAttributes").show()
   else
-    $("#alertField").hide()
-
-
-
-  return form && validTable
+    $("#alertFieldAttributes").hide()
+  if (!haveElementsInTabOrg)
+    $("#alertFieldOrganization").show()
+  else
+    $("#alertFieldOrganization").hide()
+  return form && haveElementsInTab && haveElementsInTabOrg
 }
 
 function parseAndInsertData(jsonObj) {
@@ -542,7 +595,6 @@ function parseAndInsertData(jsonObj) {
   var nome = $("#nameUser").val();
   var cognome = $("#cognomeUser").val();
   var codiceFiscale = $("#codFiscUser").val();
-  var loginName = $("#usernameUser").val();
   var password = $("#passwordUser").val();
   var email = $("#emailUser").val();
   var SPID = $("#codSPIDUser").val();
@@ -550,81 +602,60 @@ function parseAndInsertData(jsonObj) {
   jsonObj.nome = nome;
   jsonObj.cognome = cognome;
   jsonObj.codicefiscale = codiceFiscale;
-  jsonObj.loginName = loginName;
   jsonObj.password = password;
   jsonObj.codiceSPID = SPID
   jsonObj.email = email;
+  jsonObj.codiceFiscaleAdmin = sessionStorage.getItem("userId")
   var lengthTable = $("#tableBodyParziale").children().attr("id");
   lengthTable++;
-  for (var a = 0; a < lengthTable; a++) {
-    // var code = popolateOrganizationCode($("#organizzTableParziale_" + a).html());
+  $.each($("#tableOrgParziale .internalOrgCode"), function (index, element) {
     jsonObj.organizzazioni.push({
-      codiceIpa: $("#organizzTableParziale_" + a).attr("code"),
-      description: $("#organizzTableParziale_" + a).html(),
-      attributes: [{
+      codiceIpa: element.innerHTML,
+      description: $(element).attr("code")
+    })
+  })
+  for (var a = 0; a < lengthTable; a++) {
+    var bool = $("#roleTableParziale_" + a).html().replace(/ /g, '') != "";
+    if (bool) {
+      jsonObj.attributes.push({
         name: $("#roleTableParziale_" + a).html(),
         description: $("#roleTableParziale_" + a).attr("description")
-      }]
-    });
+      })
+    }
   }
   jsonObj.idApplicazione = sessionStorage.getItem("idService");
   var jsonToString = JSON.stringify(jsonObj);
   return jsonToString;
-
-
-
-
 }
 
 function popolateOrganizationCode(description) {
-
   var code;
-  $.ajax({
-      async: false,
-      type: "GET",
-      url: '?filter={"where":{"name":{"like":"' + description + '"}}}',
-      success: function (data) {
-        if (data[0] != undefined)
-          code = data[0].organizationCode
+  var name = "sgiorganization"
+  var collection = "organizations"
+  var query = '?filter={"where":{"name":{"like":"' + description + '"}}}';
+  var environment = ""
+  var url = urlComposer(name, collection, query, environment);
+  var objData = callService("GET", url);
+  if (objData.success) {
+    var data = objData.data
+    if (data[0] != undefined)
+      code = data[0].organizationCode
 
-      },
-      error: function (data) {
-
-      }
-    })
-    .done(function () {
-
-    })
-    .fail(function () {
-
-    });
+  } else {}
   return code
 }
 
 function saveOnDatabase(user) {
-
-
   var userString = 'userToAdd=' + user
-  $.ajax({
-      type: "POST",
-      data: userString,
-      url: "/addUsersToAbac/",
-      success: function (data) {
-
-
-        console.log(data)
-        location.reload();
-      },
-      error: function (data) {
-
-      }
-    })
-    .done(function () {
-
-    })
-    .fail(function () {
-
-    });
+  var name = "sgiabaccontroller"
+  var collection = "users/addUsersToAbac/"
+  var query = ""
+  var environment = ""
+  var url = urlComposer(name, collection, query, environment);
+  //var url = "http://localhost:3500/api/" + collection;
+  var objData = callService("POST", url, userString);
+  console.log(objData)
+  return objData.success;
 }
 
 function blanckFields() {
@@ -639,83 +670,98 @@ function blanckFields() {
   $("#ruoloUser").val("");
 }
 
-function popolateAutocompleteOrganizz(insertWord, response) {
-  $("#wait").css("display", "block");
-  $.ajax({
-      dataType: "json",
-      url: 'organizations?filter={"where":{"or":[{"name":{"like":"' +
-        insertWord +
-        '.*","options":"i"}},{"organizationCode":{"like":"' +
-        insertWord +
-        '.*","options":"i"}}]},"limit":20}',
-      success: function (data) {
-        $("#wait").css("display", "block");
-        var appName = [];
+function popolateAutocompleteOrganizzUser(insertWord, response) {
 
-        $.each(data, function (i, field) {
-          appName.push({
-            value: field.name,
-            label: field.organizationCode
-          });
-        });
 
-        response(appName);
-      },
-      error: function (data) {
-        $("#wait").css("display", "block");
-      }
-    })
-    .done(function () {
-      $("#wait").css("display", "none");
-    })
-    .fail(function () {
-      $("#wait").css("display", "none");
+  var name = "sgiorganization"
+  var collection = "organizations"
+  var query = '?filter={"where":{"or":[{"name":{"like":"' +
+    insertWord +
+    '.*","options":"i"}},{"organizationCode":{"like":"' +
+    insertWord +
+    '.*","options":"i"}}]},"limit":20}';
+  var environment = ""
+  var url = urlComposer(name, collection, query, environment);
+  var objData = callService("GET", url);
+  if (objData.success) {
+    var data = objData.data
+    var appName = [];
+
+    $.each(data, function (i, field) {
+      appName.push({
+        value: field.name,
+        label: field.organizationCode
+      });
     });
+
+    response(appName);
+  } else {}
 }
 
 function removeUsers(id, self) {
-  $.ajax({
-      type: "DELETE",
-      url: '/users/' + id,
-      success: function (data) {
-        $(self).parent().parent().parent().parent().remove()
-      },
-      error: function (data) {
-        $("#wait").css("display", "block");
-      }
-    })
-    .done(function () {
-      $("#wait").css("display", "none");
-    })
-    .fail(function () {
-      $("#wait").css("display", "none");
-    });
 
+
+  var message = "Rimozione utente";
+  var description = "Sei sicuro di voler rimuovere definitivamente questo utente?";
+  swal({
+      title: message,
+      text: description,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+      buttons: ["Annulla", "Conferma"]
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        var codiceFiscaleAdmin = sessionStorage.getItem("userId");
+        var objToPost = 'userToDelete={"codiceFiscaleAdmin":"' + codiceFiscaleAdmin + '","idUserToDelete":"' + id + '"}';
+        var name = "sgiabaccontroller"
+        var collection = 'users';
+        var query = ""
+        var environment = ""
+        var url = urlComposer(name, collection, query, environment);
+        var objData = callService("POST", url, objToPost);
+        if (objData.success) {
+          var data = objData.data
+          $(self).parent().parent().parent().parent().remove()
+        } else {}
+        swal("Rimozione effettuata!", {
+          icon: "success",
+        });
+        return true;
+      } else {
+        swal("Operazione annullata");
+        return false;
+      }
+    });
 
 }
 
 function editUsersPopolateModal(id) {
-
+  blankTable();
   $(".modal-lg-EditUser").modal("show");
   var user = getUserById(id)
   popolateModalUserEdit(user);
 
+}
 
-
-
+function blankTable() {
+  $("#tableOrgParzialeEdit").empty();
+  $("#tableBodyParzialeAttrEdit").empty();
 }
 
 function getUserById(id) {
   var user;
-  var url = "api/users/" + id;
-  $.ajax({
-    method: "GET",
-    url: url,
-    async: false,
-    success: function (data) {
-      user = data
-    }
-  })
+  var name = "sgiabaccontroller"
+  var collection = "/users/" + id;
+  var query = ""
+  var environment = ""
+  var url = urlComposer(name, collection, query, environment);
+  var objData = callService("GET", url);
+  if (objData.success) {
+    var data = objData.data
+    user = data
+  } else {}
   return user
 }
 
@@ -732,7 +778,7 @@ function popolateModalUserEdit(user) {
   var password = user.password
   var organizzazioni = user.organizzazioni
   var SPID = user.codiceSPID;
-
+  var attributes = user.attributes;
   $("#idUserToEdit").val(id)
   $("#cognomeUserEdit").val(cognome);
   $("#nameUserEdit").val(nome);
@@ -740,84 +786,179 @@ function popolateModalUserEdit(user) {
   $("#codSPIDUserEdit").val(SPID);
   $("#usernameUserEdit").val(username);
   $("#emailUserEdit").val(email);
-  // $("#passwordUserEdit").val(password);
-  // $("#getOrganizationEdit").val("");
-  // $("#ruoloUserEdit").val("");
 
   if (!isSuperAdmin) {
-    // var length = organizzazioni.length
-    // for (var a = 0;a<length;a++)
-    // salvaParzialeInTabella()
-    $.each(organizzazioni, function (index, value) {
-      salvaParzialeInTabellaEditLoad(value.attributes[0].name, value.attributes[0].description, value.description, value.codiceIpa);
+
+    $.each(attributes, function (index, value) {
+      salvaParzialeInTabellaEditAttributes(value.description, value.name);
     })
-
+    $.each(organizzazioni, function (index, value) {
+      salvaParzialeInTabellaEditOrg(value.description, value.codiceIpa);
+    })
   }
-
-
-
-
-
-
-
 }
 
-function salvaParzialeInTabellaEdit() {
-  $("#tableBodyParzialeEdit").html()
-  if ($("#getOrganizationForTable").is("select")) {
-    var optionValue = $("#getOrganizationForTable").val()
-    // console.log($("#getOrganization option[value="+optionValue+"]").attr("itemCode"))
-    var organizzazione = $("#getOrganizationForTable option#" + optionValue + "").attr("itemcode") == "" ? "-" : $("#getOrganizationForTable option#" + optionValue + "").attr("itemcode")
+// function salvaParzialeInTabellaEdit() {
+//   $("#tableBodyParzialeEdit").html()
+//   if ($("#getOrganizationForTable").is("select")) {
+//     var optionValue = $("#getOrganizationForTable").val()
+//     // console.log($("#getOrganization option[value="+optionValue+"]").attr("itemCode"))
+//     var organizzazione = $("#getOrganizationForTable option#" + optionValue + "").attr("itemcode") == "" ? "-" : $("#getOrganizationForTable option#" + optionValue + "").attr("itemcode")
+//   } else
+//     var organizzazione = $("#getOrganizationForTable").children(":selected").attr("itemcode") == "" ? "-" : $("#getOrganizationForTable").attr("itemcode")
+
+//   var codeOrganizzazione = $("#getOrganizationForTable").val() == "" ? "-" : $("#getOrganizationForTable").val();
+//   var ruolo = $("#rolesAttributesEdit").val() == null ? "-" : $("#rolesAttributesEdit").val();
+//   var ruoloDescription = $("#rolesAttributesEdit").find(":selected").attr("description");
+//   var numberRowTableParziale = $("#tableBodyParzialeEdit").children().length++;
+//   var html =
+//     '<tr id="' +
+//     numberRowTableParziale +
+//     '" ><td class="text-center" code="' + codeOrganizzazione + '" id="organizzTableParzialeEdit_' + numberRowTableParziale + '">' +
+//     organizzazione +
+//     "</td>" +
+//     '<td class="text-center" description="' + ruoloDescription + '" id="roleTableParzialeEdit_' + numberRowTableParziale + '">' +
+//     ruolo +
+//     '</td><td class="text-center"><a href="#" title="cancella" class="ml-5" onclick="deleteRowTableParzialeEdit(' +
+//     numberRowTableParziale +
+//     ')">' +
+//     '<i class="icon-trash icons font-2xl d-block"></i></a></td></tr>';
+//   $("#tableBodyParzialeEdit").prepend(html);
+// }
+
+function salvaParzialeOrgInTabella() {
+  if ($("#getOrganizationForInsertUser").val() != "" && ($("#getOrganizationForInsertUser").val() != undefined || $("#getOrganizationForInsertUser").val() != null)) {
+    if ($("#getOrganizationForInsertUser").is("select")) {
+      var check = checkIfIsInTableOrg($("#getOrganizationForInsertUser").children(":selected").attr("itemcode"), $("#tableOrgParzialeEdit"));
+    } else
+      var check = checkIfIsInTableOrg($("#getOrganizationForInsertUser").val(), $("#tableOrgParziale"));
+    if (!check) {
+      $("#alertFieldOrganization").hide();
+      $("#alertFieldGlobalSave").hide();
+      let html = "";
+      var numberRowTableParziale = $("#tableOrgParziale tr").attr("id");
+      if (numberRowTableParziale == undefined) {
+        numberRowTableParziale = 0
+      } else
+        numberRowTableParziale++
+        var rowFormat = '<tr id="{0}"><td id="rowOrganization_{0}" code="{2}" class="text-center internalOrgCode">{1}</td><td class="text-center"><a href="#" onclick="removeRow(this)" title="cancella" class=""><i class="fa fa-times-circle icons font-2xl d-block"></i></a></td></tr>';
+      if ($("#getOrganizationForTable").is("select"))
+        html = String.format(rowFormat, numberRowTableParziale, $("#getOrganizationForInsertUser").val(), $("#getOrganizationForInsertUser").children(":selected").attr("itemcode"));
+      else
+        html = String.format(rowFormat, numberRowTableParziale, $("#getOrganizationForInsertUser").val(), $("#getOrganizationForInsertUser").attr("itemcode"));
+      $("#tableOrgParziale").prepend(html);
+    }
+  }
+}
+/**
+ * Aggiunge alla tabella
+ */
+function salvaParzialeOrgInTabellaEdit() {
+
+  if ($("#getOrganizationEditUser").val() != "" && ($("#getOrganizationEditUser").val() != undefined || $("#getOrganizationEditUser").val() != null)) {
+    if ($("#getOrganizationEditUser").is("select")) {
+      var check = checkIfIsInTableOrgEdit($("#getOrganizationEditUser").children(":selected").attr("itemcode"), $("#tableOrgParzialeEdit"));
+    } else
+      var check = checkIfIsInTableOrgEdit($("#getOrganizationEditUser").val(), $("#tableOrgParzialeEdit"));
+
+    if (!check) {
+      $("#alertFieldOrganizationEdit").hide()
+      $("#alertFieldGlobalEdit").hide()
+      let html = ""
+      var numberRowTableParziale = $("#tableOrgParzialeEdit tr").attr("id");
+      if (numberRowTableParziale == undefined) {
+        numberRowTableParziale = 0
+      } else
+        numberRowTableParziale++
+        var rowFormat = '<tr id="{0}"><td id="rowOrganizationEdit_{0}" code="{2}" class="text-center internalOrgCode">{1}</td><td class="text-center"><a href="#" onclick="removeRow(this)" title="cancella" class=""><i class="fa fa-times-circle icons font-2xl d-block"></i></a></td></tr>';
+      if ($("#getOrganizationForTable").is("select"))
+        html = String.format(rowFormat, numberRowTableParziale, $("#getOrganizationEditUser").val(), $("#getOrganizationEditUser").children(":selected").attr("itemcode"));
+      else
+        html = String.format(rowFormat, numberRowTableParziale, $("#getOrganizationEditUser").val(), $("#getOrganizationEditUser").attr("itemcode"));
+      $("#tableOrgParzialeEdit").prepend(html);
+    }
+  }
+}
+
+function checkIfIsInTableOrg(value, elmTable) {
+  var numberRowInTable = elmTable.children().attr("id");
+  if (numberRowInTable == undefined) {
+    return false
   } else
-    var organizzazione = $("#getOrganizationForTable").children(":selected").attr("itemcode") == "" ? "-" : $("#getOrganizationForTable").attr("itemcode")
-
-  var codeOrganizzazione = $("#getOrganizationForTable").val() == "" ? "-" : $("#getOrganizationForTable").val();
-  var ruolo = $("#rolesAttributesEdit").val() == null ? "-" : $("#rolesAttributesEdit").val();
-  var ruoloDescription = $("#rolesAttributesEdit").find(":selected").attr("description");
-  var numberRowTableParziale = $("#tableBodyParzialeEdit").children().length++;
-  var html =
-    '<tr id="' +
-    numberRowTableParziale +
-    '" ><td class="text-center" code="' + codeOrganizzazione + '" id="organizzTableParzialeEdit_' + numberRowTableParziale + '">' +
-    organizzazione +
-    "</td>" +
-    '<td class="text-center" description="' + ruoloDescription + '" id="roleTableParzialeEdit_' + numberRowTableParziale + '">' +
-    ruolo +
-    '</td><td class="text-center"><a href="#" title="cancella" class="ml-5" onclick="deleteRowTableParzialeEdit(' +
-    numberRowTableParziale +
-    ')">' +
-    '<i class="icon-close icons font-2xl d-block"></i></a></td></tr>';
-  $("#tableBodyParzialeEdit").prepend(html);
-
-
+    numberRowInTable++
+    for (var a = 0; a < numberRowInTable; a++) {
+      if (($("#rowOrganization_" + a).html() != "" || $("#rowOrganization_" + a).html() != undefined) && $("#rowOrganization_" + a).html() == value) {
+        return true
+      }
+    }
+  return false
 }
 
-function salvaParzialeInTabellaEditLoad(ruoloEdit, descrizioneRuoloEdit, organizzazioneEdit, codeOrganizz) {
-  $("#tableBodyParzialeEdit").html("")
-  var organizzazioneCode = codeOrganizz
-  var organizzazione = organizzazioneEdit
-  var ruolo = ruoloEdit
-  var ruoloDescription = descrizioneRuoloEdit
-  var numberRowTableParziale = $("#tableBodyParzialeEdit").children().length++;
+function checkIfIsInTableOrgEdit(value, elmTable) {
+  var numberRowInTable = elmTable.children().attr("id");
+  if (numberRowInTable == undefined) {
+    return false
+  } else
+    numberRowInTable++
+    for (var a = 0; a < numberRowInTable; a++) {
+      if (($("#rowOrganizationEdit_" + a).html() != "" || $("#rowOrganizationEdit_" + a).html() != undefined) && $("#rowOrganizationEdit_" + a).html() == value) {
+        return true
+      }
+    }
+  return false
+}
+/**
+ * Carica nella tabella
+ * @param {string} organizzazioneEdit
+ * @param {string} codeOrganizz
+ * @returns {string}
+ */
+function salvaParzialeInTabellaEditOrg(organizzazioneEdit, codeOrganizz) {
+
+  $("#alertFieldOrganizationEdit").hide()
+  $("#alertFieldGlobalEdit").hide()
+  let html = ""
+  var numberRowTableParziale = $("#tableOrgParzialeEdit tr").attr("id");
+  if (numberRowTableParziale == undefined) {
+    numberRowTableParziale = 0
+  } else
+    numberRowTableParziale++
+    var rowFormat = '<tr id="{0}"><td id="rowOrganizationEdit_{0}" code="{2}" class="text-center internalOrgCode">{1}</td><td class="text-center"><a href="#" onclick="removeRow(this)" title="cancella" class=""><i class="fa fa-times-circle icons font-2xl d-block"></i></a></td></tr>';
+
+  html = String.format(rowFormat, numberRowTableParziale, codeOrganizz, organizzazioneEdit);
+
+  $("#tableOrgParzialeEdit").prepend(html);
+}
+
+
+// $("#tableBodyParzialeEdit").html("");
+// var organizzazioneCode = codeOrganizz;
+// var organizzazione = organizzazioneEdit;
+// var numberRowTableParziale = $("#tableBodyParziale").children().length++;
+// var rowFormat = '<tr id="{0}"><td class="text-center internalOrgCode" code="{2}">{1}</td><td class="text-center"><a href="#" onclick="removeRow(this)" title="cancella" class=""><i class="fa fa-times-circle icons font-2xl d-block"></i></a></td></tr>';
+// var html = String.format(rowFormat, numberRowTableParziale, codeOrganizz, organizzazioneEdit);
+// $("#tableOrgParzialeEdit").prepend(html);
+
+
+function salvaParzialeInTabellaEditAttributes(description, name) {
+  $("#tableBodyParzialeEdit").html("");
+  var description = description;
+  var name = name;
+  var numberRowTableParziale = $("#tableBodyParzialeAttrEdit").children().length++;
   var html =
     '<tr id="' +
     numberRowTableParziale +
-    '" ><td class="text-center" code="' + organizzazioneCode + '" id="organizzTableParzialeEdit_' + numberRowTableParziale + '">' +
-    organizzazione +
-    "</td>" +
-    '<td class="text-center" description="' + ruoloDescription + '" id="roleTableParzialeEdit_' + numberRowTableParziale + '">' +
-    ruolo +
-    '</td><td class="text-center"><a href="#" title="cancella" class="ml-5" onclick="deleteRowTableParzialeEdit(' +
-    numberRowTableParziale +
-    ')">' +
-    '<i class="icon-close icons font-2xl d-block"></i></a></td></tr>';
-  $("#tableBodyParzialeEdit").prepend(html);
-
-
+    '" >' +
+    '<td class="text-center" description="' + description + '" id="roleTableParzialeEdit_' + numberRowTableParziale + '">' +
+    name +
+    '</td><td class="text-center"><a href="#" onclick="removeRow(this)" title="cancella" class="" onclick="removeRow(this)">' +
+    '<i class="fa fa-times-circle icons font-2xl d-block"></i></a></td></tr>';
+  $("#tableBodyParzialeAttrEdit").prepend(html);
 }
 
 function editUser() {
   if (validateFormEdit()) {
+    $("#alertFieldGlobalEdit").hide()
     var obj = {
       "nome": "",
       "cognome": "",
@@ -828,50 +969,57 @@ function editUser() {
       "codiceSPID": "",
       "isSuperAdmin": false,
       "organizzazioni": [],
-      "idApplicazione": ""
+      "attributes": [],
+      "idApplicazione": "",
+      "codiceFiscaleAdmin": ""
     };
     var objUser = parseAndEditData(obj);
     editUserOnDatabase(objUser);
-    $(".modal-lg-EditUser").modal("hide")
+    $(".modal-lg-EditUser").modal("hide");
     blanckFields();
-  }
+  } else
+    $("#alertFieldGlobalEdit").show();
 }
 
 function validateFormEdit() {
   var form = $("#editUserFormEdit").valid();
+  var tableAttributes = $("#tableBodyParzialeAttrEdit").children().length > 0;
+  var tableOrganization = $("#tableOrgParzialeEdit").children().length > 0;
   if (!form)
-    $("#alertFieldEdit").show()
+    $("#alertFieldEdit").show();
   else
-    $("#alertFieldEdit").hide()
+    $("#alertFieldEdit").hide();
+  if (!tableAttributes)
+    $("#alertFieldAttributesEdit").show();
+  else
+    $("#alertFieldAttributesEdit").hide();
+  if (!tableOrganization)
+    $("#alertFieldOrganizationEdit").show();
+  else
+    $("#alertFieldOrganizationEdit").hide();
 
-  return form
+
+  return form && tableAttributes && tableOrganization;
 }
 
 function editUserOnDatabase(user) {
-
-
-  var userString = 'userToUpdate=' + user
-
-  $.ajax({
-      type: "POST",
-      data: userString,
-      url: "api/users/updateUser/",
-      success: function (data) {
-
-
-        console.log(data)
-        location.reload();
-      },
-      error: function (data) {
-
-      }
-    })
-    .done(function () {
-
-    })
-    .fail(function () {
-
-    });
+  var userString = 'userToUpdate=' + user;
+  var name = "sgiabaccontroller";
+  var collection = "users/updateUser/";
+  var query = "";
+  var environment = "";
+  var url = urlComposer(name, collection, query, environment);
+  //var url = "http://localhost:3500/api/" + collection
+  var objData = callService("POST", url, userString);
+  if (objData.success) {
+    var message = objData.data.result;
+    success(message);
+    setTimeout(function () {
+      location.reload();
+    }, 2000);
+  } else {
+    error("Impossibile modificare l'utente. Controllare che i valori inseriti siano corretti ");
+  }
 }
 
 function parseAndEditData(jsonObj) {
@@ -880,7 +1028,7 @@ function parseAndEditData(jsonObj) {
   var cognome = $("#cognomeUserEdit").val();
   var codiceFiscale = $("#codFiscUserEdit").val();
   var loginName = $("#usernameUserEdit").val();
-  var password = $("#passwordUserEdit").val();
+  // var password = $("#passwordUserEdit").val();
   var email = $("#emailUserEdit").val();
   var SPID = $("#codSPIDUserEdit").val();
   //issuperadamin
@@ -889,25 +1037,32 @@ function parseAndEditData(jsonObj) {
   jsonObj.cognome = cognome;
   jsonObj.codicefiscale = codiceFiscale;
   jsonObj.loginName = loginName;
-  if (password != "") {
-    jsonObj.password = password;
-  }
-
+  // if (password != "") {
+  //   jsonObj.password = password;
+  // }
   jsonObj.email = email;
   jsonObj.codiceSPID = SPID;
+  jsonObj.organizzazioni = []
+  jsonObj.attributes = []
+  jsonObj.codiceFiscaleAdmin = sessionStorage.getItem("userId")
+  var lengthTableEdit = $("#tableBodyParzialeAttrEdit").children().attr("id");
+  lengthTableEdit++
 
-  var lengthTable = $("#tableBodyParzialeEdit").children().attr("id");
-  lengthTable++;
-  for (var a = 0; a < lengthTable; a++) {
-    // var code = popolateOrganizationCode($("#organizzTableParzialeEdit_" + a).html());
+  $.each($("#tableOrgParzialeEdit .internalOrgCode"), function (index, element) {
     jsonObj.organizzazioni.push({
-      codiceIpa: $("#organizzTableParzialeEdit_" + a).attr("code"),
-      description: $("#organizzTableParzialeEdit_" + a).html(),
-      attributes: [{
+      codiceIpa: element.innerHTML,
+      description: $(element).attr("code")
+    })
+  })
+
+  for (var a = 0; a < lengthTableEdit; a++) {
+    var bool = $("#roleTableParzialeEdit_" + a).html().replace(/ /g, '') != "";
+    if (bool) {
+      jsonObj.attributes.push({
         name: $("#roleTableParzialeEdit_" + a).html(),
         description: $("#roleTableParzialeEdit_" + a).attr("description")
-      }]
-    });
+      })
+    }
   }
   jsonObj.idApplicazione = sessionStorage.getItem("idService");
   jsonObj.id = $("#idUserToEdit").val()
@@ -915,3 +1070,45 @@ function parseAndEditData(jsonObj) {
   return jsonToString;
 
 }
+
+function removeRow(elm) {
+  $(elm).parent().parent().remove();
+}
+
+
+
+
+// function parseAndInsertData(jsonObj) {
+//   // var jsonObj=JSON.parse(obj);
+//   var nome = $("#nameUser").val();
+//   var cognome = $("#cognomeUser").val();
+//   var codiceFiscale = $("#codFiscUser").val();
+//   var loginName = $("#usernameUser").val();
+//   var password = $("#passwordUser").val();
+//   var email = $("#emailUser").val();
+//   var SPID = $("#codSPIDUser").val();
+//   //issuperadamin
+//   jsonObj.nome = nome;
+//   jsonObj.cognome = cognome;
+//   jsonObj.codicefiscale = codiceFiscale;
+//   jsonObj.password = password;
+//   jsonObj.codiceSPID = SPID
+//   jsonObj.email = email;
+//   var lengthTable = $("#tableBodyParziale").children().attr("id");
+//   lengthTable++;
+//   $.each($("#tableOrgParziale .internalOrgCode"), function (index, element) {
+//     jsonObj.organizzazioni.push({
+//       codiceIpa: element.innerHTML,
+//       description: $(element).attr("code")
+//     })
+//   })
+//   for (var a = 0; a < lengthTable; a++) {
+//     jsonObj.attributes.push({
+//       name: $("#roleTableParziale_" + a).html(),
+//       description: $("#roleTableParziale_" + a).attr("description")
+//     })
+//   }
+//   jsonObj.idApplicazione = sessionStorage.getItem("idService");
+//   var jsonToString = JSON.stringify(jsonObj);
+//   return jsonToString;
+// }
